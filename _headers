@@ -1,0 +1,16 @@
+# Set cache control for installation scripts to prevent caching
+/install.sh
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: text/x-shellscript; charset=utf-8
+
+/install.ps1
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: text/plain; charset=utf-8
+
+# Global security headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-XSS-Protection: 1; mode=block
+  Content-Security-Policy: default-src 'self'; style-src 'self'; img-src 'self' data:; script-src 'self';
