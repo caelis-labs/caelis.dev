@@ -1,7 +1,29 @@
 # caelis installation script for Windows.
 # GitHub: https://github.com/caelis-labs/caelis
 
+param(
+    [Parameter(Position = 0)]
+    [string]$Version
+)
+
 $ErrorActionPreference = "Stop"
+
+# PS 5.1 defaults to TLS 1.0; GitHub requires TLS 1.2.
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+
+# PS 5.1's Invoke-WebRequest progress bar is extremely slow; disable it.
+$ProgressPreference = 'SilentlyContinue'
+
+# Accept version from environment variable (useful with irm | iex).
+if (-not $Version -and $env:CAELIS_VERSION) {
+    $Version = $env:CAELIS_VERSION
+}
+
+# Validate version format if specified
+if ($Version -and $Version -notmatch '^v?\d+\.\d+\.\d+(-\S+)?$') {
+    Write-Error "Invalid version format: $Version (expected [v]X.Y.Z or [v]X.Y.Z-suffix)"
+    exit 1
+}
 
 # Configuration
 $DefaultInstallDir = "$env:LOCALAPPDATA\Programs\caelis\bin"
@@ -10,8 +32,59 @@ if (-not $InstallDir) {
     $InstallDir = $DefaultInstallDir
 }
 
+# --- Helpers ---
+
+function Download-String([string]$Url) {
+    try {
+        $response = Invoke-WebRequest -Uri $Url -UseBasicParsing -UserAgent "Mozilla/5.0"
+        return $response.Content
+    } catch {
+        return $null
+    }
+}
+
+function Download-File([string]$Url, [string]$OutFile) {
+    # Stream via HttpWebRequest — faster than Invoke-WebRequest on PS 5.1 and supports progress.
+    $request = [System.Net.HttpWebRequest]::Create($Url)
+    $request.Timeout = 300000  # 5 min
+    $request.AutomaticDecompression = [System.Net.DecompressionMethods]::GZip -bor [System.Net.DecompressionMethods]::Deflate
+    $request.UserAgent = "Mozilla/5.0"
+    $response = $request.GetResponse()
+    $totalBytes = $response.ContentLength
+    $stream = $response.GetResponseStream()
+    $fileStream = [System.IO.File]::Create($OutFile)
+    $buffer = New-Object byte[] 65536
+    $totalRead = 0
+    $lastPercent = -1
+    $lastMb = -1
+
+    try {
+        while (($read = $stream.Read($buffer, 0, $buffer.Length)) -gt 0) {
+            $fileStream.Write($buffer, 0, $read)
+            $totalRead += $read
+            $mb = [math]::Round($totalRead / 1MB, 1)
+            if ($totalBytes -gt 0) {
+                $percent = [math]::Min(100, [math]::Floor(($totalRead / $totalBytes) * 100))
+                if ($percent -ne $lastPercent) {
+                    $totalMb = [math]::Round($totalBytes / 1MB, 1)
+                    Write-Host "`r  Downloading... ${mb} MB / ${totalMb} MB (${percent}%)" -NoNewline
+                    $lastPercent = $percent
+                }
+            } elseif ($mb -ne $lastMb) {
+                Write-Host "`r  Downloading... ${mb} MB" -NoNewline
+                $lastMb = $mb
+            }
+        }
+        Write-Host ''
+    } finally {
+        $fileStream.Close()
+        $stream.Close()
+        $response.Close()
+    }
+}
+
 # Resolve Version
-$CaelisVersion = $env:CAELIS_VERSION
+$CaelisVersion = $Version
 if (-not $CaelisVersion) {
     Write-Host "Checking the latest release version of caelis..."
     try {
@@ -67,10 +140,28 @@ $ChecksumsPath = Join-Path $TempDir "checksums.txt"
 # Download archive and checksums
 try {
     Write-Host "Downloading $TarballName..."
-    Invoke-WebRequest -Uri $DownloadUrl -OutFile $TarballPath -UserAgent "Mozilla/5.0"
-    Invoke-WebRequest -Uri $ChecksumsUrl -OutFile $ChecksumsPath -UserAgent "Mozilla/5.0"
+    Download-File $DownloadUrl $TarballPath
+    Download-File $ChecksumsUrl $ChecksumsPath
 } catch {
-    Write-Error "Failed to download release assets. Please check your internet connection or if the version $CaelisVersion exists."
+    # Cleanup on failure
+    if (Test-Path $TarballPath) { Remove-Item $TarballPath -Force }
+    if (Test-Path $ChecksumsPath) { Remove-Item $ChecksumsPath -Force }
+    
+    # Check if release page exists, providing better context for 404s
+    $headers = [System.Net.HttpWebRequest]::Create($DownloadUrl)
+    $headers.Method = "HEAD"
+    $headers.UserAgent = "Mozilla/5.0"
+    try {
+        $resp = $headers.GetResponse()
+        $resp.Close()
+        Write-Error "Failed to download release assets. Please check your internet connection."
+    } catch {
+        if ($_.Exception.InnerException -and $_.Exception.InnerException.Message -like "*404*") {
+            Write-Error "Error: caelis $CaelisVersion is not yet available for windows_$Arch."
+        } else {
+            Write-Error "Failed to download release assets. URL: $DownloadUrl. Error: $_"
+        }
+    }
     exit 1
 }
 
@@ -102,12 +193,13 @@ if (-not (Test-Path $InstallDir)) {
     New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
 }
 
-# Extract executable
+# Extract executable to temporary directory first, then copy safely
 $TarCommand = Get-Command "tar.exe" -ErrorAction SilentlyContinue
 if ($TarCommand) {
     Write-Host "Extracting caelis..."
     try {
-        tar.exe -xf $TarballPath -C $InstallDir
+        # Extract files to TempDir
+        tar.exe -xf $TarballPath -C $TempDir
     } catch {
         Write-Error "Extraction failed using tar.exe: $_"
         exit 1
@@ -118,16 +210,33 @@ if ($TarCommand) {
     exit 1
 }
 
-# Ensure caelis.exe is in the root of InstallDir
-$ExePath = Join-Path $InstallDir "caelis.exe"
-if (-not (Test-Path $ExePath)) {
-    $FoundExe = Get-ChildItem -Path $InstallDir -Filter "caelis.exe" -Recurse | Select-Object -First 1
+# Ensure we locate caelis.exe from TempDir
+$ExtractedExe = Join-Path $TempDir "caelis.exe"
+if (-not (Test-Path $ExtractedExe)) {
+    $FoundExe = Get-ChildItem -Path $TempDir -Filter "caelis.exe" -Recurse | Select-Object -First 1
     if ($FoundExe) {
-        if ($FoundExe.DirectoryName -ne $InstallDir) {
-            Move-Item -Path $FoundExe.FullName -Destination $InstallDir -Force
-        }
+        $ExtractedExe = $FoundExe.FullName
     } else {
         Write-Error "Could not find caelis.exe after extraction."
+        exit 1
+    }
+}
+
+# Install executable (locked-file safe)
+$dest = Join-Path $InstallDir "caelis.exe"
+$old = "$dest.old"
+
+if (Test-Path $old) { Remove-Item $old -Force -ErrorAction SilentlyContinue }
+
+try {
+    Copy-Item -Path $ExtractedExe -Destination $dest -Force
+} catch {
+    try {
+        if (Test-Path $dest) { Rename-Item $dest $old -Force -ErrorAction SilentlyContinue }
+        Copy-Item -Path $ExtractedExe -Destination $dest -Force
+    } catch {
+        if (Test-Path $old) { Rename-Item $old $dest -Force -ErrorAction SilentlyContinue }
+        Write-Error "Failed to install caelis.exe. The executable might be locked by another running process."
         exit 1
     }
 }
@@ -139,9 +248,9 @@ try {
 
 Write-Host "caelis has been installed successfully!" -ForegroundColor Green
 
-# Check PATH
-$UserPath = [Environment]::GetEnvironmentVariable("Path", "User")
-$PathList = $UserPath -split ";"
+# Check and update User PATH
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+$PathList = if ($userPath) { $userPath -split ";" } else { @() }
 $IsInPath = $false
 foreach ($P in $PathList) {
     if ($P.TrimEnd('\') -eq $InstallDir.TrimEnd('\')) {
@@ -151,11 +260,14 @@ foreach ($P in $PathList) {
 }
 
 if (-not $IsInPath) {
-    Write-Host "`nWarning: The installation directory '$InstallDir' is not in your PATH." -ForegroundColor Yellow
-    Write-Host "To execute 'caelis' from any command prompt, add it to your User PATH."
-    Write-Host "You can do this by running the following command in PowerShell:" -ForegroundColor Cyan
-    Write-Host "  [Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ';$InstallDir', 'User')" -ForegroundColor Cyan
-    Write-Host "Note: You will need to restart your terminal for changes to take effect."
+    $newPath = (@($InstallDir) + $PathList) -join ';'
+    [Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+    Write-Host "  Added $InstallDir to your User PATH." -ForegroundColor DarkGray
+    
+    # Update current session so caelis works immediately.
+    if ($env:Path -notlike "*$InstallDir*") {
+        $env:Path = "$InstallDir;$env:Path"
+    }
 }
 
 # Verify run
@@ -164,7 +276,7 @@ $FinalExePath = Join-Path $InstallDir "caelis.exe"
 if (Test-Path $FinalExePath) {
     Write-Host "caelis.exe is installed."
     Write-Host "Installed version: $CaelisVersion"
-    Write-Host "Run '$FinalExePath --help' to get started."
+    Write-Host "Run 'caelis --help' to get started."
 } else {
     Write-Error "Installation verification failed: caelis.exe not found at $FinalExePath"
     exit 1
