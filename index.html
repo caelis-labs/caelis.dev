@@ -10,7 +10,6 @@
   <script src="site.js" defer></script>
 </head>
 <body>
-
   <!-- Header -->
   <header>
     <div class="container nav-container">
@@ -60,43 +59,29 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <p class="eyebrow" data-i18n="hero.eyebrow">ACP agent workspace</p>
-      <h1 data-i18n="hero.title">Connect every ACP agent in one terminal session.</h1>
-      <p data-i18n="hero.lede">
-        Built on its own Agent Runtime, Caelis coordinates ACP-compatible agents in one shared terminal session and can run as a caelis acp server for clients such as Zed.
+      <h1 data-i18n="hero.title">一个工作空间<br>协同多个 AI Agent</h1>
+      <p class="hero-lede" data-i18n="hero.lede">
+        支持连接兼容 ACP 协议的 Agent，<br>包括 Claude Code, Codex, Grok, Copilot 等。
       </p>
-      <div class="agent-strip" aria-label="ACP-compatible agent examples">
-        <span>Claude Code</span>
-        <span>Codex</span>
-        <span>OpenCode</span>
-        <span>Zed</span>
-        <span>ACP clients</span>
-      </div>
-      <div class="hero-actions">
-        <a href="#install" class="button button-primary" data-i18n="cta.install">Install Caelis</a>
-        <a href="https://github.com/caelis-labs/caelis" class="button button-secondary github-link" target="_blank" rel="noopener" aria-label="View Caelis on GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.24c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z"/>
-          </svg>
-          <span data-i18n="cta.github">View on GitHub</span>
-        </a>
-      </div>
-      
       <!-- Install Widget -->
       <div class="install-widget" id="install">
         <div class="widget-tabs">
-          <button class="tab-btn active" data-platform="sh" data-i18n="install.macos">macOS / Linux</button>
-          <button class="tab-btn" data-platform="ps1" data-i18n="install.windows">Windows (PowerShell)</button>
+          <button class="tab-btn active" data-platform="sh" data-i18n="install.curl">curl</button>
+          <button class="tab-btn" data-platform="ps1" data-i18n="install.windows">PowerShell</button>
           <button class="tab-btn" data-platform="npm">npm</button>
         </div>
         <div class="widget-content">
           <div class="copy-feedback" id="copy-feedback" data-i18n="install.copied">Copied!</div>
           <div class="command-box">
             <span class="command-text" id="command-text">curl -fsSL https://caelis.dev/install.sh | sh</span>
-            <button class="copy-btn" aria-label="Copy installation command" data-i18n-aria="install.copyAria">
+            <button class="copy-btn" id="install-copy-btn" aria-label="Copy installation command" data-i18n-aria="install.copyAria">
               <!-- SVG Copy Icon -->
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H5.25m11.9-3.664A2.251 2.251 0 0015 2.25h-3a2.251 2.251 0 00-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.375c0-.621.504-1.125 1.125-1.125h9.75c.621 0 1.125.504 1.125 1.125v10.5c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125v-10.5z" />
+              </svg>
+              <!-- SVG Check Icon -->
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" style="display: none;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
             </button>
           </div>
@@ -109,37 +94,51 @@
   <section class="intro-section">
     <div class="container">
       <div class="section-heading">
-        <p class="section-kicker" data-i18n="intro.kicker">Why Caelis</p>
-        <h2 data-i18n="intro.title">Use each agent where it is strongest. Keep the session together.</h2>
-        <p data-i18n="intro.body">Caelis treats ACP as the bridge between agent clients instead of locking work into one assistant UI.</p>
+        <p class="section-kicker" data-i18n="intro.kicker">DESIGN PHILOSOPHY</p>
+        <h2 data-i18n="intro.title">Leverage agent specialization. Maintain a unified contextual session.</h2>
+        <p data-i18n="intro.body">Caelis treats ACP as an open bridge between agent runtimes, fostering seamless context handoffs in your terminal rather than locking intelligence into isolated chat UIs.</p>
       </div>
       <div class="intro-list">
         <article class="intro-item">
           <span class="intro-index">01</span>
           <div>
-            <h3 data-i18n="intro.fusion.title">ACP fusion</h3>
-            <p data-i18n="intro.fusion.body">Connect ACP-compatible agents through a shared session so Claude Code, Codex, Copilot, Grok, OpenCode, and future peers can hand work across the same context.</p>
+            <h3 data-i18n="intro.f1.title">Local-first Runtime</h3>
+            <p data-i18n="intro.f1.body">All agents execute natively on your machine. Your codebase, commands, and runtime boundaries stay entirely in your control.</p>
           </div>
         </article>
         <article class="intro-item">
           <span class="intro-index">02</span>
           <div>
-            <h3 data-i18n="intro.surface.title">One control surface</h3>
-            <p data-i18n="intro.surface.body">Drive the workspace from the TUI, a headless one-shot CLI, or expose it through caelis acp to ACP clients such as Zed.</p>
+            <h3 data-i18n="intro.f2.title">Open Agent Context Protocol</h3>
+            <p data-i18n="intro.f2.body">Connect and orchestrate different ACP-compatible agents in one session. Expand your workspace without closed platform silos.</p>
           </div>
         </article>
         <article class="intro-item">
           <span class="intro-index">03</span>
           <div>
-            <h3 data-i18n="intro.review.title">Delegation with review</h3>
-            <p data-i18n="intro.review.body">Ask one agent to implement, another to inspect, and keep decisions, command output, and approval traces attached to the session.</p>
+            <h3 data-i18n="intro.f3.title">Secure Execution Boundaries</h3>
+            <p data-i18n="intro.f3.body">Run agents safely inside custom sandboxes. Strict permissions and manual approval workflows prevent malicious shell commands.</p>
           </div>
         </article>
         <article class="intro-item">
           <span class="intro-index">04</span>
           <div>
-            <h3 data-i18n="intro.runtime.title">Full Agent Runtime</h3>
-            <p data-i18n="intro.runtime.body">Caelis is not just an ACP TUI shell. It includes a reusable Agent Runtime for sessions, tools, sandboxing, permissions, and future memory or GUI surfaces.</p>
+            <h3 data-i18n="intro.f4.title">Cross-Platform Support</h3>
+            <p data-i18n="intro.f4.body">Consistently run Caelis runtime and sessions across macOS, Linux, and Windows environments.</p>
+          </div>
+        </article>
+        <article class="intro-item">
+          <span class="intro-index">05</span>
+          <div>
+            <h3 data-i18n="intro.f5.title">Ecosystem Compatibility</h3>
+            <p data-i18n="intro.f5.body">Reuse your existing skills, plugins, MCP servers, and ACP clients. Migrate tools with zero vendor lock-in.</p>
+          </div>
+        </article>
+        <article class="intro-item">
+          <span class="intro-index">06</span>
+          <div>
+            <h3 data-i18n="intro.f6.title">Open Source & Extensible</h3>
+            <p data-i18n="intro.f6.body">Licensed under Apache-2.0. Standardize agent orchestration with an active, extensible community runtime.</p>
           </div>
         </article>
       </div>
@@ -150,42 +149,90 @@
   <section class="showcase-section">
     <div class="container">
       <h2 class="section-title" data-i18n="showcase.title">A shared agent workspace</h2>
-      <div class="showcase-grid">
-        <!-- Example 1 -->
-        <div class="terminal-mockup">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <span class="terminal-dot red"></span>
-              <span class="terminal-dot yellow"></span>
-              <span class="terminal-dot green"></span>
-            </div>
-            <span class="terminal-title" data-i18n="showcase.sessionTitle">ACP session</span>
+      
+      <!-- Unified TUI Terminal Mockup demonstrating multi-agent collaboration -->
+      <div class="terminal-mockup tui-window">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
           </div>
-          <div class="terminal-body">
-            <span class="terminal-prompt">$</span> <span class="terminal-command">caelis</span>
-            <span class="terminal-output comment" data-i18n="showcase.sessionLine1"># Open one workspace for connected agents</span>
-            <span class="terminal-output system" data-i18n="showcase.sessionLine2">ACP peers: Claude Code, Codex, Copilot, Grok, OpenCode</span>
-            <span class="terminal-output" data-i18n="showcase.sessionLine3">Shared transcript and command context are ready.</span>
-            <span class="terminal-output" data-i18n="showcase.sessionLine4">Delegate, compare, and review without leaving the session.</span>
-          </div>
+          <span class="terminal-title" data-i18n="showcase.tuiTitle">caelis - terminal session</span>
         </div>
-
-        <!-- Example 2 -->
-        <div class="terminal-mockup">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <span class="terminal-dot red"></span>
-              <span class="terminal-dot yellow"></span>
-              <span class="terminal-dot green"></span>
+        
+        <div class="terminal-body tui-body">
+          <!-- TUI Header Info Box -->
+          <div class="tui-system-box">
+            <div class="tui-system-title">&gt;_ CAELIS (v0.21.0)</div>
+            <div class="tui-system-grid">
+              <span class="tui-label">model:</span><span class="tui-val-highlight">claude-3-5-sonnet [local]</span>
+              <span class="tui-label">workspace:</span><span class="tui-val">~/project</span>
+              <span class="tui-label">tip:</span><span class="tui-val-dim">type / for command list</span>
             </div>
-            <span class="terminal-title" data-i18n="showcase.clientTitle">ACP client bridge</span>
           </div>
-          <div class="terminal-body">
-            <span class="terminal-prompt">$</span> <span class="terminal-command">caelis acp</span>
-            <span class="terminal-output comment" data-i18n="showcase.clientLine1"># Expose Caelis to ACP-compatible clients</span>
-            <span class="terminal-output system" data-i18n="showcase.clientLine2">Listening on stdio for Zed or another ACP client.</span>
-            <span class="terminal-output" data-i18n="showcase.clientLine3">Reuse Caelis runtime, tools, sandbox, and session context.</span>
-            <span class="terminal-output success" data-i18n="showcase.clientLine4">Client bridge is ready.</span>
+          
+          <!-- Message 1 -->
+          <div class="tui-chat-message tui-anim-item tui-msg-1">
+            <span class="tui-type-target" data-i18n="showcase.msg1">Just run a simple command for demonstration.</span>
+          </div>
+          
+          <!-- Agent 1 Action Block -->
+          <div class="tui-agent-block tui-anim-item tui-agent-1">
+            <div class="tui-agent-thought" data-i18n="showcase.thought1">&gt; The user wants me to run a simple command for demonstration. This is a straightforward request - no skills apply here. Let me just run a simple command.</div>
+            <div class="tui-agent-action">
+              <span class="tui-bullet">•</span> <span class="tui-action-cmd">Ran echo "Hello from Caelis! 🚀 Current date: $(date)"</span>
+            </div>
+            <div class="tui-agent-suboutput">
+              <span class="tui-corner">└</span> <span class="tui-output-text" data-i18n="showcase.output1">Hello from Caelis! 🚀 Current date: Sun Jul  5 12:20:37 CST 2026</span>
+            </div>
+          </div>
+
+          <!-- Agent 1 Response Block -->
+          <div class="tui-agent-block tui-anim-item tui-agent-2">
+            <div class="tui-agent-thought" data-i18n="showcase.thought2">&gt; The command ran successfully. Let me share the result with the user.</div>
+            <div class="tui-agent-action">
+              <span class="tui-bullet">•</span> <span class="tui-action-status" data-i18n="showcase.status2">Command executed successfully! Here's the output:</span>
+            </div>
+            <div class="tui-text-output" data-i18n="showcase.output2">
+              Hello from Caelis! 🚀 Current date: Sun Jul  5 12:20:37 CST 2026
+            </div>
+            <div class="tui-message-bubble" data-i18n="showcase.bubble1">
+              The environment is working — shell commands run, return exit codes, and produce output. Let me know if you'd like to do something more interesting!
+            </div>
+            <div class="tui-divider"><span>3.5s</span></div>
+          </div>
+
+          <!-- Message 2 (Multi-Agent collaboration routing) -->
+          <div class="tui-chat-message tui-anim-item tui-msg-2">
+            <span class="tui-at">@amir</span> <span class="tui-type-target" data-i18n="showcase.msg2">Briefly introduce yourself.</span>
+          </div>
+
+          <!-- Agent 2 Action Block -->
+          <div class="tui-agent-block tui-anim-item tui-agent-3">
+            <div class="tui-agent-thought" data-i18n="showcase.thought3">&gt; The user is sharing a "Caelis" shared dialogue context. This appears to be some kind of mu...elf briefly. I don't need to use any tools for this - it's just a conversational response.</div>
+            <div class="tui-agent-action">
+              <span class="tui-bullet">•</span> <span class="tui-action-status" data-i18n="showcase.status3">Hi! I'm Claude, an AI assistant by Anthropic. I'm here to help with software engineering tasks – debugging, writing code, exploring codebases, planning features, and more.</span>
+            </div>
+            <div class="tui-message-bubble" data-i18n="showcase.bubble2">
+              I can see the shared context showing a successful command demo in your workspace at ~/project. What would you like to work on?
+            </div>
+            <div class="tui-divider"><span>3.5s</span></div>
+          </div>
+
+          <!-- TUI Bottom section -->
+          <div class="tui-session-path">
+            <span class="tui-path">~/project</span>
+            <span class="tui-active-model">claude-3-5-sonnet [local]</span>
+          </div>
+          <div class="tui-h-line"></div>
+          <div class="tui-input-prompt">
+            <span class="tui-prompt-arrow">&gt;</span> <span class="tui-prompt-placeholder" data-i18n="showcase.placeholder">Type your message, @agent, #path/to/file, or $skill</span>
+          </div>
+          <div class="tui-h-line"></div>
+          <div class="tui-shortcut-bar">
+            <div class="tui-hotkey">auto-review <span class="tui-key">shift+tab</span></div>
+            <div class="tui-token-stat">7.2k / 1.0m • 0%</div>
           </div>
         </div>
       </div>
@@ -201,32 +248,64 @@
       </div>
       <div class="faq-list">
         <details open>
-          <summary data-i18n="faq.what.question">What is Caelis?</summary>
-          <p data-i18n="faq.what.answer">Caelis is an ACP-native terminal workspace backed by its own Agent Runtime for coordinating multiple coding agents in one shared session.</p>
+          <summary data-i18n="faq.q1.question">What is Caelis?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q1.answer">Caelis is an open-source, local-first runtime for AI agents. It manages local workspaces, session context, tool execution, and permission boundaries, and can connect compatible agents and clients via ACP.</p>
+          </div>
         </details>
         <details>
-          <summary data-i18n="faq.runtime.question">Is Caelis only an ACP TUI shell?</summary>
-          <p data-i18n="faq.runtime.answer">No. Caelis includes a full Agent Runtime with session orchestration, tools, sandbox-aware execution, permissions, and reusable runtime boundaries.</p>
+          <summary data-i18n="faq.q2.question">Can Caelis run independently?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q2.answer">Yes. Caelis includes a built-in local Agent Runtime and does not require third-party clients to execute command tasks via TUI or Headless CLI.</p>
+          </div>
         </details>
         <details>
-          <summary data-i18n="faq.replace.question">Does it replace Claude Code, Codex, Copilot, Grok, or OpenCode?</summary>
-          <p data-i18n="faq.replace.answer">No. Caelis is designed to connect ACP-compatible agents and let them collaborate through shared context, delegation, and review.</p>
+          <summary data-i18n="faq.q3.question">Is ACP mandatory?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q3.answer">No. Caelis runs local agents independently out of the box. ACP is primarily used to connect compatible external agents, editors, or clients to share a unified workspace and context.</p>
+          </div>
         </details>
         <details>
-          <summary data-i18n="faq.acp.question">What role does ACP play?</summary>
-          <p data-i18n="faq.acp.answer">ACP is the connection layer Caelis uses to normalize agent sessions, messages, command context, and future external-agent bridges.</p>
+          <summary data-i18n="faq.q4.question">Why not just use Claude Code directly?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q4.answer">Claude Code, Codex, and OpenCode are excellent agents. Caelis focuses on the runtime layer: managing workspaces, context sharing, sandbox isolation, permission prompts, and multi-agent coordination. Instead of replacing any specific agent, Caelis enables them to collaborate in a single secure environment.</p>
+          </div>
         </details>
         <details>
-          <summary data-i18n="faq.clients.question">Can I use Caelis from ACP clients such as Zed?</summary>
-          <p data-i18n="faq.clients.answer">Yes. Caelis can run caelis acp so ACP-compatible clients can use the Caelis runtime and session layer from their own interface.</p>
+          <summary data-i18n="faq.q5.question">Does it support existing Plugins, Skills, and MCP ecosystems?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q5.answer">Yes. Caelis reuses community capabilities rather than inventing closed ecosystems. You can connect MCP servers, call Skills, and utilize existing plugin marketplaces or tool extensions to migrate your workflows with low friction.</p>
+          </div>
         </details>
         <details>
-          <summary data-i18n="faq.install.question">How do I install it?</summary>
-          <p data-i18n="faq.install.answer">Use the install command above for macOS, Linux, or Windows, or install the scoped npm package when you prefer a Node-based workflow.</p>
+          <summary data-i18n="faq.q6.question">Is my data kept locally?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q6.answer">Yes. Caelis is local-first. Your local workspaces, session transcripts, execution histories, and runtime configurations are stored on your machine. External model APIs are called only during inference depending on your model choices.</p>
+          </div>
         </details>
         <details>
-          <summary data-i18n="faq.early.question">Is Caelis stable yet?</summary>
-          <p data-i18n="faq.early.answer">Caelis is still early. The project favors clean ACP boundaries, reusable runtime pieces, and fast iteration before a v1.0 contract.</p>
+          <summary data-i18n="faq.q7.question">How does Caelis ensure secure agent execution?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q7.answer">Caelis runs agents in sandboxed environments by default and uses Guardian for automated tool review. Low-risk operations execute automatically, while actions requiring host access or exceeding sandbox boundaries trigger privilege prompts. Developers can also toggle optional manual approval workflows.</p>
+          </div>
+        </details>
+        <details>
+          <summary data-i18n="faq.q8.question">Does it support Windows, macOS, and Linux?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q8.answer">Yes. Caelis supports macOS, Linux, and Windows. Depending on your platform, you can install Caelis via shell script, PowerShell, or global npm package.</p>
+          </div>
+        </details>
+        <details>
+          <summary data-i18n="faq.q9.question">Is Caelis open source?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q9.answer">Yes. Caelis is open source and licensed under the Apache-2.0 License. Code is hosted on GitHub, and we welcome issue reports, pull requests, and ecosystem contributions.</p>
+          </div>
+        </details>
+        <details>
+          <summary data-i18n="faq.q10.question">Is a native GUI planned?</summary>
+          <div class="faq-content">
+            <p data-i18n="faq.q10.answer">Yes. Caelis currently supports TUI, Headless CLI, and ACP Runtime. Native GUI is on our active roadmap and will connect as a new interface to the same local runtime, rather than being a separate product.</p>
+          </div>
         </details>
       </div>
     </div>
@@ -237,7 +316,7 @@
     <div class="container">
       <p>
         <span data-i18n="footer.text">Caelis is open source, licensed under Apache-2.0. Check the codebase on</span>
-        <a href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener">GitHub</a>.
+        <a href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener">GitHub</a>
       </p>
     </div>
   </footer>
