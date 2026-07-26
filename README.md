@@ -4,9 +4,12 @@ The static homepage and installation scripts for Caelis.
 
 ## Features
 
-- **Sleek Homepage**: Minimalist, developer-tool-styled page highlighting ACP fusion, shared sessions, and install paths.
-- **ACP-Focused Positioning**: Homepage copy explains Caelis as an ACP-native shared terminal workspace for multiple agent clients.
+- **Current Caelis Brand**: Uses the Relay mark introduced by the responsive Caelis TUI welcome surface.
+- **Product-Accurate Homepage**: Presents Caelis as a terminal-first, local-first Agent Runtime with TUI, Headless, and ACP stdio surfaces.
+- **Current Workflow**: Explains guided model/ACP connections, Model Profiles, Breeze/Orbit/Zenith delegation, Guardian/Reviewer, durable Sessions, Plugins, Skills, and MCP.
+- **Real TUI Shape**: Recreates the current `v0.31.0` Connect/Resume/Quit welcome experience and `/` command plus `@` file discovery.
 - **Localized Content**: English and Simplified Chinese copy are selected from the browser language, with a manual language toggle.
+- **Responsive and Accessible**: Includes desktop/mobile layouts, light/dark themes, reduced-motion support, keyboard focus states, and semantic controls.
 - **Cross-Platform Installation Scripts**:
   - Unix (`install.sh`): Auto-detects macOS/Linux and arm64/amd64 architectures, verifies downloaded assets against official `checksums.txt` SHA256 hashes, and installs to `~/.local/bin` (or custom `$CAELIS_INSTALL_DIR`).
   - Windows (`install.ps1`): Powershell script designed for Windows systems to download, verify, and unpack release assets automatically.
@@ -18,11 +21,11 @@ The static homepage and installation scripts for Caelis.
 .
 ├── _headers       # Cloudflare headers (security, cache control)
 ├── _redirects     # Redirects for github, releases, and docs
-├── icon.svg       # Caelis brand mark and favicon
-├── wordmark.svg   # Pixel-style Caelis header wordmark
+├── icon.svg       # Caelis Relay mark and favicon
+├── wordmark.svg   # Caelis Relay mark and pixel wordmark
 ├── index.html     # Homepage content
-├── site.js        # Install tab, copy action, and localization behavior
-├── styles.css     # Dark-mode styling for the homepage
+├── site.js        # Theme, localization, install, copy, and interaction behavior
+├── styles.css     # Responsive light/dark styling for the homepage
 ├── install.sh     # Shell install script (macOS/Linux)
 └── install.ps1    # PowerShell install script (Windows)
 ```

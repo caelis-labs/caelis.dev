@@ -1,250 +1,278 @@
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', () => {
   const translations = {
     en: {
-      metaTitle: 'Caelis — Open-Source Local-First AI Agent Runtime',
-      metaDescription: 'Caelis is a local-first, open-source AI agent runtime. Run local agents inside secure sandboxes with Guardian auto-review and privilege escalation prompting.',
+      metaTitle: 'Caelis — Local-first Agent Runtime',
+      metaDescription: 'Caelis is a terminal-first, local-first agent runtime. Connect model providers and ACP agents, delegate work, and keep every session inside one guarded workspace.',
       controls: {
+        skip: 'Skip to content',
         languageAria: 'Select language',
+        primaryNav: 'Primary navigation',
+        installMethod: 'Installation method',
+        tuiPreview: 'Caelis v0.31.0 terminal welcome screen',
+        productFacts: 'Product facts',
+        profileFlow: 'Caelis model profile and agent role flow',
+        ecosystems: 'Supported ecosystems',
         switchToLight: 'Switch to light theme',
         switchToDark: 'Switch to dark theme',
       },
-      hero: {
-        eyebrow: 'AI Agent Runtime',
-        title: 'One workspace,<br>coordinating multiple AI Agents',
-        lede: 'Connect ACP-compatible agents,<br>including Claude Code, Codex, Grok, Copilot, and more.',
+      nav: {
+        workflow: 'Workflow',
+        surfaces: 'Surfaces',
+        ecosystem: 'Ecosystem',
       },
-      cta: {
+      hero: {
+        eyebrow: 'TERMINAL-FIRST AGENT RUNTIME',
+        title: 'Build with agents.<br>Keep one local runtime.',
+        lede: 'Connect model providers and ACP agents, bind specialists, and run every turn inside one guarded, resumable workspace.',
         install: 'Install Caelis',
-        github: 'View on GitHub',
+        github: 'Explore the source',
+        caption: 'The current responsive welcome surface — connect, resume, or start typing.',
       },
       install: {
-        curl: 'curl',
-        windows: 'PowerShell',
-        copied: 'Copied!',
+        copied: 'Copied',
         copyAria: 'Copy installation command',
       },
-      intro: {
-        kicker: 'DESIGN PHILOSOPHY',
-        title: 'Unified runtime, shared agent workspace',
-        body: 'Caelis connects local execution, sandboxing, tool ecosystems, and the ACP protocol, enabling different agents to collaborate in a single managed workspace rather than scattered across isolated clients.',
-        f1: {
-          title: 'Local-first Runtime',
-          body: 'Caelis Runtime runs on your machine. Your workspace, session history, permission boundaries, and tool policies stay entirely in your control.',
+      proof: {
+        local: 'Local-first state',
+        acp: 'ACP-native',
+      },
+      workflow: {
+        eyebrow: 'ONE WORKSPACE, THREE MOVES',
+        title: 'Connect. Delegate. Review.',
+        body: 'Caelis turns a collection of models, local agents, and tools into one intentional terminal workflow.',
+        connect: {
+          title: 'Choose the right backend',
+          body: 'Connect a model provider or a local ACP agent. Both become consistent Model Profiles instead of leaking backend details into your work.',
         },
-        f2: {
-          title: 'Powered by ACP',
-          body: 'Link compatible clients and agents through the open Agent Context Protocol (ACP) to share a unified workspace, context, and tool environments.',
+        delegate: {
+          title: 'Bind clear specialist roles',
+          body: 'Use Breeze for bounded work, Orbit for implementation, and Zenith for deep or high-risk analysis — each with an explicit profile and reasoning effort.',
         },
-        f3: {
-          title: 'Secure Execution Boundaries',
-          body: 'Agents run inside sandboxed boundaries by default. Guardian automatically reviews tool executions and prompts for approval only when accessing host resources.',
-        },
-        f4: {
-          title: 'Cross-Platform Support',
-          body: 'Consistently run Caelis runtime and workspace capabilities across macOS, Linux, and Windows environments.',
-        },
-        f5: {
-          title: 'Compatible with Existing Ecosystems',
-          body: 'Support Plugins, Skills, MCP, and ACP Clients. Reuse existing developer tools instead of rebuilding your agent workflow.',
-        },
-        f6: {
-          title: 'Open Source & Extensible',
-          body: 'Licensed under Apache-2.0. Join the community to build custom runtimes, protocol adapters, plugins, and cross-platform clients.',
+        review: {
+          title: 'Keep execution guarded',
+          body: 'Guardian reviews tool access; Reviewer inspects the result. Sandbox boundaries and approval prompts stay part of the same session.',
         },
       },
-      showcase: {
-        title: 'A shared agent workspace',
-        tuiTitle: 'caelis - terminal session',
-        msg1: 'Just run a simple command for demonstration.',
-        thought1: '> The user wants me to run a simple command for demonstration. This is a straightforward request - no skills apply here. Let me just run a simple command.',
-        output1: 'Hello from Caelis! 🚀 Current date: Sun Jul  5 12:20:37 CST 2026',
-        thought2: '> The command ran successfully. Let me share the result with the user.',
-        status2: "Command executed successfully! Here's the output:",
-        output2: 'Hello from Caelis! 🚀 Current date: Sun Jul  5 12:20:37 CST 2026',
-        bubble1: "The environment is working — shell commands run, return exit codes, and produce output. Let me know if you'd like to do something more interesting!",
-        msg2: 'Briefly introduce yourself.',
-        thought3: '> The user is sharing a "Caelis" shared dialogue context. This appears to be some kind of mu...elf briefly. I don\'t need to use any tools for this - it\'s just a conversational response.',
-        status3: "Hi! I'm Claude, an AI assistant by Anthropic. I'm here to help with software engineering tasks – debugging, writing code, exploring codebases, planning features, and more.",
-        bubble2: "I can see the shared context showing a successful command demo in your workspace at ~/project. What would you like to work on?",
-        placeholder: "Type your message, @agent, #path/to/file, or $skill",
+      orchestration: {
+        eyebrow: 'CONTROL WITHOUT LOCK-IN',
+        title: 'One profile language across every agent.',
+        body: 'Provider models and external ACP agents enter through the same Control layer. Roles stay stable even when the backend changes.',
+        link: 'Read the architecture →',
+        providers: 'Model providers',
+        agents: 'Local ACP agents',
+        profile: 'model + effort + backend',
+        session: 'One guarded, resumable Session',
+      },
+      tui: {
+        eyebrow: 'THE TERMINAL IS THE PRODUCT',
+        title: 'Fast discovery. Quiet long-running work.',
+        body: 'The new TUI keeps command and Skill discovery under <code>/</code>, file references under <code>@</code>, and long tasks in stable semantic states instead of noisy control traces.',
+        detail1: 'Responsive welcome surface with mouse-first actions',
+        detail2: 'Adaptive themes, completion overlays, image paste, and clickable sources',
+        detail3: 'Durable sessions with resume, replay, and approval recovery',
+      },
+      surfaces: {
+        eyebrow: 'ONE RUNTIME, THREE SURFACES',
+        title: 'Stay interactive. Script it. Embed it.',
+        tui: 'Start with <code>caelis</code> for the full interactive workspace, command discovery, approvals, and session control.',
+        headless: 'Use <code>caelis -p</code> for one-shot prompts with text or JSON output in scripts and automation.',
+        acp: 'Run <code>caelis acp</code> and expose the same runtime to compatible editors and external agent clients.',
+      },
+      ecosystem: {
+        eyebrow: 'BRING YOUR STACK',
+        title: 'Open models. Open tools. Open protocol.',
+        body: 'Use subscription sign-in, API providers, local models, ACP agents, MCP servers, Skills, and Plugins without rebuilding your workflow around one vendor.',
+      },
+      trust: {
+        eyebrow: 'LOCAL-FIRST BY DEFAULT',
+        title: 'Your workspace stays yours.',
+        body: 'Sessions, execution history, configuration, and workspace context live on your machine. Native sandbox backends constrain tools; Guardian and explicit approvals handle the edges.',
+        fact1: 'Local session persistence',
+        fact2: 'Native sandbox backends',
+        fact3: 'Approval-aware execution',
+        fact4: 'Open-source runtime',
       },
       faq: {
-        kicker: 'FAQ',
-        title: 'Common questions',
+        title: 'The short version.',
         q1: {
           question: 'What is Caelis?',
-          answer: 'Caelis is an open-source, local-first runtime for AI agents. It manages local workspaces, session context, tool execution, and permission boundaries, and can connect compatible agents and clients via ACP.',
+          answer: 'A terminal-first agent runtime with an interactive TUI, a headless CLI, and an ACP stdio server. It owns the local workspace, Session, tool, sandbox, and approval boundaries around your agents.',
         },
         q2: {
-          question: 'Can Caelis run independently?',
-          answer: 'Yes. Caelis includes a built-in local Agent Runtime and does not require third-party clients to execute command tasks via TUI or Headless CLI.',
+          question: 'Does it require an external ACP agent?',
+          answer: 'No. Caelis includes its own local runtime. ACP is an additional interoperability path for connecting local agents and external clients.',
         },
         q3: {
-          question: 'Is ACP mandatory?',
-          answer: 'No. Caelis runs local agents independently out of the box. ACP is primarily used to connect compatible external agents, editors, or clients to share a unified workspace and context.',
+          question: 'Which agents can I connect?',
+          answer: 'The guided flow currently includes Codex, Claude Code, OpenCode, CodeFree-O, and Grok, plus custom ACP stdio commands.',
         },
         q4: {
-          question: 'Why not just use Claude Code, Codex, or OpenCode directly?',
-          answer: 'Claude Code, Codex, and OpenCode are excellent agents. Caelis focuses on the runtime layer: managing workspaces, context sharing, sandbox isolation, permission prompts, and multi-agent coordination. Instead of replacing any specific agent, Caelis enables them to collaborate in a single secure environment.',
+          question: 'Can I use my existing model subscription?',
+          answer: 'Caelis supports guided browser or device sign-in for eligible ChatGPT Codex and Grok subscriptions, alongside API-key and local provider paths.',
         },
         q5: {
-          question: 'Does it support existing Plugins, Skills, and MCP ecosystems?',
-          answer: 'Yes. Caelis reuses community capabilities rather than inventing closed ecosystems. You can connect MCP servers, call Skills, and utilize existing plugin marketplaces or tool extensions to migrate your workflows with low friction.',
-        },
-        q6: {
-          question: 'Is my data kept locally?',
-          answer: 'Yes. Caelis is local-first. Your local workspaces, session transcripts, execution histories, and runtime configurations are stored on your machine. External model APIs are called only during inference depending on your model choices.',
-        },
-        q7: {
-          question: 'How does Caelis ensure secure agent execution?',
-          answer: 'Caelis runs agents in sandboxed environments by default and uses Guardian for automated tool review. Low-risk operations execute automatically, while actions requiring host access or exceeding sandbox boundaries trigger privilege prompts. Developers can also toggle optional manual approval workflows.',
-        },
-        q8: {
-          question: 'Does it support Windows, macOS, and Linux?',
-          answer: 'Yes. Caelis supports macOS, Linux, and Windows. Depending on your platform, you can install Caelis via shell script, PowerShell, or global npm package.',
-        },
-        q9: {
-          question: 'Is Caelis open source?',
-          answer: 'Yes. Caelis is open source and licensed under the Apache-2.0 License. Code is hosted on GitHub, and we welcome issue reports, pull requests, and ecosystem contributions.',
-        },
-        q10: {
-          question: 'Is a native GUI planned?',
-          answer: 'Yes. Caelis currently supports TUI, Headless CLI, and ACP Runtime. Native GUI is on our active roadmap and will connect as a new interface to the same local runtime, rather than being a separate product.',
+          question: 'Where is my data stored?',
+          answer: 'Under <code>~/.caelis</code> by default, with an override available through <code>-store-dir</code>.',
         },
       },
+      final: {
+        eyebrow: 'START IN YOUR TERMINAL',
+        title: 'One command to meet your runtime.',
+        action: 'Install Caelis',
+      },
       footer: {
-        text: 'Caelis is a local-first AI agent runtime licensed under the Apache-2.0 License. Check the codebase on',
+        copy: 'Open-source under Apache-2.0. Built for the terminal, ready for the agent ecosystem.',
+        releases: 'Releases',
+        docs: 'Docs',
+      },
+      demo: {
+        action: 'mouse action → {command}',
       },
     },
     zh: {
-      metaTitle: 'Caelis — 开源、本地优先的 AI Agent Runtime',
-      metaDescription: 'Caelis 是一个开源、本地优先 of AI Agent Runtime。它在沙箱与 Guardian 自动审查的保护下，让 Agent 更安全地执行开发任务。',
+      metaTitle: 'Caelis — 本地优先的 Agent Runtime',
+      metaDescription: 'Caelis 是一个终端优先、本地优先的 Agent Runtime。连接模型服务与 ACP Agent，委派任务，并让每个 Session 运行在同一个受控工作空间中。',
       controls: {
+        skip: '跳转到正文',
         languageAria: '选择语言',
+        primaryNav: '主导航',
+        installMethod: '安装方式',
+        tuiPreview: 'Caelis v0.31.0 终端欢迎界面',
+        productFacts: '产品信息',
+        profileFlow: 'Caelis Model Profile 与 Agent 角色流向',
+        ecosystems: '支持的生态',
         switchToLight: '切换到浅色主题',
         switchToDark: '切换到深色主题',
       },
-      hero: {
-        eyebrow: 'AI Agent Runtime',
-        title: '一个工作空间<br>协同多个 AI Agent',
-        lede: '支持连接兼容 ACP 协议的 Agent，<br>包括 Claude Code, Codex, Grok, Copilot 等。',
+      nav: {
+        workflow: '工作流',
+        surfaces: '使用入口',
+        ecosystem: '生态',
       },
-      cta: {
+      hero: {
+        eyebrow: '终端优先的 AGENT RUNTIME',
+        title: '让多个 Agent，<br>运行在一个本地 Runtime。',
+        lede: '连接模型服务与 ACP Agent，绑定各有所长的角色，让每个 Turn 都在同一个受控、可恢复的工作空间中运行。',
         install: '安装 Caelis',
-        github: '在 GitHub 查看',
+        github: '查看源码',
+        caption: '当前响应式欢迎界面——连接、恢复会话，或直接开始输入。',
       },
       install: {
-        curl: 'curl',
-        windows: 'PowerShell',
         copied: '已复制',
         copyAria: '复制安装命令',
       },
-      intro: {
-        kicker: '核心设计理念',
-        title: '统一运行时，共享 Agent 工作空间',
-        body: 'Caelis 将本地运行、沙箱安全、工具生态与 ACP 协议连接在一起，让不同 Agent 在同一个受控工作空间中协同，而不是分散在孤立的客户端里。',
-        f1: {
-          title: '本地优先运行时',
-          body: 'Runtime 运行在你的机器上。工作空间、会话记录、权限边界与工具策略默认由本地掌控。',
+      proof: {
+        local: '状态本地优先',
+        acp: '原生支持 ACP',
+      },
+      workflow: {
+        eyebrow: '一个工作空间，三个动作',
+        title: '连接。委派。审查。',
+        body: 'Caelis 把模型、本地 Agent 与工具组合成一条边界清晰的终端工作流。',
+        connect: {
+          title: '选择真正合适的后端',
+          body: '连接模型服务或本地 ACP Agent。两种后端都会转化为一致的 Model Profile，不把底层差异泄漏到工作流中。',
         },
-        f2: {
-          title: 'Powered by ACP',
-          body: '连接兼容 ACP 的客户端与 Agent，共享同一个工作空间、上下文和工具环境。',
+        delegate: {
+          title: '绑定职责明确的专家角色',
+          body: 'Breeze 处理快速、边界明确的任务，Orbit 负责常规实现，Zenith 承担深度或高风险分析；每个角色都绑定显式 Profile 与推理强度。',
         },
-        f3: {
-          title: '安全执行边界',
-          body: 'Agent 默认运行在 sandbox 中。Caelis 通过 Guardian 自动审查工具调用，并在需要访问宿主机或突破默认权限边界时触发审批。',
-        },
-        f4: {
-          title: '跨平台支持',
-          body: 'Caelis 面向 macOS、Linux 和 Windows 构建，让同一套运行时与工作空间能力在不同开发环境中保持一致。',
-        },
-        f5: {
-          title: '兼容社区工具生态',
-          body: '支持 Plugins、Skills、MCP 与 ACP Clients，尽量复用社区已有工具，而不是要求你重建一套 Agent 工作流。',
-        },
-        f6: {
-          title: '开源与社区驱动',
-          body: 'Caelis 基于 Apache-2.0 License 开源，欢迎开发者参与 Runtime、协议适配、插件生态与跨平台能力建设。',
+        review: {
+          title: '让执行始终处于保护之中',
+          body: 'Guardian 审查工具访问，Reviewer 检查结果；Sandbox 边界与提权审批始终留在同一个 Session 内。',
         },
       },
-      showcase: {
-        title: '共享的 Agent 工作空间',
-        tuiTitle: 'caelis - 终端会话',
-        msg1: '运行一个简单的命令进行演示。',
-        thought1: '> 用户希望我运行一个简单的命令进行演示。这是一个直接的请求 - 这里不需要应用特定 Skill。让它直接运行命令。',
-        output1: 'Hello from Caelis! 🚀 Current date: Sun Jul  5 12:20:37 CST 2026',
-        thought2: '> 命令运行成功。让它与用户共享结果。',
-        status2: '命令执行成功！输出如下：',
-        output2: 'Hello from Caelis! 🚀 Current date: Sun Jul  5 12:20:37 CST 2026',
-        bubble1: '环境工作正常 — Shell 命令已运行，返回退出码并生成输出。如果您想做点更有趣的事，请告诉我！',
-        msg2: '简要介绍一下你自己。',
-        thought3: '> 用户正在共享 "Caelis" 会话上下文。这看起来像是一个共享对话……我不需要使用任何工具进行响应。',
-        status3: '你好！我是 Claude，Anthropic 开发的 AI 助手。我在这里协助您完成软件工程任务——调试、编写代码、分析代码库、规划功能等。',
-        bubble2: '我可以看到共享上下文中显示了在您的工作空间 ~/project 下的成功命令演示。您想开展什么工作？',
-        placeholder: '输入您的消息、@agent、#文件路径 或 $skill',
+      orchestration: {
+        eyebrow: '可控，但不锁定',
+        title: '所有 Agent 使用同一种 Profile 语言。',
+        body: '模型服务与外部 ACP Agent 都通过同一个 Control 层进入系统。即使更换后端，角色与工作方式也保持稳定。',
+        link: '阅读架构说明 →',
+        providers: '模型服务',
+        agents: '本地 ACP Agent',
+        profile: '模型 + 推理强度 + 后端',
+        session: '一个受控、可恢复的 Session',
+      },
+      tui: {
+        eyebrow: '终端就是产品',
+        title: '发现更快，长任务更安静。',
+        body: '新 TUI 将命令和 Skill 统一放在 <code>/</code> 下发现，使用 <code>@</code> 引用文件，并以稳定的语义状态呈现长任务，不再暴露嘈杂的控制轨迹。',
+        detail1: '响应式欢迎界面，保留鼠标优先的快捷动作',
+        detail2: '自适应主题、补全浮层、图片粘贴与可点击来源',
+        detail3: '支持恢复、重放与审批恢复的持久化 Session',
+      },
+      surfaces: {
+        eyebrow: '一个 RUNTIME，三种入口',
+        title: '交互使用。脚本调用。协议接入。',
+        tui: '直接运行 <code>caelis</code>，进入完整交互式工作空间，使用命令发现、审批与 Session 控制。',
+        headless: '使用 <code>caelis -p</code> 运行一次性 Prompt，并以文本或 JSON 输出接入脚本和自动化。',
+        acp: '运行 <code>caelis acp</code>，把同一个 Runtime 暴露给兼容的编辑器与外部 Agent 客户端。',
+      },
+      ecosystem: {
+        eyebrow: '带上你的现有技术栈',
+        title: '开放模型。开放工具。开放协议。',
+        body: '订阅登录、API 服务、本地模型、ACP Agent、MCP 服务、Skills 与 Plugins 都可接入，无需围绕单一厂商重建工作流。',
+      },
+      trust: {
+        eyebrow: '默认本地优先',
+        title: '你的工作空间，始终属于你。',
+        body: 'Session、执行历史、配置与工作空间上下文保存在本机。原生 Sandbox 后端约束工具，Guardian 与显式审批处理越过边界的操作。',
+        fact1: 'Session 本地持久化',
+        fact2: '原生 Sandbox 后端',
+        fact3: '具备审批语义的执行',
+        fact4: '开源 Runtime',
       },
       faq: {
-        kicker: 'FAQ',
-        title: '常见问题',
+        title: '简短回答。',
         q1: {
           question: 'Caelis 是什么？',
-          answer: 'Caelis 是一个开源、本地优先的 AI Agent Runtime。它负责管理本地工作空间、会话上下文、工具执行、权限边界，并可以通过 ACP 连接兼容的 Agent 与客户端。',
+          answer: '一个终端优先的 Agent Runtime，包含交互式 TUI、Headless CLI 与 ACP stdio server。它管理 Agent 周围的本地工作空间、Session、工具、Sandbox 与审批边界。',
         },
         q2: {
-          question: '可以独立运行吗？',
-          answer: '可以。Caelis 内置本地 Agent Runtime，无需第三方客户端即可通过 TUI 或 Headless CLI 运行任务。',
+          question: '必须连接外部 ACP Agent 吗？',
+          answer: '不需要。Caelis 自带本地 Runtime；ACP 是额外的互操作入口，用来连接本地 Agent 与外部客户端。',
         },
         q3: {
-          question: 'ACP 是必须的吗？',
-          answer: '不是。Caelis 可以独立运行本地 Agent。ACP 主要用于连接兼容的 Agent、客户端或编辑器，让它们共享同一个工作空间和上下文。',
+          question: '目前可以连接哪些 Agent？',
+          answer: '引导式连接目前包含 Codex、Claude Code、OpenCode、CodeFree-O 与 Grok，也支持自定义 ACP stdio 命令。',
         },
         q4: {
-          question: '为什么不是直接使用 Claude Code、Codex 或 OpenCode？',
-          answer: 'Claude Code、Codex 和 OpenCode 都是优秀的 Agent。Caelis 关注的是运行时层：本地工作空间、上下文共享、工具执行、权限边界、sandbox 与多 Agent 协同。它不是替代某一个 Agent，而是让不同 Agent 可以在同一个受控工作空间里协作。',
+          question: '可以使用现有模型订阅吗？',
+          answer: '可以。对于符合条件的 ChatGPT Codex 与 Grok 订阅，Caelis 支持浏览器或设备码登录；同时也支持 API Key 与本地模型服务。',
         },
         q5: {
-          question: '支持 Plugins、Skills 和 MCP 生态吗？',
-          answer: '支持。Caelis 尽量复用社区已有能力，而不是重新发明封闭生态。你可以接入 MCP 服务，使用 Skills，并兼容社区已有的 Plugin 市场与工具扩展。',
-        },
-        q6: {
-          question: '数据是否保留在本地？',
-          answer: '是。Caelis 遵循本地优先原则。工作空间、会话记录、执行历史 and 运行时配置默认保留在你的本地机器上。',
-        },
-        q7: {
-          question: 'Agent 执行是否安全？',
-          answer: 'Caelis 默认将 Agent 运行在 sandbox 内，并通过 Guardian / auto-review 对工具调用进行自动审查。低风险操作可以在受控边界内自动执行；当操作需要访问宿主机资源、突破默认权限边界或执行高风险命令时，才触发提权审批。开发者也可以选择手动审批模式。',
-        },
-        q8: {
-          question: '是否支持 Windows、macOS 和 Linux？',
-          answer: '支持。Caelis 面向 macOS、Linux 和 Windows 构建，安装方式可根据平台选择 shell 脚本、PowerShell 或 npm。',
-        },
-        q9: {
-          question: '是否开源？',
-          answer: '是。Caelis 基于 Apache-2.0 License 开源，代码托管在 GitHub，欢迎提交 Issue、PR 或参与生态建设。',
-        },
-        q10: {
-          question: 'GUI 是否在规划中？',
-          answer: '是。Caelis 当前支持 TUI、Headless CLI 和 ACP Runtime. Native GUI 已在规划中，未来会作为新的交互界面接入同一套本地运行时，而不是另起一套产品。',
+          question: '数据存放在哪里？',
+          answer: '默认存放在 <code>~/.caelis</code>，也可以通过 <code>-store-dir</code> 指定其他位置。',
         },
       },
+      final: {
+        eyebrow: '从终端开始',
+        title: '一条命令，进入你的 Agent Runtime。',
+        action: '安装 Caelis',
+      },
       footer: {
-        text: 'Caelis 是基于 Apache-2.0 License 开源的本地优先 AI Agent Runtime，代码托管在 GitHub。',
+        copy: '基于 Apache-2.0 开源。为终端而生，与开放 Agent 生态协同。',
+        releases: '版本发布',
+        docs: '文档',
+      },
+      demo: {
+        action: '鼠标动作 → {command}',
       },
     },
   };
 
-  const getByPath = (source, path) => path.split('.').reduce((value, key) => value && value[key], source);
+  const getByPath = (source, path) => path
+    .split('.')
+    .reduce((value, key) => value && value[key], source);
+
   const languageMenu = document.querySelector('[data-language-menu]');
   const languageTrigger = document.querySelector('[data-language-trigger]');
   const languageOptions = document.querySelector('[data-language-options]');
   const languageCurrent = document.querySelector('[data-language-current]');
   const languageOptionButtons = document.querySelectorAll('[data-language-option]');
   const themeToggle = document.querySelector('[data-theme-toggle]');
-  const languageNames = {
-    en: 'English',
-    zh: '中文',
-  };
+  const languageNames = { en: 'English', zh: '中文' };
   let activeLanguage = 'en';
   let activeTheme = 'dark';
 
@@ -252,20 +280,22 @@ document.addEventListener('DOMContentLoaded', () => {
     return language === 'zh' || language === 'en' ? language : 'en';
   }
 
-  function getPreferredTheme() {
-    const storedTheme = localStorage.getItem('caelis-theme');
-    if (storedTheme === 'light' || storedTheme === 'dark') {
-      return storedTheme;
+  function preferredTheme() {
+    const stored = localStorage.getItem('caelis-theme');
+    if (stored === 'light' || stored === 'dark') {
+      return stored;
     }
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+      ? 'light'
+      : 'dark';
   }
 
   function syncThemeControl() {
-    if (!themeToggle) {
-      return;
-    }
+    if (!themeToggle) return;
     const dict = translations[activeLanguage] || translations.en;
-    const label = activeTheme === 'dark' ? dict.controls.switchToLight : dict.controls.switchToDark;
+    const label = activeTheme === 'dark'
+      ? dict.controls.switchToLight
+      : dict.controls.switchToDark;
     themeToggle.setAttribute('aria-label', label);
     themeToggle.setAttribute('title', label);
   }
@@ -277,59 +307,65 @@ document.addEventListener('DOMContentLoaded', () => {
     syncThemeControl();
   }
 
-  function setLanguageMenuOpen(isOpen) {
-    if (!languageMenu || !languageTrigger || !languageOptions) {
-      return;
-    }
-    languageMenu.classList.toggle('open', isOpen);
-    languageTrigger.setAttribute('aria-expanded', String(isOpen));
-    languageOptions.hidden = !isOpen;
+  function setLanguageMenuOpen(open) {
+    if (!languageMenu || !languageTrigger || !languageOptions) return;
+    languageMenu.classList.toggle('open', open);
+    languageTrigger.setAttribute('aria-expanded', String(open));
+    languageOptions.hidden = !open;
   }
 
-  // --- HTML data-i18n attributes translation mapper ---
   function applyLanguage(language) {
     activeLanguage = normalizeLanguage(language);
     const dict = translations[activeLanguage] || translations.en;
+
     document.documentElement.lang = activeLanguage === 'zh' ? 'zh-CN' : 'en';
     document.title = dict.metaTitle;
+
     const description = document.querySelector('meta[name="description"]');
-    if (description) {
-      description.setAttribute('content', dict.metaDescription);
-    }
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (description) description.setAttribute('content', dict.metaDescription);
+    if (ogTitle) ogTitle.setAttribute('content', dict.metaTitle);
+    if (ogDescription) ogDescription.setAttribute('content', dict.metaDescription);
+
     document.querySelectorAll('[data-i18n]').forEach((element) => {
       const value = getByPath(dict, element.getAttribute('data-i18n'));
-      if (value) {
-        if (value.includes('<br>') || value.includes('<br/>')) {
-          element.innerHTML = value;
-        } else {
-          element.textContent = value;
-        }
-        element.removeAttribute('data-text'); // 切换语言时清除打字机缓存
+      if (!value) return;
+      if (value.includes('<br>') || value.includes('<code>')) {
+        element.innerHTML = value;
+      } else {
+        element.textContent = value;
       }
     });
+
     document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
       const value = getByPath(dict, element.getAttribute('data-i18n-aria'));
-      if (value) {
-        element.setAttribute('aria-label', value);
-      }
+      if (value) element.setAttribute('aria-label', value);
     });
-    if (languageCurrent) {
-      languageCurrent.textContent = languageNames[activeLanguage];
-    }
+
+    if (languageCurrent) languageCurrent.textContent = languageNames[activeLanguage];
     languageOptionButtons.forEach((button) => {
-      const isActive = button.getAttribute('data-language-option') === activeLanguage;
-      button.setAttribute('aria-checked', String(isActive));
+      button.setAttribute(
+        'aria-checked',
+        String(button.getAttribute('data-language-option') === activeLanguage),
+      );
     });
+
     localStorage.setItem('caelis-language', activeLanguage);
     syncThemeControl();
   }
 
   const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
-  const preferredLanguage = (requestedLanguage === 'zh' || requestedLanguage === 'en' ? requestedLanguage : '')
+  const initialLanguage = (
+    requestedLanguage === 'zh' || requestedLanguage === 'en'
+      ? requestedLanguage
+      : ''
+  )
     || localStorage.getItem('caelis-language')
     || (navigator.language && navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en');
-  applyTheme(getPreferredTheme());
-  applyLanguage(preferredLanguage);
+
+  applyTheme(preferredTheme());
+  applyLanguage(initialLanguage);
 
   if (languageTrigger && languageOptions) {
     languageTrigger.addEventListener('click', () => {
@@ -354,7 +390,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       setLanguageMenuOpen(false);
-      languageTrigger && languageTrigger.focus();
     }
   });
 
@@ -364,259 +399,121 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 1. Header Scroll Shrink Fallback ---
-  if (!CSS.supports || !CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)')) {
-    const checkScroll = () => {
-      if (window.scrollY > 40) {
-        document.body.classList.add('scrolled');
-      } else {
-        document.body.classList.remove('scrolled');
-      }
-    };
-    window.addEventListener('scroll', checkScroll, { passive: true });
-    checkScroll();
-  }
-
-  // --- 2. Tabs Switch and Double-SVG Copy Interaction ---
-  const tabs = document.querySelectorAll('.tab-btn');
+  const installCommands = {
+    sh: 'curl -fsSL https://caelis.dev/install.sh | sh',
+    ps1: 'irm https://caelis.dev/install.ps1 | iex',
+    npm: 'npm i -g @caelis/caelis',
+  };
+  const installTabs = document.querySelectorAll('.install-tab');
   const commandText = document.getElementById('command-text');
-  const copyBtn = document.getElementById('install-copy-btn');
+  const copyButton = document.getElementById('install-copy-btn');
   const copyFeedback = document.getElementById('copy-feedback');
 
-  const getOS = () => {
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    if (userAgent.includes('win')) return 'windows';
-    if (userAgent.includes('mac')) return 'macos';
-    if (userAgent.includes('linux')) return 'linux';
-    return 'other';
-  };
-
-  const os = getOS();
-  const shTab = document.querySelector('.tab-btn[data-platform="sh"]');
-  const ps1Tab = document.querySelector('.tab-btn[data-platform="ps1"]');
-
-  if (os === 'windows') {
-    // Windows 用户展示全部三个：PowerShell, curl, npm
-    // 默认高亮激活 PowerShell Tab
-    if (ps1Tab) {
-      tabs.forEach(t => t.classList.remove('active'));
-      ps1Tab.classList.add('active');
-      if (commandText) {
-        commandText.textContent = 'irm https://caelis.dev/install.ps1 | iex';
-      }
-    }
-  } else {
-    // macOS / Linux 用户展示：curl 和 npm，隐藏 PowerShell Tab
-    if (ps1Tab) {
-      ps1Tab.style.display = 'none';
-    }
-    // 默认高亮激活 curl Tab
-    if (shTab) {
-      tabs.forEach(t => t.classList.remove('active'));
-      shTab.classList.add('active');
-      if (commandText) {
-        commandText.textContent = 'curl -fsSL https://caelis.dev/install.sh | sh';
-      }
-    }
+  function setInstallPlatform(platform) {
+    if (!installCommands[platform]) return;
+    installTabs.forEach((tab) => {
+      const selected = tab.getAttribute('data-platform') === platform;
+      tab.classList.toggle('active', selected);
+      tab.setAttribute('aria-selected', String(selected));
+    });
+    if (commandText) commandText.textContent = installCommands[platform];
   }
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', (event) => {
-      tabs.forEach(t => t.classList.remove('active'));
-      event.currentTarget.classList.add('active');
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isWindows = userAgent.includes('win');
+  const powershellTab = document.querySelector('.install-tab[data-platform="ps1"]');
+  if (powershellTab && !isWindows) powershellTab.hidden = true;
+  setInstallPlatform(isWindows ? 'ps1' : 'sh');
 
-      const platform = event.currentTarget.getAttribute('data-platform');
-      let command = '';
-      if (platform === 'sh') {
-        command = 'curl -fsSL https://caelis.dev/install.sh | sh';
-      } else if (platform === 'ps1') {
-        command = 'irm https://caelis.dev/install.ps1 | iex';
-      } else if (platform === 'npm') {
-        command = 'npm i -g @caelis/caelis';
-      }
-      if (commandText) {
-        commandText.textContent = command;
-      }
+  installTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      setInstallPlatform(tab.getAttribute('data-platform'));
     });
   });
 
-  if (copyBtn && commandText && copyFeedback) {
-    copyBtn.addEventListener('click', () => {
-      const text = commandText.textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        copyBtn.classList.add('copied');
+  async function writeClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const fallback = document.createElement('textarea');
+    fallback.value = text;
+    fallback.setAttribute('readonly', '');
+    fallback.style.position = 'fixed';
+    fallback.style.opacity = '0';
+    document.body.appendChild(fallback);
+    fallback.select();
+    document.execCommand('copy');
+    fallback.remove();
+  }
+
+  if (copyButton && commandText && copyFeedback) {
+    copyButton.addEventListener('click', async () => {
+      try {
+        await writeClipboard(commandText.textContent.trim());
+        copyButton.classList.add('copied');
         copyFeedback.classList.add('show');
-        setTimeout(() => {
-          copyBtn.classList.remove('copied');
+        window.setTimeout(() => {
+          copyButton.classList.remove('copied');
           copyFeedback.classList.remove('show');
         }, 1500);
-      }).catch(err => {
-        console.error('Failed to copy command: ', err);
-      });
+      } catch (error) {
+        console.error('Failed to copy installation command', error);
+      }
     });
   }
 
-  // --- 3. FAQ Accordion Exclusion Logic ---
-  const faqDetails = document.querySelectorAll('.faq-list details');
-  faqDetails.forEach(detail => {
-    const summary = detail.querySelector('summary');
-    if (summary) {
-      summary.addEventListener('click', () => {
-        if (!detail.open) {
-          faqDetails.forEach(otherDetail => {
-            if (otherDetail !== detail && otherDetail.open) {
-              otherDetail.removeAttribute('open');
-            }
-          });
+  const demoActions = document.querySelectorAll('[data-demo-action]');
+  const demoCommand = document.querySelector('[data-demo-command]');
+  const demoFeedback = document.querySelector('[data-demo-feedback]');
+  let demoTimer;
+
+  demoActions.forEach((button) => {
+    button.addEventListener('click', () => {
+      const command = button.getAttribute('data-demo-action') || '';
+      const dict = translations[activeLanguage] || translations.en;
+      window.clearTimeout(demoTimer);
+      if (demoCommand) demoCommand.textContent = command;
+      if (demoFeedback) {
+        demoFeedback.textContent = dict.demo.action.replace('{command}', command);
+        demoFeedback.classList.add('active');
+      }
+      demoTimer = window.setTimeout(() => {
+        if (demoCommand) demoCommand.textContent = '';
+        if (demoFeedback) {
+          demoFeedback.textContent = '';
+          demoFeedback.classList.remove('active');
         }
-      });
-    }
+      }, 1700);
+    });
   });
 
-  // --- 4. Scroll Enter View Animation via IntersectionObserver ---
+  const faqDetails = document.querySelectorAll('.faq-list details');
+  faqDetails.forEach((detail) => {
+    const summary = detail.querySelector('summary');
+    if (!summary) return;
+    summary.addEventListener('click', () => {
+      if (detail.open) return;
+      faqDetails.forEach((other) => {
+        if (other !== detail) other.removeAttribute('open');
+      });
+    });
+  });
+
+  const revealElements = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
-    const animatedElements = document.querySelectorAll('.intro-item, .terminal-mockup');
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -40px 0px',
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          obs.unobserve(entry.target);
-        }
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
       });
-    }, observerOptions);
-
-    animatedElements.forEach(el => observer.observe(el));
+    }, {
+      rootMargin: '0px 0px -8% 0px',
+      threshold: 0.08,
+    });
+    revealElements.forEach((element) => revealObserver.observe(element));
   } else {
-    // Fallback: immediately visible
-    document.querySelectorAll('.intro-item, .terminal-mockup').forEach(el => {
-      el.classList.add('in-view');
-    });
-  }
-
-  // --- 5. TUI Mockup Dynamic CLI Typing Animation Engine ---
-  let tuiAnimationTimer = null;
-  let activeTuiTimers = [];
-
-  function clearActiveTuiTimers() {
-    activeTuiTimers.forEach(item => {
-      if (item && typeof item.clear === 'function') {
-        item.clear();
-      }
-    });
-    activeTuiTimers = [];
-  }
-
-  function typeWriter(element, callback) {
-    const fullText = element.getAttribute('data-text') || element.textContent;
-    if (!element.getAttribute('data-text')) {
-      element.setAttribute('data-text', fullText);
-    }
-    element.textContent = '';
-    element.classList.add('typing');
-    element.classList.add('visible');
-
-    let i = 0;
-    const speed = 25; // 调整打字机字符输出速度为 25ms 保持节奏
-    const timer = setInterval(() => {
-      if (i < fullText.length) {
-        element.textContent += fullText.charAt(i);
-        i++;
-      } else {
-        clearInterval(timer);
-        element.classList.remove('typing');
-        if (callback) callback();
-      }
-    }, speed);
-
-    activeTuiTimers.push({
-      clear: () => clearInterval(timer)
-    });
-  }
-
-  // --- Animation fade in ---
-  function fadeIn(element, delay, callback) {
-    const t = setTimeout(() => {
-      element.classList.add('visible');
-      if (callback) callback();
-    }, delay);
-    activeTuiTimers.push({
-      clear: () => clearTimeout(t)
-    });
-  }
-
-  function playTuiAnimation() {
-    clearActiveTuiTimers();
-    clearTimeout(tuiAnimationTimer);
-
-    const items = document.querySelectorAll('.tui-anim-item');
-    items.forEach(item => {
-      item.classList.remove('visible');
-      const target = item.querySelector('.tui-type-target');
-      if (target) {
-        target.classList.remove('visible', 'typing');
-        const origin = target.getAttribute('data-text');
-        if (origin) {
-          target.textContent = origin;
-        }
-      }
-    });
-
-    const userMsg1 = document.querySelector('.tui-msg-1');
-    const target1 = userMsg1 ? userMsg1.querySelector('.tui-type-target') : null;
-
-    if (!userMsg1 || !target1) return;
-
-    const startT = setTimeout(() => {
-      userMsg1.classList.add('visible');
-      typeWriter(target1, () => {
-        const agentBlock1 = document.querySelector('.tui-agent-1');
-        fadeIn(agentBlock1, 300, () => {
-          const agentBlock2 = document.querySelector('.tui-agent-2');
-          fadeIn(agentBlock2, 600, () => {
-            const userMsg2 = document.querySelector('.tui-msg-2');
-            const target2 = userMsg2 ? userMsg2.querySelector('.tui-type-target') : null;
-            
-            if (userMsg2 && target2) {
-              const userT = setTimeout(() => {
-                userMsg2.classList.add('visible');
-                typeWriter(target2, () => {
-                  const agentBlock3 = document.querySelector('.tui-agent-3');
-                  fadeIn(agentBlock3, 300, () => {
-                    // 6.5s 之后重启轮播
-                    tuiAnimationTimer = setTimeout(playTuiAnimation, 6500);
-                  });
-                });
-              }, 400);
-              activeTuiTimers.push({ clear: () => clearTimeout(userT) });
-            }
-          });
-        });
-      });
-    }, 800);
-    activeTuiTimers.push({ clear: () => clearTimeout(startT) });
-  }
-
-  // 利用 IntersectionObserver 使得终端模拟器只在滚动进入视口时才启动，提升体验并保护主线程
-  if ('IntersectionObserver' in window) {
-    const tuiObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          playTuiAnimation();
-          tuiObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    const tuiWin = document.querySelector('.tui-window');
-    if (tuiWin) {
-      tuiObserver.observe(tuiWin);
-    }
-  } else {
-    playTuiAnimation();
+    revealElements.forEach((element) => element.classList.add('in-view'));
   }
 });
