@@ -7,6 +7,19 @@
   Cache-Control: no-cache, no-store, must-revalidate
   Content-Type: text/plain; charset=utf-8
 
+# Keep the page shell and its directly referenced assets in sync across deploys.
+/
+  Cache-Control: no-cache, must-revalidate
+
+/styles.css
+  Cache-Control: no-cache, must-revalidate
+
+/site.js
+  Cache-Control: no-cache, must-revalidate
+
+/icon.svg
+  Cache-Control: no-cache, must-revalidate
+
 # Global security headers
 /*
   X-Frame-Options: DENY

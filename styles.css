@@ -148,16 +148,13 @@ pre {
 
 .brand-mark {
   display: block;
-  flex: 0 0 36px;
+  flex: 0 0 auto;
   height: 36px;
-  -webkit-mask: url("/mark.svg") center / contain no-repeat;
-  mask: url("/mark.svg") center / contain no-repeat;
-  background: var(--accent);
+  object-fit: contain;
   width: 36px;
 }
 
 .footer-brand .brand-mark {
-  flex-basis: 32px;
   height: 32px;
   width: 32px;
 }
@@ -788,7 +785,6 @@ pre {
 }
 
 .section-heading h2,
-.tui-story h2,
 .ecosystem h2,
 .trust h2,
 .final-cta h2 {
@@ -800,7 +796,6 @@ pre {
 }
 
 .section-heading > p:last-child,
-.tui-story-copy > p,
 .ecosystem-copy > p,
 .trust-details > p {
   color: var(--text-soft);
@@ -853,110 +848,6 @@ pre {
   line-height: 1.7;
   margin: 1rem 0 0;
   max-width: 44rem;
-}
-
-.tui-story {
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  gap: clamp(3.5rem, 8vw, 8rem);
-  grid-template-columns: minmax(480px, 1.15fr) minmax(0, 0.85fr);
-}
-
-.tui-story h2 {
-  font-size: clamp(2.4rem, 4.5vw, 4.75rem);
-}
-
-.command-screen {
-  padding: clamp(1.3rem, 3vw, 2.3rem);
-}
-
-.command-input,
-.command-example {
-  align-items: center;
-  display: flex;
-  font-size: clamp(0.72rem, 1vw, 0.85rem);
-  gap: 0.7rem;
-}
-
-.command-input span,
-.command-example span {
-  color: var(--accent);
-}
-
-.command-menu {
-  border-left: 1px solid #303742;
-  margin: 1.2rem 0 1.5rem 0.3rem;
-  padding-left: 1.1rem;
-}
-
-.command-menu div {
-  align-items: baseline;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 6.5rem 1fr;
-  padding: 0.48rem 0;
-}
-
-.command-menu div:first-child {
-  background: rgba(158, 178, 255, 0.1);
-  margin-left: -0.7rem;
-  padding-left: 0.7rem;
-}
-
-.command-menu code {
-  color: var(--terminal-text);
-  font-size: clamp(0.64rem, 0.9vw, 0.74rem);
-}
-
-.command-menu span,
-.command-hint {
-  color: var(--terminal-muted);
-  font-size: clamp(0.58rem, 0.82vw, 0.68rem);
-}
-
-.command-example {
-  border-top: 1px solid #303742;
-  padding-top: 1.1rem;
-}
-
-.command-example code {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.command-hint {
-  margin-top: 1.2rem;
-  text-align: right;
-}
-
-.tui-story-copy code {
-  color: var(--accent);
-  font-size: 0.9em;
-}
-
-.detail-list {
-  border-top: 1px solid var(--border-strong);
-  list-style: none;
-  margin: 2.3rem 0 0;
-  padding: 0;
-}
-
-.detail-list li {
-  border-bottom: 1px solid var(--border);
-  color: var(--text-soft);
-  font-size: 0.88rem;
-  line-height: 1.55;
-  padding: 1rem 0 1rem 1.4rem;
-  position: relative;
-}
-
-.detail-list li::before {
-  color: var(--accent);
-  content: "›";
-  left: 0;
-  position: absolute;
 }
 
 .surfaces {
@@ -1292,10 +1183,6 @@ pre {
     font-size: clamp(2rem, 4vw, 3.4rem);
   }
 
-  .tui-story {
-    gap: 4rem;
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 @media (max-width: 860px) {
@@ -1359,14 +1246,9 @@ pre {
     grid-column: 2;
   }
 
-  .tui-story,
   .trust,
   .faq {
     grid-template-columns: 1fr;
-  }
-
-  .tui-story-visual {
-    order: 2;
   }
 
   .surface-list {
@@ -1534,7 +1416,6 @@ pre {
   }
 
   .section-heading h2,
-  .tui-story h2,
   .ecosystem h2,
   .trust h2,
   .final-cta h2 {
@@ -1556,20 +1437,6 @@ pre {
 
   .workflow-copy h3 {
     font-size: 1.65rem;
-  }
-
-  .tui-story {
-    gap: 3.2rem;
-  }
-
-  .command-menu div {
-    gap: 0.35rem;
-    grid-template-columns: 1fr;
-    padding: 0.48rem 0;
-  }
-
-  .command-example code {
-    font-size: 0.62rem;
   }
 
   .trust-facts {
