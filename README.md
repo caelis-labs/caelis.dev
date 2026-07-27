@@ -6,7 +6,7 @@ The static homepage and installation scripts for Caelis.
 
 - **Current Caelis Brand**: Uses the Relay mark introduced by the responsive Caelis TUI welcome surface.
 - **Product-Accurate Homepage**: Presents Caelis as a terminal-first, local-first Agent Runtime with TUI, Headless, and ACP stdio surfaces.
-- **Current Workflow**: Explains guided model/ACP connections, Model Profiles, Breeze/Orbit/Zenith delegation, Guardian/Reviewer, durable Sessions, Plugins, Skills, and MCP.
+- **Current Workflow**: Presents guided model/ACP connections, specialist delegation, guarded review, durable Sessions, Plugins, Skills, and MCP.
 - **Real TUI Shape**: Recreates the current `v0.31.0` Connect/Resume/Quit welcome experience and `/` command plus `@` file discovery.
 - **Localized Content**: English and Simplified Chinese copy are selected from the browser language, with a manual language toggle.
 - **Responsive and Accessible**: Includes desktop/mobile layouts, light/dark themes, reduced-motion support, keyboard focus states, and semantic controls.
@@ -22,6 +22,7 @@ The static homepage and installation scripts for Caelis.
 ├── _headers       # Cloudflare headers (security, cache control)
 ├── _redirects     # Redirects for github, releases, and docs
 ├── icon.svg       # Caelis Relay mark and favicon
+├── mark.svg       # Transparent Relay mark for page lockups
 ├── wordmark.svg   # Caelis Relay mark and pixel wordmark
 ├── index.html     # Homepage content
 ├── site.js        # Theme, localization, install, copy, and interaction behavior

@@ -21,7 +21,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="#top" class="brand-lockup" aria-label="Caelis home">
-        <img src="/icon.svg" alt="" class="brand-mark" width="36" height="36">
+        <span class="brand-mark" aria-hidden="true"></span>
         <span>CAELIS</span>
       </a>
 
@@ -189,38 +189,6 @@
       </div>
     </section>
 
-    <section class="orchestration section">
-      <div class="orchestration-copy reveal">
-        <p class="eyebrow" data-i18n="orchestration.eyebrow">CONTROL WITHOUT LOCK-IN</p>
-        <h2 data-i18n="orchestration.title">One profile language across every agent.</h2>
-        <p data-i18n="orchestration.body">Provider models and external ACP agents enter through the same Control layer. Roles stay stable even when the backend changes.</p>
-        <a class="text-link" href="https://github.com/caelis-labs/caelis/blob/main/docs/architecture.md" target="_blank" rel="noopener" data-i18n="orchestration.link">Read the architecture →</a>
-      </div>
-
-      <div class="orchestration-map reveal" aria-label="Caelis model profile and agent role flow" data-i18n-aria="controls.profileFlow">
-        <div class="map-source">
-          <span data-i18n="orchestration.providers">Model providers</span>
-          <span data-i18n="orchestration.agents">Local ACP agents</span>
-        </div>
-        <div class="map-connector" aria-hidden="true"></div>
-        <div class="map-profile">
-          <small>CONTROL</small>
-          <strong>ModelProfile</strong>
-          <span data-i18n="orchestration.profile">model + effort + backend</span>
-        </div>
-        <div class="map-connector map-connector-fan" aria-hidden="true"></div>
-        <div class="map-roles">
-          <span>SELF</span>
-          <span>BREEZE</span>
-          <span>ORBIT</span>
-          <span>ZENITH</span>
-          <span>GUARDIAN</span>
-          <span>REVIEWER</span>
-        </div>
-        <p data-i18n="orchestration.session">One guarded, resumable Session</p>
-      </div>
-    </section>
-
     <section class="tui-story section">
       <div class="tui-story-visual reveal">
         <div class="terminal-shell command-terminal">
@@ -245,13 +213,13 @@
       </div>
 
       <div class="tui-story-copy reveal">
-        <p class="eyebrow" data-i18n="tui.eyebrow">THE TERMINAL IS THE PRODUCT</p>
-        <h2 data-i18n="tui.title">Fast discovery. Quiet long-running work.</h2>
-        <p data-i18n="tui.body">The new TUI keeps command and Skill discovery under <code>/</code>, file references under <code>@</code>, and long tasks in stable semantic states instead of noisy control traces.</p>
+        <p class="eyebrow" data-i18n="tui.eyebrow">WORK AT TERMINAL SPEED</p>
+        <h2 data-i18n="tui.title">Everything you need, one keystroke away.</h2>
+        <p data-i18n="tui.body">Find commands, Skills, and files without leaving the composer. Long-running work stays visible without taking over the conversation.</p>
         <ul class="detail-list">
-          <li data-i18n="tui.detail1">Responsive welcome surface with mouse-first actions</li>
-          <li data-i18n="tui.detail2">Adaptive themes, completion overlays, image paste, and clickable sources</li>
-          <li data-i18n="tui.detail3">Durable sessions with resume, replay, and approval recovery</li>
+          <li data-i18n="tui.detail1">Connect providers and agents from the welcome screen</li>
+          <li data-i18n="tui.detail2">Complete commands, Skills, and file paths in place</li>
+          <li data-i18n="tui.detail3">Resume sessions and follow long-running work when you need it</li>
         </ul>
       </div>
     </section>
@@ -351,7 +319,7 @@
 
   <footer class="site-footer">
     <div class="footer-brand">
-      <img src="/icon.svg" alt="" width="32" height="32">
+      <span class="brand-mark" aria-hidden="true"></span>
       <span>CAELIS</span>
     </div>
     <p data-i18n="footer.copy">Open-source under Apache-2.0. Built for the terminal, ready for the agent ecosystem.</p>

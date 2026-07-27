@@ -147,8 +147,19 @@ pre {
 }
 
 .brand-mark {
-  border-radius: 10px;
   display: block;
+  flex: 0 0 36px;
+  height: 36px;
+  -webkit-mask: url("/mark.svg") center / contain no-repeat;
+  mask: url("/mark.svg") center / contain no-repeat;
+  background: var(--accent);
+  width: 36px;
+}
+
+.footer-brand .brand-mark {
+  flex-basis: 32px;
+  height: 32px;
+  width: 32px;
 }
 
 .primary-nav {
@@ -777,7 +788,6 @@ pre {
 }
 
 .section-heading h2,
-.orchestration h2,
 .tui-story h2,
 .ecosystem h2,
 .trust h2,
@@ -790,7 +800,6 @@ pre {
 }
 
 .section-heading > p:last-child,
-.orchestration-copy > p,
 .tui-story-copy > p,
 .ecosystem-copy > p,
 .trust-details > p {
@@ -844,127 +853,6 @@ pre {
   line-height: 1.7;
   margin: 1rem 0 0;
   max-width: 44rem;
-}
-
-.orchestration {
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  gap: clamp(4rem, 9vw, 10rem);
-  grid-template-columns: minmax(0, 0.8fr) minmax(440px, 1.2fr);
-}
-
-.orchestration h2 {
-  font-size: clamp(2.4rem, 4.6vw, 4.8rem);
-}
-
-.text-link {
-  color: var(--accent);
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  margin-top: 2rem;
-}
-
-.text-link:hover {
-  color: var(--accent-strong);
-}
-
-.orchestration-map {
-  border-bottom: 1px solid var(--border-strong);
-  border-top: 1px solid var(--border-strong);
-  padding: 2.2rem 0;
-}
-
-.map-source {
-  display: grid;
-  gap: 1px;
-  grid-template-columns: 1fr 1fr;
-}
-
-.map-source span,
-.map-roles span {
-  align-items: center;
-  background: var(--surface);
-  color: var(--text-soft);
-  display: flex;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  justify-content: center;
-  min-height: 3.1rem;
-  text-align: center;
-}
-
-.map-connector {
-  height: 2rem;
-  margin: 0 auto;
-  position: relative;
-  width: 1px;
-}
-
-.map-connector::before {
-  background: var(--border-strong);
-  content: "";
-  inset: 0;
-  position: absolute;
-}
-
-.map-profile {
-  background: var(--accent-soft);
-  border: 1px solid var(--accent);
-  display: grid;
-  gap: 0.45rem;
-  margin: 0 auto;
-  max-width: 18rem;
-  padding: 1.4rem;
-  text-align: center;
-}
-
-.map-profile small {
-  color: var(--accent);
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-}
-
-.map-profile strong {
-  font-family: var(--mono);
-  font-size: 1rem;
-}
-
-.map-profile span {
-  color: var(--muted);
-  font-size: 0.7rem;
-}
-
-.map-connector-fan {
-  width: 72%;
-}
-
-.map-connector-fan::before {
-  border-left: 1px solid var(--border-strong);
-  border-right: 1px solid var(--border-strong);
-  border-top: 1px solid var(--border-strong);
-  height: 1rem;
-  top: 1rem;
-}
-
-.map-roles {
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.map-roles span {
-  min-height: 2.5rem;
-}
-
-.orchestration-map > p {
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.67rem;
-  margin: 1.2rem 0 0;
-  text-align: center;
 }
 
 .tui-story {
@@ -1404,7 +1292,6 @@ pre {
     font-size: clamp(2rem, 4vw, 3.4rem);
   }
 
-  .orchestration,
   .tui-story {
     gap: 4rem;
     grid-template-columns: 1fr 1fr;
@@ -1472,16 +1359,10 @@ pre {
     grid-column: 2;
   }
 
-  .orchestration,
   .tui-story,
   .trust,
   .faq {
     grid-template-columns: 1fr;
-  }
-
-  .orchestration-map {
-    max-width: 42rem;
-    width: 100%;
   }
 
   .tui-story-visual {
@@ -1653,7 +1534,6 @@ pre {
   }
 
   .section-heading h2,
-  .orchestration h2,
   .tui-story h2,
   .ecosystem h2,
   .trust h2,
@@ -1678,17 +1558,8 @@ pre {
     font-size: 1.65rem;
   }
 
-  .orchestration,
   .tui-story {
     gap: 3.2rem;
-  }
-
-  .map-source {
-    grid-template-columns: 1fr;
-  }
-
-  .map-roles {
-    grid-template-columns: 1fr 1fr;
   }
 
   .command-menu div {
