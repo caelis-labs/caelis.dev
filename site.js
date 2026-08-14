@@ -3,479 +3,344 @@ document.documentElement.classList.add('js');
 document.addEventListener('DOMContentLoaded', () => {
   const translations = {
     en: {
-      metaTitle: 'Caelis — Local-first Agent Runtime',
-      metaDescription: 'Caelis is a terminal-first, local-first agent runtime. Connect model providers and ACP agents, delegate work, and keep every session inside one guarded workspace.',
+      metaTitle: 'Caelis — See what happens when every intelligence finds its orbit.',
+      metaDescription: 'See what happens when every intelligence finds its orbit. Mix DeepSeek, Grok, ChatGPT, Claude, and local ACP agents in a single guarded workspace.',
       controls: {
         skip: 'Skip to content',
         languageAria: 'Select language',
-        primaryNav: 'Primary navigation',
-        installMethod: 'Installation method',
-        tuiPreview: 'Caelis v0.31.0 terminal welcome screen',
-        productFacts: 'Product facts',
-        ecosystems: 'Supported ecosystems',
         switchToLight: 'Switch to light theme',
         switchToDark: 'Switch to dark theme',
       },
-      nav: {
-        workflow: 'Workflow',
-        surfaces: 'Surfaces',
-        ecosystem: 'Ecosystem',
-      },
       hero: {
-        eyebrow: 'TERMINAL-FIRST AGENT RUNTIME',
-        title: 'Build with agents.<br>Keep one local runtime.',
-        lede: 'Connect model providers and ACP agents, bind specialists, and run every turn inside one guarded, resumable workspace.',
-        install: 'Install Caelis',
-        github: 'Explore the source',
-        caption: 'Connect a model or agent, resume a session, or start typing.',
+        title: 'See what happens when every intelligence<br>finds its orbit.',
+        ctaMac: 'Download for macOS',
+        ctaWin: 'Download for Windows',
+        ctaLinux: 'Download for Linux',
+        ctaGithub: 'GitHub',
       },
-      install: {
+      cli: {
+        title: 'Caelis CLI',
+        badge: 'Latest',
+        desc: 'Work with Caelis directly in your codebase. Build, debug, and orchestrate specialist agents safely from your terminal.',
+        macLabel: 'macOS',
+        linuxLabel: 'Linux',
+        winLabel: 'Windows PowerShell',
+        npmLabel: 'npm (Cross-platform)',
+        copyAria: 'Copy command',
         copied: 'Copied',
-        copyAria: 'Copy installation command',
       },
-      proof: {
-        local: 'Local-first state',
-        acp: 'ACP-native',
+      binding: {
+        title: 'Bind the right intelligence<br>to every specialist role',
+        desc: 'Within a single workspace, bind specialist subagents, Guardian, Reviewer, and custom roles to connected Provider Models or external ACP Agents. Let diverse intelligences collaborate seamlessly in one guarded session.',
+        breezeSub: 'Fast retrieval agent',
+        orbitSub: 'Tool execution agent',
+        zenithSub: 'Deep reasoning agent',
+        guardianSub: 'System safety guardian',
+        reviewerSub: 'Code audit agent',
+        customSub: 'Custom defined role',
+        pillProvider: 'Provider Model',
+        pillAcp: 'ACP Agent',
       },
-      workflow: {
-        eyebrow: 'ONE WORKSPACE, THREE MOVES',
-        title: 'Connect. Delegate. Review.',
-        body: 'Caelis turns a collection of models, local agents, and tools into one intentional terminal workflow.',
-        connect: {
-          title: 'Choose the right backend',
-          body: 'Connect a model provider or local ACP agent and choose the backend that fits the task without changing how you work.',
-        },
-        delegate: {
-          title: 'Bind clear specialist roles',
-          body: 'Use Breeze for quick bounded tasks, Orbit for implementation, and Zenith for deep or high-risk analysis.',
-        },
-        review: {
-          title: 'Keep execution guarded',
-          body: 'Guardian reviews tool access; Reviewer inspects the result. Sandbox boundaries and approval prompts stay part of the same session.',
-        },
-      },
-      surfaces: {
-        eyebrow: 'ONE RUNTIME, THREE SURFACES',
-        title: 'Stay interactive. Script it. Embed it.',
-        tui: 'Start with <code>caelis</code> for an interactive workspace that connects agents, handles approvals, and manages sessions.',
-        headless: 'Use <code>caelis -p</code> for one-shot prompts with text or JSON output in scripts and automation.',
-        acp: 'Run <code>caelis acp</code> and expose the same runtime to compatible editors and external agent clients.',
-      },
-      ecosystem: {
-        eyebrow: 'BRING YOUR STACK',
-        title: 'Open models. Open tools. Open protocol.',
-        body: 'Use subscription sign-in, API providers, local models, ACP agents, MCP servers, Skills, and Plugins without rebuilding your workflow around one vendor.',
-      },
-      trust: {
-        eyebrow: 'LOCAL-FIRST BY DEFAULT',
-        title: 'Your workspace stays yours.',
-        body: 'Sessions, execution history, configuration, and workspace context live on your machine. Native sandbox backends constrain tools; Guardian and explicit approvals handle the edges.',
-        fact1: 'Local session persistence',
-        fact2: 'Native sandbox backends',
-        fact3: 'Approval-aware execution',
-        fact4: 'Open-source runtime',
+      security: {
+        title: 'System-grade sandboxing & zero trust',
+        subtitle: 'Code stays local, execution stays bounded. Protected by native OS kernels and auto-review guards.',
+        c1Title: 'Guardian Auto-Review',
+        c1Desc: 'Carefully fine-tuned on security prompts and workspace context, Guardian deeply inspects commands with an LLM before execution to block destructive actions.',
+        c1Chip: 'Auto review approved',
+        c2Title: 'Native OS Sandboxes',
+        c2Desc: 'Leverages native OS kernel primitives to enforce strict filesystem boundaries without heavy containers.',
+        c3Title: '100% Local & Open Source',
+        c3Desc: 'All sessions and credentials remain 100% on your machine. Fully open source and zero telemetry.',
+        c3Chip: 'Apache-2.0 · Local-First',
       },
       faq: {
-        title: 'The short version.',
-        q1: {
-          question: 'What is Caelis?',
-          answer: 'A terminal-first agent runtime with an interactive TUI, a headless CLI, and an ACP stdio server. It owns the local workspace, Session, tool, sandbox, and approval boundaries around your agents.',
-        },
-        q2: {
-          question: 'Does it require an external ACP agent?',
-          answer: 'No. Caelis includes its own local runtime. ACP is an additional interoperability path for connecting local agents and external clients.',
-        },
-        q3: {
-          question: 'Which agents can I connect?',
-          answer: 'The guided flow currently includes Codex, Claude Code, OpenCode, CodeFree-O, and Grok, plus custom ACP stdio commands.',
-        },
-        q4: {
-          question: 'Can I use my existing model subscription?',
-          answer: 'Caelis supports guided browser or device sign-in for eligible ChatGPT Codex and Grok subscriptions, alongside API-key and local provider paths.',
-        },
-        q5: {
-          question: 'Where is my data stored?',
-          answer: 'Under <code>~/.caelis</code> by default, with an override available through <code>-store-dir</code>.',
-        },
-      },
-      final: {
-        eyebrow: 'START IN YOUR TERMINAL',
-        title: 'One command to meet your runtime.',
-        action: 'Install Caelis',
+        title: 'FAQ',
+        subtitle: 'Everything you need to know about Caelis, multi-provider workflows, and local runtime safety.',
+        q1Question: 'What makes Caelis different from single AI coding assistants?',
+        q1Answer: 'Traditional tools lock you into a single model or provider. Caelis acts as an orchestration runtime that coordinates multiple models (DeepSeek, Grok, GPT, Claude, local Ollama) in the same session, assigning different models to specialized subagents.',
+        q2Question: 'How do provider bindings and custom roles work?',
+        q2Answer: 'You can configure bindings via /subagent. Assign cheap/fast models to Breeze for search & quick edits, reasoning models to Orbit for feature coding, and frontier models to Zenith for review.',
+        q3Question: 'Can I use existing subscriptions or local models?',
+        q3Answer: 'Yes. Caelis supports OAuth sign-in for eligible ChatGPT Codex and Grok subscriptions, standard API keys, and local zero-cost models via Ollama.',
+        q4Question: 'Where is my code and data stored?',
+        q4Answer: 'Everything is saved locally under ~/.caelis. Your files and credentials never leave your machine.',
       },
       footer: {
-        copy: 'Open-source under Apache-2.0. Built for the terminal, ready for the agent ecosystem.',
+        license: 'Apache-2.0 Open Source',
         releases: 'Releases',
         docs: 'Docs',
-      },
-      demo: {
-        action: 'mouse action → {command}',
+        github: 'GitHub',
       },
     },
     zh: {
-      metaTitle: 'Caelis — 本地优先的 Agent Runtime',
-      metaDescription: 'Caelis 是一个终端优先、本地优先的 Agent Runtime。连接模型服务与 ACP Agent，委派任务，并让每个 Session 运行在同一个受控工作空间中。',
+      metaTitle: 'Caelis — 当群星各循其轨，天空便有了新的模样',
+      metaDescription: '当群星各循其轨，天空便有了新的模样。聚合主流模型与外部 Agent，自由组合专家角色，在安全受控的本地环境中高效协作。',
       controls: {
         skip: '跳转到正文',
         languageAria: '选择语言',
-        primaryNav: '主导航',
-        installMethod: '安装方式',
-        tuiPreview: 'Caelis v0.31.0 终端欢迎界面',
-        productFacts: '产品信息',
-        ecosystems: '支持的生态',
         switchToLight: '切换到浅色主题',
         switchToDark: '切换到深色主题',
       },
-      nav: {
-        workflow: '工作流',
-        surfaces: '使用入口',
-        ecosystem: '生态',
-      },
       hero: {
-        eyebrow: '终端优先的 AGENT RUNTIME',
-        title: '多个 Agent<br>一个本地 Runtime',
-        lede: '连接模型服务与 ACP Agent，绑定各有所长的角色，让每个 Turn 都在同一个受控、可恢复的工作空间中运行。',
-        install: '安装 Caelis',
-        github: '查看源码',
-        caption: '连接模型或 Agent，恢复 Session，或直接开始输入。',
+        title: '当群星各循其轨<br>天空便有了新的模样',
+        ctaMac: '下载适用于 macOS',
+        ctaWin: '下载适用于 Windows',
+        ctaLinux: '下载适用于 Linux',
+        ctaGithub: 'GitHub 仓库',
       },
-      install: {
+      cli: {
+        title: 'Caelis CLI',
+        badge: '最新版本',
+        desc: '直接在本地代码库中使用 Caelis。通过终端编排专家智能体，在系统级沙箱内安全执行开发任务。',
+        macLabel: 'macOS',
+        linuxLabel: 'Linux',
+        winLabel: 'Windows PowerShell',
+        npmLabel: 'npm (全平台)',
+        copyAria: '复制安装指令',
         copied: '已复制',
-        copyAria: '复制安装命令',
       },
-      proof: {
-        local: '状态本地优先',
-        acp: '原生支持 ACP',
+      binding: {
+        title: '为每个角色，<br>绑定最合适的智能',
+        desc: '在同一个工作空间中，你可以为子代理、Guardian、Reviewer 与自定义角色分别绑定已连接的 Provider Model，或接入支持 ACP 的外部 Agent。让不同智能各司其职，在同一任务流中协同运行。',
+        breezeSub: '轻量检索代理',
+        orbitSub: '工具调用代理',
+        zenithSub: '深度推理代理',
+        guardianSub: '系统安全守护',
+        reviewerSub: '代码审查代理',
+        customSub: '自定义角色',
+        pillProvider: 'Provider Model',
+        pillAcp: 'ACP Agent',
       },
-      workflow: {
-        eyebrow: '一个工作空间，三个动作',
-        title: '连接合适的 Agent<br>协作并完成审查',
-        body: 'Caelis 把模型、本地 Agent 与工具组合成一条边界清晰的终端工作流。',
-        connect: {
-          title: '选择真正合适的后端',
-          body: '连接模型服务或本地 ACP Agent，为不同任务选择合适后端，工作方式保持一致。',
-        },
-        delegate: {
-          title: '绑定职责明确的专家角色',
-          body: 'Breeze 处理快速、边界明确的任务，Orbit 负责常规实现，Zenith 承担深度或高风险分析。',
-        },
-        review: {
-          title: '让执行始终处于保护之中',
-          body: 'Guardian 审查工具访问，Reviewer 检查结果；Sandbox 边界与提权审批始终留在同一个 Session 内。',
-        },
-      },
-      surfaces: {
-        eyebrow: '一个 RUNTIME，三种入口',
-        title: '从终端到自动化<br>使用同一个 Runtime',
-        tui: '直接运行 <code>caelis</code>，进入交互式工作空间，连接 Agent、处理审批并管理 Session。',
-        headless: '使用 <code>caelis -p</code> 运行一次性 Prompt，并以文本或 JSON 输出接入脚本和自动化。',
-        acp: '运行 <code>caelis acp</code>，把同一个 Runtime 暴露给兼容的编辑器与外部 Agent 客户端。',
-      },
-      ecosystem: {
-        eyebrow: '带上你的现有技术栈',
-        title: '模型、工具与协议<br>保持开放',
-        body: '从订阅登录到本地模型，从 ACP、MCP 到 Skills 与 Plugins，都能接入同一个工作空间。',
-      },
-      trust: {
-        eyebrow: '默认本地优先',
-        title: '工作空间<br>始终属于你',
-        body: 'Session、执行历史、配置与工作空间上下文保存在本机。原生 Sandbox 后端约束工具，Guardian 与显式审批处理越过边界的操作。',
-        fact1: 'Session 本地持久化',
-        fact2: '原生 Sandbox 后端',
-        fact3: '具备审批语义的执行',
-        fact4: '开源 Runtime',
+      security: {
+        title: '系统级安全与本地沙箱',
+        subtitle: '代码不离机，执行有界限。原生沙箱与自动审批双重守护。',
+        c1Title: 'Guardian 智能自动审批',
+        c1Desc: '针对安全 Prompt 与会话上下文精心调优，在指令执行前由 LLM 深度审查，智能拦截高危与破坏性行为。',
+        c1Chip: 'Auto review approved',
+        c2Title: '三大原生系统沙箱',
+        c2Desc: '深度对接底层系统隔离内核，限定文件系统读写边界，无需依赖笨重容器。',
+        c3Title: '100% 开源与本地运行',
+        c3Desc: '所有会话与凭证 100% 本地留存，开源透明无遥测。',
+        c3Chip: 'Apache-2.0 · 本地优先',
       },
       faq: {
-        title: '简短回答',
-        q1: {
-          question: 'Caelis 是什么？',
-          answer: '一个终端优先的 Agent Runtime，包含交互式 TUI、Headless CLI 与 ACP stdio server。它管理 Agent 周围的本地工作空间、Session、工具、Sandbox 与审批边界。',
-        },
-        q2: {
-          question: '必须连接外部 ACP Agent 吗？',
-          answer: '不需要。Caelis 自带本地 Runtime；ACP 是额外的互操作入口，用来连接本地 Agent 与外部客户端。',
-        },
-        q3: {
-          question: '目前可以连接哪些 Agent？',
-          answer: '引导式连接目前包含 Codex、Claude Code、OpenCode、CodeFree-O 与 Grok，也支持自定义 ACP stdio 命令。',
-        },
-        q4: {
-          question: '可以使用现有模型订阅吗？',
-          answer: '可以。对于符合条件的 ChatGPT Codex 与 Grok 订阅，Caelis 支持浏览器或设备码登录；同时也支持 API Key 与本地模型服务。',
-        },
-        q5: {
-          question: '数据存放在哪里？',
-          answer: '默认存放在 <code>~/.caelis</code>，也可以通过 <code>-store-dir</code> 指定其他位置。',
-        },
-      },
-      final: {
-        eyebrow: '从终端开始',
-        title: '一条命令<br>启动 Caelis',
-        action: '安装 Caelis',
+        title: '常见问题',
+        subtitle: '快速了解 Caelis 多模型组合、角色绑定与安全机制。',
+        q1Question: 'Caelis 相比其他单一 AI 工具最大的优势是什么？',
+        q1Answer: '传统工具将你限制在单一模型或提供商。Caelis 允许你在同一个会话中同时调用 DeepSeek、Grok、GPT、Claude 以及本地 Ollama，并将它们按需绑定到不同子代理角色进行分工协作。',
+        q2Question: 'Provider 绑定与自定义角色如何工作？',
+        q2Answer: '通过 /subagent 指令即可随时调整绑定关系。例如将高性价比模型分配给 Breeze 处理琐碎微调，将高推理模型分配给 Orbit 编写业务，将顶尖模型分配给 Zenith 做把关。',
+        q3Question: '可以使用现有的模型订阅或本地模型吗？',
+        q3Answer: '完全可以。Caelis 支持 ChatGPT Codex 与 Grok 订阅的免配置 OAuth 登录，支持各厂商 API Key，并原生支持本地 Ollama 零成本离线运行。',
+        q4Question: '我的代码和会话数据存放在哪里？',
+        q4Answer: '所有会话历史、模型密钥与配置均 100% 保存在本地目录（~/.caelis），完全开源透明且绝无云端遥测，保障核心代码资产安全。',
       },
       footer: {
-        copy: '基于 Apache-2.0 开源。为终端而生，与开放 Agent 生态协同。',
+        license: 'Apache-2.0 开源协议',
         releases: '版本发布',
-        docs: '文档',
-      },
-      demo: {
-        action: '鼠标动作 → {command}',
+        docs: '技术文档',
+        github: 'GitHub 仓库',
       },
     },
   };
 
-  const getByPath = (source, path) => path
-    .split('.')
-    .reduce((value, key) => value && value[key], source);
+  const getByPath = (obj, path) => {
+    return path.split('.').reduce((acc, part) => (acc && acc[part] !== undefined ? acc[part] : undefined), obj);
+  };
 
-  const languageMenu = document.querySelector('[data-language-menu]');
-  const languageTrigger = document.querySelector('[data-language-trigger]');
-  const languageOptions = document.querySelector('[data-language-options]');
-  const languageCurrent = document.querySelector('[data-language-current]');
-  const languageOptionButtons = document.querySelectorAll('[data-language-option]');
-  const themeToggle = document.querySelector('[data-theme-toggle]');
-  const languageNames = { en: 'English', zh: '中文' };
-  let activeLanguage = 'en';
-  let activeTheme = 'dark';
+  const updateI18n = (lang) => {
+    const dict = translations[lang] || translations.en;
+    document.documentElement.lang = lang;
 
-  function normalizeLanguage(language) {
-    return language === 'zh' || language === 'en' ? language : 'en';
-  }
-
-  function preferredTheme() {
-    const stored = localStorage.getItem('caelis-theme');
-    if (stored === 'light' || stored === 'dark') {
-      return stored;
-    }
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
-      ? 'light'
-      : 'dark';
-  }
-
-  function syncThemeControl() {
-    if (!themeToggle) return;
-    const dict = translations[activeLanguage] || translations.en;
-    const label = activeTheme === 'dark'
-      ? dict.controls.switchToLight
-      : dict.controls.switchToDark;
-    themeToggle.setAttribute('aria-label', label);
-    themeToggle.setAttribute('title', label);
-  }
-
-  function applyTheme(theme) {
-    activeTheme = theme === 'light' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = activeTheme;
-    localStorage.setItem('caelis-theme', activeTheme);
-    syncThemeControl();
-  }
-
-  function setLanguageMenuOpen(open) {
-    if (!languageMenu || !languageTrigger || !languageOptions) return;
-    languageMenu.classList.toggle('open', open);
-    languageTrigger.setAttribute('aria-expanded', String(open));
-    languageOptions.hidden = !open;
-  }
-
-  function applyLanguage(language) {
-    activeLanguage = normalizeLanguage(language);
-    const dict = translations[activeLanguage] || translations.en;
-
-    document.documentElement.lang = activeLanguage === 'zh' ? 'zh-CN' : 'en';
-    document.title = dict.metaTitle;
-
-    const description = document.querySelector('meta[name="description"]');
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (description) description.setAttribute('content', dict.metaDescription);
-    if (ogTitle) ogTitle.setAttribute('content', dict.metaTitle);
-    if (ogDescription) ogDescription.setAttribute('content', dict.metaDescription);
-
-    document.querySelectorAll('[data-i18n]').forEach((element) => {
-      const value = getByPath(dict, element.getAttribute('data-i18n'));
-      if (!value) return;
-      if (value.includes('<br>') || value.includes('<code>')) {
-        element.innerHTML = value;
-      } else {
-        element.textContent = value;
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      const val = getByPath(dict, key);
+      if (typeof val === 'string') {
+        if (val.includes('<') && val.includes('>')) {
+          el.innerHTML = val;
+        } else {
+          el.textContent = val;
+        }
       }
     });
 
-    document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
-      const value = getByPath(dict, element.getAttribute('data-i18n-aria'));
-      if (value) element.setAttribute('aria-label', value);
+    document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-aria');
+      const val = getByPath(dict, key);
+      if (typeof val === 'string') {
+        el.setAttribute('aria-label', val);
+      }
     });
 
-    if (languageCurrent) languageCurrent.textContent = languageNames[activeLanguage];
-    languageOptionButtons.forEach((button) => {
-      button.setAttribute(
-        'aria-checked',
-        String(button.getAttribute('data-language-option') === activeLanguage),
-      );
+    if (dict.metaTitle) document.title = dict.metaTitle;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && dict.metaDescription) metaDesc.setAttribute('content', dict.metaDescription);
+
+    const langCurrent = document.querySelector('[data-language-current]');
+    if (langCurrent) langCurrent.textContent = lang === 'zh' ? '中文' : 'English';
+
+    document.querySelectorAll('[data-language-option]').forEach((btn) => {
+      const isSelected = btn.getAttribute('data-language-option') === lang;
+      btn.setAttribute('aria-checked', isSelected ? 'true' : 'false');
     });
 
-    localStorage.setItem('caelis-language', activeLanguage);
-    syncThemeControl();
+    updateHeroDownloadButton(lang);
+  };
+
+  /* Platform Detection */
+  const detectPlatform = () => {
+    const ua = navigator.userAgent || '';
+    const platform = navigator.platform || '';
+    if (/Mac/i.test(platform) || /Macintosh/i.test(ua)) return 'mac';
+    if (/Win/i.test(platform) || /Windows/i.test(ua)) return 'windows';
+    if (/Linux/i.test(platform) || /Linux/i.test(ua)) return 'linux';
+    return 'mac';
+  };
+
+  const currentPlatform = detectPlatform();
+
+  const updateHeroDownloadButton = (lang) => {
+    const heroBtn = document.querySelector('[data-hero-download]');
+    const heroLabel = document.querySelector('[data-hero-download-label]');
+    if (!heroBtn || !heroLabel) return;
+
+    const dict = translations[lang] || translations.en;
+    if (currentPlatform === 'windows') {
+      heroLabel.textContent = dict.hero.ctaWin;
+    } else if (currentPlatform === 'linux') {
+      heroLabel.textContent = dict.hero.ctaLinux;
+    } else {
+      heroLabel.textContent = dict.hero.ctaMac;
+    }
+  };
+
+  /* Highlight relevant CLI block */
+  const highlightCliBlock = () => {
+    document.querySelectorAll('.install-block').forEach((b) => b.classList.remove('highlight'));
+    if (currentPlatform === 'windows') {
+      const winBlock = document.querySelector('[data-platform-block="windows"]');
+      if (winBlock) winBlock.classList.add('highlight');
+    } else {
+      const unixBlock = document.querySelector('[data-platform-block="unix"]');
+      if (unixBlock) unixBlock.classList.add('highlight');
+    }
+  };
+  highlightCliBlock();
+
+  /* Language Selector Interaction */
+  const langMenu = document.querySelector('[data-language-menu]');
+  const langTrigger = document.querySelector('[data-language-trigger]');
+  const langOptions = document.querySelector('[data-language-options]');
+
+  const toggleLangMenu = (open) => {
+    const shouldOpen = open !== undefined ? open : langOptions.hasAttribute('hidden');
+    if (shouldOpen) {
+      langOptions.removeAttribute('hidden');
+      langTrigger.setAttribute('aria-expanded', 'true');
+    } else {
+      langOptions.setAttribute('hidden', '');
+      langTrigger.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  if (langTrigger && langOptions) {
+    langTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleLangMenu();
+    });
+
+    document.querySelectorAll('[data-language-option]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-language-option');
+        localStorage.setItem('caelis_lang', lang);
+        updateI18n(lang);
+        toggleLangMenu(false);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (langMenu && !langMenu.contains(e.target)) {
+        toggleLangMenu(false);
+      }
+    });
   }
 
-  const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
-  const initialLanguage = (
-    requestedLanguage === 'zh' || requestedLanguage === 'en'
-      ? requestedLanguage
-      : ''
-  )
-    || localStorage.getItem('caelis-language')
-    || (navigator.language && navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en');
+  /* Theme Toggle */
+  const themeToggle = document.querySelector('[data-theme-toggle]');
+  const getPreferredTheme = () => {
+    const saved = localStorage.getItem('caelis_theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  };
 
-  applyTheme(preferredTheme());
-  applyLanguage(initialLanguage);
-
-  if (languageTrigger && languageOptions) {
-    languageTrigger.addEventListener('click', () => {
-      setLanguageMenuOpen(languageOptions.hidden);
-    });
-  }
-
-  languageOptionButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      applyLanguage(button.getAttribute('data-language-option'));
-      setLanguageMenuOpen(false);
-      languageTrigger && languageTrigger.focus();
-    });
-  });
-
-  document.addEventListener('click', (event) => {
-    if (languageMenu && !languageMenu.contains(event.target)) {
-      setLanguageMenuOpen(false);
+  const applyTheme = (theme) => {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
     }
-  });
+    localStorage.setItem('caelis_theme', theme);
+  };
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      setLanguageMenuOpen(false);
-    }
-  });
+  applyTheme(getPreferredTheme());
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      applyTheme(activeTheme === 'dark' ? 'light' : 'dark');
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      applyTheme(isLight ? 'dark' : 'light');
     });
   }
 
-  const installCommands = {
-    sh: 'curl -fsSL https://caelis.dev/install.sh | sh',
-    ps1: 'irm https://caelis.dev/install.ps1 | iex',
-    npm: 'npm i -g @caelis/caelis',
+  /* Initial Language */
+  const getPreferredLang = () => {
+    const saved = localStorage.getItem('caelis_lang');
+    if (saved === 'en' || saved === 'zh') return saved;
+    const browserLang = (navigator.language || '').toLowerCase();
+    return browserLang.startsWith('zh') ? 'zh' : 'en';
   };
-  const installTabs = document.querySelectorAll('.install-tab');
-  const commandText = document.getElementById('command-text');
-  const copyButton = document.getElementById('install-copy-btn');
-  const copyFeedback = document.getElementById('copy-feedback');
 
-  function setInstallPlatform(platform) {
-    if (!installCommands[platform]) return;
-    installTabs.forEach((tab) => {
-      const selected = tab.getAttribute('data-platform') === platform;
-      tab.classList.toggle('active', selected);
-      tab.setAttribute('aria-selected', String(selected));
-    });
-    if (commandText) commandText.textContent = installCommands[platform];
-  }
+  const initialLang = getPreferredLang();
+  updateI18n(initialLang);
 
-  const userAgent = navigator.userAgent.toLowerCase();
-  const isWindows = userAgent.includes('win');
-  const powershellTab = document.querySelector('.install-tab[data-platform="ps1"]');
-  if (powershellTab && !isWindows) powershellTab.hidden = true;
-  setInstallPlatform(isWindows ? 'ps1' : 'sh');
+  /* Copy Code Buttons */
+  document.querySelectorAll('[data-copy-trigger]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const codeBox = btn.closest('.install-code-box');
+      if (!codeBox) return;
+      const code = codeBox.querySelector('code');
+      if (!code) return;
 
-  installTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      setInstallPlatform(tab.getAttribute('data-platform'));
-    });
-  });
-
-  async function writeClipboard(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-      return;
-    }
-    const fallback = document.createElement('textarea');
-    fallback.value = text;
-    fallback.setAttribute('readonly', '');
-    fallback.style.position = 'fixed';
-    fallback.style.opacity = '0';
-    document.body.appendChild(fallback);
-    fallback.select();
-    document.execCommand('copy');
-    fallback.remove();
-  }
-
-  if (copyButton && commandText && copyFeedback) {
-    copyButton.addEventListener('click', async () => {
       try {
-        await writeClipboard(commandText.textContent.trim());
-        copyButton.classList.add('copied');
-        copyFeedback.classList.add('show');
-        window.setTimeout(() => {
-          copyButton.classList.remove('copied');
-          copyFeedback.classList.remove('show');
-        }, 1500);
-      } catch (error) {
-        console.error('Failed to copy installation command', error);
-      }
-    });
-  }
+        await navigator.clipboard.writeText(code.innerText.trim());
+        btn.classList.add('copied');
+        const toast = codeBox.querySelector('.block-toast');
+        if (toast) toast.classList.add('show');
 
-  const demoActions = document.querySelectorAll('[data-demo-action]');
-  const demoCommand = document.querySelector('[data-demo-command]');
-  const demoFeedback = document.querySelector('[data-demo-feedback]');
-  let demoTimer;
-
-  demoActions.forEach((button) => {
-    button.addEventListener('click', () => {
-      const command = button.getAttribute('data-demo-action') || '';
-      const dict = translations[activeLanguage] || translations.en;
-      window.clearTimeout(demoTimer);
-      if (demoCommand) demoCommand.textContent = command;
-      if (demoFeedback) {
-        demoFeedback.textContent = dict.demo.action.replace('{command}', command);
-        demoFeedback.classList.add('active');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if (toast) toast.classList.remove('show');
+        }, 1800);
+      } catch (err) {
+        console.error('Clipboard copy failed:', err);
       }
-      demoTimer = window.setTimeout(() => {
-        if (demoCommand) demoCommand.textContent = '';
-        if (demoFeedback) {
-          demoFeedback.textContent = '';
-          demoFeedback.classList.remove('active');
-        }
-      }, 1700);
     });
   });
 
-  const faqDetails = document.querySelectorAll('.faq-list details');
-  faqDetails.forEach((detail) => {
-    const summary = detail.querySelector('summary');
-    if (!summary) return;
-    summary.addEventListener('click', () => {
-      if (detail.open) return;
-      faqDetails.forEach((other) => {
-        if (other !== detail) other.removeAttribute('open');
-      });
-    });
-  });
-
-  const revealElements = document.querySelectorAll('.reveal');
+  /* Screen Reveal Intersection Observer */
+  const revealElements = document.querySelectorAll('.screen-reveal');
   if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      });
-    }, {
-      rootMargin: '0px 0px -8% 0px',
-      threshold: 0.08,
-    });
-    revealElements.forEach((element) => revealObserver.observe(element));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealElements.forEach((el) => observer.observe(el));
   } else {
-    revealElements.forEach((element) => element.classList.add('in-view'));
+    revealElements.forEach((el) => el.classList.add('is-visible'));
   }
 });

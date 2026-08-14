@@ -7,7 +7,7 @@ The static homepage and installation scripts for Caelis.
 - **Current Caelis Brand**: Uses the current transparent Caelis icon and wordmark.
 - **Product-Accurate Homepage**: Presents Caelis as a terminal-first, local-first Agent Runtime with TUI, Headless, and ACP stdio surfaces.
 - **Current Workflow**: Presents guided model/ACP connections, specialist delegation, guarded review, durable Sessions, Plugins, Skills, and MCP.
-- **Real TUI Shape**: Recreates the current `v0.31.0` Connect/Resume/Quit welcome experience.
+- **Real TUI Shape**: Recreates the current `v0.41.0` interactive terminal experience with multi-scenario simulations (Connect, Subagent, Guardian, Headless, and ACP Bridge).
 - **Localized Content**: English and Simplified Chinese copy are selected from the browser language, with a manual language toggle.
 - **Responsive and Accessible**: Includes desktop/mobile layouts, light/dark themes, reduced-motion support, keyboard focus states, and semantic controls.
 - **Cross-Platform Installation Scripts**:

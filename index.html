@@ -3,42 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caelis — Local-first Agent Runtime</title>
-  <meta name="description" content="Caelis is a terminal-first, local-first agent runtime. Connect model providers and ACP agents, delegate work, and keep every session inside one guarded workspace.">
-  <meta name="theme-color" content="#07090d">
+  <title>Caelis — See what happens when every intelligence finds its orbit.</title>
+  <meta name="description" content="See what happens when every intelligence finds its orbit. Mix DeepSeek, Grok, ChatGPT, Claude, and local ACP agents in a single guarded workspace.">
+  <meta name="theme-color" content="#030508">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Caelis — Local-first Agent Runtime">
-  <meta property="og:description" content="Build with agents. Keep one local runtime.">
+  <meta property="og:title" content="Caelis — See what happens when every intelligence finds its orbit.">
+  <meta property="og:description" content="Mix DeepSeek, Grok, ChatGPT, Claude, and local ACP agents in a single guarded workspace.">
   <meta property="og:url" content="https://caelis.dev">
   <link rel="canonical" href="https://caelis.dev">
-  <link rel="icon" href="/icon.svg?v=transparent-2" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/styles.css?v=20260727-3">
-  <script src="/site.js?v=20260727-3" defer></script>
+  <link rel="icon" href="/icon.svg?v=monochrome-23" type="image/svg+xml" sizes="any">
+  <link rel="stylesheet" href="/styles.css?v=20260815-23">
+  <script src="/site.js?v=20260815-23" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="controls.skip">Skip to content</a>
 
+  <!-- Minimal Header (Language & Theme only) -->
   <header class="site-header">
     <div class="header-inner">
       <a href="#top" class="brand-lockup" aria-label="Caelis home">
-        <img src="/icon.svg?v=transparent-2" alt="" class="brand-mark" width="36" height="36">
+        <svg class="brand-mark" viewBox="0 0 64 64" fill="currentColor" shape-rendering="crispEdges">
+          <path d="M29 12h3v3h-3zm3-3h27v6H32z"/>
+          <path d="M5 15h12v6H5zm12 3h9v3h-9zm9-3h9v6h-9zm9 0h24v3H35z"/>
+          <path d="M5 21h12v3H5zm12 0h12v6H17zm12 0h3v3h-3z"/>
+          <path d="M5 30h15v3H5zm15-3h39v6H20z"/>
+          <path d="M5 33h15v3H5zm15 0h39v6H20z"/>
+          <path d="M14 42h3v3h-3zm3-3h12v6H17zm12 3h3v3h-3z"/>
+          <path d="M5 45h15v6H5zm15 0h6v3h-6zm6 0h9v6h-9zm9 3h24v3H35z"/>
+          <path d="M29 51h3v3h-3zm3 0h27v6H32z"/>
+        </svg>
         <span>CAELIS</span>
       </a>
 
-      <nav class="primary-nav" aria-label="Primary navigation" data-i18n-aria="controls.primaryNav">
-        <a href="#workflow" data-i18n="nav.workflow">Workflow</a>
-        <a href="#surfaces" data-i18n="nav.surfaces">Surfaces</a>
-        <a href="#ecosystem" data-i18n="nav.ecosystem">Ecosystem</a>
-      </nav>
-
       <div class="header-actions">
-        <a class="github-link" href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.24c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z"/>
-          </svg>
-          <span>GitHub</span>
-        </a>
-
         <div class="language-menu" data-language-menu>
           <button class="icon-control language-trigger" type="button" data-language-trigger aria-haspopup="menu" aria-expanded="false" aria-label="Select language" data-i18n-aria="controls.languageAria">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -69,229 +66,526 @@
   </header>
 
   <main id="main">
-    <section class="hero" id="top">
-      <div class="hero-signal" aria-hidden="true"></div>
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow" data-i18n="hero.eyebrow">TERMINAL-FIRST AGENT RUNTIME</p>
-          <p class="hero-brand" aria-hidden="true">CAELIS</p>
-          <h1 data-i18n="hero.title">Build with agents.<br>Keep one local runtime.</h1>
-          <p class="hero-lede" data-i18n="hero.lede">Connect model providers and ACP agents, bind specialists, and run every turn inside one guarded, resumable workspace.</p>
+    <!-- SCREEN 1: HERO (Full Viewport Height) -->
+    <section class="viewport-screen hero screen-reveal is-visible" id="top">
+      <div class="hero-aura-glow" aria-hidden="true"></div>
+      <div class="hero-container">
+        <h1 class="hero-title" data-i18n="hero.title">See what happens when every intelligence<br>finds its orbit.</h1>
 
-          <div class="hero-actions">
-            <a class="button button-primary" href="#install" data-i18n="hero.install">Install Caelis</a>
-            <a class="button button-secondary" href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener" data-i18n="hero.github">Explore the source</a>
+        <!-- Hero Dual CTA Buttons -->
+        <div class="hero-cta-group">
+          <a href="#cli" class="btn-primary" data-hero-download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span data-hero-download-label>Download for macOS</span>
+          </a>
+
+          <a href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener" class="btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.24c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z"/>
+            </svg>
+            <span data-i18n="hero.ctaGithub">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: CAELIS CLI (宽幅通畅排版 · 充分利用左右空间) -->
+    <section class="viewport-screen cli-install-screen screen-reveal" id="cli">
+      <div class="cli-container">
+        <div class="cli-head">
+          <div class="cli-title-row">
+            <h2 class="cli-title" data-i18n="cli.title">Caelis CLI</h2>
+            <span class="cli-badge" data-i18n="cli.badge">Latest</span>
           </div>
+          <p class="cli-desc" data-i18n="cli.desc">Work with Caelis directly in your codebase. Build, debug, and orchestrate specialist agents safely from your terminal.</p>
+        </div>
 
-          <div class="install-panel" id="install">
-            <div class="install-tabs" role="tablist" aria-label="Installation method" data-i18n-aria="controls.installMethod">
-              <button class="install-tab active" type="button" role="tab" aria-selected="true" data-platform="sh">curl</button>
-              <button class="install-tab" type="button" role="tab" aria-selected="false" data-platform="ps1">PowerShell</button>
-              <button class="install-tab" type="button" role="tab" aria-selected="false" data-platform="npm">npm</button>
+        <div class="install-stack">
+          <!-- Block 1: macOS & Linux -->
+          <div class="install-block" data-platform-block="unix">
+            <div class="install-block-label">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 1.01-2.87-.96.04-2.12.64-2.8 1.44-.59.69-1.11 1.76-1.03 2.81 1.07.08 2.2-.63 2.82-1.38Z"/>
+              </svg>
+              <span data-i18n="cli.macLabel">macOS</span>
+              <span class="dim">|</span>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C9.5 2 8 3.8 8 6.5c0 1.2.3 2.3.8 3.2C8.3 10.3 8 11.1 8 12c0 2.2 1.3 4 3 4h2c1.7 0 3-1.8 3-4 0-.9-.3-1.7-.8-2.3.5-.9.8-2 .8-3.2C16 3.8 14.5 2 12 2Zm-1.8 4.5c.4 0 .8.4.8.8s-.4.8-.8.8-.8-.4-.8-.8.4-.8.8-.8Zm3.6 0c.4 0 .8.4.8.8s-.4.8-.8.8-.8-.4-.8-.8.4-.8.8-.8Zm-1.8 2.5c.8 0 1.5.3 1.5.8 0 .4-.7.7-1.5.7s-1.5-.3-1.5-.7c0-.5.7-.8 1.5-.8ZM6 13c-.6 0-1 .4-1 1 0 2.5 1.5 4.5 3.5 5.5-1 .5-2 1.2-2 2.5h11c0-1.3-1-2-2-2.5 2-1 3.5-3 3.5-5.5 0-.6-.4-1-1-1-1.2 0-2.3.6-3 1.5-.7-.3-1.4-.5-2-.5s-1.3.2-2 .5c-.7-.9-1.8-1.5-3-1.5Z"/>
+              </svg>
+              <span data-i18n="cli.linuxLabel">Linux</span>
             </div>
-            <div class="install-command">
-              <span class="shell-prompt" aria-hidden="true">$</span>
-              <code id="command-text">curl -fsSL https://caelis.dev/install.sh | sh</code>
-              <button class="copy-button" id="install-copy-btn" type="button" aria-label="Copy installation command" data-i18n-aria="install.copyAria">
+            <div class="install-code-box">
+              <code>curl -fsSL https://caelis.dev/install.sh | sh</code>
+              <button class="copy-icon-btn" type="button" data-copy-trigger aria-label="Copy command" data-i18n-aria="cli.copyAria">
                 <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="none" stroke="currentColor" stroke-width="1.7" d="M9 8.5V6.8A1.8 1.8 0 0 1 10.8 5h6.4A1.8 1.8 0 0 1 19 6.8v8.4a1.8 1.8 0 0 1-1.8 1.8h-1.7M6.8 8.5h6.4a1.8 1.8 0 0 1 1.8 1.8v7.9a1.8 1.8 0 0 1-1.8 1.8H6.8A1.8 1.8 0 0 1 5 18.2v-7.9a1.8 1.8 0 0 1 1.8-1.8Z"/>
+                  <path fill="none" stroke="currentColor" stroke-width="1.8" d="M9 8.5V6.8A1.8 1.8 0 0 1 10.8 5h6.4A1.8 1.8 0 0 1 19 6.8v8.4a1.8 1.8 0 0 1-1.8 1.8h-1.7M6.8 8.5h6.4a1.8 1.8 0 0 1 1.8 1.8v7.9a1.8 1.8 0 0 1-1.8 1.8H6.8A1.8 1.8 0 0 1 5 18.2v-7.9a1.8 1.8 0 0 1 1.8-1.8Z"/>
                 </svg>
                 <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="none" stroke="currentColor" stroke-width="1.9" d="m5.5 12.5 4.2 4.2 8.8-9.4"/>
+                  <path fill="none" stroke="currentColor" stroke-width="2.2" d="m5.5 12.5 4.2 4.2 8.8-9.4"/>
                 </svg>
               </button>
-              <span class="copy-feedback" id="copy-feedback" role="status" aria-live="polite" data-i18n="install.copied">Copied</span>
+              <span class="block-toast" role="status" aria-live="polite" data-i18n="cli.copied">Copied</span>
+            </div>
+          </div>
+
+          <!-- Block 2: Windows PowerShell -->
+          <div class="install-block" data-platform-block="windows">
+            <div class="install-block-label">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M3 3h8.5v8.5H3V3Zm10 0H21v8.5H13V3ZM3 12.5h8.5V21H3v-8.5Zm10 0H21V21H13v-8.5Z"/>
+              </svg>
+              <span data-i18n="cli.winLabel">Windows PowerShell</span>
+            </div>
+            <div class="install-code-box">
+              <code>irm https://caelis.dev/install.ps1 | iex</code>
+              <button class="copy-icon-btn" type="button" data-copy-trigger aria-label="Copy command" data-i18n-aria="cli.copyAria">
+                <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" stroke-width="1.8" d="M9 8.5V6.8A1.8 1.8 0 0 1 10.8 5h6.4A1.8 1.8 0 0 1 19 6.8v8.4a1.8 1.8 0 0 1-1.8 1.8h-1.7M6.8 8.5h6.4a1.8 1.8 0 0 1 1.8 1.8v7.9a1.8 1.8 0 0 1-1.8 1.8H6.8A1.8 1.8 0 0 1 5 18.2v-7.9a1.8 1.8 0 0 1 1.8-1.8Z"/>
+                </svg>
+                <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" stroke-width="2.2" d="m5.5 12.5 4.2 4.2 8.8-9.4"/>
+                </svg>
+              </button>
+              <span class="block-toast" role="status" aria-live="polite" data-i18n="cli.copied">Copied</span>
+            </div>
+          </div>
+
+          <!-- Block 3: npm Cross-Platform -->
+          <div class="install-block" data-platform-block="npm">
+            <div class="install-block-label">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M1.5 8v8h7.5v-6h3.5v6H22.5V8H1.5Zm3.5 6.5H3.5V9.5H5v5Zm6 0H9.5V9.5H11v5Zm8 0h-1.5v-5H16v5h-1.5V9.5H19v5Z"/>
+              </svg>
+              <span data-i18n="cli.npmLabel">npm (Cross-platform)</span>
+            </div>
+            <div class="install-code-box">
+              <code>npm i -g @caelis/caelis</code>
+              <button class="copy-icon-btn" type="button" data-copy-trigger aria-label="Copy command" data-i18n-aria="cli.copyAria">
+                <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" stroke-width="1.8" d="M9 8.5V6.8A1.8 1.8 0 0 1 10.8 5h6.4A1.8 1.8 0 0 1 19 6.8v8.4a1.8 1.8 0 0 1-1.8 1.8h-1.7M6.8 8.5h6.4a1.8 1.8 0 0 1 1.8 1.8v7.9a1.8 1.8 0 0 1-1.8 1.8H6.8A1.8 1.8 0 0 1 5 18.2v-7.9a1.8 1.8 0 0 1 1.8-1.8Z"/>
+                </svg>
+                <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" stroke-width="2.2" d="m5.5 12.5 4.2 4.2 8.8-9.4"/>
+                </svg>
+              </button>
+              <span class="block-toast" role="status" aria-live="polite" data-i18n="cli.copied">Copied</span>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="hero-visual" aria-label="Caelis v0.31.0 terminal welcome screen" data-i18n-aria="controls.tuiPreview">
-          <div class="terminal-shell hero-terminal" data-tui-demo>
-            <div class="terminal-titlebar">
-              <span class="terminal-lights" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span>caelis · ~/workspace</span>
-              <span class="terminal-version">v0.31.0</span>
-            </div>
-            <div class="terminal-screen">
-              <div class="tui-welcome">
-                <pre class="relay-logo" aria-hidden="true">        ▄█████████
-████▄▄▄███▀▀▀▀▀▀▀▀
-▀▀▀▀████▀
-▄▄▄▄▄█████████████
-▀▀▀▀▀█████████████
-   ▄████▄
-█████▀▀███▄▄▄▄▄▄▄▄
-        ▀█████████</pre>
-                <div class="tui-welcome-details">
-                  <div><strong>CAELIS</strong><span>v0.31.0</span></div>
-                  <p>type / for commands</p>
-                  <button type="button" data-demo-action="/connect">› Connect Model / Agent</button>
-                  <button type="button" data-demo-action="/resume">› Resume Session</button>
-                  <button type="button" data-demo-action="/quit">› Quit</button>
+    <!-- SCREEN 3: MULTI-AGENT ORCHESTRATION & BINDINGS (极简通透左右布局) -->
+    <section class="viewport-screen binding-screen screen-reveal" id="bindings">
+      <div class="binding-layout">
+        <!-- Left: Crisp, Punchy Text Description -->
+        <div class="binding-info-area">
+          <h2 class="binding-title" data-i18n="binding.title">为每个角色，<br>绑定最合适的智能</h2>
+          <p class="binding-desc" data-i18n="binding.desc">在同一个工作空间中，你可以为子代理、Guardian、Reviewer 与自定义角色分别绑定已连接的 Provider Model，或接入支持 ACP 的外部 Agent。让不同智能各司其职，在同一任务流中协同运行。</p>
+        </div>
+
+        <!-- Right: Modern Association / Binding Paradigm Card -->
+        <div class="binding-matrix-card">
+          <div class="matrix-rows-stack">
+            <!-- Row 1: breeze -> DeepSeek V4 Flash (Provider Model) -->
+            <div class="matrix-row">
+              <div class="role-box">
+                <div class="role-icon-wrap breeze">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+                  </svg>
+                </div>
+                <div class="role-text-wrap">
+                  <span class="role-name">breeze</span>
+                  <span class="role-desc" data-i18n="binding.breezeSub">轻量检索代理</span>
                 </div>
               </div>
-              <div class="tui-demo-feedback" data-demo-feedback aria-live="polite"></div>
-              <div class="tui-composer">
-                <span>&gt;</span>
-                <span class="tui-command-preview" data-demo-command></span>
-                <span class="terminal-cursor" aria-hidden="true"></span>
+              <div class="matrix-connector">
+                <svg viewBox="0 0 32 12" fill="none">
+                  <circle cx="4" cy="6" r="3" fill="#38bdf8"/>
+                  <line x1="7" y1="6" x2="26" y2="6" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <path d="M24 3l4 3-4 3" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
-              <div class="tui-status">
-                <span>not configured · ~/workspace</span>
-                <span>main</span>
+              <div class="target-box">
+                <div class="target-left-group">
+                  <div class="brand-icon-wrap" style="color: #38bdf8;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M21.7 14.4c-.4-1.2-1.3-2.3-2.5-3-1.6-1-3.6-1.3-5.5-1.1-.3-.6-.7-1.2-1.2-1.6C11 7.4 9 7 7.2 7.5 5.5 8 4.1 9.4 3.4 11.1c-.7 1.7-.6 3.7.3 5.3.9 1.6 2.5 2.7 4.3 3.1 1.9.4 3.9-.1 5.4-1.2.6.4 1.3.7 2 .8 1.8.3 3.7-.4 4.9-1.8.7-.8 1.2-1.8 1.4-2.9zm-9.3 1.9c-1.3.9-2.9 1.3-4.5 1-1.4-.3-2.6-1.2-3.3-2.4-.7-1.3-.8-2.8-.2-4.2.5-1.3 1.6-2.4 2.9-2.8 1.4-.4 2.9-.1 4.1.8.5.4.9.9 1.2 1.5-1.5.1-3 .7-4.1 1.7-.3.3-.3.8 0 1.1.3.3.8.3 1.1 0 .9-.8 2-1.3 3.2-1.4.3 1.5.1 3-.4 4.4z"/>
+                    </svg>
+                  </div>
+                  <span class="target-model-title">DeepSeek V4 Flash</span>
+                </div>
+                <span class="model-type-pill provider" data-i18n="binding.pillProvider">Provider Model</span>
+              </div>
+            </div>
+
+            <!-- Row 2: orbit -> Grok 4.5 (Provider Model) -->
+            <div class="matrix-row">
+              <div class="role-box">
+                <div class="role-icon-wrap orbit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M2.5 12c0-3.5 4.25-6.5 9.5-6.5s9.5 3 9.5 6.5-4.25 6.5-9.5 6.5-9.5-3-9.5-6.5z" transform="rotate(-25 12 12)"/>
+                  </svg>
+                </div>
+                <div class="role-text-wrap">
+                  <span class="role-name">orbit</span>
+                  <span class="role-desc" data-i18n="binding.orbitSub">工具调用代理</span>
+                </div>
+              </div>
+              <div class="matrix-connector">
+                <svg viewBox="0 0 32 12" fill="none">
+                  <circle cx="4" cy="6" r="3" fill="#818cf8"/>
+                  <line x1="7" y1="6" x2="26" y2="6" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <path d="M24 3l4 3-4 3" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="target-box">
+                <div class="target-left-group">
+                  <div class="brand-icon-wrap" style="color: #818cf8;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </div>
+                  <span class="target-model-title">Grok 4.5</span>
+                </div>
+                <span class="model-type-pill provider" data-i18n="binding.pillProvider">Provider Model</span>
+              </div>
+            </div>
+
+            <!-- Row 3: zenith -> GPT-5.6 Sol (Provider Model) -->
+            <div class="matrix-row">
+              <div class="role-box">
+                <div class="role-icon-wrap zenith">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+                  </svg>
+                </div>
+                <div class="role-text-wrap">
+                  <span class="role-name">zenith</span>
+                  <span class="role-desc" data-i18n="binding.zenithSub">深度推理代理</span>
+                </div>
+              </div>
+              <div class="matrix-connector">
+                <svg viewBox="0 0 32 12" fill="none">
+                  <circle cx="4" cy="6" r="3" fill="#c084fc"/>
+                  <line x1="7" y1="6" x2="26" y2="6" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <path d="M24 3l4 3-4 3" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="target-box">
+                <div class="target-left-group">
+                  <div class="brand-icon-wrap" style="color: #c084fc;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zM8.306 15.491l-2.02-1.168a.08.08 0 0 1-.038-.057V8.683a4.5 4.5 0 0 1 7.37-3.453l-.142.08L8.698 8.073a.795.795 0 0 0-.392.681zm1.096-3.065l2.6-1.498 2.6 1.498v2.996l-2.6 1.498-2.6-1.498z"/>
+                    </svg>
+                  </div>
+                  <span class="target-model-title">GPT-5.6 Sol</span>
+                </div>
+                <span class="model-type-pill provider" data-i18n="binding.pillProvider">Provider Model</span>
+              </div>
+            </div>
+
+            <!-- Row 4: guardian -> DeepSeek V4 Flash (Provider Model) -->
+            <div class="matrix-row">
+              <div class="role-box">
+                <div class="role-icon-wrap guardian">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <div class="role-text-wrap">
+                  <span class="role-name">guardian</span>
+                  <span class="role-desc" data-i18n="binding.guardianSub">系统安全守护</span>
+                </div>
+              </div>
+              <div class="matrix-connector">
+                <svg viewBox="0 0 32 12" fill="none">
+                  <circle cx="4" cy="6" r="3" fill="#34d399"/>
+                  <line x1="7" y1="6" x2="26" y2="6" stroke="#34d399" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <path d="M24 3l4 3-4 3" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="target-box">
+                <div class="target-left-group">
+                  <div class="brand-icon-wrap" style="color: #38bdf8;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M21.7 14.4c-.4-1.2-1.3-2.3-2.5-3-1.6-1-3.6-1.3-5.5-1.1-.3-.6-.7-1.2-1.2-1.6C11 7.4 9 7 7.2 7.5 5.5 8 4.1 9.4 3.4 11.1c-.7 1.7-.6 3.7.3 5.3.9 1.6 2.5 2.7 4.3 3.1 1.9.4 3.9-.1 5.4-1.2.6.4 1.3.7 2 .8 1.8.3 3.7-.4 4.9-1.8.7-.8 1.2-1.8 1.4-2.9zm-9.3 1.9c-1.3.9-2.9 1.3-4.5 1-1.4-.3-2.6-1.2-3.3-2.4-.7-1.3-.8-2.8-.2-4.2.5-1.3 1.6-2.4 2.9-2.8 1.4-.4 2.9-.1 4.1.8.5.4.9.9 1.2 1.5-1.5.1-3 .7-4.1 1.7-.3.3-.3.8 0 1.1.3.3.8.3 1.1 0 .9-.8 2-1.3 3.2-1.4.3 1.5.1 3-.4 4.4z"/>
+                    </svg>
+                  </div>
+                  <span class="target-model-title">DeepSeek V4 Flash</span>
+                </div>
+                <span class="model-type-pill provider" data-i18n="binding.pillProvider">Provider Model</span>
+              </div>
+            </div>
+
+            <!-- Row 5: reviewer -> Codex Reviewer (ACP Agent) -->
+            <div class="matrix-row">
+              <div class="role-box">
+                <div class="role-icon-wrap reviewer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                </div>
+                <div class="role-text-wrap">
+                  <span class="role-name">reviewer</span>
+                  <span class="role-desc" data-i18n="binding.reviewerSub">代码审查代理</span>
+                </div>
+              </div>
+              <div class="matrix-connector">
+                <svg viewBox="0 0 32 12" fill="none">
+                  <circle cx="4" cy="6" r="3" fill="#818cf8"/>
+                  <line x1="7" y1="6" x2="26" y2="6" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <path d="M24 3l4 3-4 3" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="target-box">
+                <div class="target-left-group">
+                  <div class="brand-icon-wrap" style="color: #818cf8;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="16 18 22 12 16 6"/>
+                      <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                  </div>
+                  <span class="target-model-title">Codex Reviewer</span>
+                </div>
+                <span class="model-type-pill acp" data-i18n="binding.pillAcp">ACP Agent</span>
+              </div>
+            </div>
+
+            <!-- Row 6: custom -> Local Ollama Agent (ACP Agent) -->
+            <div class="matrix-row">
+              <div class="role-box">
+                <div class="role-icon-wrap custom">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+                <div class="role-text-wrap">
+                  <span class="role-name">custom</span>
+                  <span class="role-desc" data-i18n="binding.customSub">自定义角色</span>
+                </div>
+              </div>
+              <div class="matrix-connector">
+                <svg viewBox="0 0 32 12" fill="none">
+                  <circle cx="4" cy="6" r="3" fill="#fbbf24"/>
+                  <line x1="7" y1="6" x2="26" y2="6" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <path d="M24 3l4 3-4 3" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="target-box">
+                <div class="target-left-group">
+                  <div class="brand-icon-wrap" style="color: #fbbf24;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M16.5 4a3.5 3.5 0 0 0-3.5 3.5v.5h-2v-.5a3.5 3.5 0 1 0-7 0v8.5a4.5 4.5 0 0 0 9 0v-4.5h2v4.5a4.5 4.5 0 0 0 9 0v-8A3.5 3.5 0 0 0 16.5 4z"/>
+                    </svg>
+                  </div>
+                  <span class="target-model-title">Local Ollama Agent</span>
+                </div>
+                <span class="model-type-pill acp" data-i18n="binding.pillAcp">ACP Agent</span>
               </div>
             </div>
           </div>
-          <p class="visual-caption" data-i18n="hero.caption">The current responsive welcome surface — connect, resume, or start typing.</p>
-        </div>
-      </div>
-
-      <div class="proof-strip" aria-label="Product facts" data-i18n-aria="controls.productFacts">
-        <span data-i18n="proof.local">Local-first state</span>
-        <span>Apache-2.0</span>
-        <span data-i18n="proof.acp">ACP-native</span>
-        <span>macOS · Linux · Windows</span>
-      </div>
-    </section>
-
-    <section class="workflow section" id="workflow">
-      <div class="section-heading reveal">
-        <p class="eyebrow" data-i18n="workflow.eyebrow">ONE WORKSPACE, THREE MOVES</p>
-        <h2 data-i18n="workflow.title">Connect. Delegate. Review.</h2>
-        <p data-i18n="workflow.body">Caelis turns a collection of models, local agents, and tools into one intentional terminal workflow.</p>
-      </div>
-
-      <div class="workflow-list">
-        <article class="workflow-row reveal">
-          <span class="workflow-index">01</span>
-          <div class="workflow-command"><code>/connect</code></div>
-          <div class="workflow-copy">
-            <h3 data-i18n="workflow.connect.title">Choose the right backend</h3>
-            <p data-i18n="workflow.connect.body">Connect a model provider or a local ACP agent. Both become consistent Model Profiles instead of leaking backend details into your work.</p>
-          </div>
-        </article>
-        <article class="workflow-row reveal">
-          <span class="workflow-index">02</span>
-          <div class="workflow-command"><code>/subagent</code></div>
-          <div class="workflow-copy">
-            <h3 data-i18n="workflow.delegate.title">Bind clear specialist roles</h3>
-            <p data-i18n="workflow.delegate.body">Use Breeze for bounded work, Orbit for implementation, and Zenith for deep or high-risk analysis — each with an explicit profile and reasoning effort.</p>
-          </div>
-        </article>
-        <article class="workflow-row reveal">
-          <span class="workflow-index">03</span>
-          <div class="workflow-command"><code>/review</code></div>
-          <div class="workflow-copy">
-            <h3 data-i18n="workflow.review.title">Keep execution guarded</h3>
-            <p data-i18n="workflow.review.body">Guardian reviews tool access; Reviewer inspects the result. Sandbox boundaries and approval prompts stay part of the same session.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="surfaces section" id="surfaces">
-      <div class="section-heading reveal">
-        <p class="eyebrow" data-i18n="surfaces.eyebrow">ONE RUNTIME, THREE SURFACES</p>
-        <h2 data-i18n="surfaces.title">Stay interactive. Script it. Embed it.</h2>
-      </div>
-      <div class="surface-list">
-        <article class="surface-item reveal">
-          <span>01</span>
-          <h3>TUI</h3>
-          <p data-i18n="surfaces.tui">Start with <code>caelis</code> for the full interactive workspace, command discovery, approvals, and session control.</p>
-        </article>
-        <article class="surface-item reveal">
-          <span>02</span>
-          <h3>HEADLESS</h3>
-          <p data-i18n="surfaces.headless">Use <code>caelis -p</code> for one-shot prompts with text or JSON output in scripts and automation.</p>
-        </article>
-        <article class="surface-item reveal">
-          <span>03</span>
-          <h3>ACP STDIO</h3>
-          <p data-i18n="surfaces.acp">Run <code>caelis acp</code> and expose the same runtime to compatible editors and external agent clients.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="ecosystem section" id="ecosystem">
-      <div class="ecosystem-copy reveal">
-        <p class="eyebrow" data-i18n="ecosystem.eyebrow">BRING YOUR STACK</p>
-        <h2 data-i18n="ecosystem.title">Open models. Open tools. Open protocol.</h2>
-        <p data-i18n="ecosystem.body">Use subscription sign-in, API providers, local models, ACP agents, MCP servers, Skills, and Plugins without rebuilding your workflow around one vendor.</p>
-      </div>
-      <div class="ecosystem-marquee reveal" aria-label="Supported ecosystems" data-i18n-aria="controls.ecosystems">
-        <span>CODEX</span><span>GROK</span><span>OPENAI</span><span>CLAUDE</span><span>GEMINI</span><span>DEEPSEEK</span><span>OLLAMA</span><span>OPENROUTER</span><span>MCP</span><span>ACP</span><span>SKILLS</span><span>PLUGINS</span>
-      </div>
-    </section>
-
-    <section class="trust section">
-      <div class="trust-statement reveal">
-        <p class="eyebrow" data-i18n="trust.eyebrow">LOCAL-FIRST BY DEFAULT</p>
-        <h2 data-i18n="trust.title">Your workspace stays yours.</h2>
-      </div>
-      <div class="trust-details">
-        <p class="reveal" data-i18n="trust.body">Sessions, execution history, configuration, and workspace context live on your machine. Native sandbox backends constrain tools; Guardian and explicit approvals handle the edges.</p>
-        <div class="trust-facts reveal">
-          <span data-i18n="trust.fact1">Local session persistence</span>
-          <span data-i18n="trust.fact2">Native sandbox backends</span>
-          <span data-i18n="trust.fact3">Approval-aware execution</span>
-          <span data-i18n="trust.fact4">Open-source runtime</span>
         </div>
       </div>
     </section>
 
-    <section class="faq section">
-      <div class="section-heading reveal">
-        <p class="eyebrow">FAQ</p>
-        <h2 data-i18n="faq.title">The short version.</h2>
-      </div>
-      <div class="faq-list reveal">
-        <details open>
-          <summary data-i18n="faq.q1.question">What is Caelis?</summary>
-          <p data-i18n="faq.q1.answer">A terminal-first agent runtime with an interactive TUI, a headless CLI, and an ACP stdio server. It owns the local workspace, Session, tool, sandbox, and approval boundaries around your agents.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q2.question">Does it require an external ACP agent?</summary>
-          <p data-i18n="faq.q2.answer">No. Caelis includes its own local runtime. ACP is an additional interoperability path for connecting local agents and external clients.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q3.question">Which agents can I connect?</summary>
-          <p data-i18n="faq.q3.answer">The guided flow currently includes Codex, Claude Code, OpenCode, CodeFree-O, and Grok, plus custom ACP stdio commands.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q4.question">Can I use my existing model subscription?</summary>
-          <p data-i18n="faq.q4.answer">Caelis supports guided browser or device sign-in for eligible ChatGPT Codex and Grok subscriptions, alongside API-key and local provider paths.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q5.question">Where is my data stored?</summary>
-          <p data-i18n="faq.q5.answer">Under <code>~/.caelis</code> by default, with an override available through <code>-store-dir</code>.</p>
-        </details>
+    <!-- SCREEN 4: SECURITY STACK (通透宽体 3 层横向安全架构 · 左侧对齐) -->
+    <section class="viewport-screen security-screen screen-reveal" id="security">
+      <div class="security-container">
+        <!-- Top Heading Area -->
+        <div class="security-heading-area">
+          <h2 class="security-title" data-i18n="security.title">系统级安全与本地沙箱</h2>
+          <p class="security-subtitle" data-i18n="security.subtitle">代码不离机，执行有界限。原生沙箱与自动审批双重守护。</p>
+        </div>
+
+        <!-- 3 Horizontal Layered Cards -->
+        <div class="security-stack">
+          <!-- Layer 1: Guardian Auto-Review -->
+          <div class="security-layer-card">
+            <div class="card-header-row">
+              <div class="card-icon-badge emerald">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <h3 class="card-title" data-i18n="security.c1Title">Guardian 智能自动审批</h3>
+            </div>
+            <p class="card-desc" data-i18n="security.c1Desc">针对安全 Prompt 与会话上下文精心调优，在指令执行前由 LLM 深度审查，智能拦截高危与破坏性行为。</p>
+            <div class="card-tag-group">
+              <span class="terminal-micro-chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span data-i18n="security.c1Chip">Auto review approved</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Layer 2: Native OS Sandboxes -->
+          <div class="security-layer-card">
+            <div class="card-header-row">
+              <div class="card-icon-badge cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                  <polyline points="2 17 12 22 22 17"/>
+                  <polyline points="2 12 12 17 22 12"/>
+                </svg>
+              </div>
+              <h3 class="card-title" data-i18n="security.c2Title">三大原生系统沙箱</h3>
+            </div>
+            <p class="card-desc" data-i18n="security.c2Desc">深度对接底层系统隔离内核，限定文件系统读写边界，无需依赖笨重容器。</p>
+            <div class="card-tag-group">
+              <div class="os-chips-group">
+                <span class="os-chip">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 1.01-2.87-.96.04-2.12.64-2.8 1.44-.59.69-1.11 1.76-1.03 2.81 1.07.08 2.2-.63 2.82-1.38Z"/></svg>
+                  <span>Seatbelt</span>
+                </span>
+                <span class="os-chip">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 3.8 8 6.5c0 1.2.3 2.3.8 3.2C8.3 10.3 8 11.1 8 12c0 2.2 1.3 4 3 4h2c1.7 0 3-1.8 3-4 0-.9-.3-1.7-.8-2.3.5-.9.8-2 .8-3.2C16 3.8 14.5 2 12 2Zm-1.8 4.5c.4 0 .8.4.8.8s-.4.8-.8.8-.8-.4-.8-.8.4-.8.8-.8Zm3.6 0c.4 0 .8.4.8.8s-.4.8-.8.8-.8-.4-.8-.8.4-.8.8-.8Zm-1.8 2.5c.8 0 1.5.3 1.5.8 0 .4-.7.7-1.5.7s-1.5-.3-1.5-.7c0-.5.7-.8 1.5-.8ZM6 13c-.6 0-1 .4-1 1 0 2.5 1.5 4.5 3.5 5.5-1 .5-2 1.2-2 2.5h11c0-1.3-1-2-2-2.5 2-1 3.5-3 3.5-5.5 0-.6-.4-1-1-1-1.2 0-2.3.6-3 1.5-.7-.3-1.4-.5-2-.5s-1.3.2-2 .5c-.7-.9-1.8-1.5-3-1.5Z"/></svg>
+                  <span>Bubblewrap</span>
+                </span>
+                <span class="os-chip">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8.5v8.5H3V3Zm10 0H21v8.5H13V3ZM3 12.5h8.5V21H3v-8.5Zm10 0H21V21H13v-8.5Z"/></svg>
+                  <span>Restricted Token</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 3: 100% Local-First & Open Source -->
+          <div class="security-layer-card">
+            <div class="card-header-row">
+              <div class="card-icon-badge purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <h3 class="card-title" data-i18n="security.c3Title">100% 开源与本地运行</h3>
+            </div>
+            <p class="card-desc" data-i18n="security.c3Desc">所有会话与凭证 100% 本地留存，开源透明无遥测。</p>
+            <div class="card-tag-group">
+              <span class="local-status-chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+                <span data-i18n="security.c3Chip">Apache-2.0 · 本地优先</span>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="final-cta">
-      <pre class="final-relay" aria-hidden="true">▄▄ ▄█▀▀▀
-▄███▄▄▄▄
-▀███▀▀▀▀
-▀▀ ▀█▄▄▄</pre>
-      <div>
-        <p class="eyebrow" data-i18n="final.eyebrow">START IN YOUR TERMINAL</p>
-        <h2 data-i18n="final.title">One command to meet your runtime.</h2>
+    <!-- SCREEN 5: FAQ (垂直全宽手风琴展开 · 默认全折叠 · 左侧对齐) -->
+    <section class="viewport-screen faq-screen screen-reveal" id="faq">
+      <div class="faq-container">
+        <!-- Top Heading Area (左侧对齐与全站一致) -->
+        <div class="faq-head">
+          <h2 class="faq-title" data-i18n="faq.title">常见问题</h2>
+          <p class="faq-subtitle" data-i18n="faq.subtitle">快速了解 Caelis 多模型组合、角色绑定与安全机制。</p>
+        </div>
+
+        <!-- Vertical Scalable Accordion Stack (默认全部折叠) -->
+        <div class="faq-accordion-stack">
+          <!-- FAQ 1 -->
+          <details class="faq-accordion-item">
+            <summary class="faq-accordion-trigger">
+              <span class="faq-q-text" data-i18n="faq.q1Question">Caelis 相比其他单一 AI 工具最大的优势是什么？</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-accordion-body">
+              <p data-i18n="faq.q1Answer">传统工具将你限制在单一模型或提供商。Caelis 允许你在同一个会话中同时调用 DeepSeek、Grok、GPT、Claude 以及本地 Ollama，并将它们按需绑定到不同子代理角色进行分工协作。</p>
+            </div>
+          </details>
+
+          <!-- FAQ 2 -->
+          <details class="faq-accordion-item">
+            <summary class="faq-accordion-trigger">
+              <span class="faq-q-text" data-i18n="faq.q2Question">Provider 绑定与自定义角色如何工作？</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-accordion-body">
+              <p data-i18n="faq.q2Answer">通过 /subagent 指令即可随时调整绑定关系。例如将高性价比模型分配给 Breeze 处理琐碎微调，将高推理模型分配给 Orbit 编写业务，将顶尖模型分配给 Zenith 做把关。</p>
+            </div>
+          </details>
+
+          <!-- FAQ 3 -->
+          <details class="faq-accordion-item">
+            <summary class="faq-accordion-trigger">
+              <span class="faq-q-text" data-i18n="faq.q3Question">可以使用现有的模型订阅或本地模型吗？</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-accordion-body">
+              <p data-i18n="faq.q3Answer">完全可以。Caelis 支持 ChatGPT Codex 与 Grok 订阅的免配置 OAuth 登录，支持各厂商 API Key，并原生支持本地 Ollama 零成本离线运行。</p>
+            </div>
+          </details>
+
+          <!-- FAQ 4 -->
+          <details class="faq-accordion-item">
+            <summary class="faq-accordion-trigger">
+              <span class="faq-q-text" data-i18n="faq.q4Question">我的代码和会话数据存放在哪里？</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-accordion-body">
+              <p data-i18n="faq.q4Answer">所有会话历史、模型密钥与配置均 100% 保存在本地目录（~/.caelis），完全开源透明且绝无云端遥测，保障核心代码资产安全。</p>
+            </div>
+          </details>
+        </div>
       </div>
-      <a class="button button-primary" href="#install" data-i18n="final.action">Install Caelis</a>
     </section>
   </main>
 
+  <!-- Minimal Footer -->
   <footer class="site-footer">
-    <div class="footer-brand">
-      <img src="/icon.svg?v=transparent-2" alt="" class="brand-mark" width="32" height="32">
-      <span>CAELIS</span>
-    </div>
-    <p data-i18n="footer.copy">Open-source under Apache-2.0. Built for the terminal, ready for the agent ecosystem.</p>
-    <div class="footer-links">
-      <a href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/caelis-labs/caelis/releases" target="_blank" rel="noopener" data-i18n="footer.releases">Releases</a>
-      <a href="/docs" data-i18n="footer.docs">Docs</a>
+    <div class="footer-container">
+      <div class="footer-left">
+        <a href="#top" class="footer-brand" aria-label="Caelis home">
+          <svg viewBox="0 0 64 64" fill="currentColor" shape-rendering="crispEdges">
+            <path d="M29 12h3v3h-3zm3-3h27v6H32z"/>
+            <path d="M5 15h12v6H5zm12 3h9v3h-9zm9-3h9v6h-9zm9 0h24v3H35z"/>
+            <path d="M5 21h12v3H5zm12 0h12v6H17zm12 0h3v3h-3z"/>
+            <path d="M5 30h15v3H5zm15-3h39v6H20z"/>
+            <path d="M5 33h15v3H5zm15 0h39v6H20z"/>
+            <path d="M14 42h3v3h-3zm3-3h12v6H17zm12 3h3v3h-3z"/>
+            <path d="M5 45h15v6H5zm15 0h6v3h-6zm6 0h9v6h-9zm9 3h24v3H35z"/>
+            <path d="M29 51h3v3h-3zm3 0h27v6H32z"/>
+          </svg>
+          <span>CAELIS</span>
+        </a>
+        <span class="footer-license" data-i18n="footer.license">Apache-2.0 Open Source</span>
+      </div>
+
+      <div class="footer-nav">
+        <a href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener" data-i18n="footer.github">GitHub</a>
+        <a href="https://github.com/caelis-labs/caelis/releases" target="_blank" rel="noopener" data-i18n="footer.releases">Releases</a>
+        <a href="https://github.com/caelis-labs/caelis#readme" target="_blank" rel="noopener" data-i18n="footer.docs">Docs</a>
+      </div>
     </div>
   </footer>
 </body>
