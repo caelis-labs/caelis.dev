@@ -3,7 +3,7 @@ document.documentElement.classList.add('js');
 document.addEventListener('DOMContentLoaded', () => {
   const translations = {
     en: {
-      metaTitle: 'Caelis — See what happens when every intelligence finds its orbit.',
+      metaTitle: 'Caelis',
       metaDescription: 'See what happens when every intelligence finds its orbit. Mix DeepSeek, Grok, ChatGPT, Claude, and local ACP agents in a single guarded workspace.',
       controls: {
         skip: 'Skip to content',
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     },
     zh: {
-      metaTitle: 'Caelis — 当群星各循其轨，天空便有了新的模样',
+      metaTitle: 'Caelis',
       metaDescription: '当群星各循其轨，天空便有了新的模样。聚合主流模型与外部 Agent，自由组合专家角色，在安全受控的本地环境中高效协作。',
       controls: {
         skip: '跳转到正文',
@@ -273,11 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   };
 
+  let isCurrentThemeDark = true;
+
   const applyTheme = (theme) => {
     if (theme === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
+      isCurrentThemeDark = false;
     } else {
       document.documentElement.removeAttribute('data-theme');
+      isCurrentThemeDark = true;
     }
     localStorage.setItem('caelis_theme', theme);
   };
@@ -325,6 +329,365 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  /* ==========================================================================
+     CELESTIAL SKY CANVAS:
+     ☀️ Light Theme: Natural Ambient Floating Particles with Global Mouse Flow Direction
+     🌙 Dark Theme: Pure Serene Slow Meteors + Subtle Twinkling Starfield ONLY
+     ========================================================================== */
+  const initHeroCelestialCanvas = () => {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const heroSection = document.getElementById('top');
+    let width = 0;
+    let height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let animationFrameId = null;
+    let isVisible = false;
+
+    // Mouse flow direction tracker (-1.0 to 1.0)
+    const mouseFlow = {
+      normX: 0,
+      normY: 0,
+      smoothNormX: 0,
+      smoothNormY: 0,
+      isActive: false,
+    };
+
+    const onPointerMove = (clientX, clientY) => {
+      // Normalizing mouse across the screen to compute the global drift bias (-1 to 1)
+      mouseFlow.normX = (clientX / window.innerWidth - 0.5) * 2;
+      mouseFlow.normY = (clientY / window.innerHeight - 0.5) * 2;
+      mouseFlow.isActive = true;
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      onPointerMove(e.clientX, e.clientY);
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', () => {
+      mouseFlow.normX = 0;
+      mouseFlow.normY = 0;
+      mouseFlow.isActive = false;
+    });
+
+    // ------------------------------------------------------------------------
+    // ☀️ LIGHT THEME: AMBIENT FLOATING MOTES (Natural Floating + Mouse Drift Direction)
+    // ------------------------------------------------------------------------
+    class AmbientFloatingParticle {
+      constructor(isInit = false) {
+        this.reset(isInit);
+      }
+
+      reset(isInit = false) {
+        // Naturally scattered across the screen
+        this.x = isInit ? Math.random() * width : Math.random() * (width + 60) - 30;
+        this.y = isInit ? Math.random() * height : (Math.random() > 0.5 ? -20 : height + 20);
+
+        // Constant serene natural drift velocity
+        this.baseVx = (Math.random() - 0.5) * 0.45; // slight horizontal float
+        this.baseVy = -0.25 - Math.random() * 0.4;  // gentle upward ambient rise
+
+        // Organic wobble phase
+        this.wobblePhase = Math.random() * Math.PI * 2;
+        this.wobbleSpeed = 0.6 + Math.random() * 1.2;
+
+        // Clean capsule shape
+        this.length = 5.0 + Math.random() * 6.5;
+        this.width = 1.6 + Math.random() * 1.4;
+
+        // Antigravity Clean Palette (Blue, Violet, Crimson Coral, Amber, Sky)
+        const colors = [
+          { r: 37, g: 99, b: 235 },   // Royal Blue
+          { r: 147, g: 51, b: 234 },  // Violet
+          { r: 244, g: 63, b: 94 },   // Coral
+          { r: 245, g: 158, b: 11 },  // Amber
+          { r: 2, g: 132, b: 199 },   // Sky
+        ];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.baseAlpha = 0.35 + Math.random() * 0.45;
+        this.phase = Math.random() * Math.PI * 2;
+        this.twinkleSpeed = 0.8 + Math.random() * 1.5;
+      }
+
+      update(time) {
+        // Natural wobble
+        const wobbleX = Math.sin(time * this.wobbleSpeed + this.wobblePhase) * 0.35;
+        const wobbleY = Math.cos(time * this.wobbleSpeed + this.wobblePhase) * 0.2;
+
+        // Mouse position determines the OVERALL drift direction of the particle field
+        const mouseDriftX = mouseFlow.smoothNormX * 1.2;
+        const mouseDriftY = mouseFlow.smoothNormY * 0.8;
+
+        const totalVx = this.baseVx + wobbleX + mouseDriftX;
+        const totalVy = this.baseVy + wobbleY + mouseDriftY;
+
+        this.x += totalVx;
+        this.y += totalVy;
+
+        // Tangent smoothly aligns with the actual floating trajectory
+        this.angle = Math.atan2(totalVy, totalVx);
+
+        // Screen edge wrapping (continuous seamless drifting)
+        const pad = 40;
+        if (this.x < -pad) this.x = width + pad;
+        if (this.x > width + pad) this.x = -pad;
+        if (this.y < -pad) this.y = height + pad;
+        if (this.y > height + pad) this.y = -pad;
+
+        // Breathing Alpha
+        const breath = Math.sin(time * this.twinkleSpeed + this.phase);
+        this.curAlpha = Math.max(0.12, Math.min(0.85, this.baseAlpha * (0.8 + 0.25 * breath)));
+      }
+
+      draw(ctx) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.curAlpha})`;
+        ctx.lineWidth = this.width;
+        ctx.lineCap = 'round';
+        ctx.moveTo(-this.length * 0.5, 0);
+        ctx.lineTo(this.length * 0.5, 0);
+        ctx.stroke();
+
+        ctx.restore();
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // 🌙 DARK THEME: PURE SERENE SLOW METEORS & STARFIELD ONLY
+    // ------------------------------------------------------------------------
+    class SereneMeteor {
+      constructor(isInit = false) {
+        this.reset(isInit);
+      }
+
+      reset(isInit = false) {
+        this.x = Math.random() * (width + 300) - 150;
+        this.y = isInit ? Math.random() * height : -Math.random() * 120 - 40;
+
+        this.baseAngle = Math.PI * 0.28 + (Math.random() - 0.5) * 0.12;
+
+        // Slow, elegant cosmic velocity (~1.0 to 1.8 px/frame)
+        this.speed = 1.0 + Math.random() * 0.9;
+        this.tailLength = 65 + Math.random() * 75;
+        this.thickness = 1.3 + Math.random() * 1.2;
+
+        const colors = [
+          { r: 56, g: 189, b: 248 },  // Cyan
+          { r: 129, g: 140, b: 248 }, // Indigo
+          { r: 192, g: 132, b: 252 }, // Nebula Purple
+          { r: 251, g: 191, b: 36 },  // Gold
+        ];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.alpha = 0.35 + Math.random() * 0.45;
+      }
+
+      update() {
+        // Global mouse direction slight bias
+        const vx = Math.cos(this.baseAngle) * this.speed + mouseFlow.smoothNormX * 0.3;
+        const vy = Math.sin(this.baseAngle) * this.speed + mouseFlow.smoothNormY * 0.2;
+
+        this.x += vx;
+        this.y += vy;
+        this.currentAngle = Math.atan2(vy, vx);
+
+        if (this.y > height + 100 || this.x < -200 || this.x > width + 200) {
+          this.reset(false);
+        }
+      }
+
+      draw(ctx) {
+        const headX = this.x;
+        const headY = this.y;
+        const tailX = headX - Math.cos(this.currentAngle) * this.tailLength;
+        const tailY = headY - Math.sin(this.currentAngle) * this.tailLength;
+
+        const grad = ctx.createLinearGradient(headX, headY, tailX, tailY);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${this.alpha})`);
+        grad.addColorStop(0.2, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha * 0.8})`);
+        grad.addColorStop(0.7, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha * 0.18})`);
+        grad.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = this.thickness;
+        ctx.lineCap = 'round';
+        ctx.moveTo(headX, headY);
+        ctx.lineTo(tailX, tailY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.arc(headX, headY, this.thickness * 0.85, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+    }
+
+    class StarField {
+      constructor(count) {
+        this.stars = [];
+        for (let i = 0; i < count; i++) {
+          this.stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: 0.8 + Math.random() * 1.4,
+            baseAlpha: 0.18 + Math.random() * 0.6,
+            phase: Math.random() * Math.PI * 2,
+            twinkleSpeed: 0.7 + Math.random() * 1.5,
+          });
+        }
+      }
+
+      updateAndDraw(ctx, time) {
+        for (const s of this.stars) {
+          const breath = Math.sin(time * s.twinkleSpeed + s.phase);
+          const alpha = Math.max(0.08, Math.min(0.85, s.baseAlpha * (0.75 + 0.35 * breath)));
+
+          const px = (s.x + mouseFlow.smoothNormX * 18 + width) % width;
+          const py = (s.y + mouseFlow.smoothNormY * 12 + height) % height;
+
+          ctx.beginPath();
+          ctx.fillStyle = '#ffffff';
+          ctx.globalAlpha = alpha;
+          ctx.arc(px, py, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1.0;
+      }
+    }
+
+    // Instances
+    let floatingParticles = [];
+    let meteors = [];
+    let starField = null;
+
+    const resize = () => {
+      const rect = heroSection.getBoundingClientRect();
+      width = rect.width || window.innerWidth;
+      height = rect.height || window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      // Initialize Light Theme naturally distributed floating particles (no rigid crescent)
+      const count = width < 600 ? 45 : width < 1024 ? 75 : 100;
+      floatingParticles = [];
+      for (let i = 0; i < count; i++) {
+        floatingParticles.push(new AmbientFloatingParticle(true));
+      }
+
+      // Initialize Dark Theme Meteors & Starfield
+      meteors = [];
+      const meteorCount = width < 600 ? 5 : 8;
+      for (let i = 0; i < meteorCount; i++) {
+        meteors.push(new SereneMeteor(true));
+      }
+      starField = new StarField(width < 600 ? 40 : 75);
+    };
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Animation Loop
+    let startTime = performance.now();
+
+    const render = (now) => {
+      if (!isVisible) return;
+
+      const time = (now - startTime) * 0.001;
+
+      // Smooth mouse flow interpolation
+      mouseFlow.smoothNormX += (mouseFlow.normX - mouseFlow.smoothNormX) * 0.04;
+      mouseFlow.smoothNormY += (mouseFlow.normY - mouseFlow.smoothNormY) * 0.04;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const isDark = isCurrentThemeDark;
+
+      if (isDark) {
+        // 🌙 Dark Theme: ONLY Serene Meteors & Subtle Starfield
+        if (starField) starField.updateAndDraw(ctx, time);
+        for (let i = 0; i < meteors.length; i++) {
+          meteors[i].update();
+          meteors[i].draw(ctx);
+        }
+      } else {
+        // ☀️ Light Theme: Naturally scattered floating particles whose overall drift is steered by mouse position
+        for (let i = 0; i < floatingParticles.length; i++) {
+          floatingParticles[i].update(time);
+          floatingParticles[i].draw(ctx);
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    const startAnimation = () => {
+      if (!animationFrameId) {
+        isVisible = true;
+        startTime = performance.now();
+        animationFrameId = requestAnimationFrame(render);
+      }
+    };
+
+    const stopAnimation = () => {
+      isVisible = false;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    };
+
+    startAnimation();
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            startAnimation();
+          } else {
+            stopAnimation();
+          }
+        });
+      }, { threshold: 0.05 });
+
+      observer.observe(heroSection);
+    }
+
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motionQuery.matches) {
+      stopAnimation();
+      setTimeout(() => {
+        ctx.clearRect(0, 0, width, height);
+        if (isCurrentThemeDark) {
+          if (starField) starField.updateAndDraw(ctx, 1.0);
+        } else {
+          floatingParticles.forEach((p) => p.draw(ctx));
+        }
+      }, 100);
+    }
+  };
+
+  initHeroCelestialCanvas();
 
   /* Screen Reveal Intersection Observer */
   const revealElements = document.querySelectorAll('.screen-reveal');
