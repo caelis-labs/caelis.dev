@@ -8,18 +8,11 @@ set -e
 # Configuration
 DEFAULT_INSTALL_DIR="$HOME/.local/bin"
 CAELIS_INSTALL_DIR="${CAELIS_INSTALL_DIR:-$DEFAULT_INSTALL_DIR}"
+CAELIS_RELEASES_BASE_URL="${CAELIS_RELEASES_BASE_URL:-https://releases.caelis.dev}"
+CAELIS_RELEASES_BASE_URL="${CAELIS_RELEASES_BASE_URL%/}"
 
-TARGET="$1"
-if [ -n "$TARGET" ]; then
-  CAELIS_VERSION="$TARGET"
-fi
-
-# Validate version format if specified
-if [ -n "$CAELIS_VERSION" ]; then
-  if [[ ! "$CAELIS_VERSION" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+(-[^[:space:]]+)?$ ]]; then
-    echo "Error: Invalid version format: $CAELIS_VERSION (expected [v]X.Y.Z or [v]X.Y.Z-suffix)" >&2
-    exit 1
-  fi
+if [ "$#" -ne 0 ] || [ -n "${CAELIS_VERSION:-}" ]; then
+  echo "Warning: Version arguments and CAELIS_VERSION are ignored; installing the latest R2 release." >&2
 fi
 
 # Helper to download files using curl or wget
@@ -29,11 +22,13 @@ download_file() {
   local download_success=0
 
   if command -v curl >/dev/null 2>&1; then
-    if curl -sSfL "$download_url" -o "$download_dest" 2>/dev/null; then
+    if curl -sSfL --retry 3 --retry-delay 1 --retry-connrefused \
+      --connect-timeout 10 --max-time 300 \
+      "$download_url" -o "$download_dest" 2>/dev/null; then
       download_success=1
     fi
   elif command -v wget >/dev/null 2>&1; then
-    if wget -q -O "$download_dest" "$download_url" 2>/dev/null; then
+    if wget -q --tries=4 --timeout=30 -O "$download_dest" "$download_url" 2>/dev/null; then
       download_success=1
     fi
   fi
@@ -45,46 +40,26 @@ download_file() {
   fi
 }
 
-# Return 0 if a HEAD request for the URL gets HTTP 404.
-is_not_found() {
-  local url="$1" code
-  if command -v curl >/dev/null 2>&1; then
-    code=$(curl -o /dev/null -sSL -w '%{http_code}' --head "$url" 2>/dev/null) || true
-  elif command -v wget >/dev/null 2>&1; then
-    code=$(wget --server-response --spider "$url" 2>&1 | awk '/HTTP\//{print $2}' | tail -1) || true
-  fi
-  [ "$code" = "404" ]
-}
-
-# Helper to get latest release tag from GitHub without hitting API rate limits
+# Resolve the only supported target: R2's latest release pointer.
 get_latest_version() {
-  # 1. Check curl availability first
+  local latest=""
   if command -v curl >/dev/null 2>&1; then
-    # Try getting the tag via GitHub redirect
-    latest_redir_url=$(curl -sSfL -o /dev/null -w '%{url_effective}' https://github.com/caelis-labs/caelis/releases/latest 2>/dev/null || true)
-    if [ -n "${latest_redir_url}" ] && [ "${latest_redir_url}" != "https://github.com/caelis-labs/caelis/releases/latest" ]; then
-      printf '%s' "${latest_redir_url}" | sed 's|.*/||'
-      return 0
-    fi
-
-    # Fallback to GitHub API
-    api_response=$(curl -sSf https://api.github.com/repos/caelis-labs/caelis/releases/latest 2>/dev/null || true)
-    if [ -n "${api_response}" ]; then
-      printf '%s' "${api_response}" | grep '"tag_name":' | sed -E 's/.*"tag_name":\s*"(v[^"]+)".*/\1/'
-      return 0
-    fi
+    latest=$(curl -sSfL --retry 3 --retry-delay 1 --retry-connrefused \
+      --connect-timeout 10 --max-time 30 \
+      "${CAELIS_RELEASES_BASE_URL}/latest.txt" 2>/dev/null) || true
+  elif command -v wget >/dev/null 2>&1; then
+    latest=$(wget -q --tries=4 --timeout=30 -O - \
+      "${CAELIS_RELEASES_BASE_URL}/latest.txt" 2>/dev/null) || true
+  else
+    echo "Error: curl or wget is required to install caelis." >&2
+    return 1
   fi
 
-  # 2. Fallback to wget redirect capture
-  if command -v wget >/dev/null 2>&1; then
-    latest_redir_url=$(wget --max-redirect=0 https://github.com/caelis-labs/caelis/releases/latest 2>&1 | grep -Ei "Location:|位置:" | awk '{print $2}' || true)
-    if [ -n "${latest_redir_url}" ]; then
-      printf '%s' "${latest_redir_url}" | sed 's|.*/||'
-      return 0
-    fi
+  latest=$(printf '%s' "${latest}" | tr -d '\r\n')
+  if [[ ! "${latest}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[^/[:space:]]+)?$ ]]; then
+    return 1
   fi
-
-  return 1
+  printf '%s' "${latest}"
 }
 
 # Helper to verify sha256 checksum
@@ -107,8 +82,8 @@ verify_checksum() {
   elif command -v openssl >/dev/null 2>&1; then
     actual_hash=$(openssl dgst -sha256 "${archive_file}" | sed 's/^.*= //')
   else
-    echo "Warning: No command found to verify checksum (need sha256sum, shasum, or openssl). Skipping verification." >&2
-    return 0
+    echo "Error: No command found to verify checksum (need sha256sum, shasum, or openssl)." >&2
+    exit 1
   fi
   
   if [ "${expected_hash}" != "${actual_hash}" ]; then
@@ -142,23 +117,12 @@ case "${ARCH_RAW}" in
     ;;
 esac
 
-# Resolve Version
-if [ -z "${CAELIS_VERSION}" ]; then
-  echo "Checking the latest release version of caelis..."
-  CAELIS_VERSION=$(get_latest_version)
-  if [ -z "${CAELIS_VERSION}" ]; then
-    echo "Error: Could not retrieve the latest release version." >&2
-    exit 1
-  fi
+echo "Checking the latest R2 release version of caelis..."
+if ! CAELIS_VERSION=$(get_latest_version); then
+  echo "Error: Could not retrieve a valid latest release from ${CAELIS_RELEASES_BASE_URL}/latest.txt" >&2
+  exit 1
 fi
-
-# Ensure version format
-if [ "${CAELIS_VERSION#v}" = "${CAELIS_VERSION}" ]; then
-  VERSION_NUM="${CAELIS_VERSION}"
-  CAELIS_VERSION="v${CAELIS_VERSION}"
-else
-  VERSION_NUM="${CAELIS_VERSION#v}"
-fi
+VERSION_NUM="${CAELIS_VERSION#v}"
 
 echo "Installing caelis ${CAELIS_VERSION} for ${OS}_${ARCH}..."
 
@@ -171,17 +135,13 @@ cleanup() {
 trap cleanup EXIT
 
 TARBALL_NAME="caelis_${VERSION_NUM}_${OS}_${ARCH}.tar.gz"
-DOWNLOAD_URL="https://github.com/caelis-labs/caelis/releases/download/${CAELIS_VERSION}/${TARBALL_NAME}"
-CHECKSUMS_URL="https://github.com/caelis-labs/caelis/releases/download/${CAELIS_VERSION}/checksums.txt"
+DOWNLOAD_URL="${CAELIS_RELEASES_BASE_URL}/releases/${CAELIS_VERSION}/${TARBALL_NAME}"
+CHECKSUMS_URL="${CAELIS_RELEASES_BASE_URL}/releases/${CAELIS_VERSION}/checksums.txt"
 
 # Perform download and verification
 echo "Downloading ${TARBALL_NAME}..."
 if ! download_file "${DOWNLOAD_URL}" "${TMP_DIR}/${TARBALL_NAME}"; then
-  if is_not_found "${DOWNLOAD_URL}"; then
-    echo "Error: caelis ${CAELIS_VERSION} is not available for your system (${OS}_${ARCH})." >&2
-  else
-    echo "Error: Failed to download caelis from ${DOWNLOAD_URL}" >&2
-  fi
+  echo "Error: Failed to download caelis ${CAELIS_VERSION} for ${OS}_${ARCH} from R2." >&2
   exit 1
 fi
 
