@@ -73,7 +73,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
-  scroll-snap-type: y proximity;
+}
+
+html.is-section-settling {
+  scroll-behavior: auto;
 }
 
 body {
@@ -311,7 +314,6 @@ code, pre {
   min-height: calc(100svh - var(--header-height));
   padding: clamp(3.5rem, 7vh, 6rem) var(--page-gutter);
   position: relative;
-  scroll-snap-align: start;
   width: 100%;
 }
 
@@ -1176,7 +1178,6 @@ code, pre {
   background: var(--page);
   border-top: 1px solid var(--border);
   padding: 2.5rem var(--page-gutter);
-  scroll-snap-align: end;
   width: 100%;
 }
 
@@ -1281,5 +1282,11 @@ code, pre {
   .footer-container {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

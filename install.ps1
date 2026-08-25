@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 $ProgressPreference = 'SilentlyContinue'
 
 if ($args.Count -gt 0 -or $env:CAELIS_VERSION) {
-    Write-Warning "Version arguments and CAELIS_VERSION are ignored; installing the latest R2 release."
+    Write-Warning "Version arguments and CAELIS_VERSION are ignored; installing the latest release."
 }
 
 # Configuration
@@ -95,13 +95,13 @@ function Download-File([string]$Url, [string]$OutFile) {
     }
 }
 
-Write-Host "Checking the latest R2 release version of caelis..."
+Write-Host "Checking the latest caelis release..."
 $CaelisVersion = Download-String "$ReleasesBaseUrl/latest.txt"
 if ($CaelisVersion) {
     $CaelisVersion = $CaelisVersion.Trim()
 }
 if (-not $CaelisVersion -or $CaelisVersion -notmatch '^v\d+\.\d+\.\d+(-[^/\s]+)?$') {
-    Write-Error "Could not retrieve a valid latest release from $ReleasesBaseUrl/latest.txt"
+    Write-Error "Could not determine the latest caelis release."
     exit 1
 }
 $VersionNum = $CaelisVersion.Substring(1)
@@ -139,7 +139,7 @@ try {
     # Cleanup on failure
     if (Test-Path $TarballPath) { Remove-Item $TarballPath -Force }
     if (Test-Path $ChecksumsPath) { Remove-Item $ChecksumsPath -Force }
-    Write-Error "Failed to download caelis $CaelisVersion for windows_$Arch from R2. URL: $DownloadUrl. Error: $_"
+    Write-Error "Failed to download caelis $CaelisVersion for windows_$Arch."
     exit 1
 }
 

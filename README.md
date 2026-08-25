@@ -11,9 +11,9 @@ The static homepage and installation scripts for Caelis.
 - **Localized Content**: English and Simplified Chinese copy are selected from the browser language, with a manual language toggle.
 - **Responsive and Accessible**: Includes desktop/mobile layouts, light/dark themes, reduced-motion support, keyboard focus states, and semantic controls.
 - **Cross-Platform Installation Scripts**:
-  - Unix (`install.sh`): Installs or updates only to the latest release mirrored on R2, auto-detects macOS/Linux and arm64/amd64 architectures, verifies `checksums.txt`, and installs to `~/.local/bin` (or custom `$CAELIS_INSTALL_DIR`).
-  - Windows (`install.ps1`): Installs or updates only to the latest R2 release, then verifies and unpacks the matching Windows asset.
-  - Historical/version-pinned installs remain available from GitHub Releases; the raw installers ignore legacy version arguments and `CAELIS_VERSION` and always resolve R2's latest pointer.
+  - Unix (`install.sh`): Installs or updates to the latest release, auto-detects macOS/Linux and arm64/amd64 architectures, verifies `checksums.txt`, and installs to `~/.local/bin` (or custom `$CAELIS_INSTALL_DIR`).
+  - Windows (`install.ps1`): Installs or updates to the latest release, then verifies and unpacks the matching Windows asset.
+  - Historical/version-pinned installs remain available from GitHub Releases; the raw installers ignore legacy version arguments and `CAELIS_VERSION` and always resolve the latest release.
 - **Cloudflare Pages Friendly**: Pre-configured `_headers` and `_redirects` files ready for deployment.
 
 ## Project Structure

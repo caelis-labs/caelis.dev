@@ -12,7 +12,7 @@ CAELIS_RELEASES_BASE_URL="${CAELIS_RELEASES_BASE_URL:-https://releases.caelis.de
 CAELIS_RELEASES_BASE_URL="${CAELIS_RELEASES_BASE_URL%/}"
 
 if [ "$#" -ne 0 ] || [ -n "${CAELIS_VERSION:-}" ]; then
-  echo "Warning: Version arguments and CAELIS_VERSION are ignored; installing the latest R2 release." >&2
+  echo "Warning: Version arguments and CAELIS_VERSION are ignored; installing the latest release." >&2
 fi
 
 # Helper to download files using curl or wget
@@ -40,7 +40,7 @@ download_file() {
   fi
 }
 
-# Resolve the only supported target: R2's latest release pointer.
+# Resolve the only supported target: the latest release.
 get_latest_version() {
   local latest=""
   if command -v curl >/dev/null 2>&1; then
@@ -117,9 +117,9 @@ case "${ARCH_RAW}" in
     ;;
 esac
 
-echo "Checking the latest R2 release version of caelis..."
+echo "Checking the latest caelis release..."
 if ! CAELIS_VERSION=$(get_latest_version); then
-  echo "Error: Could not retrieve a valid latest release from ${CAELIS_RELEASES_BASE_URL}/latest.txt" >&2
+  echo "Error: Could not determine the latest caelis release." >&2
   exit 1
 fi
 VERSION_NUM="${CAELIS_VERSION#v}"
@@ -141,12 +141,12 @@ CHECKSUMS_URL="${CAELIS_RELEASES_BASE_URL}/releases/${CAELIS_VERSION}/checksums.
 # Perform download and verification
 echo "Downloading ${TARBALL_NAME}..."
 if ! download_file "${DOWNLOAD_URL}" "${TMP_DIR}/${TARBALL_NAME}"; then
-  echo "Error: Failed to download caelis ${CAELIS_VERSION} for ${OS}_${ARCH} from R2." >&2
+  echo "Error: Failed to download caelis ${CAELIS_VERSION} for ${OS}_${ARCH}." >&2
   exit 1
 fi
 
 if ! download_file "${CHECKSUMS_URL}" "${TMP_DIR}/checksums.txt"; then
-  echo "Error: Failed to download checksums from ${CHECKSUMS_URL}" >&2
+  echo "Error: Failed to download checksums for caelis ${CAELIS_VERSION}." >&2
   exit 1
 fi
 

@@ -689,6 +689,145 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initHeroCelestialCanvas();
 
+  /* Soft section settling: preserve native scroll momentum, then finish near a screen boundary. */
+  const initSoftSectionSettling = () => {
+    const sections = Array.from(document.querySelectorAll('.viewport-screen'));
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (sections.length < 2) return;
+
+    const scrollingElement = document.scrollingElement || document.documentElement;
+    let settleTimer = null;
+    let settleAnimationFrame = null;
+    let isSettling = false;
+    let lastScrollY = window.scrollY;
+
+    const headerOffset = () => {
+      const value = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
+      return Number.parseFloat(value) || 0;
+    };
+
+    const clearSettleTimer = () => {
+      if (settleTimer !== null) {
+        clearTimeout(settleTimer);
+        settleTimer = null;
+      }
+    };
+
+    const finishSettling = () => {
+      isSettling = false;
+      document.documentElement.classList.remove('is-section-settling');
+      if (settleAnimationFrame !== null) {
+        cancelAnimationFrame(settleAnimationFrame);
+        settleAnimationFrame = null;
+      }
+    };
+
+    const animateSettling = (targetY) => {
+      const startY = window.scrollY;
+      const distance = targetY - startY;
+      const duration = Math.min(520, Math.max(280, Math.abs(distance) * 0.55));
+      const startTime = performance.now();
+
+      isSettling = true;
+      document.documentElement.classList.add('is-section-settling');
+
+      const step = (now) => {
+        if (!isSettling) return;
+
+        const progress = Math.min(1, (now - startTime) / duration);
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        scrollingElement.scrollTop = startY + distance * easedProgress;
+
+        if (progress < 1) {
+          settleAnimationFrame = requestAnimationFrame(step);
+        } else {
+          settleAnimationFrame = null;
+          finishSettling();
+        }
+      };
+
+      settleAnimationFrame = requestAnimationFrame(step);
+    };
+
+    const settleToNearestSection = () => {
+      settleTimer = null;
+      if (isSettling || motionQuery.matches) return;
+
+      const offset = headerOffset();
+      const viewportHeight = Math.max(1, window.innerHeight - offset);
+      const maxScrollY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const currentY = Math.min(maxScrollY, Math.max(0, window.scrollY));
+      const settleRange = viewportHeight * 0.55;
+
+      for (const section of sections) {
+        const sectionTop = Math.max(0, section.offsetTop - offset);
+        const sectionEnd = section.offsetTop + section.offsetHeight - offset;
+        const hasScrollableInterior = section.offsetHeight > viewportHeight + 24;
+        const isInsideScrollableInterior =
+          currentY > sectionTop + settleRange &&
+          currentY < sectionEnd - viewportHeight - settleRange;
+
+        if (hasScrollableInterior && isInsideScrollableInterior) return;
+      }
+
+      const targets = sections.map((section) => Math.min(maxScrollY, Math.max(0, section.offsetTop - offset)));
+      targets.push(maxScrollY);
+
+      const nearestTarget = targets.reduce((nearest, target) => (
+        Math.abs(target - currentY) < Math.abs(nearest - currentY) ? target : nearest
+      ), targets[0]);
+
+      if (Math.abs(nearestTarget - currentY) < 2 || Math.abs(nearestTarget - currentY) > settleRange) return;
+
+      animateSettling(nearestTarget);
+    };
+
+    const scheduleSettling = () => {
+      if (isSettling) return;
+      clearSettleTimer();
+      settleTimer = window.setTimeout(settleToNearestSection, 160);
+    };
+
+    const interruptSettling = () => {
+      clearSettleTimer();
+      finishSettling();
+    };
+
+    const scrollingKeys = new Set(['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' ']);
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      if (Math.abs(currentScrollY - lastScrollY) < 1) return;
+      lastScrollY = currentScrollY;
+      scheduleSettling();
+    }, { passive: true });
+
+    window.addEventListener('wheel', interruptSettling, { passive: true });
+    window.addEventListener('touchstart', interruptSettling, { passive: true });
+    window.addEventListener('pointerdown', interruptSettling, { passive: true });
+    window.addEventListener('keydown', (event) => {
+      if (scrollingKeys.has(event.key)) interruptSettling();
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      interruptSettling();
+      scheduleSettling();
+    }, { passive: true });
+
+    const handleMotionPreferenceChange = () => {
+      interruptSettling();
+      if (!motionQuery.matches) scheduleSettling();
+    };
+
+    if (typeof motionQuery.addEventListener === 'function') {
+      motionQuery.addEventListener('change', handleMotionPreferenceChange);
+    } else {
+      motionQuery.addListener(handleMotionPreferenceChange);
+    }
+  };
+
+  initSoftSectionSettling();
+
   /* Screen Reveal Intersection Observer */
   const revealElements = document.querySelectorAll('.screen-reveal');
   if ('IntersectionObserver' in window) {
