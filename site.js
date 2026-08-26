@@ -296,6 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isCurrentThemeDark = true;
     }
     localStorage.setItem('caelis_theme', theme);
+    window.dispatchEvent(new CustomEvent('caelis:themechange', { detail: { theme } }));
   };
 
   applyTheme(getPreferredTheme());
@@ -344,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
      CELESTIAL SKY CANVAS:
-     ☀️ Light Theme: Natural Ambient Floating Particles with Global Mouse Flow Direction
+     ☀️ Light Theme: Flexible Morphing Constellations with Gentle Parallax
      🌙 Dark Theme: Pure Serene Slow Meteors + Subtle Twinkling Starfield ONLY
      ========================================================================== */
   const initHeroCelestialCanvas = () => {
@@ -393,86 +394,183 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ------------------------------------------------------------------------
-    // ☀️ LIGHT THEME: AMBIENT FLOATING MOTES (Natural Floating + Mouse Drift Direction)
+    // ☀️ LIGHT THEME: DAYLIGHT CONSTELLATION FRAGMENTS
     // ------------------------------------------------------------------------
-    class AmbientFloatingParticle {
-      constructor(isInit = false) {
-        this.reset(isInit);
+    class DaylightConstellationField {
+      constructor() {
+        this.clusters = [];
+        this.specks = [];
+        this.create();
       }
 
-      reset(isInit = false) {
-        // Naturally scattered across the screen
-        this.x = isInit ? Math.random() * width : Math.random() * (width + 60) - 30;
-        this.y = isInit ? Math.random() * height : (Math.random() > 0.5 ? -20 : height + 20);
+      create() {
+        const compact = width < 600;
+        const tablet = width >= 600 && width < 1024;
+        const zones = compact
+          ? [
+              [0.1, 0.12], [0.7, 0.08], [0.94, 0.29], [0.06, 0.48],
+              [0.9, 0.7], [0.18, 0.84], [0.61, 0.92],
+            ]
+          : [
+              [0.05, 0.14], [0.25, 0.07], [0.61, 0.17], [0.81, 0.06], [0.95, 0.26],
+              [0.1, 0.4], [0.97, 0.53], [0.03, 0.75], [0.2, 0.92],
+              [0.48, 0.84], [0.73, 0.95], [0.91, 0.78],
+            ];
+        const clusterCount = compact ? zones.length : tablet ? 9 : zones.length;
+        const baseSpread = compact ? Math.min(56, width * 0.15) : tablet ? 70 : 84;
 
-        // Constant serene natural drift velocity
-        this.baseVx = (Math.random() - 0.5) * 0.45; // slight horizontal float
-        this.baseVy = -0.25 - Math.random() * 0.4;  // gentle upward ambient rise
+        for (let clusterIndex = 0; clusterIndex < clusterCount; clusterIndex += 1) {
+          const [zoneX, zoneY] = zones[clusterIndex % zones.length];
+          const spread = baseSpread * (0.82 + Math.random() * 0.38);
+          const nodeCount = 4 + Math.floor(Math.random() * 3);
+          const mirrorX = Math.random() > 0.5 ? -1 : 1;
+          const mirrorY = mirrorX === 1 ? -1 : (Math.random() > 0.5 ? -1 : 1);
+          const flipRotation = (Math.random() > 0.5 ? 1 : -1) * (0.45 + Math.random() * 0.55);
+          const cluster = {
+            x: Math.max(0.03, Math.min(0.97, zoneX + (Math.random() - 0.5) * 0.06)) * width,
+            y: Math.max(0.04, Math.min(0.96, zoneY + (Math.random() - 0.5) * 0.05)) * height,
+            phase: Math.random() * Math.PI * 2,
+            driftSpeed: 0.16 + Math.random() * 0.08,
+            driftRadiusX: 9 + Math.random() * 9,
+            driftRadiusY: 7 + Math.random() * 7,
+            morphSpeed: 0.22 + Math.random() * 0.16,
+            swimSpeed: 0.42 + Math.random() * 0.23,
+            turnSpeed: 0.13 + Math.random() * 0.09,
+            turnRange: 0.12 + Math.random() * 0.14,
+            parallax: 4 + Math.random() * 7,
+            nodes: [],
+            edges: [],
+          };
 
-        // Organic wobble phase
-        this.wobblePhase = Math.random() * Math.PI * 2;
-        this.wobbleSpeed = 0.6 + Math.random() * 1.2;
+          for (let nodeIndex = 0; nodeIndex < nodeCount; nodeIndex += 1) {
+            const angle = Math.random() * Math.PI * 2;
+            const distance = nodeIndex === 0 ? spread * 0.05 : spread * (0.38 + Math.random() * 0.7);
+            const ax = Math.cos(angle) * distance;
+            const ay = Math.sin(angle) * distance * 0.72;
+            const mirroredX = ax * mirrorX;
+            const mirroredY = ay * mirrorY;
+            const bx = (mirroredX * Math.cos(flipRotation) - mirroredY * Math.sin(flipRotation))
+              + (Math.random() - 0.5) * spread * 0.28;
+            const by = (mirroredX * Math.sin(flipRotation) + mirroredY * Math.cos(flipRotation))
+              + (Math.random() - 0.5) * spread * 0.22;
+            cluster.nodes.push({
+              ax,
+              ay,
+              bx,
+              by,
+              radius: nodeIndex === 0 ? 2 + Math.random() : 0.9 + Math.random() * 0.9,
+              baseAlpha: nodeIndex === 0 ? 0.75 + Math.random() * 0.2 : 0.45 + Math.random() * 0.24,
+              phase: Math.random() * Math.PI * 2,
+              twinkleSpeed: 0.35 + Math.random() * 0.5,
+              flexRadius: nodeIndex === 0 ? 1.5 + Math.random() : 2.5 + Math.random() * 3.5,
+              flexSpeed: 0.24 + Math.random() * 0.22,
+              isAnchor: nodeIndex === 0,
+              drawX: 0,
+              drawY: 0,
+            });
+            if (nodeIndex > 0) {
+              cluster.edges.push([nodeIndex, Math.floor(Math.random() * nodeIndex)]);
+            }
+          }
 
-        // Clean capsule shape
-        this.length = 5.0 + Math.random() * 6.5;
-        this.width = 1.6 + Math.random() * 1.4;
+          if (nodeCount > 4) {
+            cluster.edges.push([nodeCount - 1, 1 + Math.floor(Math.random() * (nodeCount - 2))]);
+          }
 
-        // Antigravity Clean Palette (Blue, Violet, Crimson Coral, Amber, Sky)
-        const colors = [
-          { r: 37, g: 99, b: 235 },   // Royal Blue
-          { r: 147, g: 51, b: 234 },  // Violet
-          { r: 244, g: 63, b: 94 },   // Coral
-          { r: 245, g: 158, b: 11 },  // Amber
-          { r: 2, g: 132, b: 199 },   // Sky
-        ];
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.baseAlpha = 0.35 + Math.random() * 0.45;
-        this.phase = Math.random() * Math.PI * 2;
-        this.twinkleSpeed = 0.8 + Math.random() * 1.5;
+          this.clusters.push(cluster);
+        }
+
+        const speckCount = compact ? 12 : tablet ? 18 : 26;
+        while (this.specks.length < speckCount) {
+          const x = Math.random() * width;
+          const y = Math.random() * height;
+          const insideQuietCenter = x > width * 0.25 && x < width * 0.75 && y > height * 0.27 && y < height * 0.73;
+          if (insideQuietCenter) continue;
+          this.specks.push({
+            x,
+            y,
+            radius: 0.45 + Math.random() * 0.6,
+            alpha: 0.22 + Math.random() * 0.24,
+            phase: Math.random() * Math.PI * 2,
+            driftRadius: 0.8 + Math.random() * 1.8,
+            driftSpeed: 0.08 + Math.random() * 0.1,
+          });
+        }
       }
 
-      update(time) {
-        // Natural wobble
-        const wobbleX = Math.sin(time * this.wobbleSpeed + this.wobblePhase) * 0.35;
-        const wobbleY = Math.cos(time * this.wobbleSpeed + this.wobblePhase) * 0.2;
-
-        // Mouse position determines the OVERALL drift direction of the particle field
-        const mouseDriftX = mouseFlow.smoothNormX * 1.2;
-        const mouseDriftY = mouseFlow.smoothNormY * 0.8;
-
-        const totalVx = this.baseVx + wobbleX + mouseDriftX;
-        const totalVy = this.baseVy + wobbleY + mouseDriftY;
-
-        this.x += totalVx;
-        this.y += totalVy;
-
-        // Tangent smoothly aligns with the actual floating trajectory
-        this.angle = Math.atan2(totalVy, totalVx);
-
-        // Screen edge wrapping (continuous seamless drifting)
-        const pad = 40;
-        if (this.x < -pad) this.x = width + pad;
-        if (this.x > width + pad) this.x = -pad;
-        if (this.y < -pad) this.y = height + pad;
-        if (this.y > height + pad) this.y = -pad;
-
-        // Breathing Alpha
-        const breath = Math.sin(time * this.twinkleSpeed + this.phase);
-        this.curAlpha = Math.max(0.12, Math.min(0.85, this.baseAlpha * (0.8 + 0.25 * breath)));
-      }
-
-      draw(ctx) {
+      updateAndDraw(ctx, time) {
         ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.curAlpha})`;
-        ctx.lineWidth = this.width;
         ctx.lineCap = 'round';
-        ctx.moveTo(-this.length * 0.5, 0);
-        ctx.lineTo(this.length * 0.5, 0);
-        ctx.stroke();
+
+        for (const cluster of this.clusters) {
+          const driftX = Math.sin(time * cluster.driftSpeed + cluster.phase) * cluster.driftRadiusX
+            + Math.sin(time * cluster.driftSpeed * 0.37 + cluster.phase * 1.7) * cluster.driftRadiusX * 0.28
+            + mouseFlow.smoothNormX * cluster.parallax;
+          const driftY = Math.cos(time * cluster.driftSpeed * 0.73 + cluster.phase) * cluster.driftRadiusY
+            + Math.sin(time * cluster.swimSpeed + cluster.phase) * cluster.driftRadiusY * 0.26
+            + mouseFlow.smoothNormY * cluster.parallax * 0.65;
+          const morphWave = (1 - Math.cos(time * cluster.morphSpeed + cluster.phase)) * 0.5;
+          const morph = morphWave * morphWave * (3 - 2 * morphWave);
+          const swim = Math.sin(time * cluster.swimSpeed + cluster.phase * 0.71);
+          const scaleX = 1 - swim * 0.08;
+          const scaleY = 1 + swim * 0.11;
+          const rotation = Math.sin(time * cluster.turnSpeed + cluster.phase) * cluster.turnRange;
+          const cosRotation = Math.cos(rotation);
+          const sinRotation = Math.sin(rotation);
+
+          for (const node of cluster.nodes) {
+            const flex = time * node.flexSpeed + node.phase;
+            const localX = (node.ax + (node.bx - node.ax) * morph) * scaleX
+              + Math.cos(flex) * node.flexRadius;
+            const localY = (node.ay + (node.by - node.ay) * morph) * scaleY
+              + Math.sin(flex * 0.83) * node.flexRadius * 0.7;
+            node.drawX = cluster.x + driftX + localX * cosRotation - localY * sinRotation;
+            node.drawY = cluster.y + driftY + localX * sinRotation + localY * cosRotation;
+          }
+
+          for (const [fromIndex, toIndex] of cluster.edges) {
+            const from = cluster.nodes[fromIndex];
+            const to = cluster.nodes[toIndex];
+            const breath = 0.78 + Math.sin(time * 0.3 + from.phase) * 0.16 + swim * 0.05;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(37, 99, 235, ${0.18 * breath})`;
+            ctx.lineWidth = 0.8;
+            ctx.moveTo(from.drawX, from.drawY);
+            ctx.lineTo(to.drawX, to.drawY);
+            ctx.stroke();
+          }
+
+          for (const node of cluster.nodes) {
+            const breath = 0.84 + Math.sin(time * node.twinkleSpeed + node.phase) * 0.16;
+            const alpha = node.baseAlpha * breath;
+            const breathingRadius = node.radius * (node.isAnchor ? 0.96 + breath * 0.08 + swim * 0.025 : 1);
+            ctx.save();
+            if (node.isAnchor) {
+              ctx.shadowColor = 'rgba(37, 99, 235, 0.42)';
+              ctx.shadowBlur = 11;
+            }
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(37, 99, 235, ${alpha})`;
+            ctx.arc(node.drawX, node.drawY, breathingRadius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+
+        for (const speck of this.specks) {
+          const alpha = speck.alpha * (0.85 + Math.sin(time * 0.28 + speck.phase) * 0.15);
+          const drift = time * speck.driftSpeed + speck.phase;
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(59, 130, 246, ${alpha})`;
+          ctx.arc(
+            speck.x + Math.cos(drift) * speck.driftRadius + mouseFlow.smoothNormX * 3,
+            speck.y + Math.sin(drift * 0.82) * speck.driftRadius * 0.65 + mouseFlow.smoothNormY * 2,
+            speck.radius,
+            0,
+            Math.PI * 2
+          );
+          ctx.fill();
+        }
 
         ctx.restore();
       }
@@ -585,7 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Instances
-    let floatingParticles = [];
+    let constellationField = null;
     let meteors = [];
     let starField = null;
 
@@ -600,12 +698,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
 
-      // Initialize Light Theme naturally distributed floating particles (no rigid crescent)
-      const count = width < 600 ? 45 : width < 1024 ? 75 : 100;
-      floatingParticles = [];
-      for (let i = 0; i < count; i++) {
-        floatingParticles.push(new AmbientFloatingParticle(true));
-      }
+      // Initialize irregular flexible constellations outside the quiet center.
+      constellationField = new DaylightConstellationField();
 
       // Initialize Dark Theme Meteors & Starfield
       meteors = [];
@@ -617,7 +711,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     resize();
-    window.addEventListener('resize', resize, { passive: true });
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let isHeroIntersecting = true;
 
     // Animation Loop
     let startTime = performance.now();
@@ -643,17 +738,27 @@ document.addEventListener('DOMContentLoaded', () => {
           meteors[i].draw(ctx);
         }
       } else {
-        // ☀️ Light Theme: Naturally scattered floating particles whose overall drift is steered by mouse position
-        for (let i = 0; i < floatingParticles.length; i++) {
-          floatingParticles[i].update(time);
-          floatingParticles[i].draw(ctx);
-        }
+        // ☀️ Light Theme: Flexible constellation fragments with gentle parallax.
+        if (constellationField) constellationField.updateAndDraw(ctx, time);
       }
 
       animationFrameId = requestAnimationFrame(render);
     };
 
+    const drawStaticFrame = () => {
+      ctx.clearRect(0, 0, width, height);
+      if (isCurrentThemeDark) {
+        if (starField) starField.updateAndDraw(ctx, 1.0);
+      } else if (constellationField) {
+        constellationField.updateAndDraw(ctx, 1.0);
+      }
+    };
+
     const startAnimation = () => {
+      if (motionQuery.matches) {
+        drawStaticFrame();
+        return;
+      }
       if (!animationFrameId) {
         isVisible = true;
         startTime = performance.now();
@@ -669,12 +774,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    const handleResize = () => {
+      resize();
+      if (motionQuery.matches) drawStaticFrame();
+    };
+
+    const handleMotionPreferenceChange = () => {
+      if (motionQuery.matches) {
+        stopAnimation();
+        drawStaticFrame();
+      } else if (isHeroIntersecting) {
+        startAnimation();
+      }
+    };
+
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('caelis:themechange', () => {
+      if (motionQuery.matches) drawStaticFrame();
+    });
+
+    if (typeof motionQuery.addEventListener === 'function') {
+      motionQuery.addEventListener('change', handleMotionPreferenceChange);
+    } else {
+      motionQuery.addListener(handleMotionPreferenceChange);
+    }
+
     startAnimation();
 
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          isHeroIntersecting = entry.isIntersecting;
+          if (isHeroIntersecting) {
             startAnimation();
           } else {
             stopAnimation();
@@ -683,19 +814,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, { threshold: 0.05 });
 
       observer.observe(heroSection);
-    }
-
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (motionQuery.matches) {
-      stopAnimation();
-      setTimeout(() => {
-        ctx.clearRect(0, 0, width, height);
-        if (isCurrentThemeDark) {
-          if (starField) starField.updateAndDraw(ctx, 1.0);
-        } else {
-          floatingParticles.forEach((p) => p.draw(ctx));
-        }
-      }, 100);
     }
   };
 
