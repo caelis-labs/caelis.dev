@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const translations = {
     en: {
       metaTitle: 'Caelis',
-      metaDescription: 'See what happens when every intelligence finds its orbit. Mix DeepSeek, Grok, ChatGPT, Claude, and local ACP agents in a single guarded workspace.',
+      metaDescription: 'See what happens when every intelligence finds its orbit. Combine built-in providers and ACP Agents in a single guarded workspace.',
       controls: {
         skip: 'Skip to content',
         languageAria: 'Select language',
@@ -31,15 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       binding: {
         title: 'Bind the right intelligence<br>to every specialist role',
-        desc: 'Within a single workspace, bind specialist subagents, Guardian, Reviewer, and custom roles to connected Provider Models or external ACP Agents. Let diverse intelligences collaborate seamlessly in one guarded session.',
+        desc: 'Within a single workspace, bind specialist subagents, Guardian, Reviewer, and custom roles to connected Providers or ACP Agents. Let diverse intelligences collaborate seamlessly in one guarded session.',
         breezeSub: 'Fast retrieval agent',
         orbitSub: 'Tool execution agent',
         zenithSub: 'Deep reasoning agent',
         guardianSub: 'System safety guardian',
         reviewerSub: 'Code audit agent',
         customSub: 'Custom defined role',
-        pillProvider: 'Provider Model',
-        pillAcp: 'ACP Agent',
+        breezeTarget: 'MiMo',
+        orbitTarget: 'Grok',
+        zenithTarget: 'GPT',
+        guardianTarget: 'DeepSeek',
+        reviewerTarget: 'Codex',
+        customTarget: 'Yours',
+        pillProvider: 'Provider',
+        pillAcp: 'ACP',
       },
       security: {
         title: 'System-grade sandboxing & zero trust',
@@ -57,13 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
         title: 'FAQ',
         subtitle: 'Everything you need to know about Caelis, multi-provider workflows, and local runtime safety.',
         q1Question: 'What makes Caelis different from single AI coding assistants?',
-        q1Answer: 'Traditional tools lock you into a single model or provider. Caelis acts as an orchestration runtime that coordinates multiple models (DeepSeek, Grok, GPT, Claude, local Ollama) in the same session, assigning different models to specialized subagents.',
+        q1Answer: 'Caelis lets you combine multiple connected models and ACP Agents in the same session.',
         q2Question: 'How do provider bindings and custom roles work?',
         q2Answer: 'You can configure bindings via /subagent. Assign cheap/fast models to Breeze for search & quick edits, reasoning models to Orbit for feature coding, and frontier models to Zenith for review.',
-        q3Question: 'Can I use existing subscriptions or local models?',
-        q3Answer: 'Yes. Caelis supports OAuth sign-in for eligible ChatGPT Codex and Grok subscriptions, standard API keys, and local zero-cost models via Ollama.',
+        q3Question: 'Which sign-in and provider connection methods are supported?',
+        q3Answer: 'Caelis currently supports OAuth for ChatGPT and Grok, plus API keys from multiple Providers. If your usual workflow is not supported yet, Issues and PRs are welcome.',
         q4Question: 'Where is my code and data stored?',
-        q4Answer: 'Everything is saved locally under ~/.caelis. Your files and credentials never leave your machine.',
+        q4Answer: 'Your data stays local. Caelis is open source and transparent, with no data collection or telemetry.',
       },
       footer: {
         license: 'Apache-2.0 Open Source',
@@ -101,15 +107,21 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       binding: {
         title: '为每个角色，<br>绑定最合适的智能',
-        desc: '在同一个工作空间中，你可以为子代理、Guardian、Reviewer 与自定义角色分别绑定已连接的 Provider Model，或接入支持 ACP 的外部 Agent。让不同智能各司其职，在同一任务流中协同运行。',
+        desc: '在同一个工作空间中，你可以为子代理、Guardian、Reviewer 与自定义角色分别绑定已连接的 Provider 或 ACP Agent。让不同智能各司其职，在同一任务流中协同运行。',
         breezeSub: '轻量检索代理',
         orbitSub: '工具调用代理',
         zenithSub: '深度推理代理',
         guardianSub: '系统安全守护',
         reviewerSub: '代码审查代理',
         customSub: '自定义角色',
-        pillProvider: 'Provider Model',
-        pillAcp: 'ACP Agent',
+        breezeTarget: 'MiMo',
+        orbitTarget: 'Grok',
+        zenithTarget: 'GPT',
+        guardianTarget: 'DeepSeek',
+        reviewerTarget: 'Codex',
+        customTarget: 'Yours',
+        pillProvider: 'Provider',
+        pillAcp: 'ACP',
       },
       security: {
         title: '系统级安全与本地沙箱',
@@ -127,13 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
         title: '常见问题',
         subtitle: '快速了解 Caelis 多模型组合、角色绑定与安全机制。',
         q1Question: 'Caelis 相比其他单一 AI 工具最大的优势是什么？',
-        q1Answer: '传统工具将你限制在单一模型或提供商。Caelis 允许你在同一个会话中同时调用 DeepSeek、Grok、GPT、Claude 以及本地 Ollama，并将它们按需绑定到不同子代理角色进行分工协作。',
+        q1Answer: 'Caelis 允许你在同一个会话中组合使用多个已连接的模型和 ACP Agent。',
         q2Question: 'Provider 绑定与自定义角色如何工作？',
         q2Answer: '通过 /subagent 指令即可随时调整绑定关系。例如将高性价比模型分配给 Breeze 处理琐碎微调，将高推理模型分配给 Orbit 编写业务，将顶尖模型分配给 Zenith 做把关。',
-        q3Question: '可以使用现有的模型订阅或本地模型吗？',
-        q3Answer: '完全可以。Caelis 支持 ChatGPT Codex 与 Grok 订阅的免配置 OAuth 登录，支持各厂商 API Key，并原生支持本地 Ollama 零成本离线运行。',
+        q3Question: '当前支持哪些登录与 Provider 接入方式？',
+        q3Answer: '当前支持使用 ChatGPT 和 Grok 的 OAuth，以及多家 Provider 的 API Key 方式。如果你的常用工作流还不在支持范围内，欢迎提交 Issue 或 PR。',
         q4Question: '我的代码和会话数据存放在哪里？',
-        q4Answer: '所有会话历史、模型密钥与配置均 100% 保存在本地目录（~/.caelis），完全开源透明且绝无云端遥测，保障核心代码资产安全。',
+        q4Answer: '数据保存在本地。Caelis 开源透明，不收集数据，也不启用遥测。',
       },
       footer: {
         license: 'Apache-2.0 开源协议',
@@ -689,146 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initHeroCelestialCanvas();
 
-  /* Soft section settling: preserve native scroll momentum, then finish near a screen boundary. */
-  const initSoftSectionSettling = () => {
-    const sections = Array.from(document.querySelectorAll('.viewport-screen'));
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (sections.length < 2) return;
-
-    const scrollingElement = document.scrollingElement || document.documentElement;
-    let settleTimer = null;
-    let settleAnimationFrame = null;
-    let isSettling = false;
-    let lastScrollY = window.scrollY;
-
-    const headerOffset = () => {
-      const value = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
-      return Number.parseFloat(value) || 0;
-    };
-
-    const clearSettleTimer = () => {
-      if (settleTimer !== null) {
-        clearTimeout(settleTimer);
-        settleTimer = null;
-      }
-    };
-
-    const finishSettling = () => {
-      isSettling = false;
-      document.documentElement.classList.remove('is-section-settling');
-      if (settleAnimationFrame !== null) {
-        cancelAnimationFrame(settleAnimationFrame);
-        settleAnimationFrame = null;
-      }
-    };
-
-    const animateSettling = (targetY) => {
-      const startY = window.scrollY;
-      const distance = targetY - startY;
-      const duration = Math.min(520, Math.max(280, Math.abs(distance) * 0.55));
-      const startTime = performance.now();
-
-      isSettling = true;
-      document.documentElement.classList.add('is-section-settling');
-
-      const step = (now) => {
-        if (!isSettling) return;
-
-        const progress = Math.min(1, (now - startTime) / duration);
-        const easedProgress = 1 - Math.pow(1 - progress, 3);
-        scrollingElement.scrollTop = startY + distance * easedProgress;
-
-        if (progress < 1) {
-          settleAnimationFrame = requestAnimationFrame(step);
-        } else {
-          settleAnimationFrame = null;
-          finishSettling();
-        }
-      };
-
-      settleAnimationFrame = requestAnimationFrame(step);
-    };
-
-    const settleToNearestSection = () => {
-      settleTimer = null;
-      if (isSettling || motionQuery.matches) return;
-
-      const offset = headerOffset();
-      const viewportHeight = Math.max(1, window.innerHeight - offset);
-      const maxScrollY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      const currentY = Math.min(maxScrollY, Math.max(0, window.scrollY));
-      const settleRange = viewportHeight * 0.55;
-
-      for (const section of sections) {
-        const sectionTop = Math.max(0, section.offsetTop - offset);
-        const sectionEnd = section.offsetTop + section.offsetHeight - offset;
-        const hasScrollableInterior = section.offsetHeight > viewportHeight + 24;
-        const isInsideScrollableInterior =
-          currentY > sectionTop + settleRange &&
-          currentY < sectionEnd - viewportHeight - settleRange;
-
-        if (hasScrollableInterior && isInsideScrollableInterior) return;
-      }
-
-      const targets = sections.map((section) => Math.min(maxScrollY, Math.max(0, section.offsetTop - offset)));
-      targets.push(maxScrollY);
-
-      const nearestTarget = targets.reduce((nearest, target) => (
-        Math.abs(target - currentY) < Math.abs(nearest - currentY) ? target : nearest
-      ), targets[0]);
-
-      if (Math.abs(nearestTarget - currentY) < 2 || Math.abs(nearestTarget - currentY) > settleRange) return;
-
-      animateSettling(nearestTarget);
-    };
-
-    const scheduleSettling = () => {
-      if (isSettling) return;
-      clearSettleTimer();
-      settleTimer = window.setTimeout(settleToNearestSection, 160);
-    };
-
-    const interruptSettling = () => {
-      clearSettleTimer();
-      finishSettling();
-    };
-
-    const scrollingKeys = new Set(['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' ']);
-
-    window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-      if (Math.abs(currentScrollY - lastScrollY) < 1) return;
-      lastScrollY = currentScrollY;
-      scheduleSettling();
-    }, { passive: true });
-
-    window.addEventListener('wheel', interruptSettling, { passive: true });
-    window.addEventListener('touchstart', interruptSettling, { passive: true });
-    window.addEventListener('pointerdown', interruptSettling, { passive: true });
-    window.addEventListener('keydown', (event) => {
-      if (scrollingKeys.has(event.key)) interruptSettling();
-    }, { passive: true });
-
-    window.addEventListener('resize', () => {
-      interruptSettling();
-      scheduleSettling();
-    }, { passive: true });
-
-    const handleMotionPreferenceChange = () => {
-      interruptSettling();
-      if (!motionQuery.matches) scheduleSettling();
-    };
-
-    if (typeof motionQuery.addEventListener === 'function') {
-      motionQuery.addEventListener('change', handleMotionPreferenceChange);
-    } else {
-      motionQuery.addListener(handleMotionPreferenceChange);
-    }
-  };
-
-  initSoftSectionSettling();
-
-  /* Screen Reveal Intersection Observer */
+  /* Section reveal without changing the user's scroll position. */
   const revealElements = document.querySelectorAll('.screen-reveal');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
@@ -839,7 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.08, rootMargin: '0px 0px -8% 0px' }
     );
     revealElements.forEach((el) => observer.observe(el));
   } else {

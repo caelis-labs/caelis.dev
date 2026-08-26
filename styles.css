@@ -75,10 +75,6 @@ html {
   scroll-padding-top: var(--header-height);
 }
 
-html.is-section-settling {
-  scroll-behavior: auto;
-}
-
 body {
   background: var(--page);
   color: var(--text);
@@ -303,28 +299,30 @@ code, pre {
 }
 
 /* ==========================================================================
-   FULL VIEWPORT SECTIONS & SMOOTH TRANSITIONS
+   CONTINUOUS SECTIONS & SOFT TRANSITIONS
    ========================================================================= */
 .viewport-screen {
   align-items: center;
-  border-bottom: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: calc(100svh - var(--header-height));
-  padding: clamp(3.5rem, 7vh, 6rem) var(--page-gutter);
+  padding: clamp(5.5rem, 9vw, 8.5rem) var(--page-gutter);
   position: relative;
   width: 100%;
 }
 
-/* Reveal transition animation */
+/* Reveal content softly without steering or settling scroll position. */
 .screen-reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+  opacity: 1;
+  transform: none;
 }
 
-.screen-reveal.is-visible {
+.js .screen-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 620ms var(--ease), transform 620ms var(--ease);
+}
+
+.js .screen-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -333,6 +331,8 @@ code, pre {
    SCREEN 1: HERO SECTION (反重力群星呼吸交互画布)
    ========================================================================== */
 .hero {
+  justify-content: center;
+  min-height: calc(100svh - var(--header-height));
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -809,9 +809,8 @@ code, pre {
   min-width: 0;
 }
 
-.brand-icon-wrap {
+.provider-logo-wrap {
   align-items: center;
-  border-radius: 6px;
   display: flex;
   flex-shrink: 0;
   height: 1.45rem;
@@ -819,9 +818,17 @@ code, pre {
   width: 1.45rem;
 }
 
-.brand-icon-wrap svg {
+.provider-logo {
+  display: block;
+  filter: invert(1);
   height: 1.15rem;
+  opacity: 0.88;
   width: 1.15rem;
+}
+
+:root[data-theme="light"] .provider-logo {
+  filter: none;
+  opacity: 0.82;
 }
 
 .target-model-title {
@@ -831,6 +838,13 @@ code, pre {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.model-type-pills {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.4rem;
 }
 
 .model-type-pill {
@@ -1288,5 +1302,11 @@ code, pre {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .js .screen-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
