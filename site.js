@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const translations = {
     en: {
       metaTitle: 'Caelis',
-      metaDescription: 'See what happens when every intelligence finds its orbit. Combine built-in providers and ACP Agents in a single guarded workspace.',
+      metaDescription: 'Caelis is a local coding harness that binds models and ACP agents to specialist roles in one session.',
       controls: {
         skip: 'Skip to content',
         languageAria: 'Select language',
@@ -13,9 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       hero: {
         title: 'See what happens when every intelligence<br>finds its orbit.',
-        ctaMac: 'Download for macOS',
-        ctaWin: 'Download for Windows',
-        ctaLinux: 'Download for Linux',
+        subtitle: 'A local coding harness that binds models and ACP agents to specialist roles in one session.',
+        ctaInstall: 'Install Caelis',
         ctaGithub: 'GitHub',
       },
       cli: {
@@ -80,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     zh: {
       metaTitle: 'Caelis',
-      metaDescription: '当群星各循其轨，天空便有了新的模样。聚合主流模型与外部 Agent，自由组合专家角色，在安全受控的本地环境中高效协作。',
+      metaDescription: 'Caelis 是一个本地代码智能体编排工具，在同一会话中把模型和 ACP Agent 绑定到不同专家角色。',
       controls: {
         skip: '跳转到正文',
         languageAria: '选择语言',
@@ -89,9 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       hero: {
         title: '当群星各循其轨<br>天空便有了新的模样',
-        ctaMac: '下载适用于 macOS',
-        ctaWin: '下载适用于 Windows',
-        ctaLinux: '下载适用于 Linux',
+        subtitle: '一个本地代码智能体编排工具：在同一会话里，把模型和 ACP Agent 绑定到不同专家角色。',
+        ctaInstall: '安装 Caelis',
         ctaGithub: 'GitHub 仓库',
       },
       cli: {
@@ -196,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.setAttribute('aria-checked', isSelected ? 'true' : 'false');
     });
 
-    updateHeroDownloadButton(lang);
   };
 
   /* Platform Detection */
@@ -210,21 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const currentPlatform = detectPlatform();
-
-  const updateHeroDownloadButton = (lang) => {
-    const heroBtn = document.querySelector('[data-hero-download]');
-    const heroLabel = document.querySelector('[data-hero-download-label]');
-    if (!heroBtn || !heroLabel) return;
-
-    const dict = translations[lang] || translations.en;
-    if (currentPlatform === 'windows') {
-      heroLabel.textContent = dict.hero.ctaWin;
-    } else if (currentPlatform === 'linux') {
-      heroLabel.textContent = dict.hero.ctaLinux;
-    } else {
-      heroLabel.textContent = dict.hero.ctaMac;
-    }
-  };
 
   /* Highlight relevant CLI block */
   const highlightCliBlock = () => {

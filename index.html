@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caelis</title>
-  <meta name="description" content="See what happens when every intelligence finds its orbit. Mix DeepSeek, Grok, ChatGPT, Claude, and local ACP agents in a single guarded workspace.">
+  <meta name="description" content="Caelis is a local coding harness that binds models and ACP agents to specialist roles in one session.">
   <meta name="theme-color" content="#030508">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Caelis — See what happens when every intelligence finds its orbit.">
-  <meta property="og:description" content="Mix DeepSeek, Grok, ChatGPT, Claude, and local ACP agents in a single guarded workspace.">
+  <meta property="og:description" content="A local coding harness that binds models and ACP agents to specialist roles in one session.">
   <meta property="og:url" content="https://caelis.dev">
   <link rel="canonical" href="https://caelis.dev">
   <link rel="icon" href="/icon.svg?v=monochrome-28" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/styles.css?v=20260826-15">
-  <script src="/site.js?v=20260826-15" defer></script>
+  <link rel="stylesheet" href="/styles.css?v=20260831-hero">
+  <script src="/site.js?v=20260831-hero" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="controls.skip">Skip to content</a>
@@ -72,16 +72,17 @@
       <div class="hero-aura-glow" aria-hidden="true"></div>
       <div class="hero-container">
         <h1 class="hero-title" data-i18n="hero.title">See what happens when every intelligence<br>finds its orbit.</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">A local coding harness that binds models and ACP agents to specialist roles in one session.</p>
 
         <!-- Hero Dual CTA Buttons -->
         <div class="hero-cta-group">
-          <a href="#cli" class="btn-primary" data-hero-download>
+          <a href="#cli" class="btn-primary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            <span data-hero-download-label>Download for macOS</span>
+            <span data-i18n="hero.ctaInstall">Install Caelis</span>
           </a>
 
           <a href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener" class="btn-secondary">
@@ -185,8 +186,8 @@
       <div class="binding-layout">
         <!-- Left: Crisp, Punchy Text Description -->
         <div class="binding-info-area">
-          <h2 class="binding-title" data-i18n="binding.title">为每个角色，<br>绑定最合适的智能</h2>
-          <p class="binding-desc" data-i18n="binding.desc">在同一个工作空间中，你可以为子代理、Guardian、Reviewer 与自定义角色分别绑定已连接的 Provider 或 ACP Agent。让不同智能各司其职，在同一任务流中协同运行。</p>
+          <h2 class="binding-title" data-i18n="binding.title">Bind the right intelligence<br>to every specialist role</h2>
+          <p class="binding-desc" data-i18n="binding.desc">Within a single workspace, bind specialist subagents, Guardian, Reviewer, and custom roles to connected Providers or ACP Agents. Let diverse intelligences collaborate seamlessly in one guarded session.</p>
         </div>
 
         <!-- Right: Modern Association / Binding Paradigm Card -->
@@ -202,7 +203,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">breeze</span>
-                  <span class="role-desc" data-i18n="binding.breezeSub">轻量检索代理</span>
+                  <span class="role-desc" data-i18n="binding.breezeSub">Fast retrieval agent</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -232,7 +233,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">orbit</span>
-                  <span class="role-desc" data-i18n="binding.orbitSub">工具调用代理</span>
+                  <span class="role-desc" data-i18n="binding.orbitSub">Tool execution agent</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -261,7 +262,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">zenith</span>
-                  <span class="role-desc" data-i18n="binding.zenithSub">深度推理代理</span>
+                  <span class="role-desc" data-i18n="binding.zenithSub">Deep reasoning agent</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -290,7 +291,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">guardian</span>
-                  <span class="role-desc" data-i18n="binding.guardianSub">系统安全守护</span>
+                  <span class="role-desc" data-i18n="binding.guardianSub">System safety guardian</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -320,7 +321,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">reviewer</span>
-                  <span class="role-desc" data-i18n="binding.reviewerSub">代码审查代理</span>
+                  <span class="role-desc" data-i18n="binding.reviewerSub">Code audit agent</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -350,7 +351,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">custom</span>
-                  <span class="role-desc" data-i18n="binding.customSub">自定义角色</span>
+                  <span class="role-desc" data-i18n="binding.customSub">Custom defined role</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -381,8 +382,8 @@
       <div class="security-container">
         <!-- Top Heading Area -->
         <div class="security-heading-area">
-          <h2 class="security-title" data-i18n="security.title">系统级安全与本地沙箱</h2>
-          <p class="security-subtitle" data-i18n="security.subtitle">代码不离机，执行有界限。原生沙箱与自动审批双重守护。</p>
+          <h2 class="security-title" data-i18n="security.title">System-grade sandboxing &amp; zero trust</h2>
+          <p class="security-subtitle" data-i18n="security.subtitle">Code stays local, execution stays bounded. Protected by native OS kernels and auto-review guards.</p>
         </div>
 
         <!-- 3 Horizontal Layered Cards -->
@@ -396,9 +397,9 @@
                   <path d="m9 12 2 2 4-4"/>
                 </svg>
               </div>
-              <h3 class="card-title" data-i18n="security.c1Title">Guardian 智能自动审批</h3>
+              <h3 class="card-title" data-i18n="security.c1Title">Guardian Auto-Review</h3>
             </div>
-            <p class="card-desc" data-i18n="security.c1Desc">针对安全 Prompt 与会话上下文精心调优，在指令执行前由 LLM 深度审查，智能拦截高危与破坏性行为。</p>
+            <p class="card-desc" data-i18n="security.c1Desc">Carefully fine-tuned on security prompts and workspace context, Guardian deeply inspects commands with an LLM before execution to block destructive actions.</p>
             <div class="card-tag-group">
               <span class="terminal-micro-chip">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -419,9 +420,9 @@
                   <polyline points="2 12 12 17 22 12"/>
                 </svg>
               </div>
-              <h3 class="card-title" data-i18n="security.c2Title">三大原生系统沙箱</h3>
+              <h3 class="card-title" data-i18n="security.c2Title">Native OS Sandboxes</h3>
             </div>
-            <p class="card-desc" data-i18n="security.c2Desc">深度对接底层系统隔离内核，限定文件系统读写边界，无需依赖笨重容器。</p>
+            <p class="card-desc" data-i18n="security.c2Desc">Leverages native OS kernel primitives to enforce strict filesystem boundaries without heavy containers.</p>
             <div class="card-tag-group">
               <div class="os-chips-group">
                 <span class="os-chip">
@@ -449,15 +450,15 @@
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                 </svg>
               </div>
-              <h3 class="card-title" data-i18n="security.c3Title">100% 开源与本地运行</h3>
+              <h3 class="card-title" data-i18n="security.c3Title">100% Local &amp; Open Source</h3>
             </div>
-            <p class="card-desc" data-i18n="security.c3Desc">所有会话与凭证 100% 本地留存，开源透明无遥测。</p>
+            <p class="card-desc" data-i18n="security.c3Desc">All sessions and credentials remain 100% on your machine. Fully open source and zero telemetry.</p>
             <div class="card-tag-group">
               <span class="local-status-chip">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M20 6L9 17l-5-5"/>
                 </svg>
-                <span data-i18n="security.c3Chip">Apache-2.0 · 本地优先</span>
+                <span data-i18n="security.c3Chip">Apache-2.0 · Local-First</span>
               </span>
             </div>
           </div>
@@ -470,8 +471,8 @@
       <div class="faq-container">
         <!-- Top Heading Area (左侧对齐与全站一致) -->
         <div class="faq-head">
-          <h2 class="faq-title" data-i18n="faq.title">常见问题</h2>
-          <p class="faq-subtitle" data-i18n="faq.subtitle">快速了解 Caelis 多模型组合、角色绑定与安全机制。</p>
+          <h2 class="faq-title" data-i18n="faq.title">FAQ</h2>
+          <p class="faq-subtitle" data-i18n="faq.subtitle">Everything you need to know about Caelis, multi-provider workflows, and local runtime safety.</p>
         </div>
 
         <!-- Vertical Scalable Accordion Stack (默认全部折叠) -->
@@ -479,7 +480,7 @@
           <!-- FAQ 1 -->
           <details class="faq-accordion-item">
             <summary class="faq-accordion-trigger">
-              <span class="faq-q-text" data-i18n="faq.q1Question">Caelis 相比其他单一 AI 工具最大的优势是什么？</span>
+              <span class="faq-q-text" data-i18n="faq.q1Question">What makes Caelis different from single AI coding assistants?</span>
               <span class="faq-chevron" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"/>
@@ -487,14 +488,14 @@
               </span>
             </summary>
             <div class="faq-accordion-body">
-              <p data-i18n="faq.q1Answer">Caelis 允许你在同一个会话中组合使用多个已连接的模型和 ACP Agent。</p>
+              <p data-i18n="faq.q1Answer">Caelis lets you combine multiple connected models and ACP Agents in the same session.</p>
             </div>
           </details>
 
           <!-- FAQ 2 -->
           <details class="faq-accordion-item">
             <summary class="faq-accordion-trigger">
-              <span class="faq-q-text" data-i18n="faq.q2Question">Provider 绑定与自定义角色如何工作？</span>
+              <span class="faq-q-text" data-i18n="faq.q2Question">How do provider bindings and custom roles work?</span>
               <span class="faq-chevron" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"/>
@@ -502,14 +503,14 @@
               </span>
             </summary>
             <div class="faq-accordion-body">
-              <p data-i18n="faq.q2Answer">通过 /subagent 指令即可随时调整绑定关系。例如将高性价比模型分配给 Breeze 处理琐碎微调，将高推理模型分配给 Orbit 编写业务，将顶尖模型分配给 Zenith 做把关。</p>
+              <p data-i18n="faq.q2Answer">You can configure bindings via /subagent. Assign cheap/fast models to Breeze for search &amp; quick edits, reasoning models to Orbit for feature coding, and frontier models to Zenith for review.</p>
             </div>
           </details>
 
           <!-- FAQ 3 -->
           <details class="faq-accordion-item">
             <summary class="faq-accordion-trigger">
-              <span class="faq-q-text" data-i18n="faq.q3Question">当前支持哪些登录与 Provider 接入方式？</span>
+              <span class="faq-q-text" data-i18n="faq.q3Question">Which sign-in and provider connection methods are supported?</span>
               <span class="faq-chevron" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"/>
@@ -517,14 +518,14 @@
               </span>
             </summary>
             <div class="faq-accordion-body">
-              <p data-i18n="faq.q3Answer">当前支持使用 ChatGPT 和 Grok 的 OAuth，以及多家 Provider 的 API Key 方式。如果你的常用工作流还不在支持范围内，欢迎提交 Issue 或 PR。</p>
+              <p data-i18n="faq.q3Answer">Caelis currently supports OAuth for ChatGPT and Grok, plus API keys from multiple Providers. If your usual workflow is not supported yet, Issues and PRs are welcome.</p>
             </div>
           </details>
 
           <!-- FAQ 4 -->
           <details class="faq-accordion-item">
             <summary class="faq-accordion-trigger">
-              <span class="faq-q-text" data-i18n="faq.q4Question">我的代码和会话数据存放在哪里？</span>
+              <span class="faq-q-text" data-i18n="faq.q4Question">Where is my code and data stored?</span>
               <span class="faq-chevron" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"/>
@@ -532,7 +533,7 @@
               </span>
             </summary>
             <div class="faq-accordion-body">
-              <p data-i18n="faq.q4Answer">数据保存在本地。Caelis 开源透明，不收集数据，也不启用遥测。</p>
+              <p data-i18n="faq.q4Answer">Your data stays local. Caelis is open source and transparent, with no data collection or telemetry.</p>
             </div>
           </details>
         </div>
