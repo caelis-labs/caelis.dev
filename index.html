@@ -12,8 +12,9 @@
   <meta property="og:url" content="https://caelis.dev">
   <link rel="canonical" href="https://caelis.dev">
   <link rel="icon" href="/icon.svg?v=monochrome-28" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/styles.css?v=20260831-hero">
-  <script src="/site.js?v=20260831-hero" defer></script>
+  <link rel="stylesheet" href="/styles.css?v=20260913-video">
+  <script src="/site.js?v=20260913-video" defer></script>
+  <script src="/demo/home-video.js?v=20260913-video" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="controls.skip">Skip to content</a>
@@ -74,7 +75,7 @@
         <h1 class="hero-title" data-i18n="hero.title">See what happens when every intelligence<br>finds its orbit.</h1>
         <p class="hero-subtitle" data-i18n="hero.subtitle">A local coding harness that binds models and ACP agents to specialist roles in one session.</p>
 
-        <!-- Hero Dual CTA Buttons -->
+        <!-- Hero actions -->
         <div class="hero-cta-group">
           <a href="#cli" class="btn-primary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -83,6 +84,11 @@
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
             <span data-i18n="hero.ctaInstall">Install Caelis</span>
+          </a>
+
+          <a href="#demo-video" class="btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <span data-i18n="hero.ctaDemo">Watch demo</span>
           </a>
 
           <a href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener" class="btn-secondary">
@@ -95,7 +101,29 @@
       </div>
     </section>
 
-    <!-- SCREEN 2: CAELIS CLI (宽幅通畅排版 · 充分利用左右空间) -->
+    <section class="video-screen screen-reveal" id="demo-video" aria-labelledby="demo-video-title">
+      <div class="video-heading">
+        <div>
+          <p class="video-eyebrow" data-i18n="demo.eyebrow">CAELIS IN ACTION</p>
+          <h2 id="demo-video-title" data-i18n="demo.title">One session. A whole team at work.</h2>
+        </div>
+        <span class="video-duration" data-i18n="demo.duration">64 seconds · Astra, Luna & Sol</span>
+      </div>
+      <div class="video-stage">
+        <video id="home-demo-video" autoplay muted loop playsinline controls preload="metadata"
+          poster="/demo/media/caelis-demo-poster.png" width="1920" height="1080"
+          aria-label="Caelis multi-agent collaboration demo" data-i18n-aria="demo.videoAria">
+          <source src="/demo/media/caelis-demo.mp4" type="video/mp4">
+          <a href="/demo/media/caelis-demo.mp4" data-i18n="demo.download">Download the demo video</a>
+        </video>
+      </div>
+      <div class="video-caption">
+        <p data-i18n="demo.caption">A real Caelis session, from connecting models to a shared review. Edited for pacing.</p>
+        <a href="/demo/" data-i18n="demo.explore">Explore the interactive demo ↗</a>
+      </div>
+    </section>
+
+    <!-- CLI installation -->
     <section class="viewport-screen cli-install-screen screen-reveal" id="cli">
       <div class="cli-container">
         <div class="cli-head">

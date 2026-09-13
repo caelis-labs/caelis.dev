@@ -27,3 +27,9 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-XSS-Protection: 1; mode=block
   Content-Security-Policy: default-src 'self'; style-src 'self'; img-src 'self' data:; script-src 'self';
+
+# Let Product Hunt embed the public recording; scripts and assets remain local.
+/demo/*
+  Cache-Control: no-cache, must-revalidate
+  ! X-Frame-Options
+  Content-Security-Policy: frame-ancestors 'self' https://www.producthunt.com https://producthunt.com;
