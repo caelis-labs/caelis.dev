@@ -459,9 +459,41 @@ code, pre {
   width: 1.15rem;
 }
 
-/* ==========================================================================
-   SCREEN 2: CAELIS CLI & INSTALL SECTION
-   ========================================================================== */
+/* The video follows installation; its recording fills the frame without cropping. */
+.video-content {
+  max-width: calc(var(--max-width) + 160px);
+  width: 100%;
+}
+.video-stage {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid var(--border-strong);
+  border-radius: clamp(16px, 2.5vw, 40px);
+  overflow: hidden;
+}
+.video-stage video { display: block; height: 100%; object-fit: contain; pointer-events: none; width: 100%; }
+
+/* Grow on entry, hold at native scale around the viewport center, shrink on exit. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .video-stage {
+      animation: video-focus linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@keyframes video-focus {
+  0% { transform: translateY(20px) scale(0.88); border-radius: 40px; }
+  35%, 65% { transform: none; border-radius: 24px; }
+  100% { transform: translateY(-20px) scale(0.88); border-radius: 40px; }
+}
+
+@media (max-width: 700px) {
+  .video-screen { padding-inline: 1.5rem; }
+}
+
+/* CLI installation */
 .cli-install-screen {
   text-align: left;
 }

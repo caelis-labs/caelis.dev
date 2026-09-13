@@ -27,3 +27,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-XSS-Protection: 1; mode=block
   Content-Security-Policy: default-src 'self'; style-src 'self'; img-src 'self' data:; script-src 'self';
+
+# Keep video playback logic in sync with the page.
+/home-video.js
+  Cache-Control: no-cache, must-revalidate

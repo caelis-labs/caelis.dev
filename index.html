@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caelis</title>
-  <meta name="description" content="Caelis is a local coding harness that binds models and ACP agents to specialist roles in one session.">
+  <meta name="description" content="Caelis is a local collaboration workspace where models and ACP agents work together in one session.">
   <meta name="theme-color" content="#030508">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Caelis — See what happens when every intelligence finds its orbit.">
-  <meta property="og:description" content="A local coding harness that binds models and ACP agents to specialist roles in one session.">
+  <meta property="og:description" content="Caelis is a local collaboration workspace where models and ACP agents work together in one session.">
   <meta property="og:url" content="https://caelis.dev">
   <link rel="canonical" href="https://caelis.dev">
   <link rel="icon" href="/icon.svg?v=monochrome-28" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/styles.css?v=20260831-hero">
-  <script src="/site.js?v=20260831-hero" defer></script>
+  <link rel="stylesheet" href="/styles.css?v=20260913-centered-copy">
+  <script src="/site.js?v=20260913-centered-copy" defer></script>
+  <script src="/home-video.js?v=20260913-centered-copy" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="controls.skip">Skip to content</a>
@@ -72,9 +73,9 @@
       <div class="hero-aura-glow" aria-hidden="true"></div>
       <div class="hero-container">
         <h1 class="hero-title" data-i18n="hero.title">See what happens when every intelligence<br>finds its orbit.</h1>
-        <p class="hero-subtitle" data-i18n="hero.subtitle">A local coding harness that binds models and ACP agents to specialist roles in one session.</p>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">A local collaboration workspace where models and ACP agents share work, exchange findings, and complete tasks together.</p>
 
-        <!-- Hero Dual CTA Buttons -->
+        <!-- Hero actions -->
         <div class="hero-cta-group">
           <a href="#cli" class="btn-primary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -83,6 +84,11 @@
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
             <span data-i18n="hero.ctaInstall">Install Caelis</span>
+          </a>
+
+          <a href="#demo-video" class="btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <span data-i18n="hero.ctaDemo">Watch demo</span>
           </a>
 
           <a href="https://github.com/caelis-labs/caelis" target="_blank" rel="noopener" class="btn-secondary">
@@ -95,7 +101,8 @@
       </div>
     </section>
 
-    <!-- SCREEN 2: CAELIS CLI (宽幅通畅排版 · 充分利用左右空间) -->
+
+    <!-- CLI installation -->
     <section class="viewport-screen cli-install-screen screen-reveal" id="cli">
       <div class="cli-container">
         <div class="cli-head">
@@ -103,7 +110,7 @@
             <h2 class="cli-title" data-i18n="cli.title">Caelis CLI</h2>
             <span class="cli-badge" data-i18n="cli.badge">Latest</span>
           </div>
-          <p class="cli-desc" data-i18n="cli.desc">Work with Caelis directly in your codebase. Build, debug, and orchestrate specialist agents safely from your terminal.</p>
+          <p class="cli-desc" data-i18n="cli.desc">Explore code, make changes, run tests, and review results from your terminal. Resume local sessions to continue earlier work.</p>
         </div>
 
         <div class="install-stack">
@@ -181,13 +188,26 @@
       </div>
     </section>
 
-    <!-- SCREEN 3: MULTI-AGENT ORCHESTRATION & BINDINGS (极简通透左右布局) -->
+    <!-- Recorded collaboration -->
+    <section class="viewport-screen video-screen" id="demo-video" aria-label="Caelis multi-agent collaboration demo" data-i18n-aria="demo.videoAria">
+      <div class="video-content">
+        <div class="video-stage">
+          <video id="home-demo-video" autoplay muted loop playsinline preload="metadata" tabindex="-1" disablepictureinpicture disableremoteplayback
+            poster="/assets/video/caelis-demo-poster.png?v=20260913-44s" width="3840" height="2160"
+            aria-label="Caelis multi-agent collaboration demo" data-i18n-aria="demo.videoAria">
+            <source src="/assets/video/caelis-demo.mp4?v=20260913-44s" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-agent orchestration and bindings -->
     <section class="viewport-screen binding-screen screen-reveal" id="bindings">
       <div class="binding-layout">
         <!-- Left: Crisp, Punchy Text Description -->
         <div class="binding-info-area">
           <h2 class="binding-title" data-i18n="binding.title">Bind the right intelligence<br>to every specialist role</h2>
-          <p class="binding-desc" data-i18n="binding.desc">Within a single workspace, bind specialist subagents, Guardian, Reviewer, and custom roles to connected Providers or ACP Agents. Let diverse intelligences collaborate seamlessly in one guarded session.</p>
+          <p class="binding-desc" data-i18n="binding.desc">Bind models or ACP agents to participants and custom roles, and configure Guardian, Reviewer, and Memory Steward separately. Follow each conversation and send text or images directly from the same workspace.</p>
         </div>
 
         <!-- Right: Modern Association / Binding Paradigm Card -->
@@ -203,7 +223,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">breeze</span>
-                  <span class="role-desc" data-i18n="binding.breezeSub">Fast retrieval agent</span>
+                  <span class="role-desc" data-i18n="binding.breezeSub">Lookup &amp; focused edits</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -233,7 +253,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">orbit</span>
-                  <span class="role-desc" data-i18n="binding.orbitSub">Tool execution agent</span>
+                  <span class="role-desc" data-i18n="binding.orbitSub">Implementation &amp; review</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -262,7 +282,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">zenith</span>
-                  <span class="role-desc" data-i18n="binding.zenithSub">Deep reasoning agent</span>
+                  <span class="role-desc" data-i18n="binding.zenithSub">Architecture &amp; debugging</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -291,7 +311,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">guardian</span>
-                  <span class="role-desc" data-i18n="binding.guardianSub">System safety guardian</span>
+                  <span class="role-desc" data-i18n="binding.guardianSub">Tool approval review</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -321,7 +341,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">reviewer</span>
-                  <span class="role-desc" data-i18n="binding.reviewerSub">Code audit agent</span>
+                  <span class="role-desc" data-i18n="binding.reviewerSub">Workspace change review</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -351,7 +371,7 @@
                 </div>
                 <div class="role-text-wrap">
                   <span class="role-name">custom</span>
-                  <span class="role-desc" data-i18n="binding.customSub">Custom defined role</span>
+                  <span class="role-desc" data-i18n="binding.customSub">Custom role</span>
                 </div>
               </div>
               <div class="matrix-connector">
@@ -382,8 +402,8 @@
       <div class="security-container">
         <!-- Top Heading Area -->
         <div class="security-heading-area">
-          <h2 class="security-title" data-i18n="security.title">System-grade sandboxing &amp; zero trust</h2>
-          <p class="security-subtitle" data-i18n="security.subtitle">Code stays local, execution stays bounded. Protected by native OS kernels and auto-review guards.</p>
+          <h2 class="security-title" data-i18n="security.title">Tool approvals &amp; OS sandboxing</h2>
+          <p class="security-subtitle" data-i18n="security.subtitle">Tool requests follow the selected approval mode. Local commands run under the configured sandbox policy.</p>
         </div>
 
         <!-- 3 Horizontal Layered Cards -->
@@ -399,7 +419,7 @@
               </div>
               <h3 class="card-title" data-i18n="security.c1Title">Guardian Auto-Review</h3>
             </div>
-            <p class="card-desc" data-i18n="security.c1Desc">Carefully fine-tuned on security prompts and workspace context, Guardian deeply inspects commands with an LLM before execution to block destructive actions.</p>
+            <p class="card-desc" data-i18n="security.c1Desc">Guardian reviews tool requests against the session context and approval policy. Switch to manual mode to make approval decisions yourself.</p>
             <div class="card-tag-group">
               <span class="terminal-micro-chip">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -422,7 +442,7 @@
               </div>
               <h3 class="card-title" data-i18n="security.c2Title">Native OS Sandboxes</h3>
             </div>
-            <p class="card-desc" data-i18n="security.c2Desc">Leverages native OS kernel primitives to enforce strict filesystem boundaries without heavy containers.</p>
+            <p class="card-desc" data-i18n="security.c2Desc">Operating-system isolation limits filesystem access for local commands according to the configured policy.</p>
             <div class="card-tag-group">
               <div class="os-chips-group">
                 <span class="os-chip">
@@ -450,9 +470,9 @@
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                 </svg>
               </div>
-              <h3 class="card-title" data-i18n="security.c3Title">100% Local &amp; Open Source</h3>
+              <h3 class="card-title" data-i18n="security.c3Title">Local Storage &amp; Open Source</h3>
             </div>
-            <p class="card-desc" data-i18n="security.c3Desc">All sessions and credentials remain 100% on your machine. Fully open source and zero telemetry.</p>
+            <p class="card-desc" data-i18n="security.c3Desc">Sessions, configuration, and Caelis-managed credentials are stored on your machine. The source code is available under Apache-2.0.</p>
             <div class="card-tag-group">
               <span class="local-status-chip">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -472,7 +492,7 @@
         <!-- Top Heading Area (左侧对齐与全站一致) -->
         <div class="faq-head">
           <h2 class="faq-title" data-i18n="faq.title">FAQ</h2>
-          <p class="faq-subtitle" data-i18n="faq.subtitle">Everything you need to know about Caelis, multi-provider workflows, and local runtime safety.</p>
+          <p class="faq-subtitle" data-i18n="faq.subtitle">Collaboration, model connections, and local sessions in Caelis.</p>
         </div>
 
         <!-- Vertical Scalable Accordion Stack (默认全部折叠) -->
@@ -480,7 +500,7 @@
           <!-- FAQ 1 -->
           <details class="faq-accordion-item">
             <summary class="faq-accordion-trigger">
-              <span class="faq-q-text" data-i18n="faq.q1Question">What makes Caelis different from single AI coding assistants?</span>
+              <span class="faq-q-text" data-i18n="faq.q1Question">How do agents collaborate in Caelis?</span>
               <span class="faq-chevron" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"/>
@@ -488,7 +508,7 @@
               </span>
             </summary>
             <div class="faq-accordion-body">
-              <p data-i18n="faq.q1Answer">Caelis lets you combine multiple connected models and ACP Agents in the same session.</p>
+              <p data-i18n="faq.q1Answer">Participants keep their own conversations and exchange progress and findings through messages. Coordinate work from the main conversation or open a participant pane to follow up directly.</p>
             </div>
           </details>
 
@@ -503,7 +523,7 @@
               </span>
             </summary>
             <div class="faq-accordion-body">
-              <p data-i18n="faq.q2Answer">You can configure bindings via /subagent. Assign cheap/fast models to Breeze for search &amp; quick edits, reasoning models to Orbit for feature coding, and frontier models to Zenith for review.</p>
+              <p data-i18n="faq.q2Answer">Use /subagent to bind breeze, orbit, zenith, or custom roles to a model or ACP agent. Save binding sets to reuse a configuration across tasks.</p>
             </div>
           </details>
 
@@ -518,7 +538,7 @@
               </span>
             </summary>
             <div class="faq-accordion-body">
-              <p data-i18n="faq.q3Answer">Caelis currently supports OAuth for ChatGPT and Grok, plus API keys from multiple Providers. If your usual workflow is not supported yet, Issues and PRs are welcome.</p>
+              <p data-i18n="faq.q3Answer">Use /connect to sign in with ChatGPT Codex or Grok, configure API-key or local model providers, or connect an installed ACP agent.</p>
             </div>
           </details>
 
@@ -533,7 +553,7 @@
               </span>
             </summary>
             <div class="faq-accordion-body">
-              <p data-i18n="faq.q4Answer">Your data stays local. Caelis is open source and transparent, with no data collection or telemetry.</p>
+              <p data-i18n="faq.q4Answer">Caelis stores sessions and its managed credentials in ~/.caelis by default. Use /resume to return to earlier conversations. Model requests go to your selected provider or external agent.</p>
             </div>
           </details>
         </div>
