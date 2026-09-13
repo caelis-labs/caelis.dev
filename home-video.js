@@ -4,28 +4,15 @@
   if (!video) return;
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = false;
-  let pausedByViewer = false;
-  let automaticallyPaused = true;
 
-  // Native controls remain available if autoplay is blocked or motion is reduced.
+  // This presentation has no playback controls; reduced motion keeps it still.
   function sync() {
-    if (!visible || document.hidden || motion.matches || pausedByViewer) {
-      if (!video.paused) {
-        automaticallyPaused = true;
-        video.pause();
-      }
+    if (!visible || document.hidden || motion.matches) {
+      video.pause();
     } else if (video.paused) {
-      automaticallyPaused = false;
       video.play().catch(() => {});
     }
   }
-  video.addEventListener('pause', () => {
-    if (!automaticallyPaused && visible && !document.hidden) pausedByViewer = true;
-  });
-  video.addEventListener('play', () => {
-    pausedByViewer = false;
-    automaticallyPaused = false;
-  });
   video.pause();
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {

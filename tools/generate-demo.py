@@ -1,4 +1,4 @@
-"""Build a browser timeline and MP4 from reviewed Caelis ANSI captures.
+"""Build a homepage MP4 from reviewed Caelis ANSI captures.
 
 Timing is editorial: assistant text streams from real captures; user input and
 tool records appear as complete blocks. Run with demo-requirements.
@@ -14,10 +14,11 @@ from PIL import Image, ImageDraw, ImageFont
 import imageio_ffmpeg
 
 ROOT = Path(__file__).resolve().parents[1]
-DEMO = ROOT / "demo"
+MEDIA = ROOT / "assets/video"
+DURATION_MS = 64000
 COLS, ROWS = 140, 42
 DISABLE = "\x1b[?1000l\x1b[?1002l\x1b[?1003l\x1b[?1006l\x1b[?2004l\x1b[?25l"
-captures = json.loads((DEMO / "recordings/session.json").read_text(encoding="utf8"))
+captures = json.loads((ROOT / "tools/recordings/session.json").read_text(encoding="utf8"))
 screens = {}
 for name, capture in captures.items():
     screen = pyte.Screen(COLS, ROWS)
@@ -40,13 +41,11 @@ def style(cell):
     return "\x1b[0;38;2;" + rgb(fg) + ";48;2;" + rgb(bg) + (";1" if cell.bold else "") + "m"
 
 
-events, chapters = [], []
+events = []
 
 
-def event(at, data, scene=None, reset=False):
+def event(at, data, reset=False):
     item = {"at": round(at), "data": data}
-    if scene is not None:
-        item["scene"] = scene
     if reset:
         item["reset"] = True
     events.append(item)
@@ -67,12 +66,11 @@ def mask(name, x, y, width, height):
     return data
 
 
-def frame(name, at, title, note, regions=()):
-    chapters.append({"id": name, "at": at, "title": title, "note": note})
+def frame(name, at, regions=()):
     data = "\x1b[2J\x1b[H" + captures[name]["ansi"] + DISABLE
     for region in regions:
         data += mask(name, *region)
-    event(at, data, name, True)
+    event(at, data, reset=True)
 
 
 def region_cells(name, region):
@@ -107,78 +105,33 @@ def command(text, at):
     event(at, "\x1b[40;6H\x1b[48;2;15;15;15m\x1b[38;2;231;233;238m" + text + "\x1b[0m")
 
 
-frame("welcome", 0, "Caelis · one local session", "A real terminal session led by GPT-6 Astra.")
+frame("welcome", 0)
 command("/connect", 1600)
-frame("connect", 2800, "Connect your models", "Use a provider account, API key, or installed ACP agent.")
-frame("providers", 6000, "Choose a provider", "Hosted models and compatible endpoints share the same workspace.")
+frame("connect", 2800)
+frame("providers", 6000)
 event(8600, "\x1b[2J\x1b[H" + captures["welcome"]["ansi"] + DISABLE, reset=True)
 command("/subagent", 8700)
-frame("subagent", 9800, "Configure specialist profiles", "Breeze uses Luna; Orbit uses Sol; Astra leads the session.")
-frame("dispatch", 14500, "Give Astra a shared task", "Two participants inspect retry behavior and missing regression coverage.", [(0, 6, 140, 12)])
+frame("subagent", 9800)
+frame("dispatch", 14500, [(0, 6, 140, 12)])
 show("dispatch", 20200, (0, 7, 140, 1))
 show("dispatch", 21000, (0, 9, 140, 1))
 show("dispatch", 22000, (0, 11, 140, 1))
-frame("breeze", 24000, "Inspect Breeze's findings", "Luna identifies cancellation and backoff defects.", [(77, 14, 62, 20)])
+frame("breeze", 24000, [(77, 14, 62, 20)])
 stream_assistant("breeze", 24400, 6500, (77, 14, 62, 20))
-frame("orbit", 34000, "Compare Orbit's review", "Sol exchanges findings with Breeze and proposes regression coverage.", [(77, 2, 62, 33)])
+frame("orbit", 34000, [(77, 2, 62, 33)])
 stream_assistant("orbit", 34400, 5000, (77, 2, 62, 20))
 show("orbit", 39500, (77, 22, 62, 1))
 show("orbit", 39600, (77, 24, 62, 4))
 show("orbit", 39800, (77, 29, 62, 1))
 stream_assistant("orbit", 40000, 1000, (77, 31, 62, 3))
 show("orbit", 41100, (77, 34, 62, 1))
-frame("steer", 44000, "Steer a participant directly", "Ask Orbit for the single most useful test assertion.", [(77, 26, 62, 9)])
+frame("steer", 44000, [(77, 26, 62, 9)])
 show("steer", 44400, (77, 26, 62, 3))
 stream_assistant("steer", 48000, 2500, (77, 31, 62, 3))
 show("steer", 50600, (77, 34, 62, 1))
-frame("review", 54000, "Bring the findings together", "Astra combines the review. The sample files remain unchanged.", [(0, 16, 140, 19)])
+frame("review", 54000, [(0, 16, 140, 19)])
 stream_assistant("review", 54400, 4900, (0, 16, 140, 19))
 events.sort(key=lambda e: e["at"])
-for chapter, hold in zip(chapters, (1000, 4000, 7000, 13000, 23000, 33000, 43000, 53000, 63000)):
-    chapter["hold"] = hold
-timeline = {"version": 1, "cols": COLS, "rows": ROWS, "duration": 64000, "timing": "Editorial pacing reconstructed from genuine Caelis terminal captures.", "chapters": chapters, "events": events}
-
-
-def compile_timeline():
-    """Decode ANSI once so the static player needs no runtime terminal parser."""
-    screen = pyte.Screen(COLS, ROWS)
-    stream = pyte.Stream(screen)
-    palette, lookup, compiled = [], {}, []
-    previous = [[None]*COLS for _ in range(ROWS)]
-    for item in events:
-        if item.get("reset"):
-            screen.reset()
-            previous = [[None]*COLS for _ in range(ROWS)]
-        stream.feed(item["data"])
-        patches = []
-        for row in sorted(screen.dirty):
-            run = None
-            for col in range(COLS):
-                cell = screen.buffer[row][col]
-                if previous[row][col] == cell:
-                    run = None
-                    continue
-                fg, bg = color(cell.fg, "#e7e9ee"), color(cell.bg, "#000000")
-                if cell.reverse:
-                    fg, bg = bg, fg
-                key = (fg, bg, cell.bold)
-                if key not in lookup:
-                    lookup[key] = len(palette)
-                    palette.append(key)
-                sid = lookup[key]
-                if run is not None and run[3] == sid:
-                    run[2] += cell.data
-                else:
-                    run = [row, col, cell.data, sid]
-                    patches.append(run)
-                previous[row][col] = cell
-        screen.dirty.clear()
-        compiled.append({**{k:v for k,v in item.items() if k != "data"}, "patches": patches})
-    data = {**timeline, "events": compiled, "styles": palette}
-    (DEMO / "recordings/timeline.json").write_bytes(json.dumps(data, ensure_ascii=False, separators=(",", ":")).encode())
-
-
-compile_timeline()
 
 
 def render_video(font_path, output, fps=30):
@@ -198,7 +151,7 @@ def render_video(font_path, output, fps=30):
     args = [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", "-f", "rawvideo", "-vcodec", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{width}x{height}", "-r", str(fps), "-i", "-", "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(output)]
     process = subprocess.Popen(args, stdin=subprocess.PIPE)
     saved = False
-    for number in range(math.ceil(timeline["duration"]/1000*fps)):
+    for number in range(math.ceil(DURATION_MS/1000*fps)):
         now = number*1000/fps
         while pointer < len(events) and events[pointer]["at"] <= now:
             item = events[pointer]
@@ -243,8 +196,7 @@ def render_video(font_path, output, fps=30):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--font", default="C:/Windows/Fonts/consola.ttf")
-    parser.add_argument("--video", action="store_true")
     args = parser.parse_args()
-    print(f"Timeline: {len(events)} events, {timeline['duration']/1000:.0f}s", flush=True)
-    if args.video:
-        render_video(args.font, DEMO / "media/caelis-demo.mp4")
+    print(f"Video: {len(events)} events, {DURATION_MS/1000:.0f}s", flush=True)
+    MEDIA.mkdir(parents=True, exist_ok=True)
+    render_video(args.font, MEDIA / "caelis-demo.mp4")

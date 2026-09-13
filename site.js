@@ -19,10 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctaGithub: 'GitHub',
       },
       demo: {
-        title: 'One session. A whole team at work.',
         videoAria: 'Caelis multi-agent collaboration demo',
-        explore: 'Explore the interactive demo ↗',
-        download: 'Download the demo video',
       },
       cli: {
         title: 'Caelis CLI',
@@ -101,10 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctaGithub: 'GitHub 仓库',
       },
       demo: {
-        title: '一场会话，多位专家协作。',
         videoAria: 'Caelis 多智能体协作演示',
-        explore: '探索交互演示 ↗',
-        download: '下载演示视频',
       },
       cli: {
         title: 'Caelis CLI',

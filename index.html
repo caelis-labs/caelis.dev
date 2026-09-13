@@ -12,9 +12,9 @@
   <meta property="og:url" content="https://caelis.dev">
   <link rel="canonical" href="https://caelis.dev">
   <link rel="icon" href="/icon.svg?v=monochrome-28" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/styles.css?v=20260913-video-scroll">
-  <script src="/site.js?v=20260913-video-scroll" defer></script>
-  <script src="/demo/home-video.js?v=20260913-video-scroll" defer></script>
+  <link rel="stylesheet" href="/styles.css?v=20260913-video-focus">
+  <script src="/site.js?v=20260913-video-focus" defer></script>
+  <script src="/home-video.js?v=20260913-video-focus" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="controls.skip">Skip to content</a>
@@ -189,21 +189,14 @@
     </section>
 
     <!-- Recorded collaboration -->
-    <section class="viewport-screen video-screen" id="demo-video" aria-labelledby="demo-video-title">
+    <section class="viewport-screen video-screen" id="demo-video" aria-label="Caelis multi-agent collaboration demo" data-i18n-aria="demo.videoAria">
       <div class="video-content">
-        <div class="video-heading">
-          <h2 id="demo-video-title" data-i18n="demo.title">One session. A whole team at work.</h2>
-        </div>
         <div class="video-stage">
-          <video id="home-demo-video" autoplay muted loop playsinline controls preload="metadata"
-            poster="/demo/media/caelis-demo-poster.png?v=4k" width="3840" height="2160"
+          <video id="home-demo-video" autoplay muted loop playsinline preload="metadata" tabindex="-1" disablepictureinpicture disableremoteplayback
+            poster="/assets/video/caelis-demo-poster.png" width="3840" height="2160"
             aria-label="Caelis multi-agent collaboration demo" data-i18n-aria="demo.videoAria">
-            <source src="/demo/media/caelis-demo.mp4?v=4k" type="video/mp4">
-            <a href="/demo/media/caelis-demo.mp4" data-i18n="demo.download">Download the demo video</a>
+            <source src="/assets/video/caelis-demo.mp4" type="video/mp4">
           </video>
-        </div>
-        <div class="video-caption">
-          <a href="/demo/" data-i18n="demo.explore">Explore the interactive demo ↗</a>
         </div>
       </div>
     </section>

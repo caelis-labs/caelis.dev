@@ -463,13 +463,9 @@ code, pre {
 .video-screen {
   scroll-margin-top: var(--header-height);
 }
-.video-content { max-width: var(--max-width); width: 100%; }
-.video-heading { margin-bottom: 1.7rem; }
-.video-heading h2 {
-  font-size: clamp(1.7rem, 3vw, 3rem);
-  font-weight: 550;
-  letter-spacing: -0.045em;
-  margin: 0;
+.video-content {
+  max-width: calc(var(--max-width) + 160px);
+  width: 100%;
 }
 .video-stage {
   aspect-ratio: 16 / 9;
@@ -478,24 +474,22 @@ code, pre {
   border-radius: clamp(16px, 2.5vw, 40px);
   overflow: hidden;
 }
-.video-stage video { display: block; height: 100%; object-fit: contain; width: 100%; }
-.video-caption { font-size: 0.85rem; line-height: 1.6; margin-top: 1rem; text-align: right; }
-.video-caption a { color: var(--text); white-space: nowrap; }
-.video-caption a:hover { text-decoration: underline; }
+.video-stage video { display: block; height: 100%; object-fit: contain; pointer-events: none; width: 100%; }
 
-/* The card grows with its entry into the viewport, then stays at native scale. */
+/* Grow on entry, hold at native scale around the viewport center, shrink on exit. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .video-stage {
-      animation: video-arrive linear both;
+      animation: video-focus linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 100%;
+      animation-range: entry 0% exit 100%;
     }
   }
 }
-@keyframes video-arrive {
-  from { transform: translateY(24px) scale(0.9); border-radius: 40px; }
-  to { transform: none; border-radius: 24px; }
+@keyframes video-focus {
+  0% { transform: translateY(20px) scale(0.88); border-radius: 40px; }
+  35%, 65% { transform: none; border-radius: 24px; }
+  100% { transform: translateY(-20px) scale(0.88); border-radius: 40px; }
 }
 
 @media (max-width: 700px) {
