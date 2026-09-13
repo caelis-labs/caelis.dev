@@ -5,9 +5,9 @@ The static homepage and installation scripts for Caelis.
 ## Features
 
 - **Current Caelis Brand**: Uses the current transparent Caelis icon and wordmark.
-- **Product-Accurate Homepage**: Presents Caelis as a terminal-first, local-first Agent Runtime with TUI, Headless, and ACP stdio surfaces.
-- **Current Workflow**: Presents guided model/ACP connections, specialist delegation, guarded review, durable Sessions, Plugins, Skills, and MCP.
-- **Homepage Video**: A 64-second, 4K recording of a real Caelis multi-agent session follows installation. The 16:9 frame grows on scroll entry, remains larger around the viewport center, and shrinks on exit. It plays muted and loops while visible, with no visible text or playback controls. Reduced-motion users see a still frame.
+- **Product-Accurate Homepage**: Presents Caelis as a local collaboration workspace for models and ACP agents, with participant conversations, messaging, and direct follow-up.
+- **Current Workflow**: Presents guided connections, reusable role bindings, tool approvals, OS sandboxing, and resumable local sessions.
+- **Homepage Video**: A 44-second, 4K demonstration reconstructed from a real Caelis multi-agent session follows installation. The 16:9 frame grows on scroll entry, remains larger around the viewport center, and shrinks on exit. It plays muted and loops while visible, with no visible text or playback controls. Reduced-motion users see a still frame.
 - **Localized Content**: English and Simplified Chinese copy are selected from the browser language, with a manual language toggle.
 - **Responsive and Accessible**: Includes desktop/mobile layouts, light/dark themes, reduced-motion support, keyboard focus states, and semantic controls.
 - **Cross-Platform Installation Scripts**:
@@ -55,7 +55,7 @@ npx http-server -p 8000
 
 The homepage serves `assets/video/caelis-demo.mp4` and `assets/video/caelis-demo-poster.png`. It needs no backend, WebSocket, account, or model credentials. There is no separate interactive demo page.
 
-`tools/generate-demo.py` renders reviewed Caelis v0.55.0 terminal captures from `tools/recordings/session.json` into a 3840×2160, 30 fps, 64-second H.264 video with no audio or added title bars. Local paths are redacted. Only assistant replies use reconstructed typing animation; commands, user inputs, and tool records appear at once. Timing is edited rather than real time. Do not replace the reviewed source with a local Store export.
+`tools/generate-demo.py` renders reviewed Caelis v0.55.0 terminal captures from `tools/recordings/session.json` into a 3840×2160, 30 fps, 44-second H.264 video with no audio or added title bars. Local paths are redacted. Composer typing, pointer gestures, and waiting clocks are reconstructed; submitted user messages and tool records appear whole, while assistant replies stream. The main pane shows the captured task and progress until the participants finish, then presents the final Findings once. Timing and displayed durations follow the edited sequence rather than the original session's wall clock. Do not replace the reviewed source with a local Store export.
 
 Regenerate the video and poster on Windows:
 
@@ -66,7 +66,9 @@ python tools/generate-demo.py
 
 On other systems, pass `--font /path/to/a/monospace.ttf`. The committed media is ready to serve; Cloudflare Pages needs no build step, Python, or FFmpeg.
 
-The presentation sits after installation. Its maximum width is 1360px, gently exceeding the surrounding 1200px content column only while in focus. CSS scroll-driven animation scales the frame from 88% on entry to 100% around the viewport center, then back to 88% on exit. Browsers without support display the full frame directly. Reduced-motion preferences disable the scroll animation and autoplay.
+Use `--stills /path/to/inspection` to render representative PNG frames for checking composition, input, and completion order without encoding the MP4.
+
+The presentation sits after installation. Its maximum width is 1360px, gently exceeding the surrounding 1200px content column only while in focus. The Watch demo button and direct `#demo-video` links center the frame in the viewport below the header. CSS scroll-driven animation scales the frame from 88% on entry to 100% around the viewport center, then back to 88% on exit. Browsers without support display the full frame directly. Reduced-motion preferences disable the scroll animation and autoplay.
 
 For a GitHub README, link the poster to the homepage video:
 

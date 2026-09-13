@@ -460,9 +460,6 @@ code, pre {
 }
 
 /* The video follows installation; its recording fills the frame without cropping. */
-.video-screen {
-  scroll-margin-top: var(--header-height);
-}
 .video-content {
   max-width: calc(var(--max-width) + 160px);
   width: 100%;
