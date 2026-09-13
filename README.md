@@ -8,7 +8,7 @@ The static homepage and installation scripts for Caelis.
 - **Product-Accurate Homepage**: Presents Caelis as a terminal-first, local-first Agent Runtime with TUI, Headless, and ACP stdio surfaces.
 - **Current Workflow**: Presents guided model/ACP connections, specialist delegation, guarded review, durable Sessions, Plugins, Skills, and MCP.
 - **Recorded Terminal Demo**: `/demo/` replays genuine Caelis `v0.55.0` terminal captures with streamed assistant replies, participant views, seeking, and playback speed controls. User inputs and tool records appear as complete blocks. A 64-second H.264 video uses the same timeline.
-- **Homepage Video**: The second section shows the recorded session in a wide video frame. It plays muted and loops while visible, pauses offscreen, and respects viewer pauses and reduced-motion preferences. Native video controls remain available.
+- **Homepage Video**: The third section, after installation, shows the recorded session in a 16:9 video frame. It plays muted and loops while visible, pauses offscreen, and respects viewer pauses and reduced-motion preferences. Native video controls remain available. The video shares the page’s 1200px content width and grows gently as it enters the viewport in browsers with CSS scroll-driven animations; reduced-motion and unsupported browsers show the full-size frame directly.
 - **Localized Content**: English and Simplified Chinese copy are selected from the browser language, with a manual language toggle.
 - **Responsive and Accessible**: Includes desktop/mobile layouts, light/dark themes, reduced-motion support, keyboard focus states, and semantic controls.
 - **Cross-Platform Installation Scripts**:
@@ -55,7 +55,7 @@ npx http-server -p 8000
 
 The demo runs entirely in the browser. It needs no backend, WebSocket, account, or model credentials. The source captures in `demo/recordings/session.json` are reviewed and have local paths redacted. Do not replace them with an unreviewed local Store export.
 
-`tools/generate-demo.py` owns the sequence and editorial timing. It decodes ANSI terminal captures into canvas cell patches and renders the same sequence into a 1920×1080, 30 fps MP4. Only assistant replies use reconstructed typing animation; commands, user messages, and tool records appear all at once. The demo does not preserve the original operation timings. Reduced-motion users can select complete chapter frames without animation, and a text view exposes the current terminal contents.
+`tools/generate-demo.py` owns the sequence and editorial timing. It decodes ANSI terminal captures into canvas cell patches and renders the same sequence into a 3840×2160, 30 fps MP4 with no added title bars. Only assistant replies use reconstructed typing animation; commands, user messages, and tool records appear all at once. The demo does not preserve the original operation timings. Reduced-motion users can select complete chapter frames without animation, and a text view exposes the current terminal contents.
 
 Regenerate the browser timeline:
 

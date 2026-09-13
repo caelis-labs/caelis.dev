@@ -182,19 +182,20 @@ compile_timeline()
 
 
 def render_video(font_path, output, fps=30):
-    font = ImageFont.truetype(str(font_path), 21)
+    width, height, size = 3840, 2160, 46
+    font = ImageFont.truetype(str(font_path), size)
     bold_path = Path(font_path).with_name("consolab.ttf")
-    bold = ImageFont.truetype(str(bold_path if bold_path.exists() else font_path), 21)
-    label = ImageFont.truetype(str(font_path), 20)
-    small = ImageFont.truetype(str(font_path), 15)
-    cw, ch = font.getlength("M"), 24
-    left, top = (1920-COLS*cw)/2, 52
+    bold = ImageFont.truetype(str(bold_path if bold_path.exists() else font_path), size)
+    symbol_path = Path(font_path).with_name("seguisym.ttf")
+    symbols = ImageFont.truetype(str(symbol_path if symbol_path.exists() else font_path), size)
+    cw, ch = font.getlength("M"), 50
+    left, top = (width-COLS*cw)/2, (height-ROWS*ch)//2
     screen = pyte.Screen(COLS, ROWS)
     stream = pyte.Stream(screen)
-    body = Image.new("RGB", (1920, 1080), "black")
-    pointer, chapter = 0, chapters[0]
+    body = Image.new("RGB", (width, height), "black")
+    pointer = 0
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
-    args = [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", "-f", "rawvideo", "-vcodec", "rawvideo", "-pix_fmt", "rgb24", "-s", "1920x1080", "-r", str(fps), "-i", "-", "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(output)]
+    args = [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", "-f", "rawvideo", "-vcodec", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{width}x{height}", "-r", str(fps), "-i", "-", "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(output)]
     process = subprocess.Popen(args, stdin=subprocess.PIPE)
     saved = False
     for number in range(math.ceil(timeline["duration"]/1000*fps)):
@@ -204,13 +205,11 @@ def render_video(font_path, output, fps=30):
             if item.get("reset"):
                 screen.reset()
             stream.feed(item["data"])
-            if "scene" in item:
-                chapter = next(c for c in chapters if c["id"] == item["scene"])
             pointer += 1
         draw = ImageDraw.Draw(body)
         for row in screen.dirty:
             y = top + row*ch
-            draw.rectangle((0, y, 1919, y+ch-1), fill="black")
+            draw.rectangle((0, y, width-1, y+ch-1), fill="black")
             cells = screen.buffer[row]
             col = 0
             while col < COLS:
@@ -223,21 +222,18 @@ def render_video(font_path, output, fps=30):
                     end += 1
                 draw.rectangle((round(left+col*cw), y, round(left+end*cw)-1, y+ch-1), fill=bg)
                 text = "".join(cells[i].data for i in range(col, end))
-                draw.text((left+col*cw, y+19), text, font=bold if cell.bold else font, fill=fg, anchor="ls")
+                draw.text((left+col*cw, y+41), text.replace("◨", " ").replace("◆", " "), font=bold if cell.bold else font, fill=fg, anchor="ls")
+                for offset, char in enumerate(text):
+                    if char in ("◨", "◆"):
+                        draw.text((left+(col+offset)*cw, y+41), char, font=symbols, fill=fg, anchor="ls")
                 col = end
         screen.dirty.clear()
-        image = body.copy()
-        draw = ImageDraw.Draw(image)
-        draw.rectangle((0, 0, 1920, 43), fill="#10141c")
-        draw.text((35, 10), "CAELIS  /  " + chapter["title"], font=label, fill="#dbe4f8")
-        draw.text((1260, 14), "Real session captures · edited pacing", font=small, fill="#9da5b6")
-        draw.rectangle((0, 1075, int(1920*now/timeline["duration"]), 1079), fill="#7c9cf5")
         if not saved and now >= 42000:
-            image.save(output.with_name("caelis-demo-poster.png"))
+            body.save(output.with_name("caelis-demo-poster.png"))
             saved = True
         if number % (fps*10) == 0:
             print(f"rendered {number//fps}s", flush=True)
-        process.stdin.write(image.tobytes())
+        process.stdin.write(body.tobytes())
     process.stdin.close()
     if process.wait() != 0:
         raise SystemExit("Video encoding failed")

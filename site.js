@@ -19,11 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctaGithub: 'GitHub',
       },
       demo: {
-        eyebrow: 'CAELIS IN ACTION',
         title: 'One session. A whole team at work.',
-        duration: '64 seconds · Astra, Luna & Sol',
         videoAria: 'Caelis multi-agent collaboration demo',
-        caption: 'A real Caelis session, from connecting models to a shared review. Edited for pacing.',
         explore: 'Explore the interactive demo ↗',
         download: 'Download the demo video',
       },
@@ -104,11 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctaGithub: 'GitHub 仓库',
       },
       demo: {
-        eyebrow: 'CAELIS 实际演示',
         title: '一场会话，多位专家协作。',
-        duration: '64 秒 · Astra、Luna 与 Sol',
         videoAria: 'Caelis 多智能体协作演示',
-        caption: '从连接模型到汇总审查，来自一次真实的 Caelis 会话。已剪辑播放节奏。',
         explore: '探索交互演示 ↗',
         download: '下载演示视频',
       },

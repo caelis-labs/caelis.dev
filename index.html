@@ -12,9 +12,9 @@
   <meta property="og:url" content="https://caelis.dev">
   <link rel="canonical" href="https://caelis.dev">
   <link rel="icon" href="/icon.svg?v=monochrome-28" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/styles.css?v=20260913-video">
-  <script src="/site.js?v=20260913-video" defer></script>
-  <script src="/demo/home-video.js?v=20260913-video" defer></script>
+  <link rel="stylesheet" href="/styles.css?v=20260913-video-scroll">
+  <script src="/site.js?v=20260913-video-scroll" defer></script>
+  <script src="/demo/home-video.js?v=20260913-video-scroll" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="controls.skip">Skip to content</a>
@@ -101,27 +101,6 @@
       </div>
     </section>
 
-    <section class="video-screen screen-reveal" id="demo-video" aria-labelledby="demo-video-title">
-      <div class="video-heading">
-        <div>
-          <p class="video-eyebrow" data-i18n="demo.eyebrow">CAELIS IN ACTION</p>
-          <h2 id="demo-video-title" data-i18n="demo.title">One session. A whole team at work.</h2>
-        </div>
-        <span class="video-duration" data-i18n="demo.duration">64 seconds · Astra, Luna & Sol</span>
-      </div>
-      <div class="video-stage">
-        <video id="home-demo-video" autoplay muted loop playsinline controls preload="metadata"
-          poster="/demo/media/caelis-demo-poster.png" width="1920" height="1080"
-          aria-label="Caelis multi-agent collaboration demo" data-i18n-aria="demo.videoAria">
-          <source src="/demo/media/caelis-demo.mp4" type="video/mp4">
-          <a href="/demo/media/caelis-demo.mp4" data-i18n="demo.download">Download the demo video</a>
-        </video>
-      </div>
-      <div class="video-caption">
-        <p data-i18n="demo.caption">A real Caelis session, from connecting models to a shared review. Edited for pacing.</p>
-        <a href="/demo/" data-i18n="demo.explore">Explore the interactive demo ↗</a>
-      </div>
-    </section>
 
     <!-- CLI installation -->
     <section class="viewport-screen cli-install-screen screen-reveal" id="cli">
@@ -209,7 +188,27 @@
       </div>
     </section>
 
-    <!-- SCREEN 3: MULTI-AGENT ORCHESTRATION & BINDINGS (极简通透左右布局) -->
+    <!-- Recorded collaboration -->
+    <section class="viewport-screen video-screen" id="demo-video" aria-labelledby="demo-video-title">
+      <div class="video-content">
+        <div class="video-heading">
+          <h2 id="demo-video-title" data-i18n="demo.title">One session. A whole team at work.</h2>
+        </div>
+        <div class="video-stage">
+          <video id="home-demo-video" autoplay muted loop playsinline controls preload="metadata"
+            poster="/demo/media/caelis-demo-poster.png?v=4k" width="3840" height="2160"
+            aria-label="Caelis multi-agent collaboration demo" data-i18n-aria="demo.videoAria">
+            <source src="/demo/media/caelis-demo.mp4?v=4k" type="video/mp4">
+            <a href="/demo/media/caelis-demo.mp4" data-i18n="demo.download">Download the demo video</a>
+          </video>
+        </div>
+        <div class="video-caption">
+          <a href="/demo/" data-i18n="demo.explore">Explore the interactive demo ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-agent orchestration and bindings -->
     <section class="viewport-screen binding-screen screen-reveal" id="bindings">
       <div class="binding-layout">
         <!-- Left: Crisp, Punchy Text Description -->
