@@ -78,6 +78,14 @@ For a GitHub README, link the poster to the homepage video:
 
 ## Testing Installation Scripts
 
+### Windows executable replacement
+
+Run `powershell -NoProfile -File tests/install-windows.ps1` on Windows. The test
+loads the installer's replacement function and uses temporary executables to
+check consecutive updates while older processes remain alive, immediate launch,
+failed staging, rollback, and backup cleanup. It does not download releases or
+change PATH. The Windows installer workflow runs the same check for script changes.
+
 ### Unix Script Dry-Run
 
 You can run the script by targeting a temporary location to verify extraction and check compatibility:

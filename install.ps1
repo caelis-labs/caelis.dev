@@ -27,6 +27,47 @@ $ReleasesBaseUrl = $ReleasesBaseUrl.TrimEnd('/')
 
 # --- Helpers ---
 
+function Install-Executable([string]$Source, [string]$Destination) {
+    $directory = Split-Path -Parent $Destination
+    $name = Split-Path -Leaf $Destination
+    $id = [Guid]::NewGuid().ToString('N')
+    $staged = Join-Path $directory ".$name.install-$id"
+    $backup = Join-Path $directory "$name.old-$id"
+    $moved = $false
+
+    # Running windows retain their own backup until they exit. Reclaim only
+    # installer-owned backups that Windows allows us to remove.
+    $backupPattern = '^' + [regex]::Escape($name) + '\.old(-[0-9a-f]{32})?$'
+    Get-ChildItem -LiteralPath $directory -File | Where-Object {
+        $_.Name -match $backupPattern
+    } | ForEach-Object {
+        Remove-Item -LiteralPath $_.FullName -Force -ErrorAction SilentlyContinue
+    }
+
+    try {
+        # Finish copying before changing the installed path, so copy failures
+        # leave the previous executable intact.
+        Copy-Item -LiteralPath $Source -Destination $staged -ErrorAction Stop
+        if (Test-Path -LiteralPath $Destination) {
+            Rename-Item -LiteralPath $Destination -NewName (Split-Path -Leaf $backup) -ErrorAction Stop
+            $moved = $true
+        }
+        Rename-Item -LiteralPath $staged -NewName $name -ErrorAction Stop
+    } catch {
+        if ($moved -and -not (Test-Path -LiteralPath $Destination)) {
+            Rename-Item -LiteralPath $backup -NewName $name -ErrorAction Stop
+        }
+        throw
+    } finally {
+        if (Test-Path -LiteralPath $staged) {
+            Remove-Item -LiteralPath $staged -Force -ErrorAction SilentlyContinue
+        }
+    }
+    if ($moved) {
+        Remove-Item -LiteralPath $backup -Force -ErrorAction SilentlyContinue
+    }
+}
+
 function Download-String([string]$Url) {
     for ($attempt = 1; $attempt -le 4; $attempt++) {
         try {
@@ -202,21 +243,11 @@ if (-not (Test-Path $ExtractedExe)) {
 
 # Install executable (locked-file safe)
 $dest = Join-Path $InstallDir "caelis.exe"
-$old = "$dest.old"
-
-if (Test-Path $old) { Remove-Item $old -Force -ErrorAction SilentlyContinue }
-
 try {
-    Copy-Item -Path $ExtractedExe -Destination $dest -Force
+    Install-Executable $ExtractedExe $dest
 } catch {
-    try {
-        if (Test-Path $dest) { Rename-Item $dest $old -Force -ErrorAction SilentlyContinue }
-        Copy-Item -Path $ExtractedExe -Destination $dest -Force
-    } catch {
-        if (Test-Path $old) { Rename-Item $old $dest -Force -ErrorAction SilentlyContinue }
-        Write-Error "Failed to install caelis.exe. The executable might be locked by another running process."
-        exit 1
-    }
+    Write-Error "Failed to install caelis.exe: $_"
+    exit 1
 }
 
 # Cleanup temporary files
