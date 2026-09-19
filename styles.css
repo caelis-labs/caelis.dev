@@ -175,11 +175,19 @@ code, pre {
 }
 
 .brand-mark {
-  color: var(--text);
   display: block;
-  height: 26px;
-  width: 26px;
+  height: 32px;
+  width: 32px;
+  flex-shrink: 0;
+  transition: transform 150ms ease, filter 150ms ease;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.45));
 }
+
+:root[data-theme="light"] .brand-mark {
+  filter: drop-shadow(0 0 0.5px rgba(0, 0, 0, 0.15));
+}
+
+
 
 .header-actions {
   align-items: center;
@@ -1266,10 +1274,19 @@ code, pre {
 }
 
 .footer-brand svg {
-  color: var(--text);
-  height: 22px;
-  width: 22px;
+  display: block;
+  height: 24px;
+  width: 24px;
+  flex-shrink: 0;
+  transition: filter 150ms ease;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.45));
 }
+
+:root[data-theme="light"] .footer-brand svg {
+  filter: drop-shadow(0 0 0.5px rgba(0, 0, 0, 0.15));
+}
+
+
 
 .footer-license {
   color: var(--muted);
