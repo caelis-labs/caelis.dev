@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import { type Locale } from '../data/site';
+const { lang = 'en', interactive = true } = Astro.props as { lang?: Locale; interactive?: boolean };
+---
+<div class="demo-frame" id="demo-video">
+  <div class="demo-topbar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>caelis — workspace</span><span class="live-label"><i></i>{lang === 'en' ? 'REAL SESSION' : '真实会话'}</span></div>
+  <div class="demo-media">
+    <video data-demo playsinline muted loop preload="none" poster="/assets/video/caelis-demo-poster.webp" width="3840" height="2160" aria-label={lang === 'en' ? 'Recorded Caelis collaboration session' : 'Caelis 多智能体协作会话录屏'}>
+      <source data-src="/assets/video/caelis-demo.mp4" type="video/mp4"/>
+      <a href="/assets/video/caelis-demo.mp4">{lang === 'en' ? 'Watch the demo' : '观看演示'}</a>
+    </video>
+    {interactive && <button class="demo-play" type="button" data-video-toggle data-play={lang === 'en' ? 'Play demo' : '播放演示'} data-pause={lang === 'en' ? 'Pause demo' : '暂停演示'} aria-label={lang === 'en' ? 'Play demo' : '播放演示'}><span class="play-glyph" aria-hidden="true">▶</span><span data-video-label>{lang === 'en' ? 'Watch the collaboration' : '观看协作演示'}</span></button>}
+  </div>
+</div>
+<p class="media-caption"><span>{lang === 'en' ? 'One workspace. A team in motion.' : '一个工作空间，看见团队的协作。'}</span><a href="/assets/video/caelis-demo.mp4">{lang === 'en' ? 'Open recording' : '打开录屏'}<Icon name="external" size={14}/></a></p>

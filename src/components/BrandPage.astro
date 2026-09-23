@@ -1,0 +1,11 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { type Locale } from '../data/site';
+const { lang = 'en' } = Astro.props as { lang?: Locale };
+---
+<SiteLayout lang={lang} title={lang === 'en' ? 'Brand resources' : '品牌资源'} description={lang === 'en' ? 'The Caelis Labs identity: a shared orbit for independent tools.' : 'Caelis Labs 品牌标识：独立的工具，共同的轨道。'}>
+  <section class="page-hero" id="top"><div class="container"><p class="eyebrow">CAELIS LABS / BRAND</p><h1>{lang === 'en' ? 'A shared orbit.' : '共同的轨道。'}</h1><p class="lead">{lang === 'en' ? 'An open C, a second arc, and a point of connection. A simple identity for a growing constellation of tools.' : '开放的 C、相呼应的弧线，以及一个连接点。用简洁的标识，承载不断生长的工具群。'}</p></div></section>
+  <section class="section"><div class="container"><div class="brand-downloads"><div class="brand-sample"><Brand lang={lang} large/></div><div class="brand-sample dark"><Brand lang={lang} large/></div></div><div class="actions"><a class="button primary" href="/icon.svg" download="caelis-labs-icon.svg">{lang === 'en' ? 'Download icon' : '下载图标'}<Icon name="download" size={18}/></a><a class="button secondary" href="/wordmark.svg" download="caelis-labs-wordmark.svg">{lang === 'en' ? 'Download wordmark' : '下载组合标识'}<Icon name="download" size={18}/></a></div><div class="brand-guidance"><h2 class="project-subtitle">{lang === 'en' ? 'Keep it clear.' : '保持清晰。'}</h2><p>{lang === 'en' ? 'Use the symbol at 16 px or larger. Leave clear space of at least one connection-dot diameter. Preserve the proportions and use a high-contrast, single-color treatment.' : '图标至少以 16 像素显示。四周留白至少为一个连接点的直径。保留原始比例，采用对比明确的单色呈现。'}</p><p>{lang === 'en' ? 'Use the name Caelis Labs for the organization. Individual products retain their own names. The Caelis Bot character is a product asset with a separate license, not the Labs logo.' : '组织名称使用 Caelis Labs，各产品保留自己的名称。Caelis Bot 角色是采用独立许可的产品资产，不作为 Labs Logo。'}</p></div></div></section>
+</SiteLayout>

@@ -1,0 +1,21 @@
+/install.sh
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: text/x-shellscript; charset=utf-8
+
+/install.ps1
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: text/plain; charset=utf-8
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/social/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icon.svg
+  Cache-Control: no-cache, must-revalidate
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

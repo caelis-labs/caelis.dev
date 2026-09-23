@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import { ui, type Locale } from '../data/site';
+const { lang = 'en' } = Astro.props as { lang?: Locale }; const t = ui[lang];
+const methods = [{ id: 'unix', label: 'macOS / Linux', command: 'curl -fsSL https://caelis.dev/install.sh | sh' }, { id: 'windows', label: 'Windows', command: 'irm https://caelis.dev/install.ps1 | iex' }, { id: 'npm', label: 'npm', command: 'npm install -g @caelis/caelis' }];
+---
+<div class="install-box" data-install>
+  <div class="install-tabs" role="tablist" aria-label={lang === 'en' ? 'Installation method' : '安装方式'}>
+    {methods.map((method, i) => <button type="button" role="tab" id={`tab-${method.id}`} aria-controls={`install-${method.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-tab={method.id}>{method.label}</button>)}
+  </div>
+  {methods.map((method, i) => <div class:list={['install-panel', {'is-active': i === 0}]} role="tabpanel" id={`install-${method.id}`} aria-labelledby={`tab-${method.id}`} tabindex="0" data-panel={method.id}>
+    <code>{method.command}</code>
+    <button class="copy-button icon-button" type="button" data-copy={method.command} data-success={t.copied} data-failure={t.failed} aria-label={t.copy}><Icon name="copy" size={18}/></button>
+  </div>)}
+  <span class="copy-status sr-only" role="status" aria-live="polite"></span>
+</div>

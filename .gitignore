@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+public/assets/
+public/social/
+public/icon.svg
+public/favicon.ico
+public/apple-touch-icon.png
+public/favicon-*.png
+public/install.sh
+public/install.ps1
+public/wordmark.svg
+.artifacts/

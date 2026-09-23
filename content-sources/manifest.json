@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "updated": "2026-09-23",
+  "sources": [
+    {
+      "repo": "caelis",
+      "ref": "f136ebaeb46608a69bf7732af57bb2f2a2382756",
+      "version": "v0.60.1",
+      "path": "README.md",
+      "sha256": "a1fd42afc10a8e27816d9aafda3928724b4d569c277c024f66aff46f4de7c14e"
+    },
+    {
+      "repo": "caelis",
+      "ref": "f136ebaeb46608a69bf7732af57bb2f2a2382756",
+      "version": "v0.60.1",
+      "path": "docs/participants.md",
+      "sha256": "f359604eaed2c0aa140343c90051eac014ae125f32c2582c3ff3ba853b682af1"
+    },
+    {
+      "repo": "caelis",
+      "ref": "f136ebaeb46608a69bf7732af57bb2f2a2382756",
+      "version": "v0.60.1",
+      "path": "docs/external-acp-agents.md",
+      "sha256": "12dd0c0da2c6db123b0fbb752bfd7e1e0e8367d3427f83a0d2d6d19c443f3479"
+    },
+    {
+      "repo": "caelis-bot",
+      "ref": "0842c59ac7ab007b67f7d25a51129b87d37bd60e",
+      "version": "v0.1.0-preview.1",
+      "path": "README.md",
+      "sha256": "390526f8d3749d0f77de3431b5437a103ac89e2960640576b771eb4dfebc73d0"
+    },
+    {
+      "repo": "caelis-bot",
+      "ref": "0842c59ac7ab007b67f7d25a51129b87d37bd60e",
+      "version": "v0.1.0-preview.1",
+      "path": "docs/install.md",
+      "sha256": "917db2cf5ba23b542c73cdec9c97c94347ae67a378f688bd96a91541865a6ac9"
+    },
+    {
+      "repo": "caelis-bot",
+      "ref": "0842c59ac7ab007b67f7d25a51129b87d37bd60e",
+      "version": "v0.1.0-preview.1",
+      "path": "docs/install.zh-CN.md",
+      "sha256": "d67f0c0275a039f6ede9fdcb5da1cc250e58987376c5b4a5f39d52d9b39ed590"
+    },
+    {
+      "repo": "caelis-bot",
+      "ref": "0842c59ac7ab007b67f7d25a51129b87d37bd60e",
+      "version": "v0.1.0-preview.1",
+      "path": "docs/character-assets.md",
+      "sha256": "ac7ea1c885ab928d36eb9dbfd35a9e98fccbcba0c4d601d5c65ecad417116434"
+    },
+    {
+      "repo": "caelis-bot",
+      "ref": "0842c59ac7ab007b67f7d25a51129b87d37bd60e",
+      "version": "v0.1.0-preview.1",
+      "path": "frontend/public/icons/caelis-avatar.png",
+      "sha256": "0e002dd314beea328d34028dc084a9cf8c7786fc84633de5a735235f354f5fd7"
+    },
+    {
+      "repo": "caelis-bot",
+      "ref": "0842c59ac7ab007b67f7d25a51129b87d37bd60e",
+      "version": "v0.1.0-preview.1",
+      "path": "ASSET-LICENSE.md",
+      "sha256": "ce52715ee0af6208c4f842fa44556cf20bf58f492b061fb1cc8531d8835e56b1"
+    },
+    {
+      "repo": "caelis-bot",
+      "ref": "0842c59ac7ab007b67f7d25a51129b87d37bd60e",
+      "version": "v0.1.0-preview.1",
+      "path": "frontend/public/models/caelis-SOURCES.md",
+      "sha256": "faae9cbe52864103d858d97a2a0f37acc66f50bfc468e74d1773a50c60c686bf"
+    },
+    {
+      "repo": "acp-go-sdk",
+      "ref": "ed838d76cc0bca458732e15a457235c55a4d6642",
+      "version": "v1.4.0",
+      "path": "README.md",
+      "sha256": "10a7ea75923f8da2a826385e7d64b09f3a6c528152070f306b3632f37de5a3ce"
+    },
+    {
+      "repo": "acp-go-sdk",
+      "ref": "ed838d76cc0bca458732e15a457235c55a4d6642",
+      "version": "v1.4.0",
+      "path": "docs/upgrading-to-v1.4.0.md",
+      "sha256": "7fa17a8f942e6a1bec42b32e168ca62e8bdb82a53809d287a7566f2abece2ea0"
+    },
+    {
+      "repo": "acp-go-sdk",
+      "ref": "ed838d76cc0bca458732e15a457235c55a4d6642",
+      "version": "v1.4.0",
+      "path": "example/minimal-agent/main.go",
+      "sha256": "a8b63213988a26f2516d748a406c3c2a5cfef71bfa0b92ddfd3be710553aff3f"
+    },
+    {
+      "repo": "acp-go-sdk",
+      "ref": "ed838d76cc0bca458732e15a457235c55a4d6642",
+      "version": "v1.4.0",
+      "path": "example/client/main.go",
+      "sha256": "12952ecbe86448e3b81ed293303a08cb892906fceb072c9ee95567318a842659"
+    },
+    {
+      "repo": "memory",
+      "ref": "847c4699f8e59cf3ea53e16df0726a4420b13c80",
+      "version": "v0.6.1",
+      "path": "README.md",
+      "sha256": "ac1f81438b90d2c967db57374a9f8dfee3ba88a2d0dd0d3e4a93e39f70eb6d25"
+    },
+    {
+      "repo": "memory",
+      "ref": "847c4699f8e59cf3ea53e16df0726a4420b13c80",
+      "version": "v0.6.1",
+      "path": "docs/memory-v0.6-migration.md",
+      "sha256": "0be70b220f478fc60bf75b218d92c0169d7682904e662e9bedd191e8438e402a"
+    },
+    {
+      "repo": "memory",
+      "ref": "847c4699f8e59cf3ea53e16df0726a4420b13c80",
+      "version": "v0.6.1",
+      "path": "docs/memory-v0.6.1-release.md",
+      "sha256": "aeba8c71839fceea42dbaa1cd3d6989f0ef1374ccb0e3dfdc3dbd9a799a3eb79"
+    },
+    {
+      "repo": "memory",
+      "ref": "847c4699f8e59cf3ea53e16df0726a4420b13c80",
+      "version": "v0.6.1",
+      "path": "docs/memory-v0.6-facts.md",
+      "sha256": "a2e9d9b23ed7799084e53fc3fc234753a53bcad7b5cc41d26c1eda68a4ebcef5"
+    },
+    {
+      "repo": "caelis-app",
+      "ref": "e443ccd1a5f595fb31caade2e5af0fc941d7772d",
+      "version": "Development",
+      "path": "README.md",
+      "sha256": "671bc1697c9ecd7f503d6c90a5f7ffa8e1ccec170a2a70f97e9fb1b0de06497f"
+    },
+    {
+      "repo": "caelis-app",
+      "ref": "e443ccd1a5f595fb31caade2e5af0fc941d7772d",
+      "version": "Development",
+      "path": "docs/architecture.md",
+      "sha256": "58313e289ae72630f799cdfa96f439ec7e1b4bde94be4e1f0f882fcdaeccd22a"
+    }
+  ]
+}
