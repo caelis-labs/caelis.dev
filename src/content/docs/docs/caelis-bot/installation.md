@@ -1,31 +1,31 @@
 ---
-title: "Install the preview"
+title: "Install Caelis Bot"
 description: "Verify the macOS download, then connect your local runtime."
 sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis-bot/installation.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "0842c59ac7ab007b67f7d25a51129b87d37bd60e"
+sourceRef: "6d60b22779b9ffa8927f9a306219e5bccb699320"
 sourcePath: "docs/install.md"
-productVersion: "v0.1.0-preview.1"
+productVersion: "v0.1.0"
 ---
 
 ## Before you start
 
-Use an Apple Silicon Mac and install a local Codex runtime separately. Complete its sign-in before starting a conversation in Caelis Bot.
+Use an Apple Silicon Mac and install Caelis or Codex separately. Configure the runtime and complete any account login before starting a conversation. Caelis v0.61.0 is the tested release baseline.
 
 ## Download and verify
 
-1. Open [Caelis Bot Releases](https://github.com/caelis-labs/caelis-bot/releases).
-2. Choose the compatible preview DMG and its `.sha256` file.
+1. Open [the latest stable Caelis Bot release](https://github.com/caelis-labs/caelis-bot/releases/latest).
+2. Choose the compatible stable DMG and its `.sha256` file.
 3. Follow the [exact verification and first-launch commands](../reference/install/) from the pinned public installation guide.
 4. Drag **Caelis Bot.app** into Applications and launch it after verification.
 
-The preview is ad-hoc signed and not notarized. Follow the guide for the verified bundle; do not bypass a failed checksum or repair a broken signature by silently re-signing the app.
+Open the verified app normally and confirm macOS’s first-open prompt if shown. No quarantine-removal command is needed. Stop if download or system verification fails.
 
 ## Connect the runtime
 
-Caelis Bot discovers the installed Codex runtime automatically. You can choose it in **Settings → Runtime**. Neither Codex nor its development tools are bundled.
+Caelis Bot discovers local Caelis and Codex runtimes. Choose one in **Settings → Runtime**. Neither runtime is bundled.
 
 Click the character to write, or double-click to open the conversation. See [conversation controls](../conversation/).
 
