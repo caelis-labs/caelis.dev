@@ -8,7 +8,7 @@ import { localePath, statusLabel, repository, ui, type Locale, type Project } fr
 const { lang = 'en', project } = Astro.props as { lang?: Locale; project: Project };
 const t = ui[lang]; const content = project[lang]; const repo = repository(project);
 const start = localePath(lang, `/docs/${project.id}/${project.id === 'caelis' || project.id === 'caelis-bot' ? 'installation/' : 'quickstart/'}`);
-const cta = project.id === 'caelis-bot' ? (lang === 'en' ? 'Try the preview' : '试用预览版') : project.id === 'caelis-app' ? (lang === 'en' ? 'Development guide' : '开发入门') : t.installation;
+const cta = project.id === 'caelis-bot' ? (lang === 'en' ? 'Get Caelis Bot' : '下载 Caelis Bot') : project.id === 'caelis-app' ? (lang === 'en' ? 'Development guide' : '开发入门') : t.installation;
 ---
 <SiteLayout lang={lang} title={project.name} description={content.description}>
   <section class="page-hero" id="top"><div class="container">
@@ -29,7 +29,7 @@ const cta = project.id === 'caelis-bot' ? (lang === 'en' ? 'Try the preview' : '
   </div></section>
   <section class="section bot-section" id="cli"><div class="container product-start"><div><p class="eyebrow">{t.installation}</p><h2 class="project-subtitle">{lang === 'en' ? 'Make the first connection.' : '建立第一次连接。'}</h2><p>{project.id === 'caelis' ? (lang === 'en' ? 'Install Caelis, open a workspace, and connect your first model or agent.' : '安装 Caelis，打开工作区，连接第一个模型或智能体。') : content.short}</p><a class="text-link" href={localePath(lang, `/docs/${project.id}/`)}>{t.productDocs}<Icon name="arrow" size={18}/></a></div>
     {project.id === 'caelis' ? <Install lang={lang}/> : <div class="product-notice">
-      {project.id === 'caelis-bot' && <p>{lang === 'en' ? 'The preview is for Apple Silicon Macs and requires a locally installed, signed-in Codex runtime. It is ad-hoc signed and not notarized. Follow the verification and first-launch steps in the installation guide.' : '预览版适用于 Apple Silicon Mac，需要已安装并登录的本地 Codex 运行时。目前使用临时签名，尚未经 Apple 公证。请按安装指南完成校验与首次启动。'}</p>}
+      {project.id === 'caelis-bot' && <p>{lang === 'en' ? 'Available for Apple Silicon Macs. Connect a separately installed Caelis or Codex runtime, then open Caelis Bot from Applications. See the installation guide for download verification and setup.' : '正式版适用于 Apple Silicon Mac，可连接独立安装的 Caelis 或 Codex。从“应用程序”打开 Caelis Bot，按安装指南完成下载校验与首次设置。'}</p>}
       {project.id === 'acp-go-sdk' && <p>{lang === 'en' ? 'Start with the minimal agent and client examples. No model account is needed for the fixed-response example.' : '从最小 Agent 和 Client 示例开始。运行固定回复的入门示例，无需模型账号。'}</p>}
       {project.id === 'memory' && <p>{lang === 'en' ? 'Integrate the published Go module in your host. Memory is embedded; it does not need a separate server or installation when used inside Caelis.' : '将已发布的 Go 模块集成进宿主。Memory 以嵌入式方式运行，在 Caelis 中使用时无需独立服务或额外安装。'}</p>}
       {project.id === 'caelis-app' && <p>{lang === 'en' ? 'Start from the development guide and a local ACP executable. There is no published desktop installer yet.' : '按开发指南准备环境与本地 ACP 程序。目前尚无公开发布的桌面安装包。'}</p>}
