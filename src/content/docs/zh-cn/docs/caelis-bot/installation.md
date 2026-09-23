@@ -12,7 +12,7 @@ productVersion: "v0.1.0"
 
 ## 开始前
 
-准备 Apple Silicon Mac，独立安装并配置 Caelis 或 Codex，完成所需的账户登录。Caelis v0.61.0 是已验收的正式基线。
+准备 Apple Silicon Mac，独立安装并配置 Caelis 或 Codex，完成所需的账户登录。运行时兼容性通过协议握手检查，连接时按应用提示操作。
 
 ## 下载与校验
 

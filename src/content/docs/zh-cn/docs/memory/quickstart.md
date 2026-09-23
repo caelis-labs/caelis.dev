@@ -13,7 +13,7 @@ productVersion: "v0.6.1"
 ## 添加模块
 
 ```sh
-go get github.com/caelis-labs/memory@v0.6.1
+go get github.com/caelis-labs/memory@latest
 ```
 
 工具链要求以所选版本的 `go.mod` 为准。
@@ -36,4 +36,4 @@ defer runtime.Close()
 
 宿主通过公开 API 建立身份、Space、View、Grant 与 capability，再使用 `sdk/go/memory` 将上下文绑定到简洁的工具接口。模型参数不能选择这些授权字段。
 
-暴露工具前，请查阅[公开 API](https://pkg.go.dev/github.com/caelis-labs/memory@v0.6.1)与[授权边界](../boundaries/)，并为所集成的版本保留对应测试。
+暴露工具前，请查阅[公开 API](https://pkg.go.dev/github.com/caelis-labs/memory)与[授权边界](../boundaries/)，并为所集成的版本保留对应测试。

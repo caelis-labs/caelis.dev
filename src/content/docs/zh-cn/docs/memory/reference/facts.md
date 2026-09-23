@@ -1,6 +1,6 @@
 ---
 title: "Facts 契约"
-description: "Memory v0.6.1 的版本化参考文档。"
+description: "Memory 参考文档，来源见页末。"
 project: "memory"
 productVersion: "v0.6.1"
 sourceRepo: "memory"

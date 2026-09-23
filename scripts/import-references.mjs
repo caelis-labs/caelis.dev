@@ -42,7 +42,7 @@ for (const [repo, sourcePath, slug, title, zhTitle] of sources) {
     const prefix = lang === 'zh-cn' && !translated ? '> 本页为已锁定版本的英文上游参考，尚未翻译。中文入门指南可从左侧导航进入。\n\n' : '';
     const frontmatter = {
       title: lang === 'en' ? title : zhTitle,
-      description: lang === 'en' ? `Versioned reference from ${project.name} ${project.version}.` : `${project.name} ${project.version} 的版本化参考文档。`,
+      description: lang === 'en' ? `Reference from a reviewed ${project.name} source revision.` : `${project.name} 参考文档，来源见页末。`,
       project: repo, productVersion: project.version, sourceRepo: repo, sourceRef: project.sourceRef, sourcePath: actualSource,
       generated: true, editUrl: false, sidebar: { order: 20 },
     };

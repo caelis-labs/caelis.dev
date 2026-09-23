@@ -8,5 +8,4 @@ const project = projects.find(p => p.id === entry.data.project);
 <div class="doc-breadcrumb"><a href={localePath(lang, '/docs/')}>{lang === 'en' ? 'Documentation' : '文档'}</a>{project && <><span>/</span><a href={localePath(lang, `/docs/${project.id}/`)}>{project.name}</a></>}</div>
 <Default/>
 {entry.data.description && <p class="doc-description">{entry.data.description}</p>}
-{entry.data.productVersion && <div class="doc-version">{project?.name} <span>{entry.data.productVersion}</span></div>}
 {['/docs/', '/zh-cn/docs/'].includes(Astro.url.pathname) && <ProjectLinks lang={lang}/>}

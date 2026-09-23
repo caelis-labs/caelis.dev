@@ -13,7 +13,7 @@ productVersion: "v0.6.1"
 ## Add the module
 
 ```sh
-go get github.com/caelis-labs/memory@v0.6.1
+go get github.com/caelis-labs/memory@latest
 ```
 
 Use the selected release's `go.mod` for toolchain requirements.
@@ -36,4 +36,4 @@ Import `github.com/caelis-labs/memory/appliance`. Opening the runtime does not b
 
 The host provisions identity, Spaces, Views, Grants, and capabilities through public APIs, then uses `sdk/go/memory` to bind that context to the small tool interface. Model arguments must not choose these authority fields.
 
-Read the [public package API](https://pkg.go.dev/github.com/caelis-labs/memory@v0.6.1) and [authority boundaries](../boundaries/) before exposing tools. Keep the selected source version alongside your integration tests.
+Read the [public package API](https://pkg.go.dev/github.com/caelis-labs/memory) and [authority boundaries](../boundaries/) before exposing tools. Keep the selected source version alongside your integration tests.

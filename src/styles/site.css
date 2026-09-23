@@ -156,6 +156,7 @@ p { text-wrap: pretty; }
 .project-hero-top { display: flex; align-items: center; gap: 15px; }
 .project-subtitle { max-width: 650px; margin-top: 45px; font-size: clamp(29px,4vw,49px); }
 .project-meta { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-top: 27px; font: 15px var(--mono); color: var(--muted); }
+.project-meta a { display: inline-flex; align-items: center; gap: 8px; text-decoration: underline; text-underline-offset: 4px; }
 .product-feature-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 45px; margin-top: 60px; }
 .product-feature-list article { border-top: 1px solid var(--line); padding-top: 22px; }
 .product-feature-list span { font: 14px var(--mono); color: var(--accent); }
@@ -164,7 +165,8 @@ p { text-wrap: pretty; }
 .product-start { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(40px, 5vw, 80px); align-items: start; }
 .product-start h2 { font-size: 36px; }
 .product-start p { font-size: 1.125rem; color: var(--muted); margin-top: 18px; }
-.product-start .text-link { margin-top: 20px; }
+.product-start > div > .text-link { margin-top: 20px; }
+.product-start > .product-notice { align-self: center; }
 .code-example { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; overflow: hidden; }
 .code-example .code-label { display: flex; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--line); font: 14px var(--mono); color: var(--muted); }
 .code-example pre { padding: 24px; margin: 0; overflow-x: auto; font: 15px/1.85 var(--mono); }
@@ -172,6 +174,8 @@ p { text-wrap: pretty; }
 .product-notice { border-left: 2px solid var(--accent); padding: 4px 0 4px 20px; }
 .product-notice p:first-child { margin-top: 0; }
 .product-notice a:not(.button) { text-decoration: underline; text-underline-offset: 4px; }
+.product-notice .actions { margin-top: 24px; gap: 16px 24px; }
+.product-notice .actions > .text-link { min-height: 44px; }
 .product-bot-image { width: 100%; height: 330px; object-fit: contain; background: var(--bot-surface); padding: 70px; }
 .brand-downloads { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-block: 35px; }
 .brand-sample { min-height: 210px; display: grid; place-content: center; border: 1px solid var(--line); border-radius: 8px; }

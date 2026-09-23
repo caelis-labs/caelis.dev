@@ -28,4 +28,4 @@ Read the [version-specific upgrade guide](../reference/upgrading-to-v1-4/) and r
 
 The project maintains an interoperability matrix against the official TypeScript and Rust SDKs. That evidence is scoped to the tested revisions and paths; your own application's permission and process policies still need validation.
 
-See [API reference](https://pkg.go.dev/github.com/caelis-labs/acp-go-sdk@v1.4.0) and [Releases](https://github.com/caelis-labs/acp-go-sdk/releases).
+See [API reference](https://pkg.go.dev/github.com/caelis-labs/acp-go-sdk) and [Releases](https://github.com/caelis-labs/acp-go-sdk/releases).

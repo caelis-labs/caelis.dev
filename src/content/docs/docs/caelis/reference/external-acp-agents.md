@@ -1,6 +1,6 @@
 ---
 title: "External ACP agents"
-description: "Versioned reference from Caelis v0.60.1."
+description: "Reference from a reviewed Caelis source revision."
 project: "caelis"
 productVersion: "v0.60.1"
 sourceRepo: "caelis"

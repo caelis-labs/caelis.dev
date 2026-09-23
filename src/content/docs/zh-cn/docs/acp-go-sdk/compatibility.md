@@ -28,4 +28,4 @@ productVersion: "v1.4.0"
 
 项目维护与官方 TypeScript、Rust SDK 的互操作矩阵。证据只对应已测试的版本与路径；你自己的权限策略和进程管理仍需验证。
 
-参阅 [API 参考](https://pkg.go.dev/github.com/caelis-labs/acp-go-sdk@v1.4.0)与[版本发布](https://github.com/caelis-labs/acp-go-sdk/releases)。
+参阅 [API 参考](https://pkg.go.dev/github.com/caelis-labs/acp-go-sdk)与[版本发布](https://github.com/caelis-labs/acp-go-sdk/releases)。
