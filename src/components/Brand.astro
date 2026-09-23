@@ -1,0 +1,12 @@
+---
+import { localePath, type Locale } from '../data/site';
+const { lang = 'en', large = false } = Astro.props as { lang?: Locale; large?: boolean };
+---
+<a class:list={['brand', { 'brand-large': large }]} href={localePath(lang)} aria-label="Caelis Labs">
+  <svg class="brand-symbol" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+    <path d="M29.6 9.2a14.5 14.5 0 1 0 0 21.6" stroke="currentColor" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M25 14.4a7.5 7.5 0 1 0 0 11.2" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+    <circle cx="32.7" cy="20" r="3.1" fill="currentColor"/>
+  </svg>
+  <span class="brand-name">caelis<span class="brand-labs">labs</span></span>
+</a>

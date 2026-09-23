@@ -1,0 +1,20 @@
+---
+import Default from '@astrojs/starlight/components/Sidebar.astro';
+import { getLocale, localePath, projects } from '../../data/site';
+const lang = getLocale(Astro.url.pathname); const current = Astro.locals.starlightRoute.entry.data.project;
+---
+<div class="docs-project-picker">
+  <label for="docs-project">{lang === 'en' ? 'YOUR PROJECT' : '当前项目'}</label>
+  <select id="docs-project" aria-label={lang === 'en' ? 'Switch project' : '切换项目'}>
+    <option value={localePath(lang, '/docs/')} selected={!current}>{lang === 'en' ? 'All documentation' : '全部文档'}</option>
+    {projects.map(p => <option value={localePath(lang, `/docs/${p.id}/`)} selected={p.id === current}>{p.name}</option>)}
+  </select>
+</div>
+<Default/>
+<a class="docs-back-to-project" href={localePath(lang, current ? `/projects/${current}/` : '/projects/')}>{lang === 'en' ? '← Explore the projects' : '← 探索项目'}</a>
+<script>
+  document.querySelector<HTMLSelectElement>('#docs-project')?.addEventListener('change', event => {
+    const select = event.currentTarget as HTMLSelectElement;
+    window.location.assign(select.value);
+  });
+</script>

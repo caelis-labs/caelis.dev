@@ -1,0 +1,8 @@
+---
+import Icon from '../Icon.astro';
+import { projects, localePath, type Locale } from '../../data/site';
+const { lang = 'en' } = Astro.props as { lang?: Locale };
+---
+<div class="docs-project-links not-content">
+  {projects.map(project => <a class="docs-project-link" href={localePath(lang, `/docs/${project.id}/`)} data-project={project.id}><div><strong>{project.name}</strong><p>{project[lang].short}</p></div><Icon name="arrow" size={21}/></a>)}
+</div>

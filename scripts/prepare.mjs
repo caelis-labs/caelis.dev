@@ -1,0 +1,28 @@
+import { mkdir, readFile, writeFile, copyFile, cp, rm } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import { resolve } from 'node:path';
+import sharp from 'sharp';
+
+const root = resolve(import.meta.dirname, '..');
+process.chdir(root);
+await mkdir('public/assets/video', { recursive: true });
+await mkdir('public/assets/bot', { recursive: true });
+for (const file of ['install.sh', 'install.ps1', 'icon.svg', 'wordmark.svg']) await copyFile(file, `public/${file}`);
+await cp('assets/video', 'public/assets/video', { recursive: true });
+await cp('assets/providers', 'public/assets/providers', { recursive: true });
+await sharp('assets/video/caelis-demo-poster.png').resize({ width: 1600, withoutEnlargement: true }).webp({ quality: 85 }).toFile('public/assets/video/caelis-demo-poster.webp');
+await rm('public/assets/bot/caelis-avatar.png', { force: true });
+for (const size of [96, 256, 512]) await sharp('assets/bot/caelis-bot-logo.png').resize(size, size).webp({ quality: 90, alphaQuality: 100, effort: 6 }).toFile(`public/assets/bot/logo-${size}.webp`);
+await copyFile('content-sources/snapshots/caelis-bot/ASSET-LICENSE.md', 'public/assets/bot/LICENSE.md');
+await copyFile('content-sources/snapshots/caelis-bot/frontend/public/models/caelis-SOURCES.md', 'public/assets/bot/ATTRIBUTION.md');
+const icon = await readFile('icon.svg');
+const plain = icon.toString().replace(/<style>[\s\S]*?<\/style>/, '').replaceAll('currentColor', '#242536');
+for (const size of [16, 32]) await sharp(Buffer.from(plain)).resize(size, size).png().toFile(`public/favicon-${size}.png`);
+const touch = `<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180"><rect width="180" height="180" rx="38" fill="#fafaf8"/><g transform="translate(36 36) scale(2.7)">${plain.replace(/<svg[^>]*>|<\/svg>/g, '')}</g></svg>`;
+await sharp(Buffer.from(touch)).png().toFile('public/apple-touch-icon.png');
+const png = await readFile('public/favicon-32.png');
+const ico = Buffer.alloc(22); ico.writeUInt16LE(1,2); ico.writeUInt16LE(1,4); ico[6] = 32; ico[7] = 32; ico.writeUInt16LE(1,10); ico.writeUInt16LE(32,12); ico.writeUInt32LE(png.length,14); ico.writeUInt32LE(22,18);
+await writeFile('public/favicon.ico', Buffer.concat([ico,png]));
+execFileSync(process.execPath, ['scripts/sync-docs.mjs','--check'], { stdio: 'inherit' });
+execFileSync(process.execPath, ['scripts/import-references.mjs'], { stdio: 'inherit' });
+console.log('Prepared static assets and verified source snapshots.');

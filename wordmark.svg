@@ -1,17 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 52" role="img" aria-labelledby="title desc">
-  <title id="title">Caelis</title>
-  <desc id="desc">The Caelis relay mark and wordmark.</desc>
-  <g fill="#a9b8ff" shape-rendering="crispEdges" transform="translate(1 -4) scale(.72)">
-    <path d="M29 12h3v3h-3zm3-3h27v6H32z"/>
-    <path d="M5 15h12v6H5zm12 3h9v3h-9zm9-3h9v6h-9zm9 0h24v3H35z"/>
-    <path d="M5 21h12v3H5zm12 0h12v6H17zm12 0h3v3h-3z"/>
-    <path d="M5 30h15v3H5zm15-3h39v6H20z"/>
-    <path d="M5 33h15v3H5zm15 0h39v6H20z"/>
-    <path d="M14 42h3v3h-3zm3-3h12v6H17zm12 3h3v3h-3z"/>
-    <path d="M5 45h15v6H5zm15 0h6v3h-6zm6 0h9v6h-9zm9 3h24v3H35z"/>
-    <path d="M29 51h3v3h-3zm3 0h27v6H32z"/>
-  </g>
-  <path fill="#f6f7f5" fill-rule="evenodd" clip-rule="evenodd" transform="translate(49 3) scale(1.23)" d="
-    M6 6h16v4H10v16h12v4H6V6Zm22 0h16v24h-4V20h-8v10h-4V6Zm4 4v6h8v-6h-8Zm18-4h16v4H54v6h8v4h-8v6h12v4H50V6Zm22 0h4v20h12v4H72V6Zm25 0h6v24h-6V6Zm15 0h16v4h-12v6h12v14h-16v-4h12v-6h-12V6Zm22 20h4v4h-4v-4Z
-  "/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="48" viewBox="0 0 240 48" fill="none"><g transform="translate(0 4)" stroke="#242536" stroke-linecap="round"><path d="M29.6 9.2a14.5 14.5 0 1 0 0 21.6" stroke-width="3.8"/><path d="M25 14.4a7.5 7.5 0 1 0 0 11.2" stroke-width="3.2"/><circle cx="32.7" cy="20" r="3.1" fill="#242536" stroke="none"/></g><text x="51" y="33" fill="#242536" font-family="Arial,Helvetica,sans-serif" font-size="29" font-weight="600" letter-spacing="-1.5">caelis<tspan fill="#70717e" font-weight="400" dx="5">labs</tspan></text></svg>

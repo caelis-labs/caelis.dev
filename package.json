@@ -1,0 +1,40 @@
+{
+  "name": "caelis-labs-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "node scripts/prepare.mjs && astro dev --host 127.0.0.1",
+    "build": "node scripts/prepare.mjs && astro build && node scripts/finalize.mjs",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "astro check && node --test tests/site.test.mjs",
+    "verify": "node scripts/verify.mjs",
+    "docs:sync": "node scripts/sync-docs.mjs",
+    "docs:check": "node scripts/sync-docs.mjs --check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "@astrojs/starlight": "0.42.3",
+    "@fontsource-variable/manrope": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@resvg/resvg-js": "2.6.2",
+    "astro": "7.3.4",
+    "remark-parse": "11.0.0",
+    "remark-stringify": "11.0.0",
+    "satori": "0.33.5",
+    "sharp": "0.35.4",
+    "unified": "11.0.5",
+    "unist-util-visit": "5.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "linkedom": "0.18.13",
+    "typescript": "6.0.3"
+  },
+  "overrides": {
+    "fflate": "^0.7.5"
+  }
+}

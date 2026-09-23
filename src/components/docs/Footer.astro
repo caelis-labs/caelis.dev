@@ -1,0 +1,8 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+import { getLocale } from '../../data/site';
+const { entry } = Astro.locals.starlightRoute; const lang = getLocale(Astro.url.pathname);
+const { sourceRepo, sourceRef, sourcePath } = entry.data;
+---
+{sourceRepo && sourceRef && sourcePath && <div class="doc-source"><span>{lang === 'en' ? 'Based on the public project documentation' : '依据公开项目文档整理'}</span><a href={`https://github.com/caelis-labs/${sourceRepo}/blob/${sourceRef}/${sourcePath}`}>{sourceRepo} · {sourceRef.slice(0,7)} ↗</a></div>}
+<Default/>

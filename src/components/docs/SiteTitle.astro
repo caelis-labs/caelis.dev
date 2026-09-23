@@ -1,0 +1,6 @@
+---
+import Brand from '../Brand.astro';
+import { getLocale, localePath } from '../../data/site';
+const lang = getLocale(Astro.url.pathname);
+---
+<div class="docs-brand"><Brand lang={lang}/><a href={localePath(lang, '/docs/')} class="docs-brand-label">{lang === 'en' ? 'Docs' : '文档'}</a></div>

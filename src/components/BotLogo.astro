@@ -1,0 +1,4 @@
+---
+const { small = false, lazy = false } = Astro.props as { small?: boolean; lazy?: boolean };
+---
+<img class:list={['bot-logo', { 'bot-logo-small': small }]} src={small ? '/assets/bot/logo-96.webp' : '/assets/bot/logo-256.webp'} srcset={small ? undefined : '/assets/bot/logo-256.webp 256w, /assets/bot/logo-512.webp 512w'} sizes={small ? undefined : '(max-width: 760px) 190px, 240px'} alt={small ? '' : 'Caelis Bot'} width={small ? 32 : 240} height={small ? 32 : 240} loading={lazy ? 'lazy' : 'eager'} decoding="async"/>

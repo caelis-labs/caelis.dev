@@ -1,0 +1,12 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import ProjectRows from './ProjectRows.astro';
+import Icon from './Icon.astro';
+import { localePath, projects, ui, type Locale } from '../data/site';
+const { lang = 'en' } = Astro.props as { lang?: Locale }; const t = ui[lang];
+---
+<SiteLayout lang={lang} title={t.projects} description={t.collectionText}>
+  <section class="page-hero" id="top"><div class="container"><p class="eyebrow">CAELIS LABS / {t.projects}</p><h1>{t.collection}<br/><span>{t.collectionSub}</span></h1><p class="lead">{t.collectionText}</p></div></section>
+  <section class="section"><div class="container"><ProjectRows lang={lang} items={projects}/></div></section>
+  <section class="docs-invitation"><div class="container docs-invitation-inner"><div><h2>{lang === 'en' ? 'Not sure where to start?' : '还没决定从哪里开始？'}</h2><p>{lang === 'en' ? 'A short guide to the tools, and how they fit your work.' : '了解每个工具适合什么，以及如何融入你的工作。'}</p></div><a class="button primary" href={localePath(lang, '/docs/choose/')}>{lang === 'en' ? 'Find your project' : '找到适合的项目'}<Icon name="arrow" size={18}/></a></div></section>
+</SiteLayout>
