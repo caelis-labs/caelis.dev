@@ -1,6 +1,6 @@
 ---
 title: "Facts contract"
-description: "Versioned reference from Memory v0.6.1."
+description: "Reference from a reviewed Memory source revision."
 project: "memory"
 productVersion: "v0.6.1"
 sourceRepo: "memory"

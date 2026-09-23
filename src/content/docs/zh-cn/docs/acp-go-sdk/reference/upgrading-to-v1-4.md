@@ -1,6 +1,6 @@
 ---
 title: "升级到 v1.4.0"
-description: "ACP Go SDK v1.4.0 的版本化参考文档。"
+description: "ACP Go SDK 参考文档，来源见页末。"
 project: "acp-go-sdk"
 productVersion: "v1.4.0"
 sourceRepo: "acp-go-sdk"

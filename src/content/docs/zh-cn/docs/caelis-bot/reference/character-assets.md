@@ -1,6 +1,6 @@
 ---
 title: "角色资产"
-description: "Caelis Bot v0.1.0 的版本化参考文档。"
+description: "Caelis Bot 参考文档，来源见页末。"
 project: "caelis-bot"
 productVersion: "v0.1.0"
 sourceRepo: "caelis-bot"

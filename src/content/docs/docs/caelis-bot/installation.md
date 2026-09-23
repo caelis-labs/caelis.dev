@@ -12,7 +12,7 @@ productVersion: "v0.1.0"
 
 ## Before you start
 
-Use an Apple Silicon Mac and install Caelis or Codex separately. Configure the runtime and complete any account login before starting a conversation. Caelis v0.61.0 is the tested release baseline.
+Use an Apple Silicon Mac and install Caelis or Codex separately. Configure the runtime and complete any account login before starting a conversation. Runtime compatibility is checked through the protocol handshake; follow any connection guidance shown by the app.
 
 ## Download and verify
 

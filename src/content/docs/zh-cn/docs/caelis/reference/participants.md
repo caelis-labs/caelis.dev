@@ -1,6 +1,6 @@
 ---
 title: "参与者参考"
-description: "Caelis v0.60.1 的版本化参考文档。"
+description: "Caelis 参考文档，来源见页末。"
 project: "caelis"
 productVersion: "v0.60.1"
 sourceRepo: "caelis"

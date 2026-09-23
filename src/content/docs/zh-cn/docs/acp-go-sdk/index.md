@@ -22,4 +22,4 @@ ACP Go SDK 是产品中立、由社区维护的 Go SDK。可用于实现智能�
 
 ## API 参考
 
-Go 符号级 API 见 [pkg.go.dev](https://pkg.go.dev/github.com/caelis-labs/acp-go-sdk@v1.4.0)。SDK 可以独立于 Caelis 或其他智能体框架使用。
+Go 符号级 API 见 [pkg.go.dev](https://pkg.go.dev/github.com/caelis-labs/acp-go-sdk)。SDK 可以独立于 Caelis 或其他智能体框架使用。

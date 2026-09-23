@@ -2,7 +2,7 @@
 
 The bilingual project hub and documentation site at https://caelis.dev. Built with Astro and Starlight; the output is static HTML, CSS, JavaScript, and assets. There is no application server or account requirement.
 
-The promotion order is **Caelis → Caelis Bot → ACP Go SDK → Memory → Caelis App**. `src/data/projects.json` owns this order and the shared product copy. Only those public projects are included. Product availability and documentation are pinned to public source revisions rather than local development branches.
+The promotion order is **Caelis → Caelis Bot → ACP Go SDK → Memory → Caelis App**. `src/data/projects.json` owns this order and the shared product copy. Only those public projects are included. Product availability is described by release status and supported platforms. Public download links resolve the latest stable release, and module installation commands use `@latest`; landing pages and documentation headers do not display a manually maintained current version. Documentation source snapshots remain pinned to public revisions for review and reproducible builds. A new component release alone does not require a website edit.
 
 ## Develop and validate
 
@@ -64,14 +64,14 @@ tools/                      Existing offline video-generation tools
 
 Core guides are written for the website. Longer reference pages are imported deterministically from committed snapshots and carry their source revision. Chinese reference pages explicitly identify untranslated English material; they do not silently claim to be translations. Imported relative links resolve either to another imported page or to a fixed upstream GitHub revision.
 
-To update a project:
+When documentation or product behavior needs an update (not for every new release):
 
 1. Select a public release or exact public commit. Update that project's entries in `content-sources/manifest.json`, then its version/source reference in `src/data/projects.json` and the affected core guide frontmatter and examples.
 2. With the GitHub CLI installed and authorized for public reads, run `npm run docs:sync`. The command fetches every source successfully before replacing snapshots and recording new checksums. It never reads sibling working trees.
 3. Review the snapshot diff and update both languages' guides. Do not manually edit pages marked `generated: true`; `npm run build` regenerates them from `scripts/import-references.mjs`.
 4. Run `npm run build`, `npm run check`, and `npm run verify`; inspect the changed guides and social cards in the browser.
 
-`npm run docs:check` is an offline integrity check. SDK v1.4.0 installation is intentionally distinct from its example documentation revision: the Client example was added after the release, so the example instructions check out their exact later public commit.
+`npm run docs:check` is an offline integrity check. Catalog, manifest and frontmatter versions describe the reviewed source snapshots only; they are not a live release catalog. Keep version numbers where they define migration behavior, protocol compatibility or historical release notes. The SDK example checkout retains its reviewed commit independently of the `@latest` module installation command.
 
 ## Brand and social images
 

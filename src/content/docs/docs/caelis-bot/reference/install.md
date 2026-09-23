@@ -1,6 +1,6 @@
 ---
 title: "Verified installation steps"
-description: "Versioned reference from Caelis Bot v0.1.0."
+description: "Reference from a reviewed Caelis Bot source revision."
 project: "caelis-bot"
 productVersion: "v0.1.0"
 sourceRepo: "caelis-bot"

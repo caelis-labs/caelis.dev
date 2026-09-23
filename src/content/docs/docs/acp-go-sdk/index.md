@@ -22,4 +22,4 @@ The sample agent returns a fixed greeting. You can run the example without a mod
 
 ## Reference
 
-Use [pkg.go.dev](https://pkg.go.dev/github.com/caelis-labs/acp-go-sdk@v1.4.0) for Go symbols. The SDK can be used independently of Caelis or any particular agent framework.
+Use [pkg.go.dev](https://pkg.go.dev/github.com/caelis-labs/acp-go-sdk) for Go symbols. The SDK can be used independently of Caelis or any particular agent framework.

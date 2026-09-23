@@ -156,6 +156,7 @@ p { text-wrap: pretty; }
 .project-hero-top { display: flex; align-items: center; gap: 15px; }
 .project-subtitle { max-width: 650px; margin-top: 45px; font-size: clamp(29px,4vw,49px); }
 .project-meta { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-top: 27px; font: 15px var(--mono); color: var(--muted); }
+.project-meta a { display: inline-flex; align-items: center; gap: 8px; text-decoration: underline; text-underline-offset: 4px; }
 .product-feature-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 45px; margin-top: 60px; }
 .product-feature-list article { border-top: 1px solid var(--line); padding-top: 22px; }
 .product-feature-list span { font: 14px var(--mono); color: var(--accent); }

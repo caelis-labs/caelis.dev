@@ -1,6 +1,6 @@
 ---
 title: "Upgrade to v1.4.0"
-description: "Versioned reference from ACP Go SDK v1.4.0."
+description: "Reference from a reviewed ACP Go SDK source revision."
 project: "acp-go-sdk"
 productVersion: "v1.4.0"
 sourceRepo: "acp-go-sdk"

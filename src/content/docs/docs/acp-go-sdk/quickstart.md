@@ -1,6 +1,6 @@
 ---
 title: "Install the SDK"
-description: "Add the versioned Go module to your application."
+description: "Add the latest released Go module to your application."
 sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/acp-go-sdk/quickstart.md"
 project: "acp-go-sdk"
@@ -10,10 +10,10 @@ sourcePath: "README.md"
 productVersion: "v1.4.0"
 ---
 
-Requires **Go 1.23 or later**.
+Use the Go toolchain required by the selected release's `go.mod`.
 
 ```sh
-go get github.com/caelis-labs/acp-go-sdk@v1.4.0
+go get github.com/caelis-labs/acp-go-sdk@latest
 ```
 
 Import the root package as `acp`:
@@ -22,11 +22,11 @@ Import the root package as `acp`:
 import acp "github.com/caelis-labs/acp-go-sdk"
 ```
 
-The SDK module release, schema version, and negotiated wire protocol are separate version identities. This command pins the Go module release.
+The SDK module release, schema version, and negotiated wire protocol are separate version identities. This command resolves the latest module release and records the selected version in your project’s `go.mod`.
 
 ## Run a complete example
 
-The examples below are pinned to a public documentation revision after the v1.4.0 release; the module installation remains v1.4.0.
+The example checkout below uses the reviewed documentation revision so the commands remain reproducible. It is separate from the latest module installed into your application above.
 
 ```sh
 git clone https://github.com/caelis-labs/acp-go-sdk.git
