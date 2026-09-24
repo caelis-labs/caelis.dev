@@ -10,7 +10,7 @@
     "dev": "node scripts/prepare.mjs && astro dev --host 127.0.0.1",
     "build": "node scripts/prepare.mjs && astro build && node scripts/finalize.mjs",
     "preview": "astro preview --host 127.0.0.1",
-    "check": "astro check && node --test tests/site.test.mjs",
+    "check": "astro check && node --test tests/site.test.mjs tests/bot-download.test.mjs",
     "verify": "node scripts/verify.mjs",
     "docs:sync": "node scripts/sync-docs.mjs",
     "docs:check": "node scripts/sync-docs.mjs --check"

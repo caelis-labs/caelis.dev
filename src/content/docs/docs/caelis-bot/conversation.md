@@ -5,9 +5,9 @@ sidebar: {"order": 2}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis-bot/conversation.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "6d60b22779b9ffa8927f9a306219e5bccb699320"
+sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
 sourcePath: "README.md"
-productVersion: "v0.1.0"
+productVersion: "v0.2.0"
 ---
 
 ## Open the conversation
@@ -23,5 +23,7 @@ Conversation capabilities depend on the installed runtime. Choose Caelis or Code
 ## Make room
 
 Move or resize the character, or hide it temporarily. Hiding the character does not stop work. Use the menu bar to bring the application controls back into view.
+
+Closing chat or settings keeps Bot running in the menu bar. Only **Quit** ends the app; resident reminders pause while it is closed.
 
 For installation requirements and current limits, see [troubleshooting](../troubleshooting/).

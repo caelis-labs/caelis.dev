@@ -1,15 +1,14 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import Icon from './Icon.astro';
-import BotLogo from './BotLogo.astro';
 import Demo from './Demo.astro';
 import Install from './Install.astro';
 import { localePath, statusLabel, repository, ui, type Locale, type Project } from '../data/site';
 const { lang = 'en', project } = Astro.props as { lang?: Locale; project: Project };
 const t = ui[lang]; const content = project[lang]; const repo = repository(project);
 const releases = `${repo}/releases${project.status === 'release' ? '/latest' : ''}`;
-const start = localePath(lang, `/docs/${project.id}/${project.id === 'caelis' || project.id === 'caelis-bot' ? 'installation/' : 'quickstart/'}`);
-const cta = project.id === 'caelis-bot' ? (lang === 'en' ? 'Get Caelis Bot' : '下载 Caelis Bot') : project.id === 'caelis-app' ? (lang === 'en' ? 'Development guide' : '开发入门') : t.installation;
+const start = localePath(lang, `/docs/${project.id}/${project.id === 'caelis' ? 'installation/' : 'quickstart/'}`);
+const cta = project.id === 'caelis-app' ? (lang === 'en' ? 'Development guide' : '开发入门') : t.installation;
 ---
 <SiteLayout lang={lang} title={project.name} description={content.description}>
   <section class="page-hero" id="top"><div class="container">
@@ -22,7 +21,6 @@ const cta = project.id === 'caelis-bot' ? (lang === 'en' ? 'Get Caelis Bot' : '�
   </div></section>
   <section class="section"><div class="container">
     {project.id === 'caelis' && <Demo lang={lang}/>}
-    {project.id === 'caelis-bot' && <div class="bot-layout"><div><p class="eyebrow">{content.label}</p><h2 class="project-subtitle">{content.tagline.split('\n').map(line => <span class="block-line">{line}<br/></span>)}</h2></div><div class="bot-portrait"><div class="bot-orbit" aria-hidden="true"></div><BotLogo/><span class="bot-presence"><i></i>{lang === 'en' ? 'A little companion. An agent ready to help.' : '桌面上的小伙伴，随时可以帮忙。'}</span></div></div>}
     {project.id === 'acp-go-sdk' && <div class="product-start"><div><p class="eyebrow">AGENT CLIENT PROTOCOL</p><h2 class="project-subtitle">{content.tagline.split('\n').map(line => <span>{line}<br/></span>)}</h2></div><div class="code-example"><div class="code-label"><span>GO MODULE</span></div><pre><code><span class="code-comment">{lang === 'en' ? '// Start with an open protocol.' : '// 从开放协议开始。'}</span>{'\n\ngo get github.com/caelis-labs/acp-go-sdk@latest\n\n'}<span class="code-comment">{lang === 'en' ? '// Build your agent. Connect your client.' : '// 构建 Agent，连接 Client。'}</span></code></pre></div></div>}
     {project.id === 'memory' && <div class="product-start"><div><p class="eyebrow">AN EMBEDDED MEMORY SYSTEM</p><h2 class="project-subtitle">{content.tagline.split('\n').map(line => <span>{line}<br/></span>)}</h2></div><div class="code-example"><div class="code-label"><span>{lang === 'en' ? 'MODEL-FACING INTERFACE' : '面向模型的接口'}</span></div><pre><code><span class="code-comment">{lang === 'en' ? '// A small interface. A durable foundation.' : '// 简洁的接口，持久的基础。'}</span>{'\n\nremember(text)\nrecall(query)\n\n'}<span class="code-comment">{lang === 'en' ? '// Your host owns identity and authority.' : '// 宿主负责身份与授权。'}</span></code></pre></div></div>}
     {project.id === 'caelis-app' && <div class="product-start"><div><p class="eyebrow">DESKTOP / ACP</p><h2 class="project-subtitle">{content.tagline.split('\n').map(line => <span>{line}<br/></span>)}</h2></div><div class="product-notice"><p>{lang === 'en' ? 'Caelis App is an early beta. The terminal workspace remains the primary Caelis surface. You can explore the source and run the desktop client locally.' : 'Caelis App 处于早期 Beta。终端工作空间仍是 Caelis 的主要产品形态。你可以探索源码，并在本地运行桌面客户端。'}</p><a class="text-link" href={start}>{lang === 'en' ? 'Build it locally' : '在本地构建'}<Icon name="arrow" size={18}/></a></div></div>}
@@ -30,7 +28,6 @@ const cta = project.id === 'caelis-bot' ? (lang === 'en' ? 'Get Caelis Bot' : '�
   </div></section>
   <section class="section bot-section" id="cli"><div class="container product-start"><div><p class="eyebrow">{t.installation}</p><h2 class="project-subtitle">{lang === 'en' ? 'Make the first connection.' : '建立第一次连接。'}</h2><p>{project.id === 'caelis' ? (lang === 'en' ? 'Install Caelis, open a workspace, and connect your first model or agent.' : '安装 Caelis，打开工作区，连接第一个模型或智能体。') : content.short}</p><a class="text-link" href={localePath(lang, `/docs/${project.id}/`)}>{t.productDocs}<Icon name="arrow" size={18}/></a></div>
     {project.id === 'caelis' ? <Install lang={lang}/> : <div class="product-notice">
-      {project.id === 'caelis-bot' && <p>{lang === 'en' ? 'Available for Apple Silicon Macs. Connect a separately installed Caelis or Codex runtime, then open Caelis Bot from Applications. See the installation guide for download verification and setup.' : '正式版适用于 Apple Silicon Mac，可连接独立安装的 Caelis 或 Codex。从“应用程序”打开 Caelis Bot，按安装指南完成下载校验与首次设置。'}</p>}
       {project.id === 'acp-go-sdk' && <p>{lang === 'en' ? 'Start with the minimal agent and client examples. No model account is needed for the fixed-response example.' : '从最小 Agent 和 Client 示例开始。运行固定回复的入门示例，无需模型账号。'}</p>}
       {project.id === 'memory' && <p>{lang === 'en' ? 'Integrate the published Go module in your host. Memory is embedded; it does not need a separate server or installation when used inside Caelis.' : '将已发布的 Go 模块集成进宿主。Memory 以嵌入式方式运行，在 Caelis 中使用时无需独立服务或额外安装。'}</p>}
       {project.id === 'caelis-app' && <p>{lang === 'en' ? 'Start from the development guide and a local ACP executable. There is no published desktop installer yet.' : '按开发指南准备环境与本地 ACP 程序。目前尚无公开发布的桌面安装包。'}</p>}

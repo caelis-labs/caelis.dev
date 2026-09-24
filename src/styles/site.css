@@ -106,7 +106,7 @@ p { text-wrap: pretty; }
 .bot-copy h3 { margin-top: 28px; font-size: clamp(28px, 2.5vw, 38px); letter-spacing: -.04em; line-height: 1.35; }
 .bot-copy h3 span { display: block; }
 .bot-copy > p:not(.eyebrow) { margin-top: 20px; font-size: 1.125rem; color: var(--muted); max-width: 600px; line-height: 1.85; }
-.bot-copy .button { margin-top: 30px; }
+.bot-copy .actions { margin-top: 30px; gap: 16px 24px; }
 .footnote { display: block; font-size: .9375rem; color: var(--muted); margin-top: 18px; }
 .bot-portrait { min-height: 460px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--bot-surface); border-radius: 3px; }
 .bot-portrait img { width: 240px; height: 240px; object-fit: contain; position: relative; filter: drop-shadow(0 15px 24px #31244116); }

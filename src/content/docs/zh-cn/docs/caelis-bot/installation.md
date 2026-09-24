@@ -5,9 +5,9 @@ sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis-bot/installation.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "6d60b22779b9ffa8927f9a306219e5bccb699320"
-sourcePath: "docs/install.md"
-productVersion: "v0.1.0"
+sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
+sourcePath: "docs/install.zh-CN.md"
+productVersion: "v0.2.0"
 ---
 
 ## 开始前
@@ -16,8 +16,8 @@ productVersion: "v0.1.0"
 
 ## 下载与校验
 
-1. 打开 [Caelis Bot 最新稳定版](https://github.com/caelis-labs/caelis-bot/releases/latest)。
-2. 选择兼容的稳定版 DMG 和对应的 `.sha256` 文件。
+1. 从官方 Cloudflare R2 镜像[下载 macOS 版 Caelis Bot（Apple Silicon）](/download/caelis-bot/)。
+2. 下载对应的 [SHA-256 校验文件](/download/caelis-bot/?asset=checksum)。入口始终解析最新稳定版，也可以从 [GitHub Releases](https://github.com/caelis-labs/caelis-bot/releases/latest) 下载。
 3. 按照已锁定公开版本中的[完整校验与首次启动指令](../reference/install/)操作。
 4. 校验完成后，将 **Caelis Bot.app** 拖入 Applications 并启动。
 
@@ -29,6 +29,12 @@ Caelis Bot 会自动发现本地 Caelis 和 Codex，也可以在 **设置 → �
 
 单击角色开始输入，双击打开对话。参阅[对话操作](../conversation/)。
 
+在 **设置 → 常规 → 语言** 中选择**简体中文**或**英文**。切换语言会保留草稿、待审批答案和连接进度。
+
 ## 更新
 
-下载并校验更新的兼容版本，手动安装并保留现有应用数据。更新前查看对应版本的发布说明和安装指南。
+从 **v0.2.0** 起，稳定版每天自动检查更新。可在 **设置 → 关于 → 检查更新** 中立即检查，也可以关闭自动检查。下载与安装需要你确认；Bot 会等待当前任务和待处理操作完成后再重启，并保留对话、Notebook 与设置。
+
+**从 v0.1.0 升级：**先手动下载、校验并安装一次新版 DMG。退出 Bot，仅替换应用包，保留应用数据。之后可使用应用内更新。预览版和开发版仍需手动安装。
+
+R2 仅保留最新稳定版，旧版本可从 [GitHub 发布历史](https://github.com/caelis-labs/caelis-bot/releases)获取。请一起下载 DMG 与校验文件；如果两次下载之间恰逢发版，导致文件名不匹配，请重新下载对应的一组文件。

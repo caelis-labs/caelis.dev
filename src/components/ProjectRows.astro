@@ -9,7 +9,7 @@ const icons: Record<string,string> = {caelis:'terminal','caelis-bot':'sun','acp-
   {items.map((project, i) => <article class="project-row" data-project={project.id}>
     <span class="project-number">{String(start + i + 1).padStart(2, '0')}</span>
     <div class="project-row-main"><div class="project-row-title">{project.id === 'caelis-bot' ? <BotLogo small lazy/> : <Icon name={icons[project.id]} size={27}/>}<h3><a href={localePath(lang, `/projects/${project.id}/`)}>{project.name}</a></h3>{project.status !== 'release' && <span class="status-label">{statusLabel(project, lang)}</span>}</div><p>{project[lang].short}</p></div>
-    <div class="project-row-meta"><span>{project.platform}</span><a class="text-link" href={localePath(lang, `/docs/${project.id}/`)}>{ui[lang].docs}<Icon name="arrow" size={17}/></a></div>
+    <div class="project-row-meta"><span>{project.platform}</span>{project.id === 'caelis-bot' ? <a class="text-link" href="/download/caelis-bot/">{lang === 'en' ? 'Download for macOS' : '下载 macOS 版'}<Icon name="download" size={17}/></a> : <a class="text-link" href={localePath(lang, `/docs/${project.id}/`)}>{ui[lang].docs}<Icon name="arrow" size={17}/></a>}</div>
     <a class="project-row-go" href={localePath(lang, `/projects/${project.id}/`)} aria-label={`${ui[lang].learn}: ${project.name}`}><Icon name="external" size={24}/></a>
   </article>)}
 </div>

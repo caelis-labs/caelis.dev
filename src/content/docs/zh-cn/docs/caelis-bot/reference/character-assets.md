@@ -2,9 +2,9 @@
 title: "角色资产"
 description: "Caelis Bot 参考文档，来源见页末。"
 project: "caelis-bot"
-productVersion: "v0.1.0"
+productVersion: "v0.2.0"
 sourceRepo: "caelis-bot"
-sourceRef: "6d60b22779b9ffa8927f9a306219e5bccb699320"
+sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
 sourcePath: "docs/character-assets.md"
 generated: true
 editUrl: false
@@ -19,7 +19,7 @@ sidebar: {"order":20}
 通用火柴人与纸飞机为 Apache-2.0。资产授权不限制应用源码本身。
 
 独立内容包、本地导入与创作者工具边界见
-[角色与装饰内容包扩展方案](https://github.com/caelis-labs/caelis-bot/blob/6d60b22779b9ffa8927f9a306219e5bccb699320/docs/asset-extensions-plan.md)。其中本地内容包 v1 已实现，创作者入口见[制作与发布内容包](https://github.com/caelis-labs/caelis-bot/blob/6d60b22779b9ffa8927f9a306219e5bccb699320/docs/content-packs.md)。
+[角色与装饰内容包扩展方案](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/docs/asset-extensions-plan.md)。其中本地内容包 v1 已实现，创作者入口见[制作与发布内容包](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/docs/content-packs.md)。
 本页记录官方内置成品交付合同，两者版本与校验入口独立。
 
 ## 成品合同 v1 / v2
@@ -87,3 +87,20 @@ make build
 
 GLB 本身包含可提取的网格、骨骼和动画；私有化保护制作工程与过程，并不加密运行成品。
 来源说明见 `frontend/public/models/caelis-SOURCES.md`；原参考材料的权利不会因拆分或换装而自动变化。
+
+### 可选手持接触校准
+
+`desktopPetFingerRig.gripBones.R.contact.version=1` 可携带 `thumbOffset`、`indexOffset`
+（三维指骨局部坐标）与 `rotation`（相对手腕的 xyzw 四元数）。纸飞机下折边放在两个
+实际指腹接触点的中间，朝向随手腕转动；缺失或无效数据沿用原挂点，旧资产兼容。
+这只是持物挂点数据，不提供任意物体抓取或碰撞求解，也不改变道具生命周期。
+
+风格化道具也可选择 `gripBones.R.presentation={version:1, mode:"hover", handOffset,
+rootOffset, rotation}`：`handOffset` 是手腕骨局部坐标，`rootOffset` 是角色坐标系中的
+悬浮位移，`rotation` 是角色坐标系中的道具 xyzw 朝向。挂点随手移动，抬升方向与机翼
+朝向随角色转动，不受手腕翻转影响。该模式优先于接触校准；向量分量须在 ±0.3 内，
+四元数须非零且所有分量有限。旧模型和无效数据继续使用原挂点。
+
+悬浮展示可附加 `handRotation`（角色坐标系中的掌面 xyzw 朝向），由现有手腕求解器
+在托物动作中渐变应用，同时带动前臂扭转。纸飞机在掌面距目标小于 0.25 弧度后显现，
+避免抬手途中擦过袖口；该挂点只可隐藏道具，不能覆盖调用方的释放/中断隐藏状态。

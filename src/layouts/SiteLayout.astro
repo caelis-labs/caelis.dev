@@ -4,7 +4,7 @@ import '../styles/site.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { alternatePath, type Locale } from '../data/site';
-const { lang = 'en', title = 'Caelis Labs', description, noindex = false } = Astro.props as { lang?: Locale; title?: string; description: string; noindex?: boolean };
+const { lang = 'en', title = 'Caelis Labs', description, noindex = false, compactFooter = false } = Astro.props as { lang?: Locale; title?: string; description: string; noindex?: boolean; compactFooter?: boolean };
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = title === 'Caelis Labs' ? 'Caelis Labs — Open tools. Connected intelligence.' : `${title} · Caelis Labs`;
 ---
@@ -37,7 +37,7 @@ const pageTitle = title === 'Caelis Labs' ? 'Caelis Labs — Open tools. Connect
   <body>
     <Header lang={lang}/>
     <main id="main"><slot/></main>
-    <Footer lang={lang}/>
+    <Footer lang={lang} compact={compactFooter}/>
     <script>import '../scripts/site';</script>
   </body>
 </html>
