@@ -12,3 +12,5 @@ public/install.sh
 public/install.ps1
 public/wordmark.svg
 .artifacts/
+.wrangler/
+__pycache__/

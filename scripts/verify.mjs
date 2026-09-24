@@ -26,11 +26,14 @@ export async function verifySite() {
     documents.set(pathname, { document: parseHTML(html).document, html });
   }
   const assets = new Set(files.map(file => '/' + path.relative(dist, file).replaceAll(path.sep, '/')));
-  const aliases = new Set(['/github', '/releases']);
+  const aliases = new Set(['/github', '/releases', '/download/caelis-bot/']);
+  const functionRoutes = JSON.parse(await readFile(path.join(dist, '_routes.json'), 'utf8'));
+  assert.deepEqual(functionRoutes, { version: 1, include: ['/download/caelis-bot', '/download/caelis-bot/'], exclude: [] });
+  await stat(path.join(root, 'functions/download/caelis-bot.js'));
   let links = 0;
   for (const [pathname, { document }] of documents) {
     const base = new URL(pathname, 'https://caelis.dev');
-    for (const element of document.querySelectorAll('a[href],link[href],script[src],img[src],source[src],video[poster]')) {
+    for (const element of document.querySelectorAll('a[href],link[href],script[src],img[src],source[src],track[src],video[poster]')) {
       const raw = element.getAttribute('href') || element.getAttribute('src') || element.getAttribute('poster');
       if (!raw || /^(data:|mailto:|tel:)/.test(raw)) continue;
       const url = new URL(raw, base);
@@ -92,6 +95,27 @@ export async function verifySite() {
     const projects = documents.get(`${prefix}/projects/`).document;
     const actual = [...projects.querySelectorAll('.project-row h3 a')].map(link => link.getAttribute('href').split('/').filter(Boolean).at(-1));
     require(JSON.stringify(actual) === JSON.stringify(projectOrder), `${prefix}/projects/: promotion order changed`);
+    for (const route of ['/', '/projects/', '/projects/caelis-bot/', '/docs/caelis-bot/', '/docs/caelis-bot/installation/']) {
+      const page = documents.get(`${prefix}${route}`).document;
+      require(page.querySelector('a[href="/download/caelis-bot/"]'), `${prefix}${route}: missing direct Bot download`);
+    }
+    const botPage = documents.get(`${prefix}/projects/caelis-bot/`).document;
+    require(botPage.querySelector('.page-hero .button.primary[href="/download/caelis-bot/"]'), `${prefix}: Bot hero must download directly`);
+    require(botPage.querySelectorAll('a[href="/download/caelis-bot/"]').length === 1, `${prefix}: Bot page repeats the download action`);
+    require(botPage.querySelector('.desktop-nav a[href="https://github.com/caelis-labs/caelis-bot"]'), `${prefix}: Bot navigation must link to its repository`);
+    require(botPage.querySelectorAll('main a[href*="/docs/"]').length === 0, `${prefix}: Bot main content repeats the guide already in navigation`);
+    const botVideo = botPage.querySelector('[data-bot-demo] video');
+    require(['autoplay', 'muted', 'loop', 'playsinline'].every(attribute => botVideo?.hasAttribute(attribute)), `${prefix}: Bot demo needs muted inline looping playback`);
+    require(!botVideo?.hasAttribute('controls') && !botPage.querySelector('[data-chapter]'), `${prefix}: Bot demo must not expose a timeline or chapter jumps`);
+    require(botPage.querySelector('[data-playback][aria-label]'), `${prefix}: missing accessible Bot play/pause button`);
+    require(botPage.querySelectorAll('.bot-scenario blockquote').length === 3, `${prefix}: missing actionable Bot scenarios`);
+    const videoBase = `assets/video/caelis-bot-demo-${prefix ? 'zh-cn' : 'en'}`;
+    const botPoster = await sharp(path.join(dist, `${videoBase}.webp`)).metadata();
+    require(botPoster.width === 1600 && botPoster.height === 900, `${prefix}: wrong Bot poster dimensions`);
+    require((await stat(path.join(dist, `${videoBase}.mp4`))).size < 8_000_000, `${prefix}: Bot demo exceeds 8 MB budget`);
+    require((await readFile(path.join(dist, `${videoBase}.vtt`), 'utf8')).startsWith('WEBVTT'), `${prefix}: invalid Bot captions`);
+    const botInstallation = documents.get(`${prefix}/docs/caelis-bot/installation/`).document;
+    require(botInstallation.querySelector('a[href="/download/caelis-bot/?asset=checksum"]'), `${prefix}: missing Bot checksum link in installation guide`);
   }
   require(assets.has('/pagefind/pagefind.js'), 'Search index is missing');
   const homeHTMLGzip = gzipSync(documents.get('/').html).length;

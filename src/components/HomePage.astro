@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import Brand from './Brand.astro';
 import Icon from './Icon.astro';
 import BotLogo from './BotLogo.astro';
+import BotDownload from './BotDownload.astro';
 import Demo from './Demo.astro';
 import Install from './Install.astro';
 import ProjectRows from './ProjectRows.astro';
@@ -32,7 +33,7 @@ const { lang = 'en' } = Astro.props as { lang?: Locale }; const t = ui[lang]; co
 
   <section class="section bot-section" aria-labelledby="bot-heading">
     <div class="container bot-layout">
-      <div class="bot-copy reveal"><p class="eyebrow">{t.botFeature}</p><h2 id="bot-heading">Caelis Bot<span class="heading-period">.</span></h2><h3>{bot.tagline.split('\n').map(line => <span>{line}</span>)}</h3><p>{bot.description}</p><a class="button primary" href={localePath(lang, '/projects/caelis-bot/')}>{bot.cta}<Icon name="arrow" size={18}/></a><span class="footnote">{t.botNote}</span></div>
+      <div class="bot-copy reveal"><p class="eyebrow">{t.botFeature}</p><h2 id="bot-heading">Caelis Bot<span class="heading-period">.</span></h2><h3>{bot.tagline.split('\n').map(line => <span>{line}</span>)}</h3><p>{bot.description}</p><div class="actions"><BotDownload lang={lang}/><a class="text-link" href={localePath(lang, '/projects/caelis-bot/')}>{bot.cta}<Icon name="arrow" size={18}/></a></div><span class="footnote">{t.botNote}</span></div>
       <div class="bot-portrait reveal"><div class="bot-orbit" aria-hidden="true"></div><BotLogo lazy/><span class="bot-presence"><i></i>{lang === 'en' ? 'Here, when you need a hand.' : '需要时，就在你身边。'}</span><div class="bot-portrait-caption"><span>CAELIS BOT</span><span>YOUR DESKTOP COMPANION ↗</span></div></div>
     </div>
   </section>

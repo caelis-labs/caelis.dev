@@ -5,9 +5,9 @@ sidebar: {"order": 2}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis-bot/conversation.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "6d60b22779b9ffa8927f9a306219e5bccb699320"
+sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
 sourcePath: "README.md"
-productVersion: "v0.1.0"
+productVersion: "v0.2.0"
 ---
 
 ## 打开对话
@@ -23,5 +23,7 @@ productVersion: "v0.1.0"
 ## 给桌面留出空间
 
 移动、缩放角色，或暂时隐藏它。隐藏角色不会停止工作，可通过菜单栏继续访问应用控制。
+
+关闭对话或设置窗口后，Bot 仍会在菜单栏运行。只有**退出**才会结束应用；退出期间，常驻提醒暂停。
 
 安装条件与当前限制请参阅[常见问题](../troubleshooting/)。

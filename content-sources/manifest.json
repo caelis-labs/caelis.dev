@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-23",
+  "updated": "2026-09-25",
   "sources": [
     {
       "repo": "caelis",
@@ -25,50 +25,50 @@
     },
     {
       "repo": "caelis-bot",
-      "ref": "6d60b22779b9ffa8927f9a306219e5bccb699320",
-      "version": "v0.1.0",
+      "ref": "e58d90b7c26f1f004d25d05d9b55fed6973482b3",
+      "version": "v0.2.0",
       "path": "README.md",
-      "sha256": "2077e80f7251ee38c2041e98efd5f4e0b40ed3ecfa21b1ccb795aa1af24234d4"
+      "sha256": "7a5d0d649b611aeada9cdc0c569e52e23ab156ae13aba9fefb9401566366f284"
     },
     {
       "repo": "caelis-bot",
-      "ref": "6d60b22779b9ffa8927f9a306219e5bccb699320",
-      "version": "v0.1.0",
+      "ref": "e58d90b7c26f1f004d25d05d9b55fed6973482b3",
+      "version": "v0.2.0",
       "path": "docs/install.md",
-      "sha256": "83c73d536860e41b5ea53d57d665bf0abed6030b99fa3aec98aef8bf62945547"
+      "sha256": "03d975900386ef915f5d9e1ca9b6c2252f5bb5f34b7f922608b64a78d95729af"
     },
     {
       "repo": "caelis-bot",
-      "ref": "6d60b22779b9ffa8927f9a306219e5bccb699320",
-      "version": "v0.1.0",
+      "ref": "e58d90b7c26f1f004d25d05d9b55fed6973482b3",
+      "version": "v0.2.0",
       "path": "docs/install.zh-CN.md",
-      "sha256": "aa7f94aab1f914e9937e01f99083bcfbb622421f116a5d4c3b3816c4f4b7e81c"
+      "sha256": "c5442c88d880f7ef18368ba2b858170cb41c42751aa4b2f8a45e4b05513a4b29"
     },
     {
       "repo": "caelis-bot",
-      "ref": "6d60b22779b9ffa8927f9a306219e5bccb699320",
-      "version": "v0.1.0",
+      "ref": "e58d90b7c26f1f004d25d05d9b55fed6973482b3",
+      "version": "v0.2.0",
       "path": "docs/character-assets.md",
-      "sha256": "31b5f6a38847756166a2ac02ab577cd7a2a6f38bd5de5638a1646d6645c20057"
+      "sha256": "41254f775b25f31f19b88430eb973cffddf1f8eb71ad5401cad29fdd88ef3f44"
     },
     {
       "repo": "caelis-bot",
-      "ref": "6d60b22779b9ffa8927f9a306219e5bccb699320",
-      "version": "v0.1.0",
+      "ref": "e58d90b7c26f1f004d25d05d9b55fed6973482b3",
+      "version": "v0.2.0",
       "path": "frontend/public/icons/caelis-avatar.png",
       "sha256": "fb58aa27dc9e9483d95ceb9b5b782feaa792142a016a3e2ea159de5fd4fcbca8"
     },
     {
       "repo": "caelis-bot",
-      "ref": "6d60b22779b9ffa8927f9a306219e5bccb699320",
-      "version": "v0.1.0",
+      "ref": "e58d90b7c26f1f004d25d05d9b55fed6973482b3",
+      "version": "v0.2.0",
       "path": "ASSET-LICENSE.md",
       "sha256": "ce52715ee0af6208c4f842fa44556cf20bf58f492b061fb1cc8531d8835e56b1"
     },
     {
       "repo": "caelis-bot",
-      "ref": "6d60b22779b9ffa8927f9a306219e5bccb699320",
-      "version": "v0.1.0",
+      "ref": "e58d90b7c26f1f004d25d05d9b55fed6973482b3",
+      "version": "v0.2.0",
       "path": "frontend/public/models/caelis-SOURCES.md",
       "sha256": "faae9cbe52864103d858d97a2a0f37acc66f50bfc468e74d1773a50c60c686bf"
     },

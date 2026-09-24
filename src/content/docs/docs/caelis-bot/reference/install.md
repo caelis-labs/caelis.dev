@@ -2,16 +2,16 @@
 title: "Verified installation steps"
 description: "Reference from a reviewed Caelis Bot source revision."
 project: "caelis-bot"
-productVersion: "v0.1.0"
+productVersion: "v0.2.0"
 sourceRepo: "caelis-bot"
-sourceRef: "6d60b22779b9ffa8927f9a306219e5bccb699320"
+sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
 sourcePath: "docs/install.md"
 generated: true
 editUrl: false
 sidebar: {"order":20}
 ---
 
-[English](/docs/caelis-bot/reference/install/) · [简体中文](https://github.com/caelis-labs/caelis-bot/blob/6d60b22779b9ffa8927f9a306219e5bccb699320/docs/install.zh-CN.md)
+[English](/docs/caelis-bot/reference/install/) · [简体中文](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/docs/install.zh-CN.md)
 
 ## Download and verify
 
@@ -63,6 +63,17 @@ If you dragged the app into the system Applications folder, use `/Applications/C
 
 Caelis Bot appears in the **menu bar and on the desktop**, not as a regular Dock app. Single-click the character to write; double-click to open chat. Menu-bar settings control visibility, size, runtime and updates. Only Quit ends the app.
 
-Connect a runtime during setup or in **Settings → Runtime**. Codex uses a compatible local App Server or discovers a local CLI; you can also select an executable or follow the installation and login steps. Installing or opening Codex Desktop alone does not guarantee an accessible runtime. The Bot does not silently install Codex or log in for you. See [runtime compatibility](https://github.com/caelis-labs/caelis-bot/blob/6d60b22779b9ffa8927f9a306219e5bccb699320/docs/codex-compatibility.md). Caelis v0.61.0 is the tested release baseline; compatibility is negotiated through the [application-runtime protocol](https://github.com/caelis-labs/caelis-bot/blob/6d60b22779b9ffa8927f9a306219e5bccb699320/docs/caelis-integration.md), not a CLI-version allowlist.
+Connect a runtime during setup or in **Settings → Runtime**. Codex uses a compatible local App Server or discovers a local CLI; you can also select an executable or follow the installation and login steps. Installing or opening Codex Desktop alone does not guarantee an accessible runtime. The Bot does not silently install Codex or log in for you. See [runtime compatibility](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/docs/codex-compatibility.md). Caelis v0.61.0 is the tested release baseline; compatibility is negotiated through the [application-runtime protocol](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/docs/caelis-integration.md), not a CLI-version allowlist.
 
 Notifications are opt-in. Resident reminders pause when the app exits. Updating the `.app` preserves preferences, attachments and conversation binding. Keep the `Application Support/Caelis Bot` folder unless you intentionally want to remove your data.
+
+## Update
+
+Stable builds with the updater check daily; **Settings → About** can disable automatic
+checks, and **Check for Updates** checks immediately. Confirm the native update dialog
+to download, verify and install the signed version. The app waits for work and pending
+decisions to finish before restarting, preserving conversations, Notebook and settings.
+
+The already published v0.1.0 and preview/development builds use manual installation.
+Install the first updater-enabled stable version using the instructions above once.
+The R2 mirror retains only the latest stable package; historical releases remain on GitHub.
