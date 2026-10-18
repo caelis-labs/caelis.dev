@@ -27,6 +27,6 @@ Windows 安装包尚未进行 Authenticode 签名。先阅读[安装与首次使
 
 在 Notebook 中保存可编辑的笔记，在应用运行时安排提醒，截取并标注屏幕选区，按需连接支持的插件。Telegram 也可以接入同一个 Bot 对话。实际能力取决于模型、服务与权限；应用下载不包含模型服务订阅。
 
-Caelis Bot 是独立的桌面应用，与 Caelis 的 `caelis bot` 终端命令及 Caelis App 不同。
+Caelis Bot 是独立的桌面应用，与 Caelis 的 `caelis bot` 终端命令 不同。
 
 代码采用 Apache-2.0，角色成品资产适用独立的[资产许可](./reference/character-assets/)。

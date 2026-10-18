@@ -122,20 +122,6 @@
       "sha256": "a2e9d9b23ed7799084e53fc3fc234753a53bcad7b5cc41d26c1eda68a4ebcef5"
     },
     {
-      "repo": "caelis-app",
-      "ref": "e443ccd1a5f595fb31caade2e5af0fc941d7772d",
-      "version": "Development",
-      "path": "README.md",
-      "sha256": "671bc1697c9ecd7f503d6c90a5f7ffa8e1ccec170a2a70f97e9fb1b0de06497f"
-    },
-    {
-      "repo": "caelis-app",
-      "ref": "e443ccd1a5f595fb31caade2e5af0fc941d7772d",
-      "version": "Development",
-      "path": "docs/architecture.md",
-      "sha256": "58313e289ae72630f799cdfa96f439ec7e1b4bde94be4e1f0f882fcdaeccd22a"
-    },
-    {
       "repo": "caelis-bot",
       "ref": "c6579eecb9da57a91090174b9a414750a3e3ef4f",
       "version": "v0.15.2",
@@ -148,6 +134,34 @@
       "version": "v0.15.2",
       "path": "docs/windows-release.md",
       "sha256": "18023ddc76e06e778f526dc269b939dc09b44c9cb39e0e35bc714eced396fbe4"
+    },
+    {
+      "repo": "desktop-world",
+      "ref": "79a097b3b479fbf65926fdd6a58c296d8d1e1e1e",
+      "version": "v0.1.0-rc.9",
+      "path": "README.md",
+      "sha256": "f42877208ea5f2009afe62afee217f4331cba81a66d58581b30f5f60044106cd"
+    },
+    {
+      "repo": "desktop-world",
+      "ref": "79a097b3b479fbf65926fdd6a58c296d8d1e1e1e",
+      "version": "v0.1.0-rc.9",
+      "path": "docs/install.md",
+      "sha256": "53df54f010422ce1594e58475f8c21219b926ea655c429ddbe7e31f43059b12e"
+    },
+    {
+      "repo": "desktop-world",
+      "ref": "79a097b3b479fbf65926fdd6a58c296d8d1e1e1e",
+      "version": "v0.1.0-rc.9",
+      "path": "NOTICE",
+      "sha256": "88486fdaf1aa9232b2a94a0c21ceb492f8ab22af6a4d0de16a52cf6d79f46678"
+    },
+    {
+      "repo": "desktop-world",
+      "ref": "79a097b3b479fbf65926fdd6a58c296d8d1e1e1e",
+      "version": "v0.1.0-rc.9",
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "eca3ad4089903bdbb834fd5bcf4b91dd5db7257f7bca22c60b8ef0074bcfc2ee"
     }
   ]
 }

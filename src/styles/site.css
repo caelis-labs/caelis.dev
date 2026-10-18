@@ -293,3 +293,14 @@ p { text-wrap: pretty; }
   html { scroll-behavior: auto; } *,*::before,*::after { animation: none !important; transition: none !important; }
   .js .reveal.pending { opacity: 1; transform: none; }
 }
+
+/* One clear destination for Bot; keep Labs' existing editorial rhythm. */
+.bot-copy .bot-entry { margin-top: 32px; align-items: center; }
+.bot-copy .bot-entry .button { min-height: 50px; white-space: nowrap; }
+.bot-copy > .footnote { display: block; margin-top: 16px; }
+.project-row-title { flex-wrap: wrap; row-gap: 10px; }
+.project-row-meta .text-link { white-space: nowrap; }
+@media (max-width: 1000px) and (min-width: 761px) {
+  .bot-layout { gap: 36px; grid-template-columns: 1.1fr 1fr; }
+  .bot-copy h3 { font-size: 29px; }
+}

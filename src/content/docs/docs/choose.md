@@ -11,7 +11,7 @@ editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/d
 | Keep an agent-powered companion on your desktop | [Caelis Bot](/docs/caelis-bot/) |
 | Build an ACP agent or client in Go | [ACP Go SDK](/docs/acp-go-sdk/) |
 | Give your agent host durable, governed memory | [Memory](/docs/memory/) |
-| Explore an ACP-first desktop workbench | [Caelis App](/docs/caelis-app/) |
+| Connect your agent to desktop apps with a CUA-based plugin | [Desktop World](/docs/desktop-world/) |
 
 ## How the projects fit together
 
@@ -19,7 +19,8 @@ Caelis provides a local collaboration workspace. ACP Go SDK and Memory are indep
 
 Caelis Bot is a separate desktop companion. The macOS and Windows packages include Caelis, or you can connect your own local Codex installation. It is different from the `caelis bot` terminal command in the Caelis repository.
 
-Caelis App is an early desktop client built around ACP. It does not yet offer a public desktop installer.
+
+Desktop World packages and extends CUA for desktop inspection and actions. It is a prerelease; read the platform notes before use.
 
 ## What you need
 

@@ -28,7 +28,8 @@ export async function verifySite() {
   const assets = new Set(files.map(file => '/' + path.relative(dist, file).replaceAll(path.sep, '/')));
   const aliases = new Set(['/github', '/releases', '/download/caelis-bot/']);
   const functionRoutes = JSON.parse(await readFile(path.join(dist, '_routes.json'), 'utf8'));
-  assert.deepEqual(functionRoutes, { version: 1, include: ['/download/caelis-bot', '/download/caelis-bot/'], exclude: [] });
+  assert.deepEqual(functionRoutes, JSON.parse(await readFile(path.join(root, 'public/_routes.json'), 'utf8')));
+  assert.ok(functionRoutes.include.includes('/docs/caelis-app/*'), 'Retired URLs must reach the 410 middleware');
   await stat(path.join(root, 'functions/download/caelis-bot.js'));
   let links = 0;
   for (const [pathname, { document }] of documents) {
@@ -91,51 +92,27 @@ export async function verifySite() {
   require(largestBotLogo < 60000, 'Bot logo exceeds 60 KB budget');
   const home = documents.get('/').document;
   for (const id of ['cli', 'demo-video', 'top']) require(home.getElementById(id), `Legacy homepage anchor #${id} missing`);
-  const botMedia = JSON.parse(await readFile(path.join(root, 'src/data/bot-media.json'), 'utf8'));
-  const projectOrder = ['caelis', 'caelis-bot', 'acp-go-sdk', 'memory', 'caelis-app'];
+  const projectOrder = ['caelis', 'caelis-bot', 'acp-go-sdk', 'memory', 'desktop-world'];
+  require(!files.some(file => /caelis-app|caelis-bot-(?:demo|current)/.test(path.relative(dist, file))), 'Retired App or duplicate Bot media exists in build');
+  for (const [route, {html}] of documents) {
+    require(!/Caelis App|caelis-app/.test(html), `${route}: retired product is still visible or linked`);
+    require(!html.includes('/projects/caelis-bot/'), `${route}: duplicate Bot marketing link`);
+  }
   for (const prefix of ['', '/zh-cn']) {
+    const botURL = `https://ohmybot.si${prefix}/`;
     const projects = documents.get(`${prefix}/projects/`).document;
-    const actual = [...projects.querySelectorAll('.project-row h3 a')].map(link => link.getAttribute('href').split('/').filter(Boolean).at(-1));
-    require(JSON.stringify(actual) === JSON.stringify(projectOrder), `${prefix}/projects/: promotion order changed`);
-    for (const route of ['/', '/projects/', '/projects/caelis-bot/', '/docs/caelis-bot/', '/docs/caelis-bot/installation/']) {
-      const page = documents.get(`${prefix}${route}`).document;
-      require(page.querySelector('a[href="/download/caelis-bot/"]'), `${prefix}${route}: missing direct Bot download`);
-    }
-    const botPage = documents.get(`${prefix}/projects/caelis-bot/`).document;
-    require(botPage.querySelector('.page-hero .button.primary[href="/download/caelis-bot/"]'), `${prefix}: Bot hero must download directly`);
-    require(botPage.querySelectorAll('a[href="/download/caelis-bot/"]').length === 1, `${prefix}: Bot page repeats the download action`);
-    require(botPage.querySelector('.desktop-nav a[href="https://github.com/caelis-labs/caelis-bot"]'), `${prefix}: Bot navigation must link to its repository`);
-    require(botPage.querySelector(`main a[href="${prefix}/docs/caelis-bot/installation/"]`), `${prefix}: missing Bot setup guide`);
-    require(botPage.querySelector('.bot-downloads a[href="https://github.com/caelis-labs/caelis-bot/releases/latest"]'), `${prefix}: missing Windows downloads`);
-    require(botPage.querySelectorAll('.bot-faq details').length >= 4, `${prefix}: missing Bot FAQ`);
-    const botVideo = botPage.querySelector('[data-bot-demo] video');
-    require(botPage.querySelectorAll('.bot-scenarios blockquote').length === 3, `${prefix}: missing actionable Bot scenarios`);
-    require(botMedia.ready && !botPage.querySelector('[data-media-pending]'), `${prefix}: current recording must be integrated`);
-    if (botMedia.ready) {
-      const recording = botMedia[prefix ? 'zh-cn' : 'en'];
-      require(botMedia.sourceVersion && botMedia.platform && botMedia.duration > 0 && recording.description, `${prefix}: recording lacks provenance/caption`);
-      require(['autoplay', 'muted', 'loop', 'playsinline'].every(attribute => botVideo?.hasAttribute(attribute)), `${prefix}: Bot demo needs muted inline looping playback`);
-      require(!botVideo?.hasAttribute('controls') && !botPage.querySelector('[data-chapter]'), `${prefix}: Bot demo must not expose a timeline or chapter jumps`);
-      require(botPage.querySelector('[data-playback][aria-label]'), `${prefix}: missing accessible Bot play/pause button`);
-      require(botPage.querySelector('[data-captions][aria-label][aria-pressed]') && botPage.querySelector('[data-fullscreen][aria-label]'), `${prefix}: missing captions/fullscreen controls`);
-      require(botVideo?.querySelector('source')?.getAttribute('src') === `${recording.base}.mp4`, `${prefix}: wrong recording`);
-      require(botVideo?.getAttribute('poster') === `${recording.base}.webp`, `${prefix}: wrong poster`);
-      const captions = botVideo?.querySelector('track[kind="captions"]');
-      require(captions?.getAttribute('src') === `${recording.base}.vtt` && captions?.getAttribute('srclang') === (prefix ? 'zh-CN' : 'en'), `${prefix}: wrong caption language/source`);
-      const videoBase = recording.base.replace(/^\//, '');
-      for (const extension of ['mp4', 'webp', 'vtt']) {
-        const asset = `${videoBase}.${extension}`;
-        require(createHash('sha256').update(await readFile(path.join(dist, asset))).digest('hex') === botMedia.sha256[path.basename(asset)], `${prefix}: reviewed media changed: ${asset}`);
-      }
-      const poster = await sharp(path.join(dist, `${videoBase}.webp`)).metadata();
-      require(poster.width * 9 === poster.height * 16, `${prefix}: recording poster must be 16:9`);
-      require((await stat(path.join(dist, `${videoBase}.mp4`))).size < 25_000_000, `${prefix}: Bot demo exceeds 25 MB budget`);
-      require((await readFile(path.join(dist, `${videoBase}.vtt`), 'utf8')).startsWith('WEBVTT'), `${prefix}: invalid Bot captions`);
-    } else {
-      require(botPage.querySelector('[data-media-pending]') && !botVideo, `${prefix}: pending recording must not load historical or missing footage`);
-    }
+    const actual = [...projects.querySelectorAll('.project-row')].map(row => row.getAttribute('data-project'));
+    require(JSON.stringify(actual) === JSON.stringify(projectOrder), `${prefix}: project order changed`);
+    require(documents.get(`${prefix}/`).document.querySelector(`.bot-entry a[href="${botURL}"]`), `${prefix}: Bot primary CTA must go to dedicated site`);
+    require(!documents.has(`${prefix}/projects/caelis-bot/`), `${prefix}: duplicated Bot marketing page`);
+    require(redirects.includes(`${prefix}/projects/caelis-bot/ ${botURL} 301`), `${prefix}: missing permanent Bot redirect`);
+    require(documents.get(`${prefix}/projects/desktop-world/`).html.includes('https://github.com/trycua/cua'), `${prefix}: Desktop World must credit CUA`);
+    require(documents.has(`${prefix}/docs/desktop-world/quickstart/`), `${prefix}: Desktop World guide missing`);
     const botInstallation = documents.get(`${prefix}/docs/caelis-bot/installation/`).document;
     require(botInstallation.querySelector('a[href="/download/caelis-bot/?asset=checksum"]'), `${prefix}: missing Bot checksum link in installation guide`);
+  }
+  for (const file of files.filter(file => /sitemap.*\.xml$/.test(file))) {
+    require(!/caelis-app|projects\/caelis-bot/.test(await readFile(file, 'utf8')), 'Sitemap retains retired or duplicate pages');
   }
   require(assets.has('/pagefind/pagefind.js'), 'Search index is missing');
   const homeHTMLGzip = gzipSync(documents.get('/').html).length;

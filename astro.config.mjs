@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [starlight({
     title: 'Caelis Labs',
     disable404Route: true,
-    description: 'Guides for Caelis, Caelis Bot, ACP Go SDK, Memory, and Caelis App.',
+    description: 'Guides for Caelis, Caelis Bot, ACP Go SDK, Memory, and Desktop World.',
     defaultLocale: 'root',
     locales: { root: { label: 'English', lang: 'en' }, 'zh-cn': { label: '简体中文', lang: 'zh-CN' } },
     favicon: '/icon.svg',

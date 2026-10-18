@@ -27,6 +27,6 @@ Windows packages are not Authenticode signed. See [installation](./installation/
 
 Keep editable notes in Notebook, ask for reminders while the app is running, capture and annotate a screen region, and connect supported plugins. Telegram can join the same Bot conversation. These features depend on your chosen models, services and permissions; the app download does not include a model-service subscription.
 
-Caelis Bot is a separate desktop application. It is different from the `caelis bot` terminal command and from Caelis App.
+Caelis Bot is a separate desktop application. It is different from the `caelis bot` terminal command.
 
 Code uses Apache-2.0. Finished character assets use a separate [asset license](./reference/character-assets/).

@@ -5,6 +5,7 @@ export const projects = data;
 export type Project = (typeof projects)[number];
 export const locales: Locale[] = ['en', 'zh-cn'];
 export const localePath = (lang: Locale, path = '/') => `${lang === 'en' ? '' : '/zh-cn'}${path}`;
+export const projectURL = (project: Project, lang: Locale) => project.id === 'caelis-bot' ? `https://ohmybot.si${lang === 'zh-cn' ? '/zh-cn/' : '/'}` : localePath(lang, `/projects/${project.id}/`);
 export const repository = (project: Project) => `https://github.com/caelis-labs/${project.id}`;
 export const getLocale = (path: string): Locale => path.startsWith('/zh-cn/') ? 'zh-cn' : 'en';
 export const alternatePath = (path: string) => path.startsWith('/zh-cn/') ? path.slice(6) || '/' : `/zh-cn${path}`;
