@@ -1,5 +1,5 @@
 ---
-title: "安装 Caelis Bot"
+title: "安装 CaelisBot"
 description: "下载 macOS 或 Windows 版本，连接模型并开始使用。"
 sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis-bot/installation.md"

@@ -1,5 +1,5 @@
 ---
-title: "Caelis Bot overview"
+title: "CaelisBot overview"
 description: "A desktop companion for conversations, files and everyday tasks."
 sidebar: {"order": 0}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis-bot/index.md"
@@ -10,7 +10,7 @@ sourcePath: "README.md"
 productVersion: "v0.15.2"
 ---
 
-Caelis Bot puts a small, expressive character on your desktop. Ask for help, share a file, follow background work and review actions that need your decision.
+CaelisBot puts a small, expressive character on your desktop. Ask for help, share a file, follow background work and review actions that need your decision.
 
 ## Choose your desktop
 
@@ -27,6 +27,6 @@ Windows packages are not Authenticode signed. See [installation](./installation/
 
 Keep editable notes in Notebook, ask for reminders while the app is running, capture and annotate a screen region, and connect supported plugins. Telegram can join the same Bot conversation. These features depend on your chosen models, services and permissions; the app download does not include a model-service subscription.
 
-Caelis Bot is a separate desktop application. It is different from the `caelis bot` terminal command.
+CaelisBot is a separate desktop application. It is different from the `caelis bot` terminal command.
 
 Code uses Apache-2.0. Finished character assets use a separate [asset license](./reference/character-assets/).

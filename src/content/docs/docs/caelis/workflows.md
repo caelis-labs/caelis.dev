@@ -37,4 +37,4 @@ Use this command in a client that supports ACP stdio. The client’s configurati
 
 Built-in Remember and Recall work with local session context and require no extra installation. Optional Memory Steward configuration is available through `/team`. Model requests still follow your provider choice.
 
-The `caelis bot` terminal entry is separate from the [Caelis Bot desktop app](/docs/caelis-bot/). Start with the desktop app for a character, screenshot tools and everyday conversation.
+The `caelis bot` terminal entry is separate from the [CaelisBot desktop app](/docs/caelis-bot/). Start with the desktop app for a character, screenshot tools and everyday conversation.

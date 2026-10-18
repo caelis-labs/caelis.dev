@@ -1,6 +1,6 @@
 ---
 title: "完整安装与校验步骤"
-description: "Caelis Bot 参考文档，来源见页末。"
+description: "CaelisBot 参考文档，来源见页末。"
 project: "caelis-bot"
 productVersion: "v0.15.2"
 sourceRepo: "caelis-bot"
@@ -17,7 +17,7 @@ sidebar: {"order":20}
 
 从 [GitHub Latest](https://github.com/caelis-labs/caelis-bot/releases/latest) 下载前核对其 tag 与 [macOS 已签名清单](https://releases.caelis.dev/caelis-bot/latest.json)一致。若不同，或缺少匹配的 DMG 和校验文件，暂停安装，不使用默认旧版。目前只发行 Apple Silicon（`arm64`），尚未发行 Intel 包。CI 在 macOS 14 构建；交互实机验收范围为 Apple Silicon / macOS 27，不能据此声称所有旧系统都已验收。
 
-将 `.dmg` 及同名 `.dmg.sha256` 下载到“下载”目录。下面整段命令可直接粘贴：选择最近下载的 Caelis DMG，核验其对应校验值，只读挂载，安装到 `~/Applications`。安装前先退出已运行的 Caelis Bot；应用仍运行或目标已存在时会停止。升级时先将旧 `.app` 移到废纸篓，保留 `~/Library/Application Support/Caelis Bot/` 中的应用数据。
+将 `.dmg` 及同名 `.dmg.sha256` 下载到“下载”目录。下面整段命令可直接粘贴：选择最近下载的 Caelis DMG，核验其对应校验值，只读挂载，安装到 `~/Applications`。安装前先退出已运行的 CaelisBot；应用仍运行或目标已存在时会停止。升级时先将旧 `.app` 移到废纸篓，保留 `~/Library/Application Support/Caelis Bot/` 中的应用数据。
 
 ```sh
 /bin/bash <<'INSTALL'

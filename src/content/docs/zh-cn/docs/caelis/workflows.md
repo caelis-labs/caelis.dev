@@ -37,4 +37,4 @@ caelis acp
 
 内置 Remember 与 Recall 无需额外安装；可通过 `/team` 配置可选的 Memory Steward。模型请求仍按你选择的服务发送。
 
-`caelis bot` 是终端入口，与 [Caelis Bot 桌面应用](/zh-cn/docs/caelis-bot/)不同。需要桌面角色、截图工具与日常对话时，从桌面应用开始。
+`caelis bot` 是终端入口，与 [CaelisBot 桌面应用](/zh-cn/docs/caelis-bot/)不同。需要桌面角色、截图工具与日常对话时，从桌面应用开始。

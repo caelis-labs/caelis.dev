@@ -52,7 +52,7 @@
   },
   {
     "id": "caelis-bot",
-    "name": "Caelis Bot",
+    "name": "CaelisBot",
     "version": "v0.15.2",
     "status": "release",
     "platform": "macOS · Apple Silicon / Windows · x64",
@@ -63,7 +63,7 @@
       "tagline": "A quiet presence.\nA helping hand.",
       "description": "Your personal AI companion. Turn a question, a file or a small task into something useful.",
       "short": "A desktop companion for conversations, files and everyday tasks.",
-      "cta": "Meet Caelis Bot",
+      "cta": "Meet CaelisBot",
       "features": [
         [
           "Always nearby",
@@ -84,7 +84,7 @@
       "tagline": "安静的陪伴，\n随时的帮手。",
       "description": "陪在桌面上的个人 AI 伙伴。一个问题、一份文件、一件小事，都可以一起完成。",
       "short": "陪在桌面上，一起聊天、处理文件与日常任务。",
-      "cta": "认识 Caelis Bot",
+      "cta": "认识 CaelisBot",
       "features": [
         [
           "随时在你身边",

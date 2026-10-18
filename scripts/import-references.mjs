@@ -36,6 +36,11 @@ for (const [repo, sourcePath, slug, title, zhTitle] of sources) {
       return `https://github.com/caelis-labs/${repo}/blob/${project.sourceRef}/${normalized}${fragment ? `#${fragment}` : ''}`;
     };
     visit(tree, node => {
+      // Normalize editorial product naming without rewriting executable paths,
+      // code blocks, shipped app filenames or verbatim upstream license terms.
+      if (repo === 'caelis-bot' && slug !== 'character-assets' && node.type === 'text') {
+        node.value = node.value.replace(/Caelis Bot(?!\.app| Dev\.app)/g, 'CaelisBot');
+      }
       if (node.type === 'link' || node.type === 'definition') node.url = resolveUrl(node.url);
       if (node.type === 'image') { node.type = 'link'; node.url = resolveUrl(node.url,true); node.children = [{ type: 'text', value: node.alt || 'View image in source' }]; delete node.alt; }
     });

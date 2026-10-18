@@ -1,5 +1,5 @@
 ---
-title: "Caelis Bot 概览"
+title: "CaelisBot 概览"
 description: "一起聊天、处理文件与日常任务的桌面伙伴。"
 sidebar: {"order": 0}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis-bot/index.md"
@@ -10,7 +10,7 @@ sourcePath: "README.md"
 productVersion: "v0.15.2"
 ---
 
-Caelis Bot 把一个生动的小伙伴带到你的桌面。问问题、分享文件、跟进后台工作，在需要你决定的操作出现时参与确认。
+CaelisBot 把一个生动的小伙伴带到你的桌面。问问题、分享文件、跟进后台工作，在需要你决定的操作出现时参与确认。
 
 ## 选择桌面版本
 
@@ -27,6 +27,6 @@ Windows 安装包尚未进行 Authenticode 签名。先阅读[安装与首次使
 
 在 Notebook 中保存可编辑的笔记，在应用运行时安排提醒，截取并标注屏幕选区，按需连接支持的插件。Telegram 也可以接入同一个 Bot 对话。实际能力取决于模型、服务与权限；应用下载不包含模型服务订阅。
 
-Caelis Bot 是独立的桌面应用，与 Caelis 的 `caelis bot` 终端命令 不同。
+CaelisBot 是独立的桌面应用，与 Caelis 的 `caelis bot` 终端命令 不同。
 
 代码采用 Apache-2.0，角色成品资产适用独立的[资产许可](./reference/character-assets/)。

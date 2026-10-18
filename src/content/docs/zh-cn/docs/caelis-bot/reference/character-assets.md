@@ -1,6 +1,6 @@
 ---
 title: "角色资产许可"
-description: "Caelis Bot 参考文档，来源见页末。"
+description: "CaelisBot 参考文档，来源见页末。"
 project: "caelis-bot"
 productVersion: "v0.15.2"
 sourceRepo: "caelis-bot"

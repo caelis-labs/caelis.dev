@@ -1,6 +1,6 @@
 ---
 title: "Verified installation steps"
-description: "Reference from a reviewed Caelis Bot source revision."
+description: "Reference from a reviewed CaelisBot source revision."
 project: "caelis-bot"
 productVersion: "v0.15.2"
 sourceRepo: "caelis-bot"
@@ -17,7 +17,7 @@ sidebar: {"order":20}
 
 Open [GitHub Latest](https://github.com/caelis-labs/caelis-bot/releases/latest) and require its tag to match the [signed macOS manifest](https://releases.caelis.dev/caelis-bot/latest.json) before downloading. If they differ or the release lacks the matching DMG and checksum, pause; do not install an older default. Current builds are Apple Silicon (`arm64`); Intel packages are not published yet. CI builds on macOS 14; interactive acceptance has been on Apple Silicon / macOS 27, not every older OS.
 
-Download the `.dmg` and its same-named `.dmg.sha256` into `~/Downloads`. The following block selects the most recently downloaded Caelis DMG, verifies its exact sibling checksum, mounts it read-only and installs it into your user Applications folder. Quit an existing Caelis Bot first; the commands stop if it is running or already installed. For an upgrade, move just the old `.app` to Trash first. Your data under `~/Library/Application Support/Caelis Bot/` is preserved.
+Download the `.dmg` and its same-named `.dmg.sha256` into `~/Downloads`. The following block selects the most recently downloaded Caelis DMG, verifies its exact sibling checksum, mounts it read-only and installs it into your user Applications folder. Quit an existing CaelisBot first; the commands stop if it is running or already installed. For an upgrade, move just the old `.app` to Trash first. Your data under `~/Library/Application Support/Caelis Bot/` is preserved.
 
 ```sh
 /bin/bash <<'INSTALL'
@@ -61,7 +61,7 @@ If you dragged the app into the system Applications folder, use `/Applications/C
 
 ## Connect and use
 
-Caelis Bot appears in the **menu bar and on the desktop**, not as a regular Dock app. Single-click the character to write; double-click to open chat. Menu-bar settings control visibility, size, runtime and updates. Only Quit ends the app.
+CaelisBot appears in the **menu bar and on the desktop**, not as a regular Dock app. Single-click the character to write; double-click to open chat. Menu-bar settings control visibility, size, runtime and updates. Only Quit ends the app.
 
 Connect a runtime during setup or in **Settings → Runtime**. Codex uses a compatible local App Server or discovers a local CLI; you can also select an executable or follow the installation and login steps. Installing or opening Codex Desktop alone does not guarantee an accessible runtime. The Bot does not silently install Codex or log in for you. See [runtime compatibility](https://github.com/caelis-labs/caelis-bot/blob/c6579eecb9da57a91090174b9a414750a3e3ef4f/docs/caelis-integration.md). Caelis requires the current application and Guardian capabilities; compatibility is negotiated through the [application-runtime protocol](https://github.com/caelis-labs/caelis-bot/blob/c6579eecb9da57a91090174b9a414750a3e3ef4f/docs/caelis-integration.md), not a CLI-version allowlist.
 

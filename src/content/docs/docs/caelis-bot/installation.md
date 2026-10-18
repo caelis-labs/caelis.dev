@@ -1,5 +1,5 @@
 ---
-title: "Install Caelis Bot"
+title: "Install CaelisBot"
 description: "Download for macOS or Windows, then connect a model."
 sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis-bot/installation.md"

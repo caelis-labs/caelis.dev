@@ -1,6 +1,6 @@
 ---
 title: "Character asset license"
-description: "Reference from a reviewed Caelis Bot source revision."
+description: "Reference from a reviewed CaelisBot source revision."
 project: "caelis-bot"
 productVersion: "v0.15.2"
 sourceRepo: "caelis-bot"
