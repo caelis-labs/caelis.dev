@@ -10,6 +10,9 @@ sourcePath: "README.md"
 productVersion: "Development"
 ---
 
+> Historical documentation: the previously public Caelis App repository was not accessible in the 2026-10-18 review. This saved beta guide is retained for reference; current source availability and installation are unverified. For the maintained desktop companion, see [Caelis Bot](/docs/caelis-bot/).
+
+
 ## Prepare the agent
 
 Install an ACP-compatible stdio agent separately. The desktop client launches the executable directly, without a shell.

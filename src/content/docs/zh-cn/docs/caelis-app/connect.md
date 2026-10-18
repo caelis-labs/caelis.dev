@@ -10,6 +10,9 @@ sourcePath: "README.md"
 productVersion: "Development"
 ---
 
+> 历史资料：2026-10-18 核查时，原公开的 Caelis App 仓库无法访问。本页保留早期 Beta 指南供参考，不代表当前源码和安装方式仍可用。日常桌面助手请看 [Caelis Bot](/zh-cn/docs/caelis-bot/)。
+
+
 ## 准备智能体
 
 单独安装兼容 ACP stdio 的智能体。桌面客户端直接启动可执行程序，不经过 Shell。

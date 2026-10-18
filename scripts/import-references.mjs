@@ -11,7 +11,7 @@ const sources = [
   ['caelis','docs/participants.md','participants','Participant reference','参与者参考'],
   ['caelis','docs/external-acp-agents.md','external-acp-agents','External ACP agents','外部 ACP 智能体'],
   ['caelis-bot','docs/install.md','install','Verified installation steps','完整安装与校验步骤'],
-  ['caelis-bot','docs/character-assets.md','character-assets','Character assets','角色资产'],
+  ['caelis-bot','ASSET-LICENSE.md','character-assets','Character asset license','角色资产许可'],
   ['acp-go-sdk','docs/upgrading-to-v1.4.0.md','upgrading-to-v1-4','Upgrade to v1.4.0','升级到 v1.4.0'],
   ['memory','docs/memory-v0.6-migration.md','migration','Migration reference','数据迁移参考'],
   ['memory','docs/memory-v0.6.1-release.md','v0-6-1','v0.6.1 release notes','v0.6.1 发布说明'],

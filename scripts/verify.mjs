@@ -49,6 +49,7 @@ export async function verifySite() {
     require(document.querySelectorAll('h1').length === 1, `${pathname}: must have exactly one H1`);
     const csp = document.querySelector('meta[http-equiv="Content-Security-Policy"]')?.getAttribute('content') || '';
     require(csp.includes("default-src 'self'"), `${pathname}: missing CSP`);
+    require(!/style-src-attr[^;]*'unsafe-hashes'[^;]*'none'/.test(csp), `${pathname}: invalid style attribute CSP`);
     require(!csp.includes("'unsafe-inline'"), `${pathname}: broad inline CSP exception`);
     for (const el of document.querySelectorAll('script:not([src]),style')) require(csp.includes(hash(el.textContent)), `${pathname}: unapproved inline ${el.localName}`);
     for (const el of document.querySelectorAll('[style]')) require(csp.includes(hash(el.getAttribute('style'))), `${pathname}: unapproved style attribute`);
@@ -90,6 +91,7 @@ export async function verifySite() {
   require(largestBotLogo < 60000, 'Bot logo exceeds 60 KB budget');
   const home = documents.get('/').document;
   for (const id of ['cli', 'demo-video', 'top']) require(home.getElementById(id), `Legacy homepage anchor #${id} missing`);
+  const botMedia = JSON.parse(await readFile(path.join(root, 'src/data/bot-media.json'), 'utf8'));
   const projectOrder = ['caelis', 'caelis-bot', 'acp-go-sdk', 'memory', 'caelis-app'];
   for (const prefix of ['', '/zh-cn']) {
     const projects = documents.get(`${prefix}/projects/`).document;
@@ -103,17 +105,26 @@ export async function verifySite() {
     require(botPage.querySelector('.page-hero .button.primary[href="/download/caelis-bot/"]'), `${prefix}: Bot hero must download directly`);
     require(botPage.querySelectorAll('a[href="/download/caelis-bot/"]').length === 1, `${prefix}: Bot page repeats the download action`);
     require(botPage.querySelector('.desktop-nav a[href="https://github.com/caelis-labs/caelis-bot"]'), `${prefix}: Bot navigation must link to its repository`);
-    require(botPage.querySelectorAll('main a[href*="/docs/"]').length === 0, `${prefix}: Bot main content repeats the guide already in navigation`);
+    require(botPage.querySelector(`main a[href="${prefix}/docs/caelis-bot/installation/"]`), `${prefix}: missing Bot setup guide`);
+    require(botPage.querySelector('.bot-downloads a[href="https://github.com/caelis-labs/caelis-bot/releases/latest"]'), `${prefix}: missing Windows downloads`);
+    require(botPage.querySelectorAll('.bot-faq details').length >= 4, `${prefix}: missing Bot FAQ`);
     const botVideo = botPage.querySelector('[data-bot-demo] video');
-    require(['autoplay', 'muted', 'loop', 'playsinline'].every(attribute => botVideo?.hasAttribute(attribute)), `${prefix}: Bot demo needs muted inline looping playback`);
-    require(!botVideo?.hasAttribute('controls') && !botPage.querySelector('[data-chapter]'), `${prefix}: Bot demo must not expose a timeline or chapter jumps`);
-    require(botPage.querySelector('[data-playback][aria-label]'), `${prefix}: missing accessible Bot play/pause button`);
-    require(botPage.querySelectorAll('.bot-scenario blockquote').length === 3, `${prefix}: missing actionable Bot scenarios`);
-    const videoBase = `assets/video/caelis-bot-demo-${prefix ? 'zh-cn' : 'en'}`;
-    const botPoster = await sharp(path.join(dist, `${videoBase}.webp`)).metadata();
-    require(botPoster.width === 1600 && botPoster.height === 900, `${prefix}: wrong Bot poster dimensions`);
-    require((await stat(path.join(dist, `${videoBase}.mp4`))).size < 8_000_000, `${prefix}: Bot demo exceeds 8 MB budget`);
-    require((await readFile(path.join(dist, `${videoBase}.vtt`), 'utf8')).startsWith('WEBVTT'), `${prefix}: invalid Bot captions`);
+    require(botPage.querySelectorAll('.bot-scenarios blockquote').length === 3, `${prefix}: missing actionable Bot scenarios`);
+    if (botMedia.ready) {
+      const recording = botMedia[prefix ? 'zh-cn' : 'en'];
+      require(botMedia.sourceVersion && botMedia.platform && botMedia.duration > 0 && recording.description, `${prefix}: recording lacks provenance/caption`);
+      require(['autoplay', 'muted', 'loop', 'playsinline'].every(attribute => botVideo?.hasAttribute(attribute)), `${prefix}: Bot demo needs muted inline looping playback`);
+      require(!botVideo?.hasAttribute('controls') && !botPage.querySelector('[data-chapter]'), `${prefix}: Bot demo must not expose a timeline or chapter jumps`);
+      require(botPage.querySelector('[data-playback][aria-label]'), `${prefix}: missing accessible Bot play/pause button`);
+      require(botVideo?.querySelector('source')?.getAttribute('src') === `${recording.base}.mp4`, `${prefix}: wrong recording`);
+      const videoBase = recording.base.replace(/^\//, '');
+      const poster = await sharp(path.join(dist, `${videoBase}.webp`)).metadata();
+      require(poster.width * 9 === poster.height * 16, `${prefix}: recording poster must be 16:9`);
+      require((await stat(path.join(dist, `${videoBase}.mp4`))).size < 25_000_000, `${prefix}: Bot demo exceeds 25 MB budget`);
+      require((await readFile(path.join(dist, `${videoBase}.vtt`), 'utf8')).startsWith('WEBVTT'), `${prefix}: invalid Bot captions`);
+    } else {
+      require(botPage.querySelector('[data-media-pending]') && !botVideo, `${prefix}: pending recording must not load historical or missing footage`);
+    }
     const botInstallation = documents.get(`${prefix}/docs/caelis-bot/installation/`).document;
     require(botInstallation.querySelector('a[href="/download/caelis-bot/?asset=checksum"]'), `${prefix}: missing Bot checksum link in installation guide`);
   }

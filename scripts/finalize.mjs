@@ -50,7 +50,7 @@ for (const file of (await walk(dist)).filter(file => file.endsWith('.html')).sor
     "img-src 'self' data:", "font-src 'self'", "media-src 'self'", "connect-src 'self'", "worker-src 'self' blob:",
     `script-src 'self'${pathname.includes('/docs/') ? " 'wasm-unsafe-eval'" : ''} ${scripts.join(' ')}`,
     `style-src 'self' ${styles.join(' ')}`,
-    `style-src-attr 'unsafe-hashes' ${attributes.length ? attributes.join(' ') : "'none'"}`,
+    `style-src-attr ${attributes.length ? "'unsafe-hashes' " + attributes.join(' ') : "'none'"}`,
   ].join('; ');
   const csp = document.createElement('meta'); csp.setAttribute('http-equiv','Content-Security-Policy'); csp.setAttribute('content',policy);
   const charset = document.head.querySelector('meta[charset]');

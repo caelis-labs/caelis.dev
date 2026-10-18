@@ -10,6 +10,9 @@ sourcePath: "README.md"
 productVersion: "Development"
 ---
 
+> 历史资料：2026-10-18 核查时，原公开的 Caelis App 仓库无法访问。本页保留早期 Beta 指南供参考，不代表当前源码和安装方式仍可用。日常桌面助手请看 [Caelis Bot](/zh-cn/docs/caelis-bot/)。
+
+
 Caelis App 是独立的桌面编码智能体客户端，首先遵循开放的 Agent Client Protocol。
 
 ## 当前范围

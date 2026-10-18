@@ -98,7 +98,8 @@ requirements and delivery guarantees.
 - **Model choice:** ChatGPT Codex sign-in, API-key and local providers, and
   ACP agents in one model picker.
 - **Workspace extensions:** MCP servers, skills, and plugins; project MCP
-  configuration requires workspace trust.
+  configuration requires workspace trust. [Install standard Agent Plugins and
+  Claude plugins](docs/plugins.md) through the same Plugin manager.
 - **Durable sessions and memory:** resume conversations and use built-in
   `Remember` and `Recall`. Memory needs no separate installation and invokes no
   model unless you explicitly bind the Memory Steward in `/team`.
@@ -110,8 +111,8 @@ requirements and delivery guarantees.
 | Goal | Command |
 | --- | --- |
 | Start the TUI | `caelis` |
-| Open the standalone Bot TUI | `caelis bot` |
 | Observe an existing Session in another terminal | `caelis -session <session-id>` |
+| Attach to an exact Session on a specific Host | `caelis attach --control-url <endpoint> --session <session-id> --control-token-file <path>` |
 | Run one prompt | `caelis -p "Summarize this repository."` |
 | Return one structured result | `caelis -p "Review the changes." -format json` |
 | Stream ACP envelopes | `caelis -p "Run the tests." -format jsonl` |
@@ -124,6 +125,10 @@ requirements and delivery guarantees.
 Use `-session` to target a durable Session, `-store-dir` to choose another data
 root, `-control-url` to attach to a specific Host, and `-embedded` for explicit
 single-process operation.
+
+`attach` never creates a Session or submits a prompt; closing the terminal leaves
+accepted work running. See [Shared Workers](docs/shared-workers.md) for Bot
+creation, concurrent steering, approval decisions and reconnect examples.
 
 In the TUI, `/resume` or `Ctrl+O` opens the Session list, with active Sessions
 marked `running`. Selecting a Session changes the view while its work continues
@@ -167,6 +172,7 @@ particular, `CAELIS_STARTUP_WORKSPACE_IDENTITY_CONFLICT` is repaired by
 - [External ACP agents](docs/external-acp-agents.md): connection, capabilities, and messaging contracts.
 - [Agent SDK](agent-sdk/README.md): embed or extend the reusable Go runtime.
 - [Architecture](docs/architecture.md): repository ownership and dependency boundaries.
+- [Session profiles](docs/session-profiles.md): shared-owner Session profiles, callback receipts, and resources.
 - [Testing](docs/testing.md): default and change-scoped validation.
 - [Release](docs/release.md): publish and verify official artifacts.
 

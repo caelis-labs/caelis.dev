@@ -1,40 +1,44 @@
 ---
 title: "Install Caelis Bot"
-description: "Verify the macOS download, then connect your local runtime."
+description: "Download for macOS or Windows, then connect a model."
 sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis-bot/installation.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
+sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
 sourcePath: "docs/install.md"
-productVersion: "v0.2.0"
+productVersion: "v0.15.2"
 ---
 
-## Before you start
+## macOS: Apple Silicon
 
-Use an Apple Silicon Mac and install Caelis or Codex separately. Configure the runtime and complete any account login before starting a conversation. Runtime compatibility is checked through the protocol handshake; follow any connection guidance shown by the app.
+1. [Download the latest macOS DMG](/download/caelis-bot/) and its matching [SHA-256 file](/download/caelis-bot/?asset=checksum).
+2. Check the [official latest release](https://github.com/caelis-labs/caelis-bot/releases/latest) against the [macOS download manifest](https://releases.caelis.dev/caelis-bot/latest.json). If versions differ, wait for matching assets rather than installing an older default.
+3. Follow the [verification steps](../reference/install/), then drag **Caelis Bot.app** into Applications.
+4. Open the app normally and confirm macOS’s first-open prompt if shown. Stable macOS releases are Developer ID signed and Apple notarized. No quarantine-removal command is needed.
 
-## Download and verify
+Intel Mac packages are not currently offered. If checksum or system verification fails, stop and get a fresh official copy.
 
-1. [Download Caelis Bot for macOS (Apple Silicon)](/download/caelis-bot/) from the official Cloudflare R2 mirror.
-2. Download the matching [SHA-256 file](/download/caelis-bot/?asset=checksum). The links resolve the latest stable package; [GitHub Releases](https://github.com/caelis-labs/caelis-bot/releases/latest) is also available.
-3. Follow the [exact verification and first-launch commands](../reference/install/) from the pinned public installation guide.
-4. Drag **Caelis Bot.app** into Applications and launch it after verification.
+## Windows: x64
 
-Open the verified app normally and confirm macOS’s first-open prompt if shown. No quarantine-removal command is needed. Stop if download or system verification fails.
+Open [the latest stable release](https://github.com/caelis-labs/caelis-bot/releases/latest). Choose the file ending in **windows-amd64-stable-Setup.exe** for installation, or **windows-amd64-stable.zip** for a portable copy, together with its matching `.sha256` file. Use the installer to select an installation folder; extract the portable ZIP before running it.
 
-## Connect the runtime
+Windows 10 22H2 x64 or later and **Microsoft Edge WebView2 Runtime** are required. Native development testing used Windows 11. These Windows binaries are **not Authenticode signed**: SmartScreen or organization policy may warn or block them. Do not confuse signed update metadata with a signed Windows executable. Read the release notes before installing.
 
-Caelis Bot discovers local Caelis and Codex runtimes. Choose one in **Settings → Runtime**. Neither runtime is bundled.
+Stable and Preview have separate installations and data. Installing Stable does not migrate Preview data or change its update channel. Windows ARM64 and Linux desktop packages are not available.
 
-Click the character to write, or double-click to open the conversation. See [conversation controls](../conversation/).
+## Connect and start chatting
 
-Choose **English** or **Simplified Chinese** in **Settings → General → Language**. Switching language preserves drafts, pending approvals and connection progress.
+1. Choose **Caelis** or **Codex** in the first-run guide. Caelis is included in the desktop packages; no separate Caelis install is needed. Codex uses your own local installation and account, and the guide shows any missing setup steps.
+2. Connect a model service and complete its login. If a usable connection already exists, select a model and continue. The download does not include provider credits or a subscription.
+3. Choose optional screenshot and image-pinning tools, enter your assistant’s name and optional introduction, then start chatting once the connection is ready.
 
-## Updating
+You can change the connection and models later in **Settings → Connections & Models**. Login and any required system permissions remain yours to complete. Choose English or Simplified Chinese in General settings.
 
-Stable releases starting with **v0.2.0** check for updates daily. Use **Settings → About → Check for Updates** to check immediately, or turn off automatic checks there. Downloading and installing an update requires your confirmation. Bot waits for ongoing work and pending decisions before restarting, and preserves conversations, Notebook and settings.
+Click the character to open or hide chat. The macOS menu bar or Windows system tray provides settings and Quit. [Learn the conversation controls](../conversation/).
 
-**Upgrading from v0.1.0:** manually download, verify and install the new DMG once. Quit Bot and replace only the app; keep its application data. Later releases can use in-app updates. Preview and development builds also use manual installation.
+## Updates and your data
 
-R2 keeps only the latest stable package. For an older release, use [GitHub release history](https://github.com/caelis-labs/caelis-bot/releases). Download the DMG and checksum together; if their filenames differ because a release changed between downloads, download a matching pair again.
+Check **Settings → Updates** for update controls. Installation and restart require confirmation; the app keeps conversations, Notebook and settings in its data directory. When replacing an app manually, quit it and replace only the application, keeping its data.
+
+Very early macOS releases without an updater need one manual upgrade. Development builds do not use the public updater. Older packages are available in [release history](https://github.com/caelis-labs/caelis-bot/releases); use matching packages and checksums rather than mixing releases.

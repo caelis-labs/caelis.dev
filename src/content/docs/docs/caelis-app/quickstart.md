@@ -10,6 +10,9 @@ sourcePath: "README.md"
 productVersion: "Development"
 ---
 
+> Historical documentation: the previously public Caelis App repository was not accessible in the 2026-10-18 review. This saved beta guide is retained for reference; current source availability and installation are unverified. For the maintained desktop companion, see [Caelis Bot](/docs/caelis-bot/).
+
+
 ## Requirements
 
 The pinned public README specifies Go 1.25, Node.js 22 or newer, pnpm 11, and Wails CLI `v3.0.0-beta.6`. This guide targets the recorded development revision, not a published desktop release.

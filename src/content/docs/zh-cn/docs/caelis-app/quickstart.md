@@ -10,6 +10,9 @@ sourcePath: "README.md"
 productVersion: "Development"
 ---
 
+> 历史资料：2026-10-18 核查时，原公开的 Caelis App 仓库无法访问。本页保留早期 Beta 指南供参考，不代表当前源码和安装方式仍可用。日常桌面助手请看 [Caelis Bot](/zh-cn/docs/caelis-bot/)。
+
+
 ## 环境要求
 
 所锁定公开 README 声明 Go 1.25、Node.js 22 或更新版本、pnpm 11，以及 Wails CLI `v3.0.0-beta.6`。本指南对应记录的开发 revision，不是已发布的桌面安装包。

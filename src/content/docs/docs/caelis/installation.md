@@ -5,9 +5,9 @@ sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis/installation.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "f136ebaeb46608a69bf7732af57bb2f2a2382756"
+sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
 sourcePath: "README.md"
-productVersion: "v0.60.1"
+productVersion: "v0.72.2"
 ---
 
 ## macOS and Linux
@@ -44,3 +44,7 @@ Replace the example path with your project. Continue with [your first connection
 Run the same installer again to update. The website shell and PowerShell installers always resolve the latest release; they do not select historical versions. Use [GitHub Releases](https://github.com/caelis-labs/caelis/releases) for a specific version and its checksums.
 
 Official release binaries cover macOS, Linux, and Windows on x64 and ARM64. If you build from source, use the Go version declared in the chosen revision's `go.mod`.
+
+## Check your installation
+
+Run `caelis -h` to confirm the command is on PATH. For a recognized startup or compatibility problem, `caelis doctor` checks health and offers supported repair paths. `caelis service status` reports the managed local service. Keep your session data when updating; reinstalling the binary does not require deleting your Store.

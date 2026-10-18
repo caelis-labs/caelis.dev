@@ -2,9 +2,9 @@
 title: "参与者参考"
 description: "Caelis 参考文档，来源见页末。"
 project: "caelis"
-productVersion: "v0.60.1"
+productVersion: "v0.72.2"
 sourceRepo: "caelis"
-sourceRef: "f136ebaeb46608a69bf7732af57bb2f2a2382756"
+sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
 sourcePath: "docs/participants.md"
 generated: true
 editUrl: false
@@ -66,11 +66,16 @@ start a conversation:
 
 | Role | Binding behavior |
 | --- | --- |
-| ToolSearch | A judgment model ranks ready MCP tools in batches bounded by encoded input size. Unbound or unavailable evaluation retains lexical discovery. |
+| ToolSearch | A restricted selector inherits the Main Agent's resolved provider model when unbound and can consume model tokens when candidates are ready. Bind a separate provider model or Jev judgment to override it. An explicit provider binding retains its effort and Fast setting. Jev scores the scoped name/description catalog; search failures are reported without keyword fallback. |
 | Guardian | Uses a provider model, or the Main Agent model when unbound. An auxiliary classifier selector, labeled `Classifier`, appears on the same row when a judgment model is connected; it is off until selected. |
 | Reviewer | Uses a provider model or ACP agent for the fixed review scene. |
 | Memory Steward | An explicit generation model enables semantic organization. Unbound Memory keeps its durable journal and lexical recall without model calls. |
 | Memory Verifier | An optional judgment model checks Steward proposals for clear semantic conflicts. The `Verifier` selector sits beside Memory Steward on the same row. It requires an enabled Steward and cannot generate or apply Memory changes. |
+
+ToolSearch's private model requests use their own context capacity and do not
+trigger the main Session's compaction watermark. Their provider attempts and
+reported usage enter the Session journal without adding selector messages to
+the main model conversation.
 
 On Guardian's row, use Tab or click the main model or auxiliary classifier to
 configure it. A selected classifier runs first, choosing only among the original
@@ -86,8 +91,8 @@ guessed. The Agent supplies a reason when its review rejects the action.
 Screening uses only user messages and the current approval ticket with its exact
 action. It receives no historical tool observations and never waits for Tasks.
 Diagnostics distinguish input-budget, option-eligibility, provider, and
-inconclusive-judgment fallbacks without recording request content. Changing or disabling screening preserves the Agent model selection. See [Guardian's evidence contract](https://github.com/caelis-labs/caelis/blob/f136ebaeb46608a69bf7732af57bb2f2a2382756/docs/agent-sdk-boundary.md#guardian-evidence-and-context)
-and [Memory composition](https://github.com/caelis-labs/caelis/blob/f136ebaeb46608a69bf7732af57bb2f2a2382756/docs/architecture.md#session-runtime-lifecycle).
+inconclusive-judgment fallbacks without recording request content. Changing or disabling screening preserves the Agent model selection. See [Guardian's evidence contract](https://github.com/caelis-labs/caelis/blob/fa598b00db7d6635086d3388f4d4c9c335642cfd/docs/agent-sdk-boundary.md#guardian-evidence-and-context)
+and [Memory composition](https://github.com/caelis-labs/caelis/blob/fa598b00db7d6635086d3388f4d4c9c335642cfd/docs/architecture.md#session-runtime-lifecycle).
 
 `/team` takes no arguments and opens the configuration overlay. The TUI accepts
 `/subagent` as an alias; completion shows one `/team (subagent)` entry. Likewise,

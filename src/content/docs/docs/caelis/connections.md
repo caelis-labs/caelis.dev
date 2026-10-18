@@ -5,9 +5,9 @@ sidebar: {"order": 2}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis/connections.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "f136ebaeb46608a69bf7732af57bb2f2a2382756"
+sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
 sourcePath: "README.md"
-productVersion: "v0.60.1"
+productVersion: "v0.72.2"
 ---
 
 ## Connect a model provider
@@ -35,3 +35,11 @@ Open `/team` and bind roles to a provider model or ACP agent. Save a configurati
 ## Connection trouble
 
 Check the executable, arguments, provider configuration, and the selected Host environment. A successful protocol initialization is not the same as an authenticated prompt: verify by completing a small real request.
+
+## Accounts and model access
+
+Each provider determines its own login method, available models and charges. The Caelis install does not include credits or a subscription. API credentials belong in the connection flow, not in chat or repository files.
+
+ChatGPT subscription access uses a community-compatible Codex OAuth flow. It is not a documented third-party OpenAI integration; follow the login options shown by your selected connection.
+
+You can use local model providers where supported. Saving sessions locally does not make requests to a remote provider offline.

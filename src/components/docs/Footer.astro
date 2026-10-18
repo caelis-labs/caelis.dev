@@ -3,6 +3,8 @@ import Default from '@astrojs/starlight/components/Footer.astro';
 import { getLocale } from '../../data/site';
 const { entry } = Astro.locals.starlightRoute; const lang = getLocale(Astro.url.pathname);
 const { sourceRepo, sourceRef, sourcePath } = entry.data;
+const historical = sourceRepo === 'caelis-app';
+const sourceURL = historical ? `https://github.com/caelis-labs/caelis.dev/blob/main/content-sources/snapshots/${sourceRepo}/${sourcePath}` : `https://github.com/caelis-labs/${sourceRepo}/blob/${sourceRef}/${sourcePath}`;
 ---
-{sourceRepo && sourceRef && sourcePath && <div class="doc-source"><span>{lang === 'en' ? 'Based on the public project documentation' : '依据公开项目文档整理'}</span><a href={`https://github.com/caelis-labs/${sourceRepo}/blob/${sourceRef}/${sourcePath}`}>{sourceRepo} · {sourceRef.slice(0,7)} ↗</a></div>}
+{sourceRepo && sourceRef && sourcePath && <div class="doc-source"><span>{historical ? (lang === 'en' ? 'Preserved historical source snapshot' : '保留的历史来源快照') : (lang === 'en' ? 'Based on the public project documentation' : '依据公开项目文档整理')}</span><a href={sourceURL}>{sourceRepo} · {sourceRef.slice(0,7)} ↗</a></div>}
 <Default/>

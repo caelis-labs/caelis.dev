@@ -2,20 +2,20 @@
 title: "完整安装与校验步骤"
 description: "Caelis Bot 参考文档，来源见页末。"
 project: "caelis-bot"
-productVersion: "v0.2.0"
+productVersion: "v0.15.2"
 sourceRepo: "caelis-bot"
-sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
+sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
 sourcePath: "docs/install.zh-CN.md"
 generated: true
 editUrl: false
 sidebar: {"order":20}
 ---
 
-[English](/zh-cn/docs/caelis-bot/reference/install/) · [简体中文](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/docs/install.zh-CN.md)
+[English](/zh-cn/docs/caelis-bot/reference/install/) · [简体中文](https://github.com/caelis-labs/caelis-bot/blob/c6579eecb9da57a91090174b9a414750a3e3ef4f/docs/install.zh-CN.md)
 
 ## 下载与校验
 
-从[最新稳定版](https://github.com/caelis-labs/caelis-bot/releases/latest)下载。目前只发行 Apple Silicon（`arm64`），尚未发行 Intel 包。CI 在 macOS 14 构建；交互实机验收范围为 Apple Silicon / macOS 27，不能据此声称所有旧系统都已验收。历史 preview 包不再作为当前安装入口。
+从 [GitHub Latest](https://github.com/caelis-labs/caelis-bot/releases/latest) 下载前核对其 tag 与 [macOS 已签名清单](https://releases.caelis.dev/caelis-bot/latest.json)一致。若不同，或缺少匹配的 DMG 和校验文件，暂停安装，不使用默认旧版。目前只发行 Apple Silicon（`arm64`），尚未发行 Intel 包。CI 在 macOS 14 构建；交互实机验收范围为 Apple Silicon / macOS 27，不能据此声称所有旧系统都已验收。
 
 将 `.dmg` 及同名 `.dmg.sha256` 下载到“下载”目录。下面整段命令可直接粘贴：选择最近下载的 Caelis DMG，核验其对应校验值，只读挂载，安装到 `~/Applications`。安装前先退出已运行的 Caelis Bot；应用仍运行或目标已存在时会停止。升级时先将旧 `.app` 移到废纸篓，保留 `~/Library/Application Support/Caelis Bot/` 中的应用数据。
 
@@ -63,15 +63,12 @@ open "$HOME/Applications/Caelis Bot.app"
 
 启动后查看**状态栏和桌面角色**；它默认不显示普通 Dock 图标。单击角色输入，双击打开聊天，从状态栏进入设置、显示/隐藏或退出。隐藏角色不会退出应用。
 
-首次设置或在“设置 → 运行时”中连接运行时。Codex 优先使用可用的本机 App Server，否则自动发现 CLI；也可手动选择程序或按引导安装、登录。仅安装或打开 Codex Desktop 不保证存在可连接的入口；Bot 不会静默安装 Codex，也不代替用户登录。详见[运行时兼容性](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/docs/codex-compatibility.md)。Caelis v0.61.0 是已验收的正式基线；兼容性由[通用应用协议](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/docs/caelis-integration.md)协商决定，不按 CLI 版本号白名单限制。
+首次设置或在“设置 → 运行时”中连接运行时。Codex 优先使用可用的本机 App Server，否则自动发现 CLI；也可手动选择程序或按引导安装、登录。仅安装或打开 Codex Desktop 不保证存在可连接的入口；Bot 不会静默安装 Codex，也不代替用户登录。详见[运行时兼容性](https://github.com/caelis-labs/caelis-bot/blob/c6579eecb9da57a91090174b9a414750a3e3ef4f/docs/caelis-integration.md)。Caelis 需要当前应用与 Guardian 能力；兼容性由[通用应用协议](https://github.com/caelis-labs/caelis-bot/blob/c6579eecb9da57a91090174b9a414750a3e3ef4f/docs/caelis-integration.md)协商决定，不按 CLI 版本号白名单限制。
 
 系统通知需要主动开启，退出时定时提醒暂停。替换 `.app` 会保留偏好、附件和对话绑定；除非有意清除数据，请保留 `Application Support/Caelis Bot` 文件夹。
 
 ## 更新
 
-接入更新器的正式版每天自动检查；“设置 → 关于”可关闭自动检查，也可从状态栏点击
-“检查更新”。确认原生更新窗口后，应用下载、验证签名并安装新版；有工作、待审批或
-结果未知的操作时等待处理完成再重启，保留对话、Notebook 和设置。
+接入更新器的正式版每天检查更新。在“设置 → 更新”可关闭或开启自动检查，也可立即检查。确认原生更新窗口后，应用下载并安装签名的更高版本；未完成工作和待决定事项会先安全交接，对话、Notebook 与设置保留在原数据目录。
 
-已发布的 v0.1.0、预览版和开发版仍手动安装。按上面的说明安装首个带更新器的正式版后，
-后续即可在应用内更新。R2 镜像只保留最新正式版，历史版本仍保留在 GitHub Releases。
+已发布的 v0.1.0 需要手动升级一次才能接入更新器。R2 保留旧版本不可变 DMG，使缓存的签名 appcast 仍可下载其准确制品。本地 `Caelis Bot Dev.app` 开发构建不使用公开更新源，也不会替换正式安装版。
