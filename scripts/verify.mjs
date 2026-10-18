@@ -110,14 +110,23 @@ export async function verifySite() {
     require(botPage.querySelectorAll('.bot-faq details').length >= 4, `${prefix}: missing Bot FAQ`);
     const botVideo = botPage.querySelector('[data-bot-demo] video');
     require(botPage.querySelectorAll('.bot-scenarios blockquote').length === 3, `${prefix}: missing actionable Bot scenarios`);
+    require(botMedia.ready && !botPage.querySelector('[data-media-pending]'), `${prefix}: current recording must be integrated`);
     if (botMedia.ready) {
       const recording = botMedia[prefix ? 'zh-cn' : 'en'];
       require(botMedia.sourceVersion && botMedia.platform && botMedia.duration > 0 && recording.description, `${prefix}: recording lacks provenance/caption`);
       require(['autoplay', 'muted', 'loop', 'playsinline'].every(attribute => botVideo?.hasAttribute(attribute)), `${prefix}: Bot demo needs muted inline looping playback`);
       require(!botVideo?.hasAttribute('controls') && !botPage.querySelector('[data-chapter]'), `${prefix}: Bot demo must not expose a timeline or chapter jumps`);
       require(botPage.querySelector('[data-playback][aria-label]'), `${prefix}: missing accessible Bot play/pause button`);
+      require(botPage.querySelector('[data-captions][aria-label][aria-pressed]') && botPage.querySelector('[data-fullscreen][aria-label]'), `${prefix}: missing captions/fullscreen controls`);
       require(botVideo?.querySelector('source')?.getAttribute('src') === `${recording.base}.mp4`, `${prefix}: wrong recording`);
+      require(botVideo?.getAttribute('poster') === `${recording.base}.webp`, `${prefix}: wrong poster`);
+      const captions = botVideo?.querySelector('track[kind="captions"]');
+      require(captions?.getAttribute('src') === `${recording.base}.vtt` && captions?.getAttribute('srclang') === (prefix ? 'zh-CN' : 'en'), `${prefix}: wrong caption language/source`);
       const videoBase = recording.base.replace(/^\//, '');
+      for (const extension of ['mp4', 'webp', 'vtt']) {
+        const asset = `${videoBase}.${extension}`;
+        require(createHash('sha256').update(await readFile(path.join(dist, asset))).digest('hex') === botMedia.sha256[path.basename(asset)], `${prefix}: reviewed media changed: ${asset}`);
+      }
       const poster = await sharp(path.join(dist, `${videoBase}.webp`)).metadata();
       require(poster.width * 9 === poster.height * 16, `${prefix}: recording poster must be 16:9`);
       require((await stat(path.join(dist, `${videoBase}.mp4`))).size < 25_000_000, `${prefix}: Bot demo exceeds 25 MB budget`);
