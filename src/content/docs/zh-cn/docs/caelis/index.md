@@ -5,9 +5,9 @@ sidebar: {"order": 0}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis/index.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "f136ebaeb46608a69bf7732af57bb2f2a2382756"
+sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
 sourcePath: "README.md"
-productVersion: "v0.60.1"
+productVersion: "v0.72.2"
 ---
 
 Caelis 将模型与兼容 ACP 的智能体带入同一个本地会话。参与者保留各自的对话、交流发现，也可以在你补充要求后继续工作。
@@ -29,3 +29,9 @@ Caelis 将模型与兼容 ACP 的智能体带入同一个本地会话。参与�
 通过 `/team` 配置参与者角色。你可以跟进某个参与者的进展、发送文字或图片，并从主对话协调工作。参阅[参与者协作](./participants/)。
 
 本地存储、命令执行与模型推理是不同的环节：模型请求会发送到所选择的 Provider 或外部智能体。扩大工具权限前，请先了解[审批与沙箱](./safety/)。
+
+## 扩展工作空间
+
+通过 MCP、技能和插件接入工具，项目级 MCP 配置需要工作空间信任。内置记忆无需单独安装，是否启用可选的模型辅助处理由你决定。
+
+Caelis 也可以执行单次请求，或作为 ACP 服务供客户端使用。第一组示例见[工具与自动化](./workflows/)。

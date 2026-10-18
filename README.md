@@ -1,8 +1,8 @@
 # Caelis Labs website
 
-The bilingual project hub and documentation site at https://caelis.dev. Built with Astro and Starlight; pages are static HTML, CSS, JavaScript, and assets. A single Cloudflare Pages Function resolves the latest Caelis Bot download. No account is required.
+The bilingual project hub and documentation site at https://caelis.dev. Built with Astro and Starlight; pages are static HTML, CSS, JavaScript, and assets. Cloudflare Pages Functions resolve the latest Caelis Bot download and retire removed product URLs. Reading the website needs no account. Using a model service requires its own connection and account where applicable.
 
-The promotion order is **Caelis → Caelis Bot → ACP Go SDK → Memory → Caelis App**. `src/data/projects.json` owns this order and the shared product copy. Only those public projects are included. Product availability is described by release status and supported platforms. Public download links resolve the latest stable release, and module installation commands use `@latest`; landing pages and documentation headers do not display a manually maintained current version. Documentation source snapshots remain pinned to public revisions for review and reproducible builds. A new component release alone does not require a website edit.
+The promotion order is **Caelis → Caelis Bot → ACP Go SDK → Memory → Desktop World**. `src/data/projects.json` owns this order and the shared product copy. Only those public projects are included. Product availability is described by release status and supported platforms. Public download links resolve the latest stable release, and module installation commands use `@latest`; landing pages and documentation headers do not display a manually maintained current version. Documentation source snapshots remain pinned to public revisions for review and reproducible builds. A new component release alone does not require a website edit.
 
 ## Develop and validate
 
@@ -38,15 +38,15 @@ The site now needs a build step; **do not continue publishing the repository roo
 | Build output directory | `dist` |
 | Node version | `22` (at least 22.12) |
 
-Deploy the complete `dist` directory. `public/_headers` and `public/_redirects` are copied into it. `/docs/` is a real documentation route. `/github` and `/releases` retain their existing Caelis destinations. The root installer files are copied without modifications; `/install.sh`, `/install.ps1`, `/#cli`, `/#demo-video`, and existing video/poster URLs remain available. `404.html` prevents unknown routes from becoming a homepage fallback.
+Deploy the complete `dist` directory. `public/_headers` and `public/_redirects` are copied into it. `/docs/` is a real documentation route. `/github` and `/releases` retain their existing Caelis destinations. The root installer files are copied without modifications; `/install.sh`, `/install.ps1`, `/#cli`, `/#demo-video`, and the retained Core demo/poster URLs remain available. `404.html` prevents unknown routes from becoming a homepage fallback.
 
 Keep `public/theme.js` synchronous in the head to avoid a theme flash. CSP is written into each HTML head with hashes for generated inline content; Pagefind's WebAssembly allowance applies only to documentation routes. Do not add an incompatible second CSP in the hosting dashboard. The Cloudflare header file adds frame protection and cache policies; local Astro preview does not emulate Cloudflare headers or redirects.
 
 ### Caelis Bot downloads
 
-`/download/caelis-bot/` reads the public R2 `latest.json`, validates its stable version and Apple Silicon filename, checks that the package is available, then redirects to the DMG. `?asset=checksum` resolves its SHA-256 file. Responses are not cached because R2 keeps only the latest release. Network, manifest or package failures fall back to GitHub's latest release page. The resolver uses public HTTPS reads and needs no credentials or R2 binding.
+`/download/caelis-bot/` reads the public R2 `latest.json`, validates its stable version and Apple Silicon filename, checks that the package is available, then redirects to the DMG. `?asset=checksum` resolves its SHA-256 file. Responses are not cached because the current download may change. Network, manifest or package failures fall back to GitHub's latest release page. The resolver uses public HTTPS reads and needs no credentials or R2 binding.
 
-The Git-connected Pages deployment must include the root `functions/` directory alongside the `dist` build output. `public/_routes.json` restricts function execution to the download route; other requests stay static. For direct CLI deployments, run Wrangler from the repository root so it discovers `functions/`. Dashboard drag-and-drop of `dist` alone does not deploy this function.
+The Git-connected Pages deployment must include the root `functions/` directory alongside the `dist` build output. `public/_routes.json` restricts function execution to the download route and retired App paths; other requests stay static. For direct CLI deployments, run Wrangler from the repository root so it discovers `functions/`. Dashboard drag-and-drop of `dist` alone does not deploy this function.
 
 `npm run preview` previews static pages only. To exercise download redirects locally, run `npx wrangler pages dev dist` from the repository root after building. Verify both download URLs return a `302` to the current R2 package/checksum and that a normal page still returns HTML. `npm run check` also covers release rollover, malformed manifests, missing assets and the GitHub fallback without network access. After deployment, verify these redirects on the production domain.
 
@@ -75,7 +75,7 @@ Core guides are written for the website. Longer reference pages are imported det
 When documentation or product behavior needs an update (not for every new release):
 
 1. Select a public release or exact public commit. Update that project's entries in `content-sources/manifest.json`, then its version/source reference in `src/data/projects.json` and the affected core guide frontmatter and examples.
-2. With the GitHub CLI installed and authorized for public reads, run `npm run docs:sync`. The command fetches every source successfully before replacing snapshots and recording new checksums. It never reads sibling working trees.
+2. With the GitHub CLI installed and authorized for public reads, run `npm run docs:sync -- --repo=caelis --repo=caelis-bot` for those two projects (omit the selectors to refresh all accessible sources). The command fetches every source successfully before replacing snapshots and recording new checksums. It never reads sibling working trees.
 3. Review the snapshot diff and update both languages' guides. Do not manually edit pages marked `generated: true`; `npm run build` regenerates them from `scripts/import-references.mjs`.
 4. Run `npm run build`, `npm run check`, and `npm run verify`; inspect the changed guides and social cards in the browser.
 
@@ -98,22 +98,11 @@ Commit the changed subset, character list, and provenance file together. Python 
 
 ## Motion and media
 
-The Caelis Bot project page has one download action, project-specific GitHub navigation, a 60-second looping demonstration and three concrete use cases. Installation lives in the navigation guide; the compact footer avoids repeated entrances.
+Bot marketing has one source: [ohmybot.si](https://ohmybot.si/). Labs keeps a concise showcase and its technical guides/download resolver. The locale-specific `/projects/caelis-bot/` routes permanently redirect to the dedicated site. Labs contains no Bot film, poster, captions, film generator or duplicate marketing component.
 
-The Bot film is **scripted sample content, not a native recording, actual test output or performance benchmark**. It follows two connected paths: user input → Bot reply → two background Workers → terminal inspection → results in chat; then a conversational clue → Bot-generated callback → task completion → Bot nudge → user opens chat → typed feedback → Bot acknowledgement. Chat and two-line capsule geometry follow v0.2.0 frontend styles and the owner’s screenshots. The white Codex TUI omits startup help, private paths, delegation envelopes and usage warnings. Typing, send/click gestures and window transitions carry the flow. The character is rendered from the released `caelis-garden-outfit-v1.glb`; no character redesign or private authoring source is used. Its asset license permits Bot demonstrations; attribution and license are copied from pinned source snapshots to `public/assets/bot/` during the build.
+Retired Caelis App content, document snapshots and generated pages have been removed. Cloudflare Pages middleware returns a localized, noindex HTTP 410 for its old project/document paths, while active routes continue unchanged. `_routes.json` scopes that middleware to retired paths and the existing download route. Static Astro preview does not emulate Pages Functions; route behavior is covered by the middleware tests. Clean builds regenerate search, social images and sitemap without retired entries.
 
-**Proactive care is experimental and not available in v0.2.0.** Its current maturity is described in the use-case body; the film has no disclaimer overlays. Its event → CEL condition → queued prompt flow is based on `poc/eventbot`. The story insert shows a conversational clue, a context-specific callback planned while work is underway, and a later task-completion trigger; the generated callback is illustrative, not a native settings screen or a production tool invocation. This POC has no production registration tool or verified native lock/unlock integration. The film uses fixture events, not invented shipping calendar/mail integrations. Core work and the task-bubble terminal entry are grounded in v0.2.0 `docs/product.md` and `docs/task-delegation.md`. Results depend on the selected Runtime, models, tools and permissions. UI composition is illustrative.
-
-`src/data/bot-demo.json` owns scenario copy and the timing map. Generated MP4s, posters and captions are committed in `assets/video/`; site builds only copy them. To regenerate with Blender, Pillow 11–12 and FFmpeg:
-
-```sh
-blender -b --python tools/render-bot-character.py -- \
-  --model ../caelis-bot/frontend/public/models/caelis-garden-outfit-v1.glb \
-  --out .artifacts/bot-redesign/character --fps 12
-python tools/generate-bot-demo.py --font /path/to/a/Chinese-capable-font.ttf
-```
-
-The source model belongs to the sibling public Caelis Bot repository at v0.2.0. The film renderer accepts `--character-frames` to use another local rendering directory. It uses the released Bot’s `frontend/public/icons/caelis-avatar.png` as the chat avatar, with an optional `--avatar` override; the website brand logo is unchanged. The renderer uses Hiragino Sans GB, the macOS system font, and Menlo for the terminal; pass `--font`, `--latin-font`, and `--mono-font` to override them. `--stills-only` creates 16 QA frames per language. Blender renders the existing idle, working, attention, nod and celebrate clips, without changing the model. Output is 1600 × 900, 24 fps H.264/yuv420p, fast-start MP4, no audio. The silent video automatically loops while its page is visible and pauses on page hiding. Manual pause is respected; reduced-motion preference disables automatic playback while retaining explicit controls. The player exposes only a compact play/pause button, with no native timeline or chapter seeking; the film also has no progress graphics. Cursor travel takes at most 0.28 source seconds, with no slow drift during reading beats. Check both workflows, the callback origin, typography, character actions, autoplay/loop, hide/resume, captions and mobile overflow after changes.
+Desktop World is a prerelease Computer Use plugin based on CUA. The catalog/guide names upstream trycua/cua and distinguishes macOS extensions from Windows support and known limits. Source snapshots are pinned to RC.9; its release notes supersede stale RC.8 README download guidance.
 
 The existing constellation/meteor canvas and the real Caelis collaboration recording are retained. Animations stop outside the visible area or while the tab is hidden. Reduced motion disables automatic animation/playback; users can still explicitly play the recording. The MP4 loads when the recording enters view. A smaller WebP poster is generated for the page while the original PNG URL remains compatible.
 
@@ -127,3 +116,9 @@ python tools/generate-demo.py
 On non-Windows systems, provide `--font /absolute/path/to/a/monospace.ttf`. Do not replace reviewed captures with a local Store export.
 
 The existing native Windows installer test remains separate: `powershell -NoProfile -File tests/install-windows.ps1`. Website changes do not alter the installer implementation.
+
+## Reviewed content baseline
+
+The 2026-10-18 refresh uses Caelis v0.72.2 (`fa598b00db7d6635086d3388f4d4c9c335642cfd`) and Caelis Bot v0.15.2 (`c6579eecb9da57a91090174b9a414750a3e3ef4f`). Core main was two commits ahead (test synchronization and Windows sandbox shutdown); those changes are not described as released. Bot main later advanced to `bb00cd465a8a756eb5b4274b6bcb6a7a5abbaf42` with an unreleased Weixin worker-completion routing fix; that fix is not marketed as released. Windows platform availability is supported by actual release assets and `docs/windows-release.md`, even where historical product documents still call it future work.
+
+The separate official Bot website is `caelis-labs/ohmybot` at ohmybot.si; it owns Bot marketing copy and uses this site's guides. This repository's CI validates PRs and main. Cloudflare's live branch settings must be checked before pushing if an automatic production deployment is possible. No production configuration or domain changes are part of this refresh.

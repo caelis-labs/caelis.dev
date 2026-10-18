@@ -1,31 +1,39 @@
 ---
-title: "常见问题与支持范围"
-description: "检查运行时、平台与版本要求。"
+title: "常见问题与支持"
+description: "检查连接、下载、截图与平台要求。"
 sidebar: {"order": 3}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis-bot/troubleshooting.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
+sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
 sourcePath: "README.md"
-productVersion: "v0.2.0"
+productVersion: "v0.15.2"
 ---
 
-## 角色出现了，但无法开始对话
+## 角色出现了，但无法开始聊天
 
-确认所选的 Caelis 或 Codex 已在本机安装并配置。在 **设置 → 运行时** 检查选择的可执行程序。Caelis Bot 不捆绑模型运行时或账号。
+打开**设置 → 连接与模型**，完成所选连接的登录和模型选择。Caelis 已内置，Codex 需要你自己的本机安装。安装完成不代表模型已登录，配置好后先发送一个简单问题。
 
-## macOS 阻止首次启动
+## macOS 阻止首次打开
 
-使用最新稳定版，按[安装指南](../reference/install/)校验下载文件。如出现正常的首次打开提示，确认即可；若 macOS 拒绝应用，停止并重新下载官方安装包，不要关闭系统安全检查。
+按[安装指南](../reference/install/)校验官方安装包，正常确认首次打开提示。如果校验和、签名或 Gatekeeper 验证失败，请重新下载官方副本，不要关闭系统检查。
 
-## 支持 Intel、Windows 或 Linux 吗？
+## Windows 显示安全提示
 
-当前正式版适用于 Apple Silicon Mac。官网不声明其他平台或架构已经完成原生支持。
+当前 Windows 包没有 Authenticode 签名，SmartScreen 或组织策略可能提示或阻止安装。只使用官方发布，核对对应校验和并阅读发布说明，同时确认已安装 Microsoft Edge WebView2。详见[Windows 安装要求](../installation/)。
 
-## 是否内置运行时？
+## 截图工具栏无法使用“问 Bot”
 
-没有。本应用独立连接本机 Caelis 或 Codex；需要单独安装并配置所选运行时。
+当前模型需要明确支持图片输入。可在“连接与模型”中选择兼容模型；截图、复制、标注和贴图仍可独立使用。如果无法截图，检查附加功能和系统权限。
 
-## 角色资产是否开源？
+## 支持哪些平台？
 
-代码采用 Apache-2.0，成品角色资产使用独立许可，建模源文件保持私有。详细说明见[角色资产参考](../reference/character-assets/)。
+已发布 Apple Silicon macOS 与 Windows x64 安装包。Windows 要求 Windows 10 22H2 或更新版本及 WebView2，原生测试使用 Windows 11。目前没有 Intel Mac、Windows ARM64 或 Linux 桌面包。SSH 远程机器是工作目标，不是 Linux 桌面版。
+
+## 数据与账号在哪里？
+
+Notebook 和应用数据保存在你的电脑上，所选模型或连接的服务可能接收请求和附件。安装包不包含服务账号、订阅或额度。重新安装时保留应用数据；Windows 预览版与正式版数据保持独立。
+
+## 怎样报告问题？
+
+遵循应用的恢复提示，或提交 [Issue](https://github.com/caelis-labs/caelis-bot/issues)，附上平台、版本和复现步骤。分享诊断报告前检查内容，移除私人对话、账号、私有路径与密钥。[角色资产许可](../reference/character-assets/)独立于 Apache-2.0 代码许可。

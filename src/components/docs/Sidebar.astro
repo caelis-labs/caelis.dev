@@ -11,7 +11,7 @@ const lang = getLocale(Astro.url.pathname); const current = Astro.locals.starlig
   </select>
 </div>
 <Default/>
-<a class="docs-back-to-project" href={localePath(lang, current ? `/projects/${current}/` : '/projects/')}>{lang === 'en' ? '← Explore the projects' : '← 探索项目'}</a>
+<a class="docs-back-to-project" href={current === 'caelis-bot' ? `https://ohmybot.si${lang === 'zh-cn' ? '/zh-cn/' : '/'}` : localePath(lang, current ? `/projects/${current}/` : '/projects/')}>{lang === 'en' ? '← Explore the projects' : '← 探索项目'}</a>
 <script>
   document.querySelector<HTMLSelectElement>('#docs-project')?.addEventListener('change', event => {
     const select = event.currentTarget as HTMLSelectElement;

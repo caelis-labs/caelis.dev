@@ -1,5 +1,16 @@
 {
   "version": 1,
-  "include": ["/download/caelis-bot", "/download/caelis-bot/"],
+  "include": [
+    "/download/caelis-bot",
+    "/download/caelis-bot/",
+    "/projects/caelis-app",
+    "/projects/caelis-app/*",
+    "/docs/caelis-app",
+    "/docs/caelis-app/*",
+    "/zh-cn/projects/caelis-app",
+    "/zh-cn/projects/caelis-app/*",
+    "/zh-cn/docs/caelis-app",
+    "/zh-cn/docs/caelis-app/*"
+  ],
   "exclude": []
 }

@@ -5,9 +5,9 @@ sidebar: {"order": 5}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis/safety.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "f136ebaeb46608a69bf7732af57bb2f2a2382756"
+sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
 sourcePath: "README.md"
-productVersion: "v0.60.1"
+productVersion: "v0.72.2"
 ---
 
 ## Tool approval modes

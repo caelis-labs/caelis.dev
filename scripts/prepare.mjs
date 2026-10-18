@@ -5,6 +5,7 @@ import sharp from 'sharp';
 
 const root = resolve(import.meta.dirname, '..');
 process.chdir(root);
+await rm('public/assets/video', { recursive: true, force: true });
 await mkdir('public/assets/video', { recursive: true });
 await mkdir('public/assets/bot', { recursive: true });
 for (const file of ['install.sh', 'install.ps1', 'icon.svg', 'wordmark.svg']) await copyFile(file, `public/${file}`);

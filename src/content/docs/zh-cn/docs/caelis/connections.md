@@ -5,9 +5,9 @@ sidebar: {"order": 2}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis/connections.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "f136ebaeb46608a69bf7732af57bb2f2a2382756"
+sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
 sourcePath: "README.md"
-productVersion: "v0.60.1"
+productVersion: "v0.72.2"
 ---
 
 ## 连接模型 Provider
@@ -35,3 +35,11 @@ productVersion: "v0.60.1"
 ## 连接失败时
 
 检查可执行程序、参数、Provider 配置以及所选 Host 的运行环境。协议初始化成功不代表已经完成鉴权和真实请求，请用一个简单任务验证完整连接。
+
+## 账号与模型服务
+
+登录方式、可用模型与费用由各服务决定。安装 Caelis 不包含服务额度或订阅；API 凭据应在连接流程中填写，不要放进聊天或仓库文件。
+
+ChatGPT 订阅接入使用兼容 Codex 的社区 OAuth 流程，并非 OpenAI 面向第三方公开文档化的集成方式，请按所选连接显示的步骤登录。
+
+可按支持情况连接本地模型服务。会话保存在本机，不代表发往远端服务的请求离线运行。

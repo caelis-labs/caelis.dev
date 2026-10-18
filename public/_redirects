@@ -1,2 +1,8 @@
 /github https://github.com/caelis-labs/caelis 302
 /releases https://github.com/caelis-labs/caelis/releases 302
+/projects/caelis-bot https://ohmybot.si/ 301
+/projects/caelis-bot/ https://ohmybot.si/ 301
+/projects/caelis-bot/* https://ohmybot.si/ 301
+/zh-cn/projects/caelis-bot https://ohmybot.si/zh-cn/ 301
+/zh-cn/projects/caelis-bot/ https://ohmybot.si/zh-cn/ 301
+/zh-cn/projects/caelis-bot/* https://ohmybot.si/zh-cn/ 301

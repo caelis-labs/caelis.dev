@@ -5,9 +5,9 @@ sidebar: {"order": 0}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis/index.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "f136ebaeb46608a69bf7732af57bb2f2a2382756"
+sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
 sourcePath: "README.md"
-productVersion: "v0.60.1"
+productVersion: "v0.72.2"
 ---
 
 Caelis brings models and ACP-compatible agents into one local Session. Participants keep their own conversations, exchange findings, and continue working as you steer the task.
@@ -29,3 +29,9 @@ Your launch directory is the workspace. Sessions live locally; use `/resume` to 
 Use `/team` to configure participant roles. You can follow a participant, send text or images, and coordinate work from the main conversation. See [participants](./participants/).
 
 Local storage and execution are separate from inference: model requests go to your selected provider or external agent. Review [approvals and sandboxing](./safety/) before broadening tool access.
+
+## Extend the workspace
+
+Use MCP servers, skills and plugins to bring in tools. Project MCP configuration requires workspace trust. Built-in memory needs no separate installation; you choose whether to configure optional model-assisted processing.
+
+Caelis can also run a single prompt or serve an ACP client. See [tools and automation](./workflows/) for a first example.

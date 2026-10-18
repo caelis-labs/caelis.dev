@@ -5,9 +5,9 @@ sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis/installation.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "f136ebaeb46608a69bf7732af57bb2f2a2382756"
+sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
 sourcePath: "README.md"
-productVersion: "v0.60.1"
+productVersion: "v0.72.2"
 ---
 
 ## macOS 与 Linux
@@ -44,3 +44,7 @@ caelis
 再次执行相同安装指令即可更新。官网 Shell 与 PowerShell 安装器始终选择最新版本，不用于选择历史版本。需要固定版本时，请从 [GitHub Releases](https://github.com/caelis-labs/caelis/releases) 获取对应文件与校验和。
 
 正式发布二进制覆盖 macOS、Linux、Windows 的 x64 与 ARM64。从源码构建时，以所选版本 `go.mod` 中声明的 Go 版本为准。
+
+## 检查安装
+
+运行 `caelis -h` 确认命令在 PATH 中。遇到可识别的启动或兼容问题，可使用 `caelis doctor` 检查健康状态并采用支持的修复方式；`caelis service status` 查看本地服务状态。更新时保留会话数据，替换程序无需删除数据目录。

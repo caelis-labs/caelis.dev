@@ -1,30 +1,32 @@
 ---
-title: "Caelis Bot overview"
-description: "A quiet, agent-powered companion for your Mac."
+title: "CaelisBot overview"
+description: "A desktop companion for conversations, files and everyday tasks."
 sidebar: {"order": 0}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis-bot/index.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "e58d90b7c26f1f004d25d05d9b55fed6973482b3"
+sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
 sourcePath: "README.md"
-productVersion: "v0.2.0"
+productVersion: "v0.15.2"
 ---
 
-Caelis Bot puts a small, expressive character on your desktop. Ask for help, share a file, and review actions when approval is needed.
+CaelisBot puts a small, expressive character on your desktop. Ask for help, share a file, follow background work and review actions that need your decision.
 
-## The stable release
+## Choose your desktop
 
-- macOS on Apple Silicon.
-- A separately installed and configured local Caelis or Codex runtime.
-- English and Simplified Chinese, selectable in Settings.
-- Automatic update checks, with your confirmation before download and installation. Upgrading from v0.1.0 requires one manual installation.
+- **macOS:** Apple Silicon, with Caelis included in the app.
+- **Windows:** x64 installer or portable ZIP, Windows 10 22H2 or later and Microsoft Edge WebView2. Windows 11 was used for native development testing.
+- **Connections:** use the included Caelis or your own local Codex installation. Complete the selected model service’s login before chatting.
+- **Languages:** English and Simplified Chinese, selectable in Settings.
 
-[Download for macOS](/download/caelis-bot/) · [SHA-256](/download/caelis-bot/?asset=checksum) · [GitHub Releases](https://github.com/caelis-labs/caelis-bot/releases/latest)
+[Download for macOS](/download/caelis-bot/) · [SHA-256](/download/caelis-bot/?asset=checksum) · [Windows downloads and release notes](https://github.com/caelis-labs/caelis-bot/releases/latest)
 
-Start with [installation and first launch](./installation/), then learn the [conversation controls](./conversation/).
+Windows packages are not Authenticode signed. See [installation](./installation/) for requirements and first launch, then [conversations, models and tools](./conversation/).
 
-## A separate desktop product
+## One companion, several ways to work
 
-Caelis Bot is the desktop application in the `caelis-bot` repository. Caelis and Codex are separately installed runtimes; neither is bundled with the desktop app.
+Keep editable notes in Notebook, ask for reminders while the app is running, capture and annotate a screen region, and connect supported plugins. Telegram can join the same Bot conversation. These features depend on your chosen models, services and permissions; the app download does not include a model-service subscription.
 
-Code uses Apache-2.0. The bundled character and avatar use the separate [character asset license](https://github.com/caelis-labs/caelis-bot/blob/e58d90b7c26f1f004d25d05d9b55fed6973482b3/ASSET-LICENSE.md).
+CaelisBot is a separate desktop application. It is different from the `caelis bot` terminal command.
+
+Code uses Apache-2.0. Finished character assets use a separate [asset license](./reference/character-assets/).
