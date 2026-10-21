@@ -30,7 +30,7 @@ const cta = t.installation;
     {project.id === 'caelis' ? <Install lang={lang}/> : <div class="product-notice">
       {project.id === 'acp-go-sdk' && <p>{lang === 'en' ? 'Start with the minimal agent and client examples. No model account is needed for the fixed-response example.' : '从最小 Agent 和 Client 示例开始。运行固定回复的入门示例，无需模型账号。'}</p>}
       {project.id === 'memory' && <p>{lang === 'en' ? 'Integrate the published Go module in your host. Memory is embedded; it does not need a separate server or installation when used inside Caelis.' : '将已发布的 Go 模块集成进宿主。Memory 以嵌入式方式运行，在 Caelis 中使用时无需独立服务或额外安装。'}</p>}
-      {project.id === 'desktop-world' && <p>{lang === 'en' ? 'Available as a prerelease for macOS Apple Silicon and Windows x64. Windows has known display-scaling and modal-dialog limits; review the platform notes before use.' : '目前提供 macOS Apple Silicon 与 Windows x64 预发布版本。Windows 存在显示缩放及模态窗口等已知限制，请先阅读平台说明。'}</p>}
+      {project.id === 'desktop-world' && <p>{lang === 'en' ? 'Available for macOS Apple Silicon and Windows x64. Windows has known display-scaling and modal-dialog limits; review the platform notes before use.' : '目前提供 macOS Apple Silicon 与 Windows x64 正式版本。Windows 存在显示缩放及模态窗口等已知限制，请先阅读平台说明。'}</p>}
       <div class="actions"><a class="button primary" href={start}>{cta}<Icon name="arrow" size={18}/></a>{project.status !== 'beta' && <a class="text-link" href={releases}>{project.status === 'release' ? t.latestRelease : t.release}<Icon name="external" size={16}/></a>}</div>
     </div>}
   </div></section>

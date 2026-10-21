@@ -5,9 +5,9 @@ sidebar: {"order": 0}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis/index.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
+sourceRef: "744b6f421c9b19ac905c654c0e6afae1126bd297"
 sourcePath: "README.md"
-productVersion: "v0.72.2"
+productVersion: "v0.73.1"
 ---
 
 Caelis 将模型与兼容 ACP 的智能体带入同一个本地会话。参与者保留各自的对话、交流发现，也可以在你补充要求后继续工作。

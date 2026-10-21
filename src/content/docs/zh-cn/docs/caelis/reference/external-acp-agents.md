@@ -2,9 +2,9 @@
 title: "外部 ACP 智能体"
 description: "Caelis 参考文档，来源见页末。"
 project: "caelis"
-productVersion: "v0.72.2"
+productVersion: "v0.73.1"
 sourceRepo: "caelis"
-sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
+sourceRef: "744b6f421c9b19ac905c654c0e6afae1126bd297"
 sourcePath: "docs/external-acp-agents.md"
 generated: true
 editUrl: false
@@ -16,9 +16,9 @@ sidebar: {"order":20}
 This document owns the product contract for local external ACP Agent onboarding,
 authentication, model selection, input, disconnect, and endpoint compatibility.
 For collaboration setup and workspace controls, see [Participants](/zh-cn/docs/caelis/reference/participants/).
-Layer ownership lives in [Architecture](https://github.com/caelis-labs/caelis/blob/fa598b00db7d6635086d3388f4d4c9c335642cfd/docs/architecture.md).
+Layer ownership lives in [Architecture](https://github.com/caelis-labs/caelis/blob/744b6f421c9b19ac905c654c0e6afae1126bd297/docs/architecture.md).
 For Host settings clients and model-provider OAuth, see
-[Model Connections](https://github.com/caelis-labs/caelis/blob/fa598b00db7d6635086d3388f4d4c9c335642cfd/docs/model-connections.md).
+[Model Connections](https://github.com/caelis-labs/caelis/blob/744b6f421c9b19ac905c654c0e6afae1126bd297/docs/model-connections.md).
 
 ## Protocol versions
 
@@ -178,7 +178,7 @@ profile default in `SessionDefaults`, or inherits the backend default when none
 is configured;
 `standard` and `fast` are explicit selections. Binding sets retain that choice.
 Host and Session model commands retain their explicit Fast boolean: false selects
-standard on a capable profile. Guardian and Steward remain provider-only.
+standard on a capable profile. Guardian remains provider-only.
 
 The Codex adapter reads `model/list.serviceTiers` and `defaultServiceTier` and
 publishes `service_tier`. Every catalog-known model exposes the protocol baseline

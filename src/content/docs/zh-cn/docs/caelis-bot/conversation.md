@@ -5,16 +5,18 @@ sidebar: {"order": 2}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis-bot/conversation.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
+sourceRef: "1acfd0b9ecc50a9270ce321e90365b152221491a"
 sourcePath: "docs/product.md"
-productVersion: "v0.15.2"
+productVersion: "v0.18.1"
 ---
 
 ## 打开对话
 
-单击角色打开或隐藏聊天，双击唤回聊天及已打开的设置。草稿保留在聊天窗口。macOS 菜单栏和 Windows 系统托盘提供设置、显示隐藏与退出入口。
+桌面版单击角色打开或隐藏聊天，双击唤回聊天及已打开的设置。草稿保留在聊天窗口。macOS 菜单栏和 Windows 系统托盘提供设置、显示隐藏与退出入口。
 
 发送消息或附上文件，回复会回到持续的对话中。遇到需要你决定的操作，先核对请求再确认继续。
+
+Linux Headless/Web 版在浏览器中使用聊天、文件和设置，关闭网页不会停止已接受的工作。文件、模型连接与账号都属于服务所在机器；桌面角色、截图快捷键、电脑操控与终端观察窗口不适用于该版本。
 
 ## 选择对话与工作模型
 
@@ -38,7 +40,7 @@ macOS 的**远程机器**支持配置 SSH 机器，为其单独登录 Runtime �
 
 Notebook 保存可由你和 Bot 阅读、修改的 Markdown 笔记。告诉它需要记住哪些偏好或项目事实；笔记不是模型训练，其内容由你掌握。
 
-可以在对话中安排提醒。调度要求应用保持运行，并受休眠、锁屏和通知权限影响，不是持续在线的云端闹钟。
+可以在对话中安排提醒。调度要求应用保持运行，并受休眠和通知权限影响，不是持续在线的云端闹钟。
 
 在设置中添加支持的插件，通过**消息渠道**连接 Telegram，继续同一个 Bot 对话。各服务的账号、权限和可执行操作各不相同，请按需分享信息。
 

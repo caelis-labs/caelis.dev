@@ -5,9 +5,9 @@ sidebar: {"order": 3}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/zh-cn/docs/caelis-bot/troubleshooting.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
+sourceRef: "1acfd0b9ecc50a9270ce321e90365b152221491a"
 sourcePath: "README.md"
-productVersion: "v0.15.2"
+productVersion: "v0.18.1"
 ---
 
 ## 角色出现了，但无法开始聊天
@@ -28,11 +28,15 @@ productVersion: "v0.15.2"
 
 ## 支持哪些平台？
 
-已发布 Apple Silicon macOS 与 Windows x64 安装包。Windows 要求 Windows 10 22H2 或更新版本及 WebView2，原生测试使用 Windows 11。目前没有 Intel Mac、Windows ARM64 或 Linux 桌面包。SSH 远程机器是工作目标，不是 Linux 桌面版。
+已发布 Apple Silicon macOS 与 Windows x64 安装包。Windows 要求 Windows 10 22H2 或更新版本及 WebView2，原生测试使用 Windows 11。目前没有 Intel Mac、Windows ARM64 或 Linux 桌面包。另提供 Linux amd64/arm64 Headless/Web 完整包，使用浏览器连接常驻服务。它与桌面版中的 SSH 远程工作目标不同。
+
+## Linux 服务或 Web 页面打不开
+
+先检查 `systemctl --user status caelisbot.service`，再用 `journalctl --user -u caelisbot.service` 查看服务日志。确认 systemd 用户管理器、Python 3、OpenSSL 和 bubblewrap 可用，WSL 已启用 systemd。VM 的 localhost 不等于宿主的 localhost；按 [Linux 指南](../linux/)使用只绑定本机的 SSH 转发。请勿通过关闭沙箱保护来绕过安装要求。
 
 ## 数据与账号在哪里？
 
-Notebook 和应用数据保存在你的电脑上，所选模型或连接的服务可能接收请求和附件。安装包不包含服务账号、订阅或额度。重新安装时保留应用数据；Windows 预览版与正式版数据保持独立。
+Notebook 和应用数据保存在运行 Bot 的机器上，所选模型或连接的服务可能接收请求和附件。安装包不包含服务账号、订阅或额度。重新安装时保留应用数据；Windows 预览版与正式版数据保持独立。
 
 ## 怎样报告问题？
 
