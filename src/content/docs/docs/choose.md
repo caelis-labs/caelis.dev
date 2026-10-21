@@ -20,7 +20,7 @@ Caelis provides a local collaboration workspace. ACP Go SDK and Memory are indep
 CaelisBot is a separate desktop companion. The macOS and Windows packages include Caelis, or you can connect your own local Codex installation. It is different from the `caelis bot` terminal command in the Caelis repository.
 
 
-Desktop World packages and extends CUA for desktop inspection and actions. It is a prerelease; read the platform notes before use.
+Desktop World packages and extends CUA for desktop inspection and actions. Read the stable release’s platform notes before use.
 
 ## What you need
 

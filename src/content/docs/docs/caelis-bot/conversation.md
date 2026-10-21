@@ -5,22 +5,24 @@ sidebar: {"order": 2}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis-bot/conversation.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
+sourceRef: "1acfd0b9ecc50a9270ce321e90365b152221491a"
 sourcePath: "docs/product.md"
-productVersion: "v0.15.2"
+productVersion: "v0.18.1"
 ---
 
 ## Open the conversation
 
-Click the character to open or hide chat. Double-click to bring chat and already-open settings forward. Drafts stay in the chat window. The menu bar on macOS and system tray on Windows provide settings, visibility controls and Quit.
+On desktop, click the character to open or hide chat. Double-click to bring chat and already-open settings forward. Drafts stay in the chat window. The menu bar on macOS and system tray on Windows provide settings, visibility controls and Quit.
 
 Send a message or attach a file to provide context. Replies return to the ongoing conversation. When an action needs your decision, review the request before allowing it to continue.
+
+In Linux Headless/Web, use chat, files and settings in your browser. Closing the page does not stop accepted work. Files, model connections and accounts belong to the service machine. Desktop characters, capture shortcuts, Computer Use and terminal observer windows do not apply to this edition.
 
 ## Choose conversation and work models
 
 Open **Settings → Connections & Models**. The conversation model is the one you talk to; the default work model is used for newly delegated tasks. You can choose them separately. Existing work keeps its original connection. Model availability, reasoning options and image support depend on your connected service.
 
-Caelis comes with the desktop packages and connects to your model services. Codex uses your own local installation and account. Switching runtime is different from choosing another model; follow the app’s connection guidance.
+Caelis comes with desktop and Linux packages and connects to your model services. Codex uses your own local installation and account. Switching runtime is different from choosing another model; follow the app’s connection guidance.
 
 ## Follow longer work
 
@@ -38,7 +40,7 @@ Required system permissions are requested when a feature needs them. Manual capt
 
 Notebook contains Markdown notes you and Bot can read and edit. Tell Bot which preferences or project facts to keep. Notes are not model training, and you remain in control of their contents.
 
-Ask for a reminder in the conversation. Scheduling needs the app to remain running and is affected by sleep, locking and notification permissions; it is not an always-on cloud alarm.
+Ask for a reminder in the conversation. Scheduling needs the app to remain running and is affected by sleep and notification permissions; it is not an always-on cloud alarm.
 
 Configure supported plugins in Settings, and connect Telegram through **Settings → Messaging** to continue the same Bot conversation. Each service has its own account, permissions and available actions. Only share information appropriate for that service.
 

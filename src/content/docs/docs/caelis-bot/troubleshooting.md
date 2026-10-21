@@ -5,9 +5,9 @@ sidebar: {"order": 3}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis-bot/troubleshooting.md"
 project: "caelis-bot"
 sourceRepo: "caelis-bot"
-sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
+sourceRef: "1acfd0b9ecc50a9270ce321e90365b152221491a"
 sourcePath: "README.md"
-productVersion: "v0.15.2"
+productVersion: "v0.18.1"
 ---
 
 ## The character appears, but chat does not start
@@ -28,11 +28,15 @@ The selected model must advertise image support. Choose a compatible model in Co
 
 ## Which platforms are supported?
 
-Apple Silicon macOS and Windows x64 packages are published. Windows requires Windows 10 22H2 or later and WebView2; native testing used Windows 11. Intel Mac, Windows ARM64 and Linux desktop packages are not offered. An SSH machine is a work destination, not a Linux desktop edition.
+Apple Silicon macOS and Windows x64 packages are published. Windows requires Windows 10 22H2 or later and WebView2; native testing used Windows 11. Intel Mac, Windows ARM64 and Linux desktop packages are not offered. Linux amd64/arm64 Headless/Web packages are also available as a browser interface to a resident service. This is distinct from an SSH work destination selected in the desktop app.
+
+## The Linux service or Web page is unavailable
+
+Check `systemctl --user status caelisbot.service`, then `journalctl --user -u caelisbot.service`. Confirm the systemd user manager, Python 3, OpenSSL and bubblewrap are available; WSL must enable systemd. A VM’s localhost is not the host’s localhost: follow the [Linux guide](../linux/) for a loopback-only SSH forward. Do not bypass the sandbox requirements.
 
 ## Where are my data and account?
 
-Notebook and application data stay on your computer. Your chosen model or connected service may receive prompts and attachments. The package does not include an account, subscription or credits. Keep application data when reinstalling. Windows Preview and Stable data remain separate.
+Notebook and application data stay on the machine running Bot. Your chosen model or connected service may receive prompts and attachments. The package does not include an account, subscription or credits. Keep application data when reinstalling. Windows Preview and Stable data remain separate.
 
 ## Report a problem
 

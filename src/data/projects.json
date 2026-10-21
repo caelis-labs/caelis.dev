@@ -2,11 +2,11 @@
   {
     "id": "caelis",
     "name": "Caelis",
-    "version": "v0.72.2",
+    "version": "v0.73.1",
     "status": "release",
     "platform": "macOS · Linux · Windows",
     "kind": "application",
-    "sourceRef": "fa598b00db7d6635086d3388f4d4c9c335642cfd",
+    "sourceRef": "744b6f421c9b19ac905c654c0e6afae1126bd297",
     "en": {
       "label": "The collaboration workspace",
       "tagline": "Different minds.\nOne shared direction.",
@@ -53,11 +53,11 @@
   {
     "id": "caelis-bot",
     "name": "CaelisBot",
-    "version": "v0.15.2",
+    "version": "v0.18.1",
     "status": "release",
-    "platform": "macOS · Apple Silicon / Windows · x64",
+    "platform": "macOS · Windows / Linux · Headless + Web",
     "kind": "application",
-    "sourceRef": "c6579eecb9da57a91090174b9a414750a3e3ef4f",
+    "sourceRef": "1acfd0b9ecc50a9270ce321e90365b152221491a",
     "en": {
       "label": "A little closer to you",
       "tagline": "A quiet presence.\nA helping hand.",
@@ -206,11 +206,11 @@
   {
     "id": "desktop-world",
     "name": "Desktop World",
-    "version": "v0.1.0-rc.9",
-    "status": "preview",
+    "version": "v0.1.2",
+    "status": "release",
     "platform": "macOS arm64 · Windows x64",
     "kind": "plugin",
-    "sourceRef": "79a097b3b479fbf65926fdd6a58c296d8d1e1e1e",
+    "sourceRef": "977afec748845c05c294b01318c926db60826378",
     "en": {
       "label": "Computer Use, connected",
       "tagline": "From understanding\nto action.",

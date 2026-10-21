@@ -2,9 +2,9 @@
 title: "Character asset license"
 description: "Reference from a reviewed CaelisBot source revision."
 project: "caelis-bot"
-productVersion: "v0.15.2"
+productVersion: "v0.18.1"
 sourceRepo: "caelis-bot"
-sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
+sourceRef: "1acfd0b9ecc50a9270ce321e90365b152221491a"
 sourcePath: "ASSET-LICENSE.md"
 generated: true
 editUrl: false

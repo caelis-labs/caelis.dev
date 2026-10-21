@@ -102,7 +102,7 @@ Bot marketing has one source: [ohmybot.si](https://ohmybot.si/). Labs keeps a co
 
 Retired Caelis App content, document snapshots and generated pages have been removed. Cloudflare Pages middleware returns a localized, noindex HTTP 410 for its old project/document paths, while active routes continue unchanged. `_routes.json` scopes that middleware to retired paths and the existing download route. Static Astro preview does not emulate Pages Functions; route behavior is covered by the middleware tests. Clean builds regenerate search, social images and sitemap without retired entries.
 
-Desktop World is a prerelease Computer Use plugin based on CUA. The catalog/guide names upstream trycua/cua and distinguishes macOS extensions from Windows support and known limits. Source snapshots are pinned to RC.9; its release notes supersede stale RC.8 README download guidance.
+Desktop World is a released Computer Use plugin based on CUA. The catalog and guides credit upstream trycua/cua and state platform limits. Source snapshots are pinned to v0.1.2; release notes supersede older README download examples.
 
 The existing constellation/meteor canvas and the real Caelis collaboration recording are retained. Animations stop outside the visible area or while the tab is hidden. Reduced motion disables automatic animation/playback; users can still explicitly play the recording. The MP4 loads when the recording enters view. A smaller WebP poster is generated for the page while the original PNG URL remains compatible.
 
@@ -119,6 +119,10 @@ The existing native Windows installer test remains separate: `powershell -NoProf
 
 ## Reviewed content baseline
 
-The 2026-10-18 refresh uses Caelis v0.72.2 (`fa598b00db7d6635086d3388f4d4c9c335642cfd`) and Caelis Bot v0.15.2 (`c6579eecb9da57a91090174b9a414750a3e3ef4f`). Core main was two commits ahead (test synchronization and Windows sandbox shutdown); those changes are not described as released. Bot main later advanced to `bb00cd465a8a756eb5b4274b6bcb6a7a5abbaf42` with an unreleased Weixin worker-completion routing fix; that fix is not marketed as released. Windows platform availability is supported by actual release assets and `docs/windows-release.md`, even where historical product documents still call it future work.
+The historical 2026-10-18 refresh used Caelis v0.72.2 (`fa598b00db7d6635086d3388f4d4c9c335642cfd`) and Caelis Bot v0.15.2 (`c6579eecb9da57a91090174b9a414750a3e3ef4f`). Core main was two commits ahead (test synchronization and Windows sandbox shutdown); those changes are not described as released. Bot main later advanced to `bb00cd465a8a756eb5b4274b6bcb6a7a5abbaf42` with an unreleased Weixin worker-completion routing fix; that fix is not marketed as released. Windows platform availability is supported by actual release assets and `docs/windows-release.md`, even where historical product documents still call it future work.
 
 The separate official Bot website is `caelis-labs/ohmybot` at ohmybot.si; it owns Bot marketing copy and uses this site's guides. This repository's CI validates PRs and main. Cloudflare's live branch settings must be checked before pushing if an automatic production deployment is possible. No production configuration or domain changes are part of this refresh.
+
+## 2026-10-21 release synchronization
+
+Current catalog: Bot v0.18.1 (`1acfd0b9ecc50a9270ce321e90365b152221491a`), Core v0.73.1 (`744b6f421c9b19ac905c654c0e6afae1126bd297`), Desktop World v0.1.2 (`977afec748845c05c294b01318c926db60826378`). Public snapshots are pinned to these release commits. Linux/WSL amd64 and arm64 ship complete managed Headless/Web packages; bilingual Linux guides document the official signed bootstrap, systemd user services, local browser access, Codex device login, upgrades and platform boundaries. Experimental settings follow Core defaults and change only on explicit user input. Bot media and original art provenance are unchanged.

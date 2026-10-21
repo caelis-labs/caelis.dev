@@ -2,20 +2,20 @@
 title: "Verified installation steps"
 description: "Reference from a reviewed CaelisBot source revision."
 project: "caelis-bot"
-productVersion: "v0.15.2"
+productVersion: "v0.18.1"
 sourceRepo: "caelis-bot"
-sourceRef: "c6579eecb9da57a91090174b9a414750a3e3ef4f"
+sourceRef: "1acfd0b9ecc50a9270ce321e90365b152221491a"
 sourcePath: "docs/install.md"
 generated: true
 editUrl: false
 sidebar: {"order":20}
 ---
 
-[English](/docs/caelis-bot/reference/install/) · [简体中文](https://github.com/caelis-labs/caelis-bot/blob/c6579eecb9da57a91090174b9a414750a3e3ef4f/docs/install.zh-CN.md)
+[English](/docs/caelis-bot/reference/install/) · [简体中文](https://github.com/caelis-labs/caelis-bot/blob/1acfd0b9ecc50a9270ce321e90365b152221491a/docs/install.zh-CN.md)
 
 ## Download and verify
 
-Open [GitHub Latest](https://github.com/caelis-labs/caelis-bot/releases/latest) and require its tag to match the [signed macOS manifest](https://releases.caelis.dev/caelis-bot/latest.json) before downloading. If they differ or the release lacks the matching DMG and checksum, pause; do not install an older default. Current builds are Apple Silicon (`arm64`); Intel packages are not published yet. CI builds on macOS 14; interactive acceptance has been on Apple Silicon / macOS 27, not every older OS.
+Open [GitHub Latest](https://github.com/caelis-labs/caelis-bot/releases/latest) and require its tag to match the [signed macOS manifest](https://releases.caelis.dev/caelis-bot/latest.json) before downloading. If they differ or the release lacks the matching DMG and checksum, pause; do not install an older default. Current builds are Apple Silicon (`arm64`); Intel packages are not published yet. For minimum-OS and Computer Use limits, see [platform support](https://github.com/caelis-labs/caelis-bot/blob/1acfd0b9ecc50a9270ce321e90365b152221491a/docs/status.md).
 
 Download the `.dmg` and its same-named `.dmg.sha256` into `~/Downloads`. The following block selects the most recently downloaded Caelis DMG, verifies its exact sibling checksum, mounts it read-only and installs it into your user Applications folder. Quit an existing CaelisBot first; the commands stop if it is running or already installed. For an upgrade, move just the old `.app` to Trash first. Your data under `~/Library/Application Support/Caelis Bot/` is preserved.
 
@@ -61,9 +61,9 @@ If you dragged the app into the system Applications folder, use `/Applications/C
 
 ## Connect and use
 
-CaelisBot appears in the **menu bar and on the desktop**, not as a regular Dock app. Single-click the character to write; double-click to open chat. Menu-bar settings control visibility, size, runtime and updates. Only Quit ends the app.
+CaelisBot appears in the **menu bar and on the desktop**, not as a regular Dock app. Single-click the character to toggle chat; double-click to recall chat and any open settings. Menu-bar settings control visibility, size, runtime and updates. Only Quit ends the app.
 
-Connect a runtime during setup or in **Settings → Runtime**. Codex uses a compatible local App Server or discovers a local CLI; you can also select an executable or follow the installation and login steps. Installing or opening Codex Desktop alone does not guarantee an accessible runtime. The Bot does not silently install Codex or log in for you. See [runtime compatibility](https://github.com/caelis-labs/caelis-bot/blob/c6579eecb9da57a91090174b9a414750a3e3ef4f/docs/caelis-integration.md). Caelis requires the current application and Guardian capabilities; compatibility is negotiated through the [application-runtime protocol](https://github.com/caelis-labs/caelis-bot/blob/c6579eecb9da57a91090174b9a414750a3e3ef4f/docs/caelis-integration.md), not a CLI-version allowlist.
+Choose a runtime during setup or in **Settings → Connections & models**. Caelis is bundled; connect a model service or reuse your existing authenticated model. Codex uses a compatible local installation and your account; follow the app's installation/login steps if it is missing. Confirm a model and complete the introduction to begin chatting. System permissions are requested when a feature needs them. See [runtime compatibility](https://github.com/caelis-labs/caelis-bot/blob/1acfd0b9ecc50a9270ce321e90365b152221491a/docs/caelis-integration.md).
 
 Notifications are opt-in. Resident reminders pause when the app exits. Updating the `.app` preserves preferences, attachments and conversation binding. Keep the `Application Support/Caelis Bot` folder unless you intentionally want to remove your data.
 
@@ -71,4 +71,4 @@ Notifications are opt-in. Resident reminders pause when the app exits. Updating 
 
 Updater-enabled releases check daily. In **Settings → Updates**, turn automatic checks on or off or check immediately. Confirm the native dialog to download and install a signed newer version. The app waits for work and unresolved decisions to reach a safe handoff before restarting; conversations, Notebook and settings remain in the same data directory.
 
-Already published v0.1.0 needs one manual upgrade to an updater-enabled version. R2 retains immutable older DMGs so a cached signed appcast can still download its exact artifact. Local `Caelis Bot Dev.app` builds do not use the public updater or replace the installed release.
+Already published v0.1.0 needs one manual upgrade to an updater-enabled version. The distribution mirror retains each platform’s latest verified baseline; historical packages remain on GitHub. If an old cached update download is unavailable, check for updates again or use the current official release. Local `Caelis Bot Dev.app` builds do not use the public updater or replace the installed release.

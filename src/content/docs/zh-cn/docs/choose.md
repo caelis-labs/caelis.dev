@@ -20,7 +20,7 @@ Caelis 提供本地协作工作空间。ACP Go SDK 与 Memory 是独立 Go 模�
 CaelisBot 是独立的桌面伙伴。macOS 与 Windows 包已内置 Caelis，也可连接自己安装的 Codex。它与 Caelis 仓库中的 `caelis bot` 终端命令不同。
 
 
-Desktop World 基于 CUA 二次开发与封装，为智能体提供桌面观察与操作。目前为预发布版本，使用前请阅读平台说明。
+Desktop World 基于 CUA 二次开发与封装，为智能体提供桌面观察与操作。目前已发布正式版，使用前请阅读平台说明。
 
 ## 开始前准备
 

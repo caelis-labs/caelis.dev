@@ -5,9 +5,9 @@ sidebar: {"order": 1}
 editUrl: "https://github.com/caelis-labs/caelis.dev/edit/main/src/content/docs/docs/caelis/installation.md"
 project: "caelis"
 sourceRepo: "caelis"
-sourceRef: "fa598b00db7d6635086d3388f4d4c9c335642cfd"
+sourceRef: "744b6f421c9b19ac905c654c0e6afae1126bd297"
 sourcePath: "README.md"
-productVersion: "v0.72.2"
+productVersion: "v0.73.1"
 ---
 
 ## macOS and Linux
